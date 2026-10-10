@@ -2,7 +2,7 @@
 <%# A photo header for inner pages, under the transparent nav. `links` is the row of buttons under the intro. %>
 <section class="photo-header" data-cta-hide>
   <div class="photo-header__media" data-hero-media>
-    <%= website_image_tag image, alt: "", loading: :eager, fetchpriority: :high, position: image_position.presence %>
+    <%= website_image_tag image, loading: :eager, fetchpriority: :high, position: image_position.presence %>
   </div>
   <div class="photo-header__scrim" aria-hidden="true"></div>
   <div class="container photo-header__body">

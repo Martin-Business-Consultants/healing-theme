@@ -7,7 +7,7 @@
 <% rows = study.gallery.map { |row| row.images.map(&:image).compact_blank }.reject(&:empty?) %>
 <% others = healing_case_studies.reject { it.slug == entry.slug } %>
 <div class="study-hero">
-  <%= website_image_tag study.hero_image, alt: "", loading: :eager, fetchpriority: :high, style: "view-transition-name: portfolio-#{entry.slug}" %>
+  <%= website_image_tag study.hero_image, loading: :eager, fetchpriority: :high, style: "view-transition-name: portfolio-#{entry.slug}" %>
 </div>
 <article class="container container--study study">
   <h1 class="h1 muted study__title"><%= entry.title %></h1>
