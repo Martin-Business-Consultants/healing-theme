@@ -56,6 +56,9 @@ async function submit(event) {
     status.hidden = false
   } finally {
     button.disabled = false
+    // A Turnstile token is good once: the next try needs a fresh one.
+    const widget = form.querySelector(".cf-turnstile")
+    if (widget) window.turnstile?.reset(widget)
   }
 }
 

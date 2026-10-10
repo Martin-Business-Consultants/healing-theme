@@ -14,6 +14,14 @@ module HealingHelper
 
   def healing_testimonials = website_entries(:testimonials)
 
+  # The Turnstile site key when Settings › Forms has Cloudflare Turnstile
+  # set up (the Forms plugin then refuses a submission without its token),
+  # else nil.
+  def healing_turnstile_key
+    captcha = Forms.public_captcha if defined?(Forms) && Forms.respond_to?(:public_captcha)
+    captcha[:site_key] if captcha && captcha[:provider] == "turnstile"
+  end
+
   # The "contact" form (the Forms plugin), drawn by contact_form.
   def healing_contact_form
     @healing_contact_form ||= Form.find_by!(slug: "contact", status: "published")

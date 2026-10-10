@@ -80,6 +80,18 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(response).to have_http_status(:unprocessable_content)
   end
 
+  it "shows Cloudflare Turnstile on its forms when Settings › Forms has the keys, and loads it only then" do
+    get "/contact"
+    expect(response.body).not_to include("cf-turnstile", "challenges.cloudflare.com")
+
+    Setting.set(Forms::SETTING_KEY, {"captcha_provider" => "turnstile", "turnstile_site_key" => "0x4AAA-site", "turnstile_secret_key" => "0x4AAA-secret"})
+    get "/contact"
+
+    form = Nokogiri::HTML5(response.body).at_css("form[data-contact-form]")
+    expect(form.at_css(".cf-turnstile")["data-sitekey"]).to eq("0x4AAA-site")
+    expect(response.body.scan("challenges.cloudflare.com/turnstile/v0/api.js").size).to eq(1)
+  end
+
   it "designs the form's emails, filled in per submission" do
     form = Form.find_by!(slug: "contact")
     email = form.emails.find_or_initialize_by(kind: "confirmation")
