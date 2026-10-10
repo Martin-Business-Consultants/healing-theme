@@ -1,0 +1,19 @@
+<%# locals: (exclude: nil) -%>
+<%# Every published service, in its order, as a card linking to its page. Five lay out 3 + 2; an odd last card spans the row. %>
+<% services = healing_services.reject { it.slug == exclude } %>
+<% list_class = "service-cards service-cards--#{services.size}" %>
+<ul class="<%= list_class %>" data-reveal-group>
+  <% services.each do |service| %>
+    <% service_fields = website_fields(service) %>
+    <li>
+      <%= link_to website_path(service), class: "service-card" do %>
+        <span class="service-card__icon"><%= healing_icon(service_fields.icon.presence || "plant-2") %></span>
+        <h3 class="service-card__title"><%= service.title %></h3>
+        <% if service_fields.summary.present? %>
+          <p class="muted"><%= service_fields.summary %></p>
+        <% end %>
+        <span class="more-link">Learn more <%= healing_icon("arrow-long-right") %></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

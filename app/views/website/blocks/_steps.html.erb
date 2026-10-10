@@ -1,0 +1,37 @@
+<%# locals: (data:) -%>
+<%# Steps through the seasons, with links below. %>
+<% button_href = website_href(data.button_link) %>
+<% secondary_href = website_href(data.secondary_link) %>
+<section class="section section--muted">
+  <div class="container">
+    <div data-reveal>
+      <% if data.eyebrow.present? %>
+        <p class="eyebrow"><%= data.eyebrow %></p>
+      <% end %>
+      <h2 class="h2 section-head__title"><%= data.heading %></h2>
+    </div>
+    <ol class="steps" data-reveal-group>
+      <% data.items.each do |step| %>
+        <li class="step">
+          <% if step.season.present? %>
+            <p class="step__season"><%= step.season %></p>
+          <% end %>
+          <h3 class="h3"><%= step.title %></h3>
+          <% if step.text.present? %>
+            <p class="muted"><%= step.text %></p>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+    <% if (data.button_label.present? && button_href) || (data.secondary_label.present? && secondary_href) %>
+      <div class="actions actions--below" data-reveal>
+        <% if data.button_label.present? && button_href %>
+          <%= healing_button data.button_label, href: button_href, arrow: true %>
+        <% end %>
+        <% if data.secondary_label.present? && secondary_href %>
+          <%= link_to data.secondary_label, secondary_href, class: "text-link" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

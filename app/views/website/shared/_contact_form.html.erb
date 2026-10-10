@@ -1,0 +1,38 @@
+<%# locals: (compact: false, selected: nil, source: nil) -%>
+<%# The CMS's "contact" form, in the site's design. Fields, labels, choices, the button and the thank-you come from the form; it posts to the Forms plugin, which checks the honeypot, its rate limit and the fields, then sends its emails (healing/contact_form.js). "source" (the page the request came from) is hidden, and the compact form in the home page's header leaves out optional fields that aren't choices. %>
+<% form = healing_contact_form %>
+<% source_field = website_form_field(form, :source) %>
+<% visible = form.fields.reject { it["name"] == source_field["name"] || (compact && !it["required"] && it["type"] != "select") } %>
+<% id = compact ? "contact-form-compact" : "contact-form" %>
+<form id="<%= id %>" class="contact-form <%= "contact-form--compact" if compact %>" method="post" action="<%= api_form_submissions_path(form_slug: form.slug) %>"
+  data-contact-form data-honeypot="<%= Form::HONEYPOT_FIELD %>" data-success="<%= form.success_message %>">
+  <input type="hidden" name="<%= source_field["name"] %>" value="<%= source.presence || "website" %>">
+  <p hidden aria-hidden="true">
+    <label>Leave this empty: <input name="<%= Form::HONEYPOT_FIELD %>" tabindex="-1" autocomplete="off"></label>
+  </p>
+  <div class="contact-form__fields">
+    <% visible.each do |field| %>
+      <% name = field["name"] %>
+      <% input_id = "#{id}-#{name}" %>
+      <% date = name.end_with?("date") %>
+      <% short = %w[text email tel url].include?(field["type"]) && !date %>
+      <div class="field <%= "field--wide" unless short %>">
+        <label class="field__label" for="<%= input_id %>">
+          <%= field["label"] %>
+          <% if !field["required"] && field["type"] != "select" %>
+            <span class="field__optional">(optional)</span>
+          <% end %>
+        </label>
+        <%= healing_form_control(field, id: input_id, compact:, selected:) %>
+        <p class="field__error" data-error-for="<%= name %>" data-label="<%= field["label"] %>" hidden></p>
+      </div>
+    <% end %>
+  </div>
+  <div class="contact-form__submit">
+    <%= healing_button form.submit_label.presence || "Send", type: :submit, arrow: true, class: compact ? "button--wide" : "button--fit" %>
+    <% if !compact && healing_settings.contact.note.present? %>
+      <p class="small muted"><%= healing_settings.contact.note %></p>
+    <% end %>
+  </div>
+  <p class="contact-form__status" data-form-status role="status" aria-live="polite" hidden></p>
+</form>

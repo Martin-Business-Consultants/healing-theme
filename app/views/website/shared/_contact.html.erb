@@ -1,0 +1,30 @@
+<%# locals: (heading: nil, description: nil, selected: nil, source: nil) -%>
+<%# The contact section: Site settings' copy, highlights and photo beside the contact form. A block can change the heading and description, preselect a service and name the source. %>
+<% contact = healing_settings.contact %>
+<% icons = %w[clock map-pin plant-2] %>
+<section id="contact" class="section section--tint contact">
+  <div class="container contact__grid">
+    <div data-reveal>
+      <% if contact.eyebrow.present? %>
+        <p class="eyebrow"><%= contact.eyebrow %></p>
+      <% end %>
+      <h2 class="h2"><%= heading.presence || contact.heading %></h2>
+      <% if (description.presence || contact.description).present? %>
+        <p class="lead muted"><%= description.presence || contact.description %></p>
+      <% end %>
+      <% if contact.highlights.any? %>
+        <ul class="contact__highlights">
+          <% contact.highlights.each_with_index do |item, index| %>
+            <li><%= healing_icon(icons[index % icons.size]) %><span><%= item %></span></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="contact__photo">
+        <%= website_image_tag contact.image, sizes: "(min-width: 1024px) 34rem, 100vw" %>
+      </div>
+    </div>
+    <div class="card card--form" data-reveal>
+      <%= render "website/shared/contact_form", selected:, source: %>
+    </div>
+  </div>
+</section>

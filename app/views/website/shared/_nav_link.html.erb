@@ -1,0 +1,6 @@
+<%# locals: (text:, href:) -%>
+<% external = href.start_with?("http://", "https://") %>
+<li>
+  <%= link_to text, href, class: "nav-link", "aria-current": ("page" if healing_current?(href)),
+    target: ("_blank" if external), rel: ("noopener noreferrer" if external) %>
+</li>

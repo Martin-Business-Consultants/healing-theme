@@ -1,0 +1,21 @@
+<%# locals: (data:) -%>
+<section class="section">
+  <div class="container">
+    <div data-reveal>
+      <% if data.eyebrow.present? %>
+        <p class="eyebrow"><%= data.eyebrow %></p>
+      <% end %>
+      <h2 class="h2 section-head__title section-head__title--narrow"><%= data.heading %></h2>
+    </div>
+    <div class="reasons" data-reveal-group>
+      <% data.items.each do |reason| %>
+        <div class="reason">
+          <h3 class="reason__title"><%= reason.title %></h3>
+          <% if reason.text.present? %>
+            <p class="muted"><%= reason.text %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

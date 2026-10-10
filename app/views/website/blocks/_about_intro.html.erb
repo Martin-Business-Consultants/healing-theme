@@ -1,0 +1,23 @@
+<%# locals: (data:) -%>
+<%# A portrait beside a short introduction and sign-off. %>
+<% button_href = website_href(data.button_link) %>
+<section id="about" class="section">
+  <div class="container about">
+    <div class="about__photo" data-reveal>
+      <%= website_image_tag data.image, sizes: "(min-width: 768px) 40vw, 100vw" %>
+    </div>
+    <div data-reveal>
+      <% if data.eyebrow.present? %>
+        <p class="eyebrow"><%= data.eyebrow %></p>
+      <% end %>
+      <h2 class="h2 section-head__title"><%= data.heading %></h2>
+      <div class="rich-text lead muted"><%= website_rich_text(data.body) %></div>
+      <% if data.signoff.present? %>
+        <p class="signoff"><%= data.signoff %></p>
+      <% end %>
+      <% if data.button_label.present? && button_href %>
+        <div class="actions"><%= healing_button data.button_label, href: button_href, variant: :outline, arrow: true %></div>
+      <% end %>
+    </div>
+  </div>
+</section>

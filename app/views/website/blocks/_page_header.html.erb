@@ -1,0 +1,13 @@
+<%# locals: (data:) -%>
+<% button_href = website_href(data.button_link) %>
+<% secondary_href = website_href(data.secondary_link) %>
+<% links = capture do %>
+  <% if data.button_label.present? && button_href %>
+    <%= healing_button data.button_label, href: button_href, variant: :secondary, arrow: true %>
+  <% end %>
+  <% if data.secondary_label.present? && secondary_href %>
+    <%= healing_photo_link data.secondary_label, secondary_href %>
+  <% end %>
+<% end %>
+<%= render "website/shared/page_header", title: data.title, eyebrow: data.eyebrow, intro: data.intro, image: data.image,
+  image_position: data.image_position, links: (links if links.to_s.strip.present?) %>

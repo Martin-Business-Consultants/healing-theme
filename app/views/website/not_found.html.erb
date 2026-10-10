@@ -1,0 +1,11 @@
+<%# Page not found. Its words are in Site settings › Page not found. %>
+<% words = healing_settings.not_found %>
+<% heading = words.heading.presence || "Page not found" %>
+<% content_for :head, website_seo_tags(title: heading, description: words.body, noindex: true) %>
+<section class="container not-found">
+  <h1 class="h1"><%= heading %></h1>
+  <% if words.body.present? %>
+    <p class="muted"><%= words.body %></p>
+  <% end %>
+  <div class="actions actions--center"><%= healing_button words.button_label.presence || "Go to homepage", href: "/" %></div>
+</section>

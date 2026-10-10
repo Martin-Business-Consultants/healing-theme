@@ -1,0 +1,4 @@
+<%# locals: (portfolios:, morph: true) -%>
+<div class="portfolio-grid <%= portfolios.size >= 3 ? "portfolio-grid--3" : "portfolio-grid--2" %>" data-reveal-group>
+  <%= render partial: "website/shared/portfolio_card", collection: portfolios, as: :portfolio, locals: {morph:} %>
+</div>

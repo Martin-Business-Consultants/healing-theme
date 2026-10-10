@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= preload_link_tag "healing/work-sans.woff2", crossorigin: "anonymous" %>
+    <%= preload_link_tag "healing/raleway.woff2", crossorigin: "anonymous" %>
+    <%= preload_link_tag "healing/playfair-display.woff2", crossorigin: "anonymous" %>
+    <%= stylesheet_link_tag "healing/site" %>
+    <script nonce="<%= content_security_policy_nonce %>">
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("motion-pending");
+        setTimeout(() => document.documentElement.classList.remove("motion-pending"), 2500);
+      }
+    </script>
+    <%= yield :head %>
+    <%= favicon_link_tag "healing/favicons/favicon-96x96.png", type: "image/png", sizes: "96x96" %>
+    <%= favicon_link_tag "healing/favicons/favicon.svg", type: "image/svg+xml" %>
+    <%= favicon_link_tag "healing/favicons/apple-touch-icon.png", rel: "apple-touch-icon", type: "image/png", sizes: "180x180" %>
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" href="/sitemap.xml">
+    <%= render "website/shared/scripts", part: "head" %>
+    <%= website_javascript_tags %>
+  </head>
+  <body>
+    <div class="page">
+      <%= render "website/shared/nav", over_photo: content_for(:nav) == "over_photo" %>
+      <main id="main">
+        <%= yield %>
+      </main>
+    </div>
+    <%= render "website/shared/footer" %>
+    <%= render "website/shared/mobile_cta" %>
+    <%= render "website/shared/scripts", part: "body" %>
+  </body>
+</html>

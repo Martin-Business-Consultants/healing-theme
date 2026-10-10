@@ -1,0 +1,42 @@
+<%# locals: () -%>
+<%# The "footer" global: the first link group left of the logo, the second right of it, any more beside the copyright. %>
+<% footer = website_global(:footer) %>
+<% groups = footer.columns.map { |column| column.items.map { {label: it.label, href: website_href(it.link) || "/"} } } %>
+<% left, right, *more = groups %>
+<% networks = {"facebook" => "Facebook", "instagram" => "Instagram", "youtube" => "YouTube", "pinterest" => "Pinterest", "tiktok" => "TikTok", "x" => "X", "linkedin" => "LinkedIn"} %>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__links">
+      <div class="footer__logo footer__logo--small"><%= render "website/shared/logo" %></div>
+      <div class="footer__group footer__group--left">
+        <% Array(left).each do |link| %>
+          <%= link_to link[:label], link[:href], class: "nav-link" %>
+        <% end %>
+      </div>
+      <div class="footer__logo footer__logo--wide"><%= render "website/shared/logo" %></div>
+      <div class="footer__group">
+        <% Array(right).each do |link| %>
+          <%= link_to link[:label], link[:href], class: "nav-link" %>
+        <% end %>
+      </div>
+    </div>
+    <% if healing_settings.footer_blurb.present? %>
+      <p class="footer__blurb muted"><%= healing_settings.footer_blurb %></p>
+    <% end %>
+    <% if healing_settings.socials.any? %>
+      <div class="footer__socials">
+        <% healing_settings.socials.each do |social| %>
+          <%= link_to healing_icon("brand-#{social.network}", label: networks[social.network] || social.network), social.url, target: "_blank", rel: "noopener noreferrer" %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="footer__legal">
+      <% if footer.copyright.present? %>
+        <span><%= healing_copyright(footer.copyright) %></span>
+      <% end %>
+      <% more.flatten.each do |link| %>
+        <%= link_to link[:label], link[:href] %>
+      <% end %>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,17 @@
+<%# locals: (text: nil, attribution: nil) -%>
+<%# A large client quote on a dark band. Without text of its own, Site settings' featured quote. %>
+<% featured = healing_settings.quote %>
+<% own = website_plain_text(text).presence %>
+<% quote = own || featured.text.to_s.strip.presence %>
+<% name = (own ? attribution : featured.attribution).to_s.sub(/\A[-–—\s]+/, "").presence %>
+<% if quote %>
+  <figure class="pull-quote">
+    <div class="container container--narrow" data-reveal>
+      <span class="pull-quote__mark" aria-hidden="true">“</span>
+      <blockquote><%= quote %></blockquote>
+      <% if name %>
+        <figcaption><%= name %></figcaption>
+      <% end %>
+    </div>
+  </figure>
+<% end %>

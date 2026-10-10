@@ -1,0 +1,48 @@
+<%# locals: (data:) -%>
+<%# The home page's header: a photo, the headline, a client quote and the booking form, whose card is #contact (every "Book" link lands there). %>
+<% quote = healing_settings.quote if data.show_quote %>
+<section id="hero" class="hero" data-cta-hide>
+  <div class="photo-header__media" data-hero-media>
+    <%= website_image_tag data.image, alt: "", loading: :eager, fetchpriority: :high %>
+  </div>
+  <div class="photo-header__scrim" aria-hidden="true"></div>
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <% if data.eyebrow.present? %>
+        <p class="eyebrow eyebrow--light" data-hero-item><%= data.eyebrow %></p>
+      <% end %>
+      <h1 class="hero__title" data-hero-item><%= data.heading %></h1>
+      <% if data.subtitle.present? %>
+        <p class="photo-header__intro" data-hero-item><%= data.subtitle %></p>
+      <% end %>
+      <div class="actions" data-hero-item>
+        <% if data.button_label.present? %>
+          <a class="button button--secondary hero__jump" href="#contact"><span><%= data.button_label %></span></a>
+        <% end %>
+        <% if data.secondary_label.present? && (href = website_href(data.secondary_link)) %>
+          <%= healing_photo_link data.secondary_label, href %>
+        <% end %>
+      </div>
+      <% if quote&.text.present? %>
+        <figure class="hero__quote" data-hero-item>
+          <blockquote>“<%= quote.text.strip %>”</blockquote>
+          <% if quote.attribution.present? %>
+            <figcaption><%= [quote.attribution, quote.context].compact_blank.join(", ") %></figcaption>
+          <% end %>
+        </figure>
+      <% end %>
+    </div>
+    <div id="contact" class="card hero__form" data-hero-item>
+      <% if data.form_eyebrow.present? %>
+        <p class="eyebrow"><%= data.form_eyebrow %></p>
+      <% end %>
+      <% if data.button_label.present? %>
+        <h2 class="hero__form-title"><%= data.button_label %></h2>
+      <% end %>
+      <% if data.form_intro.present? %>
+        <p class="small muted"><%= data.form_intro %></p>
+      <% end %>
+      <%= render "website/shared/contact_form", compact: true, source: "home" %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+<%# locals: (page:) -%>
+<%# Every CMS page, from its blocks. One that opens with a photo keeps the nav white over it; one that opens with neither a photo nor a title block gets its title as a plain heading. %>
+<% opener = Array(page.blocks).first&.dig("type") %>
+<% over_photo = %w[home_hero page_header].include?(opener) %>
+<% content_for :nav, "over_photo" if over_photo %>
+<% content_for :head do %>
+  <%= website_seo_tags page, image: healing_settings.share_image %>
+  <% if page.path == "home" && page.seo.to_h["json_ld"].blank? %>
+    <%= render "website/shared/business_json_ld", page: %>
+  <% end %>
+<% end %>
+<% unless over_photo || opener == "page_title" %>
+  <%= render "website/shared/page_title", heading: page.title %>
+<% end %>
+<%= website_blocks page %>

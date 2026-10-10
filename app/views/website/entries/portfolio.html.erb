@@ -1,0 +1,50 @@
+<%# locals: (entry:) -%>
+<%# A case study's own page. %>
+<% study = website_fields(entry) %>
+<% content_for :nav, "over_photo" %>
+<% content_for :head, website_seo_tags(entry, description: study.description, image: study.hero_image) %>
+<% cards = [["target", "Goal", study.goal], ["alert-triangle", "Challenges", study.challenges], ["bulb", "Solution", study.solution], ["plant-2", "Outcome", study.outcome]] %>
+<% rows = study.gallery.map { |row| row.images.map(&:image).compact_blank }.reject(&:empty?) %>
+<% others = healing_case_studies.reject { it.slug == entry.slug } %>
+<div class="study-hero">
+  <%= website_image_tag study.hero_image, alt: "", loading: :eager, fetchpriority: :high, style: "view-transition-name: portfolio-#{entry.slug}" %>
+</div>
+<article class="container container--study study">
+  <h1 class="h1 muted study__title"><%= entry.title %></h1>
+  <% if study.location.present? %>
+    <p class="h3 study__location"><%= study.location %></p>
+  <% end %>
+  <div class="study__cards">
+    <% cards.each do |icon, title, text| %>
+      <% next if website_plain_text(text).blank? %>
+      <div class="study-card">
+        <div class="study-card__head"><%= healing_icon(icon) %><h2 class="h3"><%= title %></h2></div>
+        <p class="muted"><%= website_plain_text(text) %></p>
+      </div>
+    <% end %>
+  </div>
+  <% if entry.body_markdown.present? %>
+    <div class="prose study__body"><%= website_markdown(entry.body_markdown) %></div>
+  <% end %>
+  <div class="gallery">
+    <% rows.each do |row| %>
+      <% row_class = "gallery__row gallery__row--#{[row.size, 3].min}" %>
+      <div class="<%= row_class %>">
+        <% row.each do |image| %>
+          <%= website_image_tag image, sizes: "(min-width: 1024px) #{(1120.0 / row.size).round}px, #{(100.0 / row.size).round}vw" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</article>
+<%= render "website/shared/testimonial_quote" %>
+<% if others.any? %>
+  <section class="container container--grid more-studies">
+    <% if healing_settings.case_study_page.more_heading.present? %>
+      <h2 class="h2 centered"><%= healing_settings.case_study_page.more_heading %></h2>
+    <% end %>
+    <%# Not morphing: these would fly to this page's grid and leave the card that was clicked alone. %>
+    <%= render "website/shared/portfolio_grid", portfolios: others, morph: false %>
+  </section>
+<% end %>
+<%= render "website/shared/contact", source: "case study: #{entry.title}" %>

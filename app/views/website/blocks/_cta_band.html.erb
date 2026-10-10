@@ -1,0 +1,21 @@
+<%# locals: (data:) -%>
+<%# A rounded callout with a heading, text and buttons. %>
+<% variants = {"primary" => :primary, "secondary" => :outline, "ghost" => :ghost} %>
+<section class="container band">
+  <% callout_class = "callout callout--#{{"primary" => "dark", "accent" => "bloom"}[data.background] || "tint"}" %>
+  <div class="<%= callout_class %>" data-reveal>
+    <div>
+      <p class="callout__heading"><%= data.heading %></p>
+      <% if data.body.present? %>
+        <p class="muted callout__body"><%= website_plain_text(data.body) %></p>
+      <% end %>
+    </div>
+    <% if data.ctas.any? %>
+      <div class="actions actions--tight">
+        <% data.ctas.each do |cta| %>
+          <%= healing_button cta.label, href: website_href(cta.url), variant: variants[cta.style] || :primary, arrow: true %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

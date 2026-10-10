@@ -1,0 +1,38 @@
+<%# locals: (over_photo:) -%>
+<%# The bar over the top of every page. Over a photo header it starts white and turns solid once the page scrolls (healing/nav.js). %>
+<% items = website_global(:nav).items.map { {text: it.label, href: website_href(it.link) || "/"} } %>
+<% booking_href = website_href(healing_settings.booking_link) || "/#contact" %>
+<div id="nav" class="nav <%= "nav--over-photo" if over_photo %>" data-nav>
+  <%= render "website/shared/announcement" %>
+  <div class="nav__bar">
+    <header class="nav__inner container">
+      <%= render "website/shared/logo" %>
+      <nav class="nav__menu" aria-label="Main">
+        <ul>
+          <% items.each do |item| %>
+            <%= render "website/shared/nav_link", **item %>
+          <% end %>
+        </ul>
+      </nav>
+      <%= healing_button healing_settings.booking_label, href: booking_href, class: "nav__cta" %>
+      <button type="button" class="nav__burger" aria-label="Open the menu" aria-controls="mobile-menu" aria-expanded="false" data-menu-open>
+        <%= healing_icon("menu-2") %>
+      </button>
+    </header>
+  </div>
+</div>
+<dialog id="mobile-menu" class="mobile-menu" aria-label="Menu">
+  <div class="mobile-menu__top">
+    <button type="button" class="mobile-menu__close" aria-label="Close the menu" data-menu-close>
+      <%= healing_icon("x") %>
+    </button>
+  </div>
+  <nav aria-label="Main">
+    <ul>
+      <% items.each do |item| %>
+        <%= render "website/shared/nav_link", **item %>
+      <% end %>
+    </ul>
+  </nav>
+  <%= healing_button healing_settings.booking_label, href: booking_href, class: "button--wide" %>
+</dialog>

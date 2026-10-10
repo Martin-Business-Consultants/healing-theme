@@ -1,0 +1,7 @@
+<%# locals: () -%>
+<%# A booking bar for small screens, shown between the header and the contact form (healing/motion.js). %>
+<% if healing_settings.mobile_cta_label.present? %>
+  <div id="mobile-cta" class="mobile-cta" inert>
+    <%= healing_button healing_settings.mobile_cta_label, href: website_href(healing_settings.booking_link) || "/#contact", class: "button--wide" %>
+  </div>
+<% end %>

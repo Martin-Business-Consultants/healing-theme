@@ -1,0 +1,8 @@
+<%# locals: (heading:, intro: nil, style: "title") -%>
+<%# A plain centred heading, for a page without a photo header. %>
+<section class="container page-title">
+  <h1 class="<%= style == "statement" ? "h2 page-title__statement" : "h1 muted" %>"><%= heading %></h1>
+  <% if intro.present? %>
+    <p class="lead muted"><%= intro %></p>
+  <% end %>
+</section>

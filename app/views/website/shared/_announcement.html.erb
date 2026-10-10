@@ -1,0 +1,16 @@
+<%# locals: () -%>
+<%# The "announcement" global: a banner across the top, hidden on the page it links to. It folds away once the page scrolls. %>
+<% banner = website_global(:announcement) %>
+<% href = website_href(banner.link) %>
+<% if banner.enabled && banner.text.present? && !healing_current?(href) %>
+  <div class="announcement">
+    <div>
+      <%= link_to href || "#", class: "announcement__link" do %>
+        <span><%= banner.text %></span>
+        <% if banner.link_label.present? %>
+          <span class="announcement__label"><%= banner.link_label %> <%= healing_icon("arrow-long-right") %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

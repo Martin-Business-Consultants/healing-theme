@@ -1,0 +1,3079 @@
+{
+ "block_types": [
+  {
+   "slug": "cta",
+   "label": "Call to action",
+   "category": "Action",
+   "version": 1,
+   "fields": [
+    {
+     "name": "label",
+     "label": "Label",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "url",
+     "label": "Link",
+     "type": "link",
+     "required": true
+    },
+    {
+     "name": "style",
+     "label": "Style",
+     "type": "select",
+     "options": [
+      "primary",
+      "secondary",
+      "ghost"
+     ],
+     "required": true
+    }
+   ],
+   "defaults": {
+    "label": "Get started",
+    "url": {
+     "kind": "url",
+     "value": "/"
+    },
+    "style": "primary"
+   }
+  },
+  {
+   "slug": "card_grid",
+   "label": "Card grid (legacy)",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string"
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text"
+    },
+    {
+     "name": "columns",
+     "label": "Columns",
+     "type": "select",
+     "options": [
+      "2",
+      "3",
+      "4"
+     ],
+     "required": true
+    },
+    {
+     "name": "cards",
+     "label": "Cards",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "icon",
+       "label": "Icon (lucide)",
+       "type": "string"
+      },
+      {
+       "name": "image_id",
+       "label": "Image asset ID",
+       "type": "asset"
+      },
+      {
+       "name": "title",
+       "label": "Title",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "subtitle",
+       "label": "Subtitle",
+       "type": "string"
+      },
+      {
+       "name": "description",
+       "label": "Description",
+       "type": "text"
+      },
+      {
+       "name": "link_url",
+       "label": "Link",
+       "type": "link"
+      },
+      {
+       "name": "link_label",
+       "label": "Link label",
+       "type": "string"
+      }
+     ]
+    }
+   ],
+   "defaults": {
+    "columns": "3"
+   }
+  },
+  {
+   "slug": "pull_quote",
+   "label": "Client quote",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "text",
+     "label": "Quote",
+     "type": "string",
+     "help": "Leave blank for the featured quote in Site settings."
+    },
+    {
+     "name": "attribution",
+     "label": "Who said it",
+     "type": "string"
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "collection_list",
+   "label": "Collection list",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "collection_slug",
+     "label": "Collection",
+     "type": "string",
+     "required": true,
+     "help": "Slug of the collection to list (e.g. \"beers\")."
+    },
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string"
+    },
+    {
+     "name": "body",
+     "label": "Intro",
+     "type": "text"
+    },
+    {
+     "name": "filter_status",
+     "label": "Status filter",
+     "type": "select",
+     "options": [
+      "published",
+      "any"
+     ],
+     "required": true,
+     "help": "Limit to published entries (default) or include drafts/archived too."
+    },
+    {
+     "name": "filter_tags",
+     "label": "Filter tags",
+     "type": "string",
+     "help": "Comma-separated. Entries must have all listed tags."
+    },
+    {
+     "name": "sort_by",
+     "label": "Sort by",
+     "type": "select",
+     "options": [
+      "published_at",
+      "updated_at",
+      "created_at",
+      "title"
+     ],
+     "required": true
+    },
+    {
+     "name": "sort_dir",
+     "label": "Direction",
+     "type": "select",
+     "options": [
+      "desc",
+      "asc"
+     ],
+     "required": true
+    },
+    {
+     "name": "limit",
+     "label": "Limit",
+     "type": "integer",
+     "help": "Max entries to show. Leave 0 / blank for all."
+    },
+    {
+     "name": "group_by",
+     "label": "Group by",
+     "type": "string",
+     "help": "Optional frontmatter field to group entries by (e.g. \"section\")."
+    },
+    {
+     "name": "layout",
+     "label": "Layout",
+     "type": "select",
+     "options": [
+      "grid",
+      "list",
+      "featured-first"
+     ],
+     "required": true
+    }
+   ],
+   "defaults": {
+    "filter_status": "published",
+    "sort_by": "published_at",
+    "sort_dir": "desc",
+    "limit": 0,
+    "layout": "grid"
+   }
+  },
+  {
+   "slug": "feature_list",
+   "label": "Feature list",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text"
+    },
+    {
+     "name": "items",
+     "label": "Bullet items",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "text",
+       "label": "Text",
+       "type": "string",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "partners_grid",
+   "label": "Partners grid",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string"
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text"
+    },
+    {
+     "name": "partners",
+     "label": "Partners",
+     "type": "record_refs",
+     "of_collection": "partners",
+     "required": true
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "pitch",
+   "label": "Pitch",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "questions",
+     "label": "Questions",
+     "type": "repeater",
+     "of": [
+      {
+       "name": "text",
+       "label": "Question",
+       "type": "string",
+       "required": true
+      }
+     ]
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text",
+     "required": true
+    },
+    {
+     "name": "cta_label",
+     "label": "CTA label",
+     "type": "string"
+    },
+    {
+     "name": "cta_url",
+     "label": "CTA link",
+     "type": "link"
+    },
+    {
+     "name": "image_id",
+     "label": "Image asset ID",
+     "type": "asset"
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "quote",
+   "label": "Quote",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "text",
+     "label": "Quote",
+     "type": "text",
+     "required": true
+    },
+    {
+     "name": "attribution",
+     "label": "Attribution",
+     "type": "string"
+    }
+   ],
+   "defaults": {
+    "text": "A bold pull-quote captures the essential idea on the page. Trim to one sentence; let it breathe.",
+    "attribution": "— Source name"
+   }
+  },
+  {
+   "slug": "testimonial_grid",
+   "label": "Testimonial grid",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text"
+    },
+    {
+     "name": "testimonials",
+     "label": "Testimonials",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "rating",
+       "label": "Rating (1–5)",
+       "type": "integer"
+      },
+      {
+       "name": "quote",
+       "label": "Quote",
+       "type": "text",
+       "required": true
+      },
+      {
+       "name": "attribution",
+       "label": "Attribution",
+       "type": "string",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "text",
+   "label": "Text",
+   "category": "Content",
+   "version": 1,
+   "fields": [
+    {
+     "name": "body",
+     "label": "Body (markdown)",
+     "type": "markdown",
+     "required": true
+    }
+   ],
+   "defaults": {
+    "body": "## Your section heading\n\nReplace this paragraph with your content. Markdown formatting is supported — **bold**, *italic*, [links](https://example.com), lists, code, and more."
+   }
+  },
+  {
+   "slug": "columns",
+   "label": "Columns",
+   "category": "Layout",
+   "version": 1,
+   "fields": [
+    {
+     "name": "column_count",
+     "label": "Columns",
+     "type": "select",
+     "options": [
+      "2",
+      "3",
+      "4"
+     ],
+     "required": true
+    },
+    {
+     "name": "items",
+     "label": "Blocks",
+     "type": "blocks",
+     "required": true
+    }
+   ],
+   "defaults": {
+    "column_count": "2"
+   }
+  },
+  {
+   "slug": "divider",
+   "label": "Divider",
+   "category": "Layout",
+   "version": 1,
+   "fields": [
+    {
+     "name": "style",
+     "label": "Style",
+     "type": "select",
+     "options": [
+      "solid",
+      "dashed",
+      "dotted"
+     ],
+     "required": true
+    }
+   ],
+   "defaults": {
+    "style": "solid"
+   }
+  },
+  {
+   "slug": "embed",
+   "label": "Embed",
+   "category": "Media",
+   "version": 1,
+   "fields": [
+    {
+     "name": "url",
+     "label": "URL",
+     "type": "url",
+     "required": true
+    },
+    {
+     "name": "kind",
+     "label": "Kind",
+     "type": "select",
+     "options": [
+      "youtube",
+      "vimeo",
+      "twitter",
+      "other"
+     ],
+     "required": true
+    }
+   ],
+   "defaults": {
+    "kind": "youtube"
+   }
+  },
+  {
+   "slug": "gallery",
+   "label": "Gallery",
+   "category": "Media",
+   "version": 1,
+   "fields": [
+    {
+     "name": "items",
+     "label": "Images",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "asset_id",
+       "label": "Image",
+       "type": "asset",
+       "required": true
+      },
+      {
+       "name": "caption",
+       "label": "Caption",
+       "type": "string"
+      }
+     ]
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "image",
+   "label": "Image",
+   "category": "Media",
+   "version": 1,
+   "fields": [
+    {
+     "name": "asset_id",
+     "label": "Asset ID",
+     "type": "asset",
+     "required": true
+    },
+    {
+     "name": "alt",
+     "label": "Alt text",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "caption",
+     "label": "Caption",
+     "type": "string"
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "about_intro",
+   "label": "About intro",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text",
+     "required": true
+    },
+    {
+     "name": "signoff",
+     "label": "Sign-off",
+     "type": "string"
+    },
+    {
+     "name": "image",
+     "label": "Portrait",
+     "type": "asset",
+     "required": true
+    },
+    {
+     "name": "button_label",
+     "label": "Button text",
+     "type": "string"
+    },
+    {
+     "name": "button_link",
+     "label": "Button link",
+     "type": "link"
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "cta_band",
+   "label": "CTA band",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text"
+    },
+    {
+     "name": "ctas",
+     "label": "Buttons",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "label",
+       "label": "Label",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "url",
+       "label": "Link",
+       "type": "link",
+       "required": true
+      },
+      {
+       "name": "style",
+       "label": "Style",
+       "type": "select",
+       "options": [
+        "primary",
+        "secondary",
+        "ghost"
+       ],
+       "required": true
+      }
+     ]
+    },
+    {
+     "name": "background",
+     "label": "Background",
+     "type": "select",
+     "options": [
+      "primary",
+      "muted",
+      "accent"
+     ],
+     "required": true
+    }
+   ],
+   "defaults": {
+    "heading": "Ready to take the next step?",
+    "body": "Wrap up the page with a clear call to action.",
+    "ctas": [
+     {
+      "label": "Get started",
+      "url": {
+       "kind": "url",
+       "value": "/"
+      },
+      "style": "primary"
+     }
+    ],
+    "background": "primary"
+   }
+  },
+  {
+   "slug": "case_studies",
+   "label": "Case studies",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "layout",
+     "label": "Layout",
+     "type": "select",
+     "options": [
+      "featured",
+      "grid"
+     ],
+     "required": true,
+     "help": "Featured: one large and two stacked, with a heading. Grid: every case study."
+    },
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string"
+    },
+    {
+     "name": "button_label",
+     "label": "Button text",
+     "type": "string"
+    },
+    {
+     "name": "button_link",
+     "label": "Button link",
+     "type": "link"
+    }
+   ],
+   "defaults": {
+    "layout": "featured"
+   }
+  },
+  {
+   "slug": "contact",
+   "label": "Contact form",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string"
+    },
+    {
+     "name": "description",
+     "label": "Description",
+     "type": "string"
+    },
+    {
+     "name": "service",
+     "label": "Preselected service",
+     "type": "record_ref",
+     "of_collection": "services",
+     "help": "The service chosen in the form when it opens."
+    },
+    {
+     "name": "source",
+     "label": "Source",
+     "type": "string",
+     "help": "Recorded with each submission, so you can tell which page or campaign it came from."
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "contact_info",
+   "label": "Contact info",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "help": "Optional section heading. Leave blank to omit."
+    },
+    {
+     "name": "body",
+     "label": "Intro",
+     "type": "text"
+    }
+   ],
+   "defaults": {
+    "heading": "Visit Us"
+   }
+  },
+  {
+   "slug": "proof_strip",
+   "label": "Credentials strip",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "items",
+     "label": "Items",
+     "type": "string_list",
+     "required": true
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "feature_grid",
+   "label": "Feature grid",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string"
+    },
+    {
+     "name": "body",
+     "label": "Intro",
+     "type": "text"
+    },
+    {
+     "name": "columns",
+     "label": "Columns",
+     "type": "select",
+     "options": [
+      "2",
+      "3",
+      "4"
+     ],
+     "required": true
+    },
+    {
+     "name": "items",
+     "label": "Items",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "icon",
+       "label": "Icon (lucide)",
+       "type": "string"
+      },
+      {
+       "name": "title",
+       "label": "Title",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "body",
+       "label": "Body",
+       "type": "text",
+       "required": true
+      },
+      {
+       "name": "link",
+       "label": "Link",
+       "type": "link"
+      }
+     ]
+    }
+   ],
+   "defaults": {
+    "heading": "Why this works",
+    "columns": "3",
+    "items": [
+     {
+      "icon": "Sparkles",
+      "title": "First benefit",
+      "body": "One short sentence that captures the user value."
+     },
+     {
+      "icon": "Zap",
+      "title": "Second benefit",
+      "body": "Another sharp benefit. Three is the sweet spot for scannability."
+     },
+     {
+      "icon": "Heart",
+      "title": "Third benefit",
+      "body": "Keep them parallel in length and structure."
+     }
+    ]
+   }
+  },
+  {
+   "slug": "hero",
+   "label": "Hero",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "subheading",
+     "label": "Subheading",
+     "type": "text"
+    },
+    {
+     "name": "image_id",
+     "label": "Image",
+     "type": "asset"
+    },
+    {
+     "name": "ctas",
+     "label": "Buttons",
+     "type": "repeater",
+     "of": [
+      {
+       "name": "label",
+       "label": "Label",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "url",
+       "label": "Link",
+       "type": "link",
+       "required": true
+      },
+      {
+       "name": "style",
+       "label": "Style",
+       "type": "select",
+       "options": [
+        "primary",
+        "secondary",
+        "ghost"
+       ],
+       "required": true
+      }
+     ]
+    }
+   ],
+   "defaults": {
+    "heading": "Lead with your strongest line.",
+    "subheading": "A clear sub-headline that supports the hero. Two lines max.",
+    "ctas": [
+     {
+      "label": "Get started",
+      "url": {
+       "kind": "url",
+       "value": "/"
+      },
+      "style": "primary"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "home_hero",
+   "label": "Home hero",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string",
+     "help": "Small label above the heading."
+    },
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "subtitle",
+     "label": "Subtitle",
+     "type": "string"
+    },
+    {
+     "name": "image",
+     "label": "Background photo",
+     "type": "asset",
+     "required": true
+    },
+    {
+     "name": "button_label",
+     "label": "Booking button",
+     "type": "string",
+     "help": "On phones, jumps down to the form. Also the form card's heading."
+    },
+    {
+     "name": "secondary_label",
+     "label": "Secondary link text",
+     "type": "string"
+    },
+    {
+     "name": "secondary_link",
+     "label": "Secondary link",
+     "type": "link"
+    },
+    {
+     "name": "form_eyebrow",
+     "label": "Form card label",
+     "type": "string"
+    },
+    {
+     "name": "form_intro",
+     "label": "Form card intro",
+     "type": "string"
+    },
+    {
+     "name": "show_quote",
+     "label": "Show the featured client quote",
+     "type": "boolean",
+     "help": "The quote set in Site settings."
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "media_text",
+   "label": "Media + text",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "markdown",
+     "required": true
+    },
+    {
+     "name": "image_id",
+     "label": "Image",
+     "type": "asset"
+    },
+    {
+     "name": "side",
+     "label": "Image side",
+     "type": "select",
+     "options": [
+      "right",
+      "left"
+     ],
+     "required": true,
+     "help": "Which side of the row the image sits on."
+    },
+    {
+     "name": "background",
+     "label": "Background",
+     "type": "select",
+     "options": [
+      "none",
+      "muted",
+      "accent"
+     ],
+     "required": true
+    },
+    {
+     "name": "cta_label",
+     "label": "CTA label",
+     "type": "string"
+    },
+    {
+     "name": "cta_url",
+     "label": "CTA link",
+     "type": "link"
+    }
+   ],
+   "defaults": {
+    "heading": "Pair an image with words.",
+    "body": "A two-column section that places an image alongside supporting copy. Use it for product highlights, feature explanations, or about-section narratives.",
+    "side": "right",
+    "background": "none"
+   }
+  },
+  {
+   "slug": "offer",
+   "label": "Offer",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Label",
+     "type": "string"
+    },
+    {
+     "name": "text",
+     "label": "Offer",
+     "type": "string",
+     "help": "Leave blank to hide the offer."
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "page_header",
+   "label": "Page header",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "title",
+     "label": "Title",
+     "type": "string",
+     "required": true,
+     "help": "The page's main heading."
+    },
+    {
+     "name": "intro",
+     "label": "Intro",
+     "type": "string"
+    },
+    {
+     "name": "image",
+     "label": "Background photo",
+     "type": "asset",
+     "required": true
+    },
+    {
+     "name": "image_position",
+     "label": "Photo position",
+     "type": "string",
+     "help": "Which part of the photo stays in view, as CSS: \"50% 35%\" is centred, a little above the middle. Blank uses the photo's focal point."
+    },
+    {
+     "name": "button_label",
+     "label": "Button text",
+     "type": "string"
+    },
+    {
+     "name": "button_link",
+     "label": "Button link",
+     "type": "link"
+    },
+    {
+     "name": "secondary_label",
+     "label": "Secondary link text",
+     "type": "string"
+    },
+    {
+     "name": "secondary_link",
+     "label": "Secondary link",
+     "type": "link"
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "page_title",
+   "label": "Page title",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "intro",
+     "label": "Intro",
+     "type": "string"
+    },
+    {
+     "name": "style",
+     "label": "Style",
+     "type": "select",
+     "options": [
+      "title",
+      "statement"
+     ],
+     "help": "Title: a large page heading. Statement: a smaller uppercase line, for a page that leads with a sentence."
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "reasons",
+   "label": "Reasons",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "items",
+     "label": "Reasons",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "title",
+       "label": "Title",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "text",
+       "label": "Text",
+       "type": "string"
+      }
+     ]
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "services_list",
+   "label": "Services",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "help": "Leave blank to show just the cards."
+    },
+    {
+     "name": "body",
+     "label": "Intro",
+     "type": "string"
+    },
+    {
+     "name": "button_label",
+     "label": "Button text",
+     "type": "string"
+    },
+    {
+     "name": "button_link",
+     "label": "Button link",
+     "type": "link"
+    },
+    {
+     "name": "background",
+     "label": "Background",
+     "type": "select",
+     "options": [
+      "plain",
+      "tinted"
+     ]
+    }
+   ],
+   "defaults": {
+    "background": "plain"
+   }
+  },
+  {
+   "slug": "stats_section",
+   "label": "Stats",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "body",
+     "label": "Body",
+     "type": "text"
+    },
+    {
+     "name": "image_id",
+     "label": "Image",
+     "type": "asset"
+    },
+    {
+     "name": "stats",
+     "label": "Stats",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "value",
+       "label": "Value",
+       "type": "string",
+       "required": true,
+       "help": "Display string, e.g. \"98%\" or \"8,000+\""
+      },
+      {
+       "name": "label",
+       "label": "Label",
+       "type": "string",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "defaults": {
+    "heading": "By the numbers",
+    "stats": [
+     {
+      "value": "10+",
+      "label": "Years experience"
+     },
+     {
+      "value": "1,000+",
+      "label": "Happy customers"
+     },
+     {
+      "value": "98%",
+      "label": "Satisfaction rate"
+     }
+    ]
+   }
+  },
+  {
+   "slug": "steps",
+   "label": "Steps",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "heading",
+     "label": "Heading",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "items",
+     "label": "Steps",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "season",
+       "label": "Season",
+       "type": "string"
+      },
+      {
+       "name": "title",
+       "label": "Title",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "text",
+       "label": "Text",
+       "type": "string"
+      }
+     ]
+    },
+    {
+     "name": "button_label",
+     "label": "Button text",
+     "type": "string"
+    },
+    {
+     "name": "button_link",
+     "label": "Button link",
+     "type": "link"
+    },
+    {
+     "name": "secondary_label",
+     "label": "Secondary link text",
+     "type": "string"
+    },
+    {
+     "name": "secondary_link",
+     "label": "Secondary link",
+     "type": "link"
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "story",
+   "label": "Story sections",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "sections",
+     "label": "Sections",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "heading",
+       "label": "Heading",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "body",
+       "label": "Text",
+       "type": "text",
+       "required": true
+      },
+      {
+       "name": "image",
+       "label": "Photo",
+       "type": "asset",
+       "required": true
+      }
+     ]
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "testimonials",
+   "label": "Testimonials",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "cta_heading",
+     "label": "Prompt heading",
+     "type": "string"
+    },
+    {
+     "name": "cta_body",
+     "label": "Prompt text",
+     "type": "string"
+    },
+    {
+     "name": "button_label",
+     "label": "Button text",
+     "type": "string"
+    },
+    {
+     "name": "button_link",
+     "label": "Button link",
+     "type": "link"
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "what_i_do",
+   "label": "What I do",
+   "category": "Sections",
+   "version": 1,
+   "fields": [
+    {
+     "name": "eyebrow",
+     "label": "Eyebrow",
+     "type": "string"
+    },
+    {
+     "name": "statement",
+     "label": "Statement",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "tagline",
+     "label": "Tagline",
+     "type": "string"
+    },
+    {
+     "name": "items",
+     "label": "Themes",
+     "type": "repeater",
+     "of": [
+      {
+       "name": "large_text",
+       "label": "Word",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "description",
+       "label": "Description",
+       "type": "string"
+      }
+     ]
+    }
+   ],
+   "defaults": {}
+  },
+  {
+   "slug": "heading",
+   "label": "Heading",
+   "category": "Text",
+   "version": 1,
+   "fields": [
+    {
+     "name": "level",
+     "label": "Level",
+     "type": "select",
+     "options": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+     ],
+     "required": true
+    },
+    {
+     "name": "text",
+     "label": "Text",
+     "type": "string",
+     "required": true
+    }
+   ],
+   "defaults": {
+    "level": "2",
+    "text": "Heading"
+   }
+  }
+ ],
+ "collections": [
+  {
+   "slug": "portfolio",
+   "name": "Case studies",
+   "enable_blocks": false,
+   "schema": {
+    "fields": [
+     {
+      "name": "description",
+      "label": "Summary",
+      "type": "string",
+      "required": true,
+      "help": "Shown on the case study's card, and as its search description when SEO has none."
+     },
+     {
+      "name": "hero_image",
+      "label": "Cover photo",
+      "type": "asset",
+      "required": true
+     },
+     {
+      "name": "location",
+      "label": "Location",
+      "type": "string"
+     },
+     {
+      "name": "date",
+      "label": "Date",
+      "type": "datetime"
+     },
+     {
+      "name": "goal",
+      "label": "Goal",
+      "type": "text"
+     },
+     {
+      "name": "challenges",
+      "label": "Challenges",
+      "type": "text"
+     },
+     {
+      "name": "solution",
+      "label": "Solution",
+      "type": "text"
+     },
+     {
+      "name": "outcome",
+      "label": "Outcome",
+      "type": "text"
+     },
+     {
+      "name": "gallery",
+      "label": "Photo rows",
+      "type": "repeater",
+      "help": "Each row shows one, two or three photos side by side.",
+      "of": [
+       {
+        "name": "images",
+        "label": "Photos",
+        "type": "repeater",
+        "of": [
+         {
+          "name": "image",
+          "label": "Photo",
+          "type": "asset",
+          "required": true
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "name": "order",
+      "label": "Order",
+      "type": "integer",
+      "help": "Lower numbers come first."
+     }
+    ]
+   }
+  },
+  {
+   "slug": "services",
+   "name": "Services",
+   "enable_blocks": false,
+   "schema": {
+    "fields": [
+     {
+      "name": "summary",
+      "label": "Summary",
+      "type": "string",
+      "required": true,
+      "help": "One or two sentences: on the service's card, under its page title, and as its search description when SEO has none."
+     },
+     {
+      "name": "icon",
+      "label": "Icon",
+      "type": "select",
+      "required": true,
+      "options": [
+       "message",
+       "pencil",
+       "notebook",
+       "shovel",
+       "shopping-cart",
+       "plant-2",
+       "plant",
+       "leaf",
+       "seedling",
+       "flower",
+       "trees",
+       "sun",
+       "droplet",
+       "calendar-event",
+       "map-pin",
+       "home"
+      ]
+     },
+     {
+      "name": "image",
+      "label": "Header photo",
+      "type": "asset"
+     },
+     {
+      "name": "price",
+      "label": "Price",
+      "type": "string",
+      "help": "For reference only: not shown on the site."
+     },
+     {
+      "name": "features",
+      "label": "What's included",
+      "type": "string_list",
+      "required": true
+     },
+     {
+      "name": "order",
+      "label": "Order",
+      "type": "integer",
+      "help": "Lower numbers come first."
+     }
+    ]
+   }
+  },
+  {
+   "slug": "testimonials",
+   "name": "Testimonials",
+   "enable_blocks": false,
+   "schema": {
+    "fields": [
+     {
+      "name": "quote",
+      "label": "Testimonial",
+      "type": "text",
+      "required": true
+     },
+     {
+      "name": "image",
+      "label": "Garden photo",
+      "type": "asset",
+      "required": true
+     },
+     {
+      "name": "order",
+      "label": "Order",
+      "type": "integer",
+      "help": "Lower numbers come first. The first is featured."
+     }
+    ]
+   }
+  }
+ ],
+ "globals": [
+  {
+   "slug": "announcement",
+   "name": "Announcement",
+   "data": {
+    "enabled": true,
+    "text": "Fall specials are here: plan your spring garden now.",
+    "link_label": "See fall planning",
+    "link": {
+     "kind": "page",
+     "value": "fall-planning"
+    }
+   },
+   "fields": [
+    {
+     "name": "enabled",
+     "label": "Show the banner",
+     "type": "boolean"
+    },
+    {
+     "name": "text",
+     "label": "Text",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "link_label",
+     "label": "Link text",
+     "type": "string"
+    },
+    {
+     "name": "link",
+     "label": "Link",
+     "type": "link"
+    }
+   ]
+  },
+  {
+   "slug": "footer",
+   "name": "Footer",
+   "data": {
+    "columns": [
+     {
+      "heading": "Left of the logo",
+      "items": [
+       {
+        "label": "Home",
+        "link": {
+         "kind": "page",
+         "value": "home"
+        }
+       },
+       {
+        "label": "Case Studies",
+        "link": {
+         "kind": "page",
+         "value": "portfolio"
+        }
+       }
+      ]
+     },
+     {
+      "heading": "Right of the logo",
+      "items": [
+       {
+        "label": "Services",
+        "link": {
+         "kind": "page",
+         "value": "services"
+        }
+       },
+       {
+        "label": "Contact",
+        "link": {
+         "kind": "page",
+         "value": "contact"
+        }
+       }
+      ]
+     },
+     {
+      "heading": "Under the copyright",
+      "items": [
+       {
+        "label": "Privacy policy",
+        "link": {
+         "kind": "page",
+         "value": "privacy-policy"
+        }
+       }
+      ]
+     }
+    ],
+    "copyright": "© {year} Healing Earth Design. All rights reserved.",
+    "address": ""
+   },
+   "fields": [
+    {
+     "name": "columns",
+     "label": "Link groups",
+     "type": "repeater",
+     "help": "The first group sits left of the logo, the second right of it, and any more in a small row under the copyright. The headings aren't shown.",
+     "of": [
+      {
+       "name": "heading",
+       "label": "Heading",
+       "type": "string"
+      },
+      {
+       "name": "items",
+       "label": "Items",
+       "type": "repeater",
+       "of": [
+        {
+         "name": "label",
+         "label": "Label",
+         "type": "string",
+         "required": true
+        },
+        {
+         "name": "link",
+         "label": "Link",
+         "type": "link",
+         "required": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "copyright",
+     "label": "Copyright text",
+     "type": "string",
+     "help": "{year} becomes the current year."
+    },
+    {
+     "name": "address",
+     "label": "Address",
+     "type": "text"
+    }
+   ]
+  },
+  {
+   "slug": "nav",
+   "name": "Navigation",
+   "data": {
+    "items": [
+     {
+      "label": "Home",
+      "link": {
+       "kind": "page",
+       "value": "home"
+      }
+     },
+     {
+      "label": "About",
+      "link": {
+       "kind": "page",
+       "value": "about"
+      }
+     },
+     {
+      "label": "Case Studies",
+      "link": {
+       "kind": "page",
+       "value": "portfolio"
+      }
+     },
+     {
+      "label": "Services",
+      "link": {
+       "kind": "page",
+       "value": "services"
+      }
+     },
+     {
+      "label": "Contact",
+      "link": {
+       "kind": "page",
+       "value": "contact"
+      }
+     }
+    ]
+   },
+   "fields": [
+    {
+     "name": "items",
+     "label": "Items",
+     "type": "repeater",
+     "required": true,
+     "of": [
+      {
+       "name": "label",
+       "label": "Label",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "link",
+       "label": "Link",
+       "type": "link",
+       "required": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "scripts",
+   "name": "Scripts",
+   "data": {
+    "items": []
+   },
+   "fields": [
+    {
+     "name": "items",
+     "label": "Scripts",
+     "type": "repeater",
+     "help": "Add one entry per script (analytics, pixels, fonts, etc.).",
+     "of": [
+      {
+       "name": "name",
+       "label": "Name",
+       "type": "string",
+       "required": true,
+       "help": "Internal label, e.g. 'GA4', 'Meta Pixel'."
+      },
+      {
+       "name": "head",
+       "label": "Head",
+       "type": "text",
+       "help": "Pasted into <head>."
+      },
+      {
+       "name": "body",
+       "label": "Body",
+       "type": "text",
+       "help": "Pasted just before the closing </body> tag."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "site_settings",
+   "name": "Site settings",
+   "data": {
+    "booking_label": "Book a consultation",
+    "booking_link": {
+     "kind": "url",
+     "value": "/#contact"
+    },
+    "mobile_cta_label": "Book a garden consultation",
+    "share_image": "24",
+    "quote": {
+     "text": "Sarah created a stunning design for my rain garden. It really brought the project to life and helped me imagine what the space would look like when finished.",
+     "attribution": "Emily D.",
+     "context": "rain garden client"
+    },
+    "contact": {
+     "eyebrow": "Contact",
+     "heading": "Let's plan your garden",
+     "description": "Tell me a little about your space and what you'd like to grow. I reply within 1–2 business days, and most projects start with a garden consultation, on-site or virtual.",
+     "highlights": [
+      "Replies within 1–2 business days",
+      "Consultations on-site or virtual",
+      "No obligation to book a design"
+     ],
+     "image": "3",
+     "note": "I'll reply within 1–2 business days."
+    },
+    "service_page": {
+     "eyebrow": "Services",
+     "button_label": "Ask about this service",
+     "back_label": "All services",
+     "included_label": "What's included",
+     "more_eyebrow": "More ways I can help",
+     "more_heading": "Other services"
+    },
+    "case_study_page": {
+     "more_heading": "More Case Studies",
+     "card_link_label": "Read the case study"
+    },
+    "footer_blurb": "Let's connect! Follow along for garden inspiration, sustainable design tips, and project updates.",
+    "socials": [],
+    "not_found": {
+     "heading": "Page not found!",
+     "body": "Apologies, one of our links must have broken. Please try again or go back to the homepage.",
+     "button_label": "Go to homepage"
+    }
+   },
+   "fields": [
+    {
+     "name": "booking_label",
+     "label": "Booking button (nav)",
+     "type": "string",
+     "required": true
+    },
+    {
+     "name": "booking_link",
+     "label": "Booking link",
+     "type": "link",
+     "required": true
+    },
+    {
+     "name": "mobile_cta_label",
+     "label": "Booking bar on phones",
+     "type": "string",
+     "help": "The sticky button at the bottom of the screen on small screens."
+    },
+    {
+     "name": "share_image",
+     "label": "Default sharing image",
+     "type": "asset",
+     "help": "What links to the site show in messages and social posts, when a page has no image of its own."
+    },
+    {
+     "name": "quote",
+     "label": "Featured client quote",
+     "type": "group",
+     "help": "Shown in the home hero and wherever a Client quote block is left blank.",
+     "of": [
+      {
+       "name": "text",
+       "label": "Quote",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "attribution",
+       "label": "Who said it",
+       "type": "string"
+      },
+      {
+       "name": "context",
+       "label": "Context",
+       "type": "string",
+       "help": "After the name in the home hero, e.g. \"rain garden client\"."
+      }
+     ]
+    },
+    {
+     "name": "contact",
+     "label": "Contact section",
+     "type": "group",
+     "help": "The contact section at the foot of most pages. A Contact form block can override its heading and description.",
+     "of": [
+      {
+       "name": "eyebrow",
+       "label": "Eyebrow",
+       "type": "string"
+      },
+      {
+       "name": "heading",
+       "label": "Heading",
+       "type": "string",
+       "required": true
+      },
+      {
+       "name": "description",
+       "label": "Description",
+       "type": "string"
+      },
+      {
+       "name": "highlights",
+       "label": "Highlights",
+       "type": "string_list"
+      },
+      {
+       "name": "image",
+       "label": "Photo",
+       "type": "asset"
+      },
+      {
+       "name": "note",
+       "label": "Note beside the button",
+       "type": "string"
+      }
+     ]
+    },
+    {
+     "name": "service_page",
+     "label": "Service pages",
+     "type": "group",
+     "help": "The words around each service's own page.",
+     "of": [
+      {
+       "name": "eyebrow",
+       "label": "Eyebrow",
+       "type": "string"
+      },
+      {
+       "name": "button_label",
+       "label": "Button text",
+       "type": "string"
+      },
+      {
+       "name": "back_label",
+       "label": "Link back to all services",
+       "type": "string"
+      },
+      {
+       "name": "included_label",
+       "label": "Features heading",
+       "type": "string"
+      },
+      {
+       "name": "more_eyebrow",
+       "label": "Other services eyebrow",
+       "type": "string"
+      },
+      {
+       "name": "more_heading",
+       "label": "Other services heading",
+       "type": "string"
+      }
+     ]
+    },
+    {
+     "name": "case_study_page",
+     "label": "Case study pages",
+     "type": "group",
+     "of": [
+      {
+       "name": "more_heading",
+       "label": "More case studies heading",
+       "type": "string"
+      },
+      {
+       "name": "card_link_label",
+       "label": "Card link text",
+       "type": "string"
+      }
+     ]
+    },
+    {
+     "name": "footer_blurb",
+     "label": "Footer note",
+     "type": "string"
+    },
+    {
+     "name": "socials",
+     "label": "Social profiles",
+     "type": "repeater",
+     "of": [
+      {
+       "name": "network",
+       "label": "Network",
+       "type": "select",
+       "required": true,
+       "options": [
+        "facebook",
+        "instagram",
+        "youtube",
+        "pinterest",
+        "tiktok",
+        "x",
+        "linkedin"
+       ]
+      },
+      {
+       "name": "url",
+       "label": "Profile URL",
+       "type": "url",
+       "required": true
+      }
+     ]
+    },
+    {
+     "name": "not_found",
+     "label": "Page not found",
+     "type": "group",
+     "of": [
+      {
+       "name": "heading",
+       "label": "Heading",
+       "type": "string"
+      },
+      {
+       "name": "body",
+       "label": "Text",
+       "type": "string"
+      },
+      {
+       "name": "button_label",
+       "label": "Button text",
+       "type": "string"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "pages": [
+  {
+   "path": "home",
+   "slug": "home",
+   "title": "Home",
+   "locale": "en",
+   "blocks": [
+    {
+     "type": "home_hero",
+     "version": 1,
+     "data": {
+      "eyebrow": "Garden & landscape design by Sarah Martin",
+      "heading": "Gardens that give back to the land, and to you.",
+      "subtitle": "Plant-forward designs rooted in ecology and suited to your site, your lifestyle, and your experience level.",
+      "image": "24",
+      "button_label": "Book a garden consultation",
+      "secondary_label": "See the gardens",
+      "secondary_link": {
+       "kind": "url",
+       "value": "#portfolio"
+      },
+      "form_eyebrow": "Start here",
+      "form_intro": "Tell me about your space. I reply within 1–2 business days.",
+      "show_quote": true
+     }
+    },
+    {
+     "type": "proof_strip",
+     "version": 1,
+     "data": {
+      "items": [
+       "Degree in sustainable horticulture & landscape design",
+       "6+ years of hands-on growing",
+       "Every plant trialed in my own garden first",
+       "Replies within 1–2 business days"
+      ]
+     }
+    },
+    {
+     "type": "what_i_do",
+     "version": 1,
+     "data": {
+      "eyebrow": "What I Do",
+      "statement": "Thoughtful landscape design rooted in nature and care. Working with natural systems to create resilient, meaningful outdoor spaces.",
+      "tagline": "All services are plant-forward and tailored to your space, lifestyle, and experience level.",
+      "items": [
+       {
+        "large_text": "Consult",
+        "description": "Garden consultations and seasonal guidance"
+       },
+       {
+        "large_text": "Design",
+        "description": "Custom planting plans and landscape design drawings"
+       },
+       {
+        "large_text": "Grow",
+        "description": "Native, pollinator, vegetable, cut flower, and medicinal herb gardens"
+       },
+       {
+        "large_text": "Support",
+        "description": "Plant shopping and installation support"
+       }
+      ]
+     }
+    },
+    {
+     "type": "case_studies",
+     "version": 1,
+     "data": {
+      "layout": "featured",
+      "eyebrow": "Case studies",
+      "heading": "Gardens designed with intention, rooted in ecology.",
+      "button_label": "View all case studies",
+      "button_link": {
+       "kind": "page",
+       "value": "portfolio"
+      }
+     }
+    },
+    {
+     "type": "testimonials",
+     "version": 1,
+     "data": {
+      "eyebrow": "What clients say",
+      "cta_heading": "Ready to start on your own garden?",
+      "cta_body": "Most projects begin with a single consultation, on-site or virtual.",
+      "button_label": "Book a garden consultation",
+      "button_link": {
+       "kind": "url",
+       "value": "#contact"
+      }
+     }
+    },
+    {
+     "type": "services_list",
+     "version": 1,
+     "data": {
+      "eyebrow": "Services",
+      "heading": "Plant-forward help, from first visit to planting day",
+      "body": "Every service is tailored to your space, lifestyle, and experience level, and focused on plants, with no hardscape installation.",
+      "button_label": "See all services",
+      "button_link": {
+       "kind": "page",
+       "value": "services"
+      },
+      "background": "tinted"
+     }
+    },
+    {
+     "type": "about_intro",
+     "version": 1,
+     "data": {
+      "eyebrow": "About",
+      "heading": "Healing Earth Design",
+      "body": "<p>Healing Earth Design was founded on the belief that caring for the land can be a powerful form of healing. After experiencing personal loss, I returned to school for sustainable horticulture and landscape design, finding peace and purpose through working with plants, soil, and seasonal rhythms. What began as a way to heal grew into a calling to help others reconnect with the earth in meaningful, practical ways.</p>",
+      "signoff": "- Sarah",
+      "image": "1",
+      "button_label": "Read Sarah's story",
+      "button_link": {
+       "kind": "page",
+       "value": "about"
+      }
+     }
+    }
+   ],
+   "frontmatter": {},
+   "seo": {
+    "meta_title": "Healing Earth Design - Sustainable Garden & Landscape Design",
+    "meta_description": "Healing Earth Design helps homeowners create beautiful, functional gardens rooted in ecology, sustainability, and care for the land.",
+    "og_image_id": "24",
+    "schema_type": "LocalBusiness"
+   }
+  },
+  {
+   "path": "about",
+   "slug": "about",
+   "title": "About",
+   "locale": "en",
+   "blocks": [
+    {
+     "type": "page_title",
+     "version": 1,
+     "data": {
+      "heading": "About Healing Earth Design",
+      "style": "title"
+     }
+    },
+    {
+     "type": "story",
+     "version": 1,
+     "data": {
+      "sections": [
+       {
+        "heading": "Our Story",
+        "image": "4",
+        "body": "<p>Healing Earth Design was founded on the belief that caring for our natural spaces can be a powerful form of healing.</p><p>After experiencing personal loss, I returned to school for sustainable horticulture and landscape design, finding peace and purpose through working with plants, soil, and seasonal rhythms. What began as a way to heal grew into a calling to help others reconnect with the earth in meaningful, practical ways.</p>"
+       },
+       {
+        "heading": "Who I Am",
+        "image": "10",
+        "body": "<p>I'm Sarah Martin, a sustainable horticulture and landscape design graduate with over six years of hands-on gardening experience. My yard serves as a trial garden where I test plants, observe ecosystems, and refine designs before bringing ideas to clients.</p><p>I specialize in plant-forward design—no hardscapes, no unnecessary complexity—just thoughtful, site-appropriate plantings that are beautiful, resilient, and supportive of local ecosystems.</p>"
+       },
+       {
+        "heading": "My Approach",
+        "image": "17",
+        "body": "<p>I believe in \"right plant, right place.\" Every design begins with assessing the space, listening to the client, and what will thrive long-term.</p><p>Whether you're a beginner gardener or someone looking to deepen your connection to your outdoor space, I meet you where you are and help you grow with confidence.</p>"
+       },
+       {
+        "heading": "Let's Work Together",
+        "image": "6",
+        "body": "<p>Healing Earth Design serves homeowners who want gardens that feel alive, intentional, and grounded in sustainability.</p><p>If you're ready to create a garden that gives back to you and to the earth, I'd love to work with you.</p>"
+       }
+      ]
+     }
+    }
+   ],
+   "frontmatter": {},
+   "seo": {
+    "meta_title": "About Healing Earth Design",
+    "meta_description": "Learn about Healing Earth Design and Sarah Martin's sustainable, plant-forward garden and landscape design.",
+    "og_image_id": "4"
+   }
+  },
+  {
+   "path": "portfolio",
+   "slug": "portfolio",
+   "title": "Case Studies",
+   "locale": "en",
+   "blocks": [
+    {
+     "type": "page_title",
+     "version": 1,
+     "data": {
+      "heading": "Gardens designed with intention, rooted in ecology.",
+      "style": "statement"
+     }
+    },
+    {
+     "type": "case_studies",
+     "version": 1,
+     "data": {
+      "layout": "grid"
+     }
+    },
+    {
+     "type": "pull_quote",
+     "version": 1,
+     "data": {}
+    },
+    {
+     "type": "contact",
+     "version": 1,
+     "data": {
+      "source": "case studies"
+     }
+    }
+   ],
+   "frontmatter": {},
+   "seo": {
+    "meta_title": "Case Studies | Healing Earth Design",
+    "meta_description": "Case studies showcasing garden and landscape design projects by Healing Earth Design.",
+    "og_image_id": "20"
+   }
+  },
+  {
+   "path": "fall-planning",
+   "slug": "fall-planning",
+   "title": "Fall Garden Planning",
+   "locale": "en",
+   "blocks": [
+    {
+     "type": "page_header",
+     "version": 1,
+     "data": {
+      "eyebrow": "Fall planning season",
+      "title": "Plan this fall, plant first thing in spring",
+      "intro": "Fall is the best time to look at your garden honestly and plan what comes next. Start now and your design is finished before the nurseries fill up.",
+      "image": "16",
+      "image_position": "50% 35%",
+      "button_label": "Book a fall consultation",
+      "button_link": {
+       "kind": "url",
+       "value": "#contact"
+      }
+     }
+    },
+    {
+     "type": "offer",
+     "version": 1,
+     "data": {
+      "heading": "This season's special",
+      "text": ""
+     }
+    },
+    {
+     "type": "reasons",
+     "version": 1,
+     "data": {
+      "eyebrow": "Why plan in fall",
+      "heading": "The best garden plans start at the end of a season",
+      "items": [
+       {
+        "title": "See the whole season",
+        "text": "By fall your yard has shown you everything: where the sun fell, where water sat, and which plants thrived or struggled."
+       },
+       {
+        "title": "Time to design well",
+        "text": "Winter gives us room to work through plant choices and drawings carefully, instead of rushing in April."
+       },
+       {
+        "title": "Ready when nurseries are",
+        "text": "With a finished plan and plant list, you can shop early in spring while selection is at its best."
+       }
+      ]
+     }
+    },
+    {
+     "type": "steps",
+     "version": 1,
+     "data": {
+      "eyebrow": "From fall to spring",
+      "heading": "How it comes together",
+      "items": [
+       {
+        "season": "Fall",
+        "title": "Garden consultation",
+        "text": "We walk the space while this year's results are still visible and talk through what you want next."
+       },
+       {
+        "season": "Winter",
+        "title": "Planting plan or design",
+        "text": "I prepare your planting plan or detailed design, with a plant list and quantities."
+       },
+       {
+        "season": "Spring",
+        "title": "Shop and plant",
+        "text": "Use the plan on your own, or bring me along for plant shopping and installation help."
+       }
+      ],
+      "button_label": "Book a fall consultation",
+      "button_link": {
+       "kind": "url",
+       "value": "#contact"
+      },
+      "secondary_label": "See all services",
+      "secondary_link": {
+       "kind": "page",
+       "value": "services"
+      }
+     }
+    },
+    {
+     "type": "pull_quote",
+     "version": 1,
+     "data": {}
+    },
+    {
+     "type": "contact",
+     "version": 1,
+     "data": {
+      "heading": "Start your spring garden this fall",
+      "description": "Tell me about your space and what you'd like to grow next year. I reply within 1–2 business days.",
+      "service": "garden-consultation",
+      "source": "fall-planning"
+     }
+    }
+   ],
+   "frontmatter": {},
+   "seo": {
+    "meta_title": "Fall Garden Planning | Healing Earth Design",
+    "meta_description": "Fall specials on garden consultations and planting plans, so your spring garden is designed and ready before planting season.",
+    "og_image_id": "16"
+   }
+  },
+  {
+   "path": "contact",
+   "slug": "contact",
+   "title": "Contact",
+   "locale": "en",
+   "blocks": [
+    {
+     "type": "page_header",
+     "version": 1,
+     "data": {
+      "eyebrow": "Contact",
+      "title": "Let's plan your garden",
+      "intro": "Most projects start with a garden consultation, on-site or virtual. Send a note about your space and I'll reply within 1–2 business days.",
+      "image": "21",
+      "image_position": "50% 50%"
+     }
+    },
+    {
+     "type": "contact",
+     "version": 1,
+     "data": {
+      "source": "contact page"
+     }
+    }
+   ],
+   "frontmatter": {},
+   "seo": {
+    "meta_title": "Contact | Healing Earth Design",
+    "meta_description": "Book a garden consultation or ask about a planting plan. Sarah replies within 1–2 business days.",
+    "og_image_id": "21"
+   }
+  },
+  {
+   "path": "privacy-policy",
+   "slug": "privacy-policy",
+   "title": "Privacy Policy",
+   "locale": "en",
+   "blocks": [
+    {
+     "type": "page_title",
+     "version": 1,
+     "data": {
+      "heading": "Privacy Policy",
+      "style": "title"
+     }
+    },
+    {
+     "type": "text",
+     "version": 1,
+     "data": {
+      "body": "_Last updated October 9, 2026_\n\nThis policy explains what Healing Earth Design collects through this website and what happens to it.\n\n## What I collect\n\nWhen you send the contact form, I receive what you type into it: your name, your email address, the service you're interested in, a preferred date if you give one, your message, and which page you sent it from. Nothing else is collected about you on this site, and there is no advertising or tracking.\n\n## How I use it\n\nI use your details only to reply to you and to plan any work we agree on. I don't sell or share them with anyone, and I don't add you to a mailing list.\n\n## Where it's kept\n\nForm messages are stored in the content system that runs this website and are emailed to me. I keep them only as long as I need them to work with you, then delete them.\n\n## Your choices\n\nYou can ask me at any time what I hold about you, to correct it, or to delete it. Send your request through the [contact page](/contact).\n\n## Changes\n\nIf this policy changes, the new version will be posted here with its date.\n"
+     }
+    }
+   ],
+   "frontmatter": {},
+   "seo": {
+    "meta_title": "Privacy Policy | Healing Earth Design",
+    "meta_description": "What Healing Earth Design collects through this website's contact form, and how it is used."
+   }
+  },
+  {
+   "path": "services",
+   "slug": "services",
+   "title": "Services",
+   "locale": "en",
+   "blocks": [
+    {
+     "type": "page_header",
+     "version": 1,
+     "data": {
+      "eyebrow": "Services",
+      "title": "Plant-forward help, from first visit to planting day",
+      "intro": "Every service is tailored to your space, lifestyle, and experience level. All of it is focused on plants, with no hardscape installation.",
+      "image": "2",
+      "image_position": "50% 60%",
+      "button_label": "Book a garden consultation",
+      "button_link": {
+       "kind": "url",
+       "value": "#contact"
+      }
+     }
+    },
+    {
+     "type": "services_list",
+     "version": 1,
+     "data": {
+      "background": "plain"
+     }
+    },
+    {
+     "type": "cta_band",
+     "version": 1,
+     "data": {
+      "heading": "Not sure where to start?",
+      "body": "Most projects begin with a garden consultation. We'll look at your site together and decide what comes next.",
+      "ctas": [
+       {
+        "label": "About consultations",
+        "url": {
+         "kind": "entry",
+         "value": "garden-consultation",
+         "collection": "services"
+        },
+        "style": "primary"
+       }
+      ],
+      "background": "muted"
+     }
+    },
+    {
+     "type": "pull_quote",
+     "version": 1,
+     "data": {}
+    },
+    {
+     "type": "contact",
+     "version": 1,
+     "data": {
+      "source": "services"
+     }
+    }
+   ],
+   "frontmatter": {},
+   "seo": {
+    "meta_title": "Services | Healing Earth Design",
+    "meta_description": "Garden consultations, planting plans, landscape design, plant shopping, and installation help from Healing Earth Design.",
+    "og_image_id": "2"
+   }
+  }
+ ],
+ "entries": [
+  {
+   "collection": "services",
+   "slug": "detailed-landscape-design",
+   "title": "Detailed Landscape Design",
+   "locale": "en",
+   "frontmatter": {
+    "summary": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
+    "icon": "notebook",
+    "image": "25",
+    "price": "$400–$1,000",
+    "features": [
+     "Custom, to-scale landscape drawings",
+     "Comprehensive plant list and quantities",
+     "Seasonal interest and ecological considerations",
+     "Design tailored to pollinators, wildlife, and long-term success"
+    ],
+    "order": 3
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Detailed Landscape Design | Healing Earth Design",
+    "meta_description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success."
+   }
+  },
+  {
+   "collection": "services",
+   "slug": "garden-consultation",
+   "title": "Garden Consultation",
+   "locale": "en",
+   "frontmatter": {
+    "summary": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
+    "icon": "message",
+    "image": "2",
+    "price": "$150",
+    "features": [
+     "1-2 hours, on-site or virtual",
+     "Evaluation of sun, soil, drainage, and existing plants",
+     "Plant-focused recommendations tailored to your lifestyle",
+     "Follow-up email with seasonal plan and next steps",
+     "Ongoing support for the remainder of the growing season"
+    ],
+    "order": 1
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Garden Consultation | Healing Earth Design",
+    "meta_description": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps."
+   }
+  },
+  {
+   "collection": "services",
+   "slug": "installation-assistance",
+   "title": "Installation Assistance",
+   "locale": "en",
+   "frontmatter": {
+    "summary": "Hands-on help on planting day: placing plants, spacing them well, and learning as we go. Plants only, with no hardscape installation.",
+    "icon": "shovel",
+    "image": "6",
+    "price": "$100/hr",
+    "features": [
+     "Plant placement and layout guidance",
+     "Planting assistance and spacing recommendations",
+     "Education during installation",
+     "Plant-focused only — no hardscape installation"
+    ],
+    "order": 4
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Installation Assistance | Healing Earth Design",
+    "meta_description": "Hands-on help on planting day: placing plants, spacing them well, and learning as we go. Plants only, with no hardscape installation."
+   }
+  },
+  {
+   "collection": "services",
+   "slug": "plant-shopping-assistance",
+   "title": "Plant Shopping Assistance",
+   "locale": "en",
+   "frontmatter": {
+    "summary": "Help at local nurseries choosing healthy plants and good substitutes that fit your design and your site.",
+    "icon": "shopping-cart",
+    "image": "18",
+    "price": "$100/hr",
+    "features": [
+     "Accompaniment to local nurseries or curated sourcing",
+     "Help selecting healthy plants and appropriate substitutes",
+     "Ensuring plants align with your design and site conditions"
+    ],
+    "order": 5
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Plant Shopping Assistance | Healing Earth Design",
+    "meta_description": "Help at local nurseries choosing healthy plants and good substitutes that fit your design and your site."
+   }
+  },
+  {
+   "collection": "services",
+   "slug": "simple-planting-plan",
+   "title": "Simple Planting Plan",
+   "locale": "en",
+   "frontmatter": {
+    "summary": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+    "icon": "pencil",
+    "image": "21",
+    "price": "$300",
+    "features": [
+     "Basic planting plan tailored to your space",
+     "Thoughtful plant selection based on site conditions",
+     "Plant list with quantities",
+     "General care guidance"
+    ],
+    "order": 2
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Simple Planting Plan | Healing Earth Design",
+    "meta_description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance."
+   }
+  },
+  {
+   "collection": "portfolio",
+   "slug": "lakefront-seasonal-plantings",
+   "title": "Seasonal Annual Plantings for Lakefront Pots & Window Boxes",
+   "locale": "en",
+   "frontmatter": {
+    "description": "Enhancing a lakefront home with seasonal color through annual plantings that complement the surrounding landscape.",
+    "hero_image": "28",
+    "location": "Lakefront Residence",
+    "date": "2024-04-15T04:00:00.000Z",
+    "goal": "To enhance a lakefront home with seasonal color through annual plantings that complemented the surrounding landscape and remained easy to maintain.",
+    "challenges": "Wind exposure and fluctuating lakefront conditions. Containers requiring frequent watering. Desire for a cohesive look across multiple pots and window boxes.",
+    "solution": "I designed coordinated annual plantings using resilient, sun-tolerant plants arranged with a balance of focal, filler, and trailing species. Plant selections emphasized durability, texture, and color harmony while keeping care requirements realistic.",
+    "outcome": "The finished pots and window boxes provided vibrant color and movement throughout the season, enhancing the home's connection to the lake while remaining manageable for the homeowner.",
+    "gallery": [
+     {
+      "images": [
+       {
+        "image": "8"
+       },
+       {
+        "image": "4"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "9"
+       },
+       {
+        "image": "3"
+       },
+       {
+        "image": "12"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "6"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "7"
+       },
+       {
+        "image": "13"
+       }
+      ]
+     }
+    ],
+    "order": 3
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Seasonal Annual Plantings for Lakefront Pots & Window Boxes | Healing Earth Design",
+    "meta_description": "Enhancing a lakefront home with seasonal color through annual plantings that complement the surrounding landscape.",
+    "og_image_id": "28"
+   }
+  },
+  {
+   "collection": "portfolio",
+   "slug": "medicinal-herb-spiral",
+   "title": "Medicinal Herb Spiral Garden",
+   "locale": "en",
+   "frontmatter": {
+    "description": "A compact, functional herb garden supporting medicinal and culinary use while showcasing varied growing conditions in a small space.",
+    "hero_image": "5",
+    "location": "Local Residence",
+    "date": "2024-06-12T04:00:00.000Z",
+    "goal": "To create a compact, functional herb garden that supports medicinal and culinary use while showcasing a variety of growing conditions in a small space.",
+    "challenges": "Limited footprint. Need for varied moisture and sun conditions. Desire for both beauty and practicality.",
+    "solution": "I designed and installed a traditional herb spiral, creating multiple microclimates within a single structure. Drought-tolerant herbs were placed higher on the spiral, while moisture-loving plants were positioned toward the base. Plant choices were guided by medicinal use, growth habits, and site conditions.",
+    "outcome": "The herb spiral became a highly productive and visually engaging garden feature, providing fresh medicinal and culinary herbs throughout the growing season while serving as an educational example of ecological garden design.",
+    "gallery": [
+     {
+      "images": [
+       {
+        "image": "14"
+       },
+       {
+        "image": "15"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "25"
+       },
+       {
+        "image": "26"
+       },
+       {
+        "image": "27"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "16"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "22"
+       },
+       {
+        "image": "23"
+       }
+      ]
+     }
+    ],
+    "order": 2
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Medicinal Herb Spiral Garden | Healing Earth Design",
+    "meta_description": "A compact, functional herb garden supporting medicinal and culinary use while showcasing varied growing conditions in a small space.",
+    "og_image_id": "5"
+   }
+  },
+  {
+   "collection": "portfolio",
+   "slug": "pollinator-front-yard",
+   "title": "Pollinator-Friendly Front Yard Transformation",
+   "locale": "en",
+   "frontmatter": {
+    "description": "Replacing a traditional, lawn-heavy front yard with a pollinator-friendly garden that feels welcoming, intentional, and manageable.",
+    "hero_image": "20",
+    "location": "Local Residence",
+    "date": "2024-08-05T04:00:00.000Z",
+    "goal": "The homeowner wanted to replace a traditional, lawn-heavy front yard with a pollinator-friendly garden that still felt welcoming, intentional, and manageable.",
+    "challenges": "Full sun exposure and compacted soil. Desire for native plants without an overgrown look. Low-maintenance expectations.",
+    "solution": "I designed a layered planting plan using native perennials, ornamental grasses, and flowering plants chosen for long bloom periods and habitat value. The design followed a 'right plant, right place' approach to ensure long-term success and seasonal interest.",
+    "outcome": "The garden now supports bees, butterflies, and birds throughout the growing season while remaining visually cohesive and approachable. The client gained confidence maintaining the space and plans to expand the garden over time.",
+    "gallery": [
+     {
+      "images": [
+       {
+        "image": "19"
+       },
+       {
+        "image": "18"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "10"
+       },
+       {
+        "image": "17"
+       },
+       {
+        "image": "11"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "2"
+       }
+      ]
+     },
+     {
+      "images": [
+       {
+        "image": "21"
+       },
+       {
+        "image": "24"
+       }
+      ]
+     }
+    ],
+    "order": 1
+   },
+   "body_markdown": "",
+   "seo": {
+    "meta_title": "Pollinator-Friendly Front Yard Transformation | Healing Earth Design",
+    "meta_description": "Replacing a traditional, lawn-heavy front yard with a pollinator-friendly garden that feels welcoming, intentional, and manageable.",
+    "og_image_id": "20"
+   }
+  },
+  {
+   "collection": "testimonials",
+   "slug": "the-johnson-family",
+   "title": "The Johnson Family",
+   "locale": "en",
+   "frontmatter": {
+    "quote": "Sarah has a way of really listening to what you want. The garden she designed exceeded our expectations, creating a space that feels both beautiful and alive with pollinators and birds. We treasure it every day.",
+    "image": "9",
+    "order": 1
+   },
+   "body_markdown": "",
+   "seo": {
+    "noindex": true
+   }
+  },
+  {
+   "collection": "testimonials",
+   "slug": "maria-and-daniel",
+   "title": "Maria & Daniel",
+   "locale": "en",
+   "frontmatter": {
+    "quote": "Hiring Sarah was one of the best decisions we made for our yard. Not only was her work incredibly thoughtful and ecological, but she made us feel confident and excited about gardening for the first time.",
+    "image": "12",
+    "order": 2
+   },
+   "body_markdown": "",
+   "seo": {
+    "noindex": true
+   }
+  },
+  {
+   "collection": "testimonials",
+   "slug": "the-chen-family",
+   "title": "The Chen Family",
+   "locale": "en",
+   "frontmatter": {
+    "quote": "Sarah was always available to answer our questions, offer plant recommendations, and ensure everything thrived. Her dedication to creating a sustainable garden was evident in every detail, and we are grateful for her beautiful work.",
+    "image": "13",
+    "order": 3
+   },
+   "body_markdown": "",
+   "seo": {
+    "noindex": true
+   }
+  }
+ ],
+ "forms": [
+  {
+   "slug": "contact",
+   "title": "Garden enquiry",
+   "fields": [
+    {
+     "name": "name",
+     "label": "Your name",
+     "type": "text",
+     "required": true
+    },
+    {
+     "name": "email",
+     "label": "Email",
+     "type": "email",
+     "required": true
+    },
+    {
+     "name": "service",
+     "label": "What are you interested in?",
+     "type": "select",
+     "options_collection": "services",
+     "options": [
+      {
+       "value": "Not sure yet",
+       "label": "Not sure yet"
+      }
+     ]
+    },
+    {
+     "name": "preferred_date",
+     "label": "Preferred date",
+     "type": "text",
+     "help": "Optional. The site shows a date picker for this field."
+    },
+    {
+     "name": "message",
+     "label": "Tell me about your space",
+     "type": "textarea",
+     "required": true,
+     "placeholder": "Sun and shade, roughly how big it is, and what you'd love to grow"
+    },
+    {
+     "name": "source",
+     "label": "Sent from",
+     "type": "text",
+     "help": "Filled in by the site: the page or campaign the request came from. Not shown to visitors."
+    }
+   ],
+   "submit_label": "Send my request",
+   "success_message": "Thank you! Your request is on its way, and I'll reply within 1–2 business days."
+  }
+ ],
+ "site": {
+  "name": "Healing Earth Design",
+  "description": "Plant-forward garden and landscape design by Sarah Martin: consultations, planting plans, and design rooted in ecology and suited to your site."
+ }
+}

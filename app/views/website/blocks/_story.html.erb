@@ -1,0 +1,15 @@
+<%# locals: (data:) -%>
+<%# Heading, text and a photo per section, alternating sides. %>
+<section class="container container--story story">
+  <% data.sections.each do |section| %>
+    <div class="story__section" data-reveal>
+      <div class="story__text">
+        <h2 class="h2"><%= section.heading %></h2>
+        <div class="rich-text muted"><%= website_rich_text(section.body) %></div>
+      </div>
+      <div class="story__photo">
+        <%= website_image_tag section.image, sizes: "(min-width: 768px) 36rem, 100vw" %>
+      </div>
+    </div>
+  <% end %>
+</section>

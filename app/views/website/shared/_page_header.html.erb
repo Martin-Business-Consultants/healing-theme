@@ -1,0 +1,22 @@
+<%# locals: (title:, image:, eyebrow: nil, intro: nil, image_position: nil, links: nil) -%>
+<%# A photo header for inner pages, under the transparent nav. `links` is the row of buttons under the intro. %>
+<section class="photo-header" data-cta-hide>
+  <div class="photo-header__media" data-hero-media>
+    <%= website_image_tag image, alt: "", loading: :eager, fetchpriority: :high, position: image_position.presence %>
+  </div>
+  <div class="photo-header__scrim" aria-hidden="true"></div>
+  <div class="container photo-header__body">
+    <div class="photo-header__copy">
+      <% if eyebrow.present? %>
+        <p class="eyebrow eyebrow--light" data-hero-item><%= eyebrow %></p>
+      <% end %>
+      <h1 class="photo-header__title" data-hero-item><%= title %></h1>
+      <% if intro.present? %>
+        <p class="photo-header__intro" data-hero-item><%= intro %></p>
+      <% end %>
+      <% if links.present? %>
+        <div class="actions" data-hero-item><%= links %></div>
+      <% end %>
+    </div>
+  </div>
+</section>

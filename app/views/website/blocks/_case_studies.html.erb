@@ -1,0 +1,41 @@
+<%# locals: (data:) -%>
+<%# Case studies, in their order. Featured: one large beside two stacked, under a heading. Grid: every one. %>
+<% portfolios = healing_case_studies %>
+<% button_href = website_href(data.button_link) %>
+<% if data.layout == "grid" %>
+  <div class="container">
+    <% if data.heading.present? %>
+      <h2 class="h2 centered grid-heading"><%= data.heading %></h2>
+    <% end %>
+    <%= render "website/shared/portfolio_grid", portfolios: %>
+  </div>
+<% else %>
+  <% featured, *rest = portfolios.first(3) %>
+  <section id="portfolio" class="section section--muted">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <div>
+          <% if data.eyebrow.present? %>
+            <p class="eyebrow"><%= data.eyebrow %></p>
+          <% end %>
+          <% if data.heading.present? %>
+            <h2 class="h2 section-head__title section-head__title--narrow"><%= data.heading %></h2>
+          <% end %>
+        </div>
+        <% if data.button_label.present? && button_href %>
+          <%= healing_button data.button_label, href: button_href, variant: :outline, arrow: true %>
+        <% end %>
+      </div>
+      <div class="featured-studies">
+        <% if featured %>
+          <div data-reveal><%= render "website/shared/portfolio_card", portfolio: featured, featured: true %></div>
+        <% end %>
+        <div class="featured-studies__rest" data-reveal-group>
+          <% rest.each do |portfolio| %>
+            <%= render "website/shared/portfolio_card", portfolio:, direction: "horizontal" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

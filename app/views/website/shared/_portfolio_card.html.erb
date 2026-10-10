@@ -1,0 +1,18 @@
+<%# locals: (portfolio:, direction: "vertical", featured: false, morph: true) -%>
+<%# A case study: photo, location, title, summary and a link to it. With `morph`, its photo grows into the case study's own header on the way there (a view transition); a page should have only one card per study that does. %>
+<% study = website_fields(portfolio) %>
+<% card_class = class_names("portfolio-card", "portfolio-card--horizontal" => direction == "horizontal", "portfolio-card--featured" => featured) %>
+<%= link_to website_path(portfolio), class: card_class do %>
+  <div class="portfolio-card__photo">
+    <%= website_image_tag study.hero_image, alt: "", sizes: featured ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 768px) 33vw, 100vw",
+      style: ("view-transition-name: portfolio-#{portfolio.slug}" if morph) %>
+  </div>
+  <div class="portfolio-card__text">
+    <% if study.location.present? %>
+      <p class="eyebrow"><%= study.location %></p>
+    <% end %>
+    <h3 class="portfolio-card__title"><%= portfolio.title %></h3>
+    <p class="muted"><%= study.description %></p>
+    <span class="more-link"><%= healing_settings.case_study_page.card_link_label.presence || "Read the case study" %> <%= healing_icon("arrow-long-right") %></span>
+  </div>
+<% end %>

@@ -1,0 +1,52 @@
+<%# locals: (data:) -%>
+<%# Client testimonials, in their order: the first with its garden photo, two more, then a booking prompt. %>
+<% featured, *rest = healing_testimonials.first(3) %>
+<% button_href = website_href(data.button_link) %>
+<section id="testimonial" class="section">
+  <div class="container">
+    <% if data.eyebrow.present? %>
+      <p class="eyebrow" data-reveal><%= data.eyebrow %></p>
+    <% end %>
+    <% if featured %>
+      <% quote_fields = website_fields(featured) %>
+      <figure class="testimonial" data-reveal>
+        <div>
+          <blockquote class="testimonial__quote"><span class="bloom" aria-hidden="true">“</span><%= website_plain_text(quote_fields.quote) %><span class="bloom" aria-hidden="true">”</span></blockquote>
+          <figcaption class="testimonial__name"><span class="testimonial__rule" aria-hidden="true"></span><%= featured.title %></figcaption>
+        </div>
+        <div class="testimonial__photo">
+          <%= website_image_tag quote_fields.image, alt: "Garden designed for #{featured.title}", sizes: "(min-width: 1024px) 40vw, 100vw" %>
+        </div>
+      </figure>
+    <% end %>
+    <% if rest.any? %>
+      <div class="testimonials" data-reveal-group>
+        <% rest.each do |testimonial| %>
+          <% testimonial_fields = website_fields(testimonial) %>
+          <figure class="testimonial-small">
+            <div class="testimonial-small__photo">
+              <%= website_image_tag testimonial_fields.image, alt: "Garden designed for #{testimonial.title}", sizes: "8rem" %>
+            </div>
+            <div>
+              <blockquote>“<%= website_plain_text(testimonial_fields.quote) %>”</blockquote>
+              <figcaption><%= testimonial.title %></figcaption>
+            </div>
+          </figure>
+        <% end %>
+      </div>
+    <% end %>
+    <% if data.cta_heading.present? %>
+      <div class="callout callout--tint testimonials__cta" data-reveal>
+        <div>
+          <p class="callout__heading"><%= data.cta_heading %></p>
+          <% if data.cta_body.present? %>
+            <p class="muted"><%= data.cta_body %></p>
+          <% end %>
+        </div>
+        <% if data.button_label.present? && button_href %>
+          <%= healing_button data.button_label, href: button_href, arrow: true %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

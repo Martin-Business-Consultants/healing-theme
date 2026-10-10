@@ -1,0 +1,4 @@
+<%# locals: (data:) -%>
+<%# The contact section; the block can change its words, preselect a service and name the source. %>
+<%= render "website/shared/contact", heading: data.heading, description: data.description,
+  selected: data.service.to_s.split("/").last, source: data.source %>

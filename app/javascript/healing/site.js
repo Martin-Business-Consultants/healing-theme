@@ -1,0 +1,5 @@
+// The website's scripts, loaded as modules from the theme's own importmap
+// (Website.theme.importmap): nothing is bundled, and none of the admin's.
+import "healing/nav"
+import "healing/motion"
+import "healing/contact_form"

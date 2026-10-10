@@ -1,0 +1,28 @@
+<%# locals: (data:) -%>
+<%# A mission statement with a row of large-type themes. %>
+<section class="section">
+  <div class="container">
+    <div class="statement">
+      <p class="eyebrow statement__eyebrow" data-reveal><%= data.eyebrow %></p>
+      <div data-reveal>
+        <h2 class="h2 statement__text"><%= data.statement %></h2>
+        <% if data.tagline.present? %>
+          <p class="lead muted"><%= data.tagline %></p>
+        <% end %>
+      </div>
+    </div>
+    <% if data.items.any? %>
+      <div class="rule" data-grow-x></div>
+      <div class="themes" data-reveal-group>
+        <% data.items.each do |item| %>
+          <div class="theme">
+            <h3 class="theme__title"><%= item.large_text %></h3>
+            <% if item.description.present? %>
+              <p class="muted"><%= item.description %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

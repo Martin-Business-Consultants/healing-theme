@@ -1,0 +1,49 @@
+<%# locals: (entry:) -%>
+<%# A service's own page. The words around it are in Site settings › Service pages. %>
+<% service = website_fields(entry) %>
+<% labels = healing_settings.service_page %>
+<% content_for :nav, "over_photo" %>
+<% content_for :head, website_seo_tags(entry, description: service.summary, image: service.image.presence || healing_settings.share_image) %>
+<% links = capture do %>
+  <% if labels.button_label.present? %>
+    <%= healing_button labels.button_label, href: "#contact", variant: :secondary, arrow: true %>
+  <% end %>
+  <% if labels.back_label.present? %>
+    <%= healing_photo_link labels.back_label, "/services" %>
+  <% end %>
+<% end %>
+<%= render "website/shared/page_header", eyebrow: labels.eyebrow, title: entry.title, intro: service.summary,
+  image: service.image.presence || website_fields(healing_services.first).image, links: (links if links.to_s.strip.present?) %>
+<% body = website_markdown(entry.body_markdown) %>
+<section class="section">
+  <div class="container service <%= "service--with-body" if body.present? %>">
+    <div data-reveal>
+      <% if labels.included_label.present? %>
+        <p class="eyebrow"><%= labels.included_label %></p>
+      <% end %>
+      <ul class="features">
+        <% service.features.each do |feature| %>
+          <li><%= healing_icon("check") %><span><%= feature %></span></li>
+        <% end %>
+      </ul>
+    </div>
+    <% if body.present? %>
+      <div class="prose" data-reveal><%= body %></div>
+    <% end %>
+  </div>
+</section>
+<%= render "website/shared/testimonial_quote" %>
+<section class="section">
+  <div class="container">
+    <div data-reveal>
+      <% if labels.more_eyebrow.present? %>
+        <p class="eyebrow"><%= labels.more_eyebrow %></p>
+      <% end %>
+      <% if labels.more_heading.present? %>
+        <h2 class="h2 section-head__title"><%= labels.more_heading %></h2>
+      <% end %>
+    </div>
+    <div class="more-services"><%= render "website/shared/service_cards", exclude: entry.slug %></div>
+  </div>
+</section>
+<%= render "website/shared/contact", selected: entry.slug, source: "service: #{entry.title}" %>

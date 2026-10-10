@@ -1,0 +1,12 @@
+<%# locals: (data:) -%>
+<%# A highlighted special offer, hidden while its text is blank. %>
+<% if data.text.to_s.strip.present? %>
+  <section class="container offer-wrap">
+    <div class="offer" data-reveal>
+      <% if data.heading.present? %>
+        <p class="eyebrow bloom"><%= data.heading %></p>
+      <% end %>
+      <p class="offer__text"><%= data.text %></p>
+    </div>
+  </section>
+<% end %>
