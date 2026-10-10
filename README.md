@@ -19,12 +19,12 @@ loaded), the site is at `/` and the admin at `/sign_in`.
 The spec draws every page and entry from it, so a template reading a field
 the CMS doesn't declare fails here before it breaks a page.
 
-## Deploying
+## Installing it
 
-The site's Libre Publish install builds with it from the `CMS_THEME`
-builder secret: this repository's URL with a token that can read it, and a
-tag or commit.
-
-    CMS_THEME="https://x-access-token:TOKEN@github.com/Martin-Business-Consultants/healing-theme#v0.1.0"
+In the site's Libre Publish admin: Settings › Plugins › Add a plugin, and
+give `Martin-Business-Consultants/healing-theme`. It installs the latest
+release and restarts; the site is at `/` while the theme is switched on.
+Publish a release here (a tag, `v0.2.0`, and a GitHub release) and the
+theme's Update button takes it.
 
 Proprietary. Copyright Martin Business Consultants.
