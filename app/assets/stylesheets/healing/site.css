@@ -590,6 +590,9 @@
     }
   }
 
+  /* Turnstile, as wide as the form (data-size="flexible" fills its box). */
+  .cf-turnstile { width: 100%; }
+
   .contact-form__status { font-weight: 500; color: var(--primary-800); }
 
   /* Markdown and rich text from the CMS */

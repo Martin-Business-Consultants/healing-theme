@@ -88,8 +88,15 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     get "/contact"
 
     form = Nokogiri::HTML5(response.body).at_css("form[data-contact-form]")
-    expect(form.at_css(".cf-turnstile")["data-sitekey"]).to eq("0x4AAA-site")
+    widget = form.at_css(".cf-turnstile")
+    expect(widget["data-sitekey"]).to eq("0x4AAA-site")
+    expect(widget["data-size"]).to eq("flexible")
+    expect(widget["data-theme"]).to eq("auto")
     expect(response.body.scan("challenges.cloudflare.com/turnstile/v0/api.js").size).to eq(1)
+
+    Setting.set(Forms::SETTING_KEY, {"captcha_theme" => "dark"})
+    get "/contact"
+    expect(Nokogiri::HTML5(response.body).at_css("form[data-contact-form] .cf-turnstile")["data-theme"]).to eq("dark")
   end
 
   it "designs the form's emails, filled in per submission" do
