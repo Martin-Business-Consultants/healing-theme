@@ -1,5 +1,6 @@
 // The contact form posts to the Forms plugin without leaving the page:
-// the thank-you from the form, or each field's error beside it.
+// the thank-you from the form, or each field's error beside it. Once sent,
+// it goes on to the thank-you page instead, when the site has one.
 const FALLBACK = "Couldn't send that. Please check your connection and try again."
 const MESSAGES = {
   captcha_failed: "Please complete the check and try again.",
@@ -39,7 +40,7 @@ async function submit(event) {
   }
   form.querySelectorAll("[data-error-for]").forEach((el) => { el.hidden = true; el.textContent = "" })
 
-  // A bot filled the hidden field: pretend it worked. (One that skips this script still posts it, and the CMS drops it.)
+  // A bot filled the hidden field: pretend it worked, here rather than on the thank-you page, so it isn't counted. (One that skips this script still posts it, and the CMS drops it.)
   if (String(data.get(form.dataset.honeypot) ?? "").trim()) return done()
 
   button.disabled = true
@@ -47,6 +48,7 @@ async function submit(event) {
   try {
     const response = await fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } })
     const body = await response.json().catch(() => ({}))
+    if (response.ok && form.dataset.redirect) return window.location.assign(form.dataset.redirect)
     if (response.ok) return done()
     showErrors(form, body.errors ?? {})
     status.textContent = MESSAGES[body.error] ?? (body.errors ? "Please check the highlighted fields." : FALLBACK)

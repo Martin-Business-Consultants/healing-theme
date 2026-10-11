@@ -2077,6 +2077,12 @@
        "name": "note",
        "label": "Note beside the button",
        "type": "string"
+      },
+      {
+       "name": "thank_you_page",
+       "label": "Thank-you page",
+       "type": "link",
+       "help": "Where the contact form takes people once it has sent, so analytics can count each inquiry as a visit to this page. Blank shows the thank-you message on the form instead."
       }
      ]
     },

@@ -80,6 +80,21 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(response).to have_http_status(:unprocessable_content)
   end
 
+  it "sends the contact form on to the thank-you page once Site settings has one, and keeps the thank-you on the form until then" do
+    get "/contact"
+    expect(Nokogiri::HTML5(response.body).at_css("form[data-contact-form]")["data-redirect"]).to be_nil
+
+    settings = Global.find_by!(slug: "site_settings")
+    settings.update!(data: settings.data.deep_merge("contact" => {"thank_you_page" => {"kind" => "page", "value" => "thank-you"}}))
+    Page.create!(slug: "thank-you", title: "Thank You", status: "published", locale: "en",
+      blocks: [{"type" => "page_title", "version" => 1, "data" => {"heading" => "Thank you"}}])
+
+    get "/"
+    expect(Nokogiri::HTML5(response.body).css("form[data-contact-form]").map { it["data-redirect"] }).to all(eq("/thank-you"))
+    get "/thank-you"
+    expect(response).to have_http_status(:ok)
+  end
+
   it "shows Cloudflare Turnstile on its forms when Settings › Forms has the keys, and loads it only then" do
     get "/contact"
     expect(response.body).not_to include("cf-turnstile", "challenges.cloudflare.com")
