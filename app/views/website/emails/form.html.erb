@@ -1,5 +1,5 @@
 <%# locals: (email:) -%>
-<%# A form email (notification or confirmation) in the site's design, drawn from its blocks each time it's sent. The Forms plugin then repeats the answers row once per answer and fills the {{tokens}}. Mail clients need tables and inline styles, so this uses nothing else; the colours are the site's (site.css), in hex. %>
+<%# A form email (notification or confirmation) in the site's design, drawn from its blocks each time it's sent. The Forms plugin then puts the logo in (data-cms-logo), repeats the answers row once per answer and fills the {{tokens}}. Mail clients need tables and inline styles, so this uses nothing else; the colours are the site's (site.css), in hex. %>
 <% c = {page: "#f1f4ee", card: "#fbfcf9", ink: "#262f28", muted: "#4b564d", rule: "#dde2da", green: "#2c4834", tint: "#eef3eb"} %>
 <% serif = "'Playfair Display', Georgia, 'Times New Roman', serif" %>
 <% sans = "'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif" %>
@@ -17,6 +17,14 @@
       <tr>
         <td align="center" style="padding:32px 16px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;">
+            <% if defined?(FormEmail::SiteTemplate::LOGO) %>
+              <%# The Branding logo: Forms puts it in here (sent with the email), or takes this row out without one. %>
+              <tr>
+                <td data-cms-logo style="padding:0 8px 12px;">
+                  <%= tag.a href: home, style: "text-decoration:none;" do %><img alt="<%= name %>" height="64" style="display:block;height:64px;width:auto;border:0;"><% end %>
+                </td>
+              </tr>
+            <% end %>
             <tr>
               <td style="padding:0 8px 20px;font-family:<%= serif %>;font-size:18px;letter-spacing:2px;text-transform:uppercase;color:<%= c[:green] %>;">
                 <%= tag.a name, href: home, style: "color:#{c[:green]};text-decoration:none;" %>

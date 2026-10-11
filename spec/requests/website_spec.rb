@@ -109,12 +109,20 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     submission = form.submissions.create!(data: {"name" => "Ann", "email" => "ann@example.com", "message" => "Clay <b>soil</b>"}, meta: {}, ip: "127.0.0.1")
 
     mail = FormSubmissionMailer.with(form_email: email, submission:, recipients: ["ann@example.com"]).deliver.message
-    html = mail.body.decoded
+    html = (mail.html_part || mail).body.decoded
 
     expect(email.site_template_status).to eq(:theme)
     expect(mail.subject).to eq("Thanks, Ann")
     expect(html).to include("Thank you, Ann", SNAPSHOT.dig("site", "name"), "Clay &lt;b&gt;soil&lt;/b&gt;")
     expect(html.scan("data-cms-repeat").size + html.scan("{{").size).to eq(0)
+    # No Branding logo: no empty image where it would go.
+    expect(html).not_to include("<img", "data-cms-logo")
+
+    logo = Asset.create!(folder: "/branding", file: {io: StringIO.new("PNG"), filename: "logo.png", content_type: "image/png"})
+    Setting.set("branding", {"logo_id" => logo.id.to_s})
+    mail = FormSubmissionMailer.with(form_email: email, submission:, recipients: ["ann@example.com"]).deliver.message
+    expect(mail.html_part.body.decoded).to include(%(src="cid:logo@cms"))
+    expect(mail.attachments.sole).to be_inline
   end
 
   it "loads its own scripts and stylesheet, none of the admin's" do
