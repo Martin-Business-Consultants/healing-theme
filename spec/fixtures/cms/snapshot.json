@@ -2827,7 +2827,8 @@
             },
             "groups": []
           }
-        ]
+        ],
+        "logo": "75"
       },
       "fields": [
         {
@@ -3026,7 +3027,7 @@
         "calculator": {
           "default_investment": 15000,
           "default_care": 2400,
-          "default_years": 10,
+          "default_years": 20,
           "default_lawn_sqft": 2000,
           "ramp": "0.35, 0.7, 1",
           "lawn_ramp": "0.25, 0.5, 1",
@@ -3036,14 +3037,16 @@
           "button_label": "Plan this project"
         },
         "home_calculator": {
+          "money_why": "Buyers value a well-landscaped home 5–11% higher than the same home with no landscaping (Behe et al., 2005), and Realtors estimate a landscape upgrade recovers about what it costs (NAR & NALP, 2023). Planting costs less to keep than mown lawn (Conservation Research Institute, 2005), and a food garden grows about half a pound of produce a square foot (National Gardening Association, 2009).",
+          "health_why": "Adults are advised to get 150 minutes of moderate activity a week (Physical Activity Guidelines for Americans, 2018). Moderate-effort gardening is 3.8 METs in the 2024 Compendium of Physical Activities, the same moderate band as brisk walking; calories are counted beyond what you'd burn at rest.",
+          "earth_why": "An inch of rain on 1,000 square feet of roof is 623 gallons (USGS). In a four-year USGS study, rain gardens held 96–100% of rain and snowmelt events, and a yard needs about 70% native plants to sustain birds like chickadees (Narango, Tallamy & Marra, 2018).",
           "default_home_value": 300000,
           "default_investment": 6000,
-          "default_care": 0,
           "default_lawn_sqft": 600,
           "default_edible_sqft": 100,
           "default_roof_sqft": 600,
           "default_hours": "3",
-          "default_years": 10,
+          "default_years": 20,
           "home_value_low": "1",
           "home_value_high": "3",
           "home_value_cap": "1",
@@ -3464,6 +3467,24 @@
               "label": "Share of roof rain a rain garden holds",
               "type": "string",
               "help": "e.g. 0.8"
+            },
+            {
+              "name": "money_why",
+              "label": "Why the money counts",
+              "type": "text",
+              "help": "Shown under that tab's numbers: the research behind them."
+            },
+            {
+              "name": "health_why",
+              "label": "Why the health counts",
+              "type": "text",
+              "help": "Shown under that tab's numbers: the research behind them."
+            },
+            {
+              "name": "earth_why",
+              "label": "Why the earth figures count",
+              "type": "text",
+              "help": "Shown under that tab's numbers: the research behind them."
             },
             {
               "name": "mind_note",

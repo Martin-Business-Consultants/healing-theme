@@ -309,6 +309,17 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(page.css(".logo img.logo__image").size).to eq(4) # the bar, the phone menu, the footer (small and wide)
   end
 
+  it "opens every photo in a case study's gallery in the lightbox, and tells its story in numbered cards" do
+    study = SNAPSHOT["entries"].find { it["collection"] == "portfolio" && it.dig("frontmatter", "gallery").present? }
+    photos = study.dig("frontmatter", "gallery").sum { it["images"].size }
+    get "/portfolio/#{study["slug"]}"
+    page = Nokogiri::HTML5(response.body)
+
+    expect(page.at_css(".gallery[data-controller=lightbox] dialog[data-lightbox-target=dialog]")).to be_present
+    expect(page.css(".gallery__open[data-action='lightbox#open']").map { it["data-lightbox-index-param"].to_i }).to eq((0...photos).to_a)
+    expect(page.css(".study-card__num").map(&:text)).to eq(%w[01 02 03 04].first(page.css(".study-card").size))
+  end
+
   it "loads its own scripts and stylesheet, none of the admin's" do
     get "/"
 

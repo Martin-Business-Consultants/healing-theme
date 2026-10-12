@@ -1,5 +1,5 @@
 <%# locals: (heading:, eyebrow: nil, intro: nil, industry: nil) -%>
-<%# The ROI calculator (healing/roi.js): what a planting project could return over the years, from each industry's assumptions (Industries: what the uplift applies to, a low and a high %) and Site settings › ROI calculator (the maturity ramps, lawn savings, starting figures, the disclaimer). With `industry` (an industry's page) it's that industry's alone. "Plan this project" carries the estimate into the planner. Without scripts it shows the assumptions only. %>
+<%# The ROI calculator (healing/roi.js): what a planting project could return over the years, explained line by line (what the number is, each part's amount and its assumption, and why: the industry's own note), from each industry's assumptions (Industries: what the uplift applies to, a low and a high %) and Site settings › ROI calculator (the maturity ramps, lawn savings, starting figures, the disclaimer). With `industry` (an industry's page) it's that industry's alone. "Plan this project" carries the estimate into the planner. Without scripts it shows the assumptions only. %>
 <% calc = healing_settings.calculator %>
 <% industries = industry ? [industry] : healing_industries %>
 <% options = industries.map do |entry|
@@ -68,6 +68,12 @@ end %>
             <p class="roi__big" data-roi-value>—</p>
             <p class="muted roi__range" data-roi-range></p>
           </div>
+          <div class="calc-explain">
+            <p class="calc-explain__title">What this number is</p>
+            <p data-roi-what></p>
+            <dl class="calc-breakdown" data-roi-breakdown></dl>
+            <p class="calc-explain__why"><strong>Why these figures:</strong> <span data-roi-why><%= options.first[:note] %></span></p>
+          </div>
           <dl class="roi__figures">
             <div><dt>Return on investment</dt><dd data-roi-roi>—</dd></div>
             <div><dt>Pays for itself</dt><dd data-roi-payback>—</dd></div>
@@ -78,7 +84,6 @@ end %>
           <details class="roi__assumptions">
             <summary>What this assumes</summary>
             <div class="small muted">
-              <p data-roi-note><%= options.first[:note] %></p>
               <p>Plantings take time to fill in, so the benefit grows: <%= ramp.each_with_index.map { |share, index| "#{(share * 100).round}% in year #{index + 1}#{"+" if index == ramp.size - 1}" }.to_sentence %>.</p>
               <% if config[:lawn].any?(&:positive?) %>
                 <p>Lawn turned to planting saves $<%= config[:lawn].first %>–$<%= config[:lawn].last %> a square foot each year in mowing, watering and fertilizer, once the planting has settled in: <%= lawn_ramp.each_with_index.map { |share, index| "#{(share * 100).round}% in year #{index + 1}#{"+" if index == lawn_ramp.size - 1}" }.to_sentence %>.</p>

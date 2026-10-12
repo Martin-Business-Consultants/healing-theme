@@ -1349,6 +1349,10 @@
 
     @media (width >= 48rem) { padding-block: 6rem; }
 
+    /* After a section, its padding is the gap; after anything else (a case
+       study's gallery, a grid of cards), the quote makes its own. */
+    :not(section) + & { margin-top: 4rem; @media (width >= 48rem) { margin-top: 6rem; } }
+
     blockquote {
       margin-top: 1rem;
       font-family: var(--font-serif);
@@ -1519,30 +1523,139 @@
 
   .study__cards {
     display: grid;
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-top: 2.5rem;
+    counter-reset: card;
 
     @media (width >= 40rem) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    @media (width >= 48rem) { gap: 2rem; margin-top: 4rem; }
+    @media (width >= 48rem) { gap: 1.5rem; margin-top: 4rem; }
   }
 
+  /* A step of the story: icon badge and number, a plain-language lead-in, the title, the text. */
   .study-card {
-    padding: 1.5rem;
-    border-radius: 0.375rem;
-    background: var(--base-100);
+    --accent: var(--primary-600);
+    --badge: var(--primary-100);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    overflow: hidden;
+    border: 1px solid var(--base-200);
+    border-radius: 1rem;
+    background: var(--base-50);
+    box-shadow: 0 18px 40px -32px var(--primary-900);
 
-    @media (width >= 48rem) { padding: 2rem; p { font-size: 1.125rem; line-height: 1.75rem; } }
+    @media (width >= 48rem) { padding: 2.25rem; }
 
-    p { margin-top: 1rem; text-wrap: pretty; }
-    .h3 { text-transform: uppercase; }
+    &::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--accent); }
   }
 
-  .study-card__head {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  .study-card--challenges { --accent: var(--bloom); --badge: color-mix(in oklab, var(--bloom) 16%, var(--base-50)); }
+  .study-card--solution { --accent: oklch(70% 0.13 80); --badge: oklch(94% 0.05 85); }
 
-    .icon { width: 1.75rem; height: 1.75rem; color: var(--primary-500); }
+  .study-card--outcome {
+    --accent: var(--primary-300);
+    --badge: var(--primary-800);
+    border-color: var(--primary-900);
+    color: var(--primary-50);
+    background: var(--primary-900);
+
+    .study-card__icon { color: var(--primary-100); }
+    .study-card__num { color: var(--primary-300); }
+    .study-card__kicker { color: var(--primary-200); }
+    .study-card__title { color: var(--base-50); }
+    .study-card__text { color: var(--primary-100); }
+  }
+
+  .study-card__head { display: flex; align-items: center; justify-content: space-between; }
+
+  .study-card__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    color: var(--accent);
+    background: var(--badge);
+
+    .icon { width: 1.5rem; height: 1.5rem; }
+  }
+
+  .study-card__num { font-family: var(--font-serif); font-size: 2rem; font-style: italic; line-height: 1; color: var(--base-300); }
+  .study-card__kicker { margin-top: 1.5rem; font-family: var(--font-label); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+  .study-card__title { margin-top: 0.25rem; font-family: var(--font-serif); font-size: 1.75rem; line-height: 1.2; color: var(--base-900); }
+
+  .study-card__text {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--base-700);
+    text-wrap: pretty;
+
+    @media (width >= 48rem) { font-size: 1.125rem; }
+  }
+
+  /* Gallery photos open the lightbox */
+  .gallery__open {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    cursor: zoom-in;
+
+    img { transition: scale 600ms var(--ease); }
+    &:hover img { scale: 1.03; }
+    &:focus-visible { outline-offset: 3px; }
+  }
+
+  /* The lightbox: a photo as large as the screen allows, on a dark backdrop */
+  .lightbox {
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    color: var(--base-50);
+    background: transparent;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+
+    &::backdrop { background: rgb(12 18 12 / 0.92); backdrop-filter: blur(6px); }
+    &[open] { display: grid; place-items: center; }
+  }
+
+  .lightbox__figure { display: grid; justify-items: center; gap: 0.75rem; max-width: calc(100vw - 2rem); pointer-events: none; @media (width >= 48rem) { max-width: calc(100vw - 10rem); } }
+  .lightbox__image { max-width: 100%; max-height: calc(100dvh - 8rem); width: auto; height: auto; border-radius: 0.5rem; box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.6); pointer-events: auto; }
+  .lightbox__caption { max-width: 40rem; font-size: 0.9375rem; text-align: center; color: var(--base-200); }
+  .lightbox__count { position: fixed; top: 1.25rem; left: 1.25rem; font-family: var(--font-label); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.08em; color: var(--base-200); }
+
+  .lightbox__button {
+    position: fixed;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    color: var(--base-50);
+    background: rgb(255 255 255 / 0.12);
+    transition: background 200ms;
+
+    &:hover, &:focus-visible { background: rgb(255 255 255 / 0.24); }
+    .icon { width: 1.5rem; height: 1.5rem; }
+  }
+
+  .lightbox__close { top: 1rem; right: 1rem; }
+  .lightbox__prev, .lightbox__next { top: 50%; translate: 0 -50%; }
+  .lightbox__prev { left: 1rem; }
+  .lightbox__next { right: 1rem; }
+
+  @media (width < 48rem) {
+    .lightbox__prev, .lightbox__next { top: auto; bottom: 1.25rem; translate: none; }
+    .lightbox__prev { left: calc(50% - 3.5rem); }
+    .lightbox__next { right: calc(50% - 3.5rem); }
   }
 
   .study__body { max-width: 48rem; margin: 3rem auto 0; }
@@ -1840,6 +1953,33 @@
   .meter__label { align-self: start; margin-top: 0.375rem; }
 
   .meter-facts { display: grid; gap: 0.75rem; strong { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; } }
+
+  /* A calculator's explanation: what its number is, line by line, and why */
+  .calc-explain {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    background: color-mix(in oklab, var(--primary-950) 45%, transparent);
+  }
+
+  .calc-explain__title { margin-bottom: 0.375rem; font-family: var(--font-label); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary-200); }
+  .calc-explain__what { margin-top: 0.75rem; font-size: 0.9375rem; line-height: 1.5; color: var(--primary-100); }
+  .calc-explain__why { margin-top: 1rem; color: var(--primary-100); strong { color: var(--primary-50); } }
+  .calc-explain__why--title { margin-top: 1.5rem; }
+  .meter-row + .calc-explain__why, .roi__figures--earth ~ .calc-explain__why { margin-top: 1.25rem; }
+
+  .calc-breakdown {
+    display: grid;
+    margin-top: 1rem;
+
+    > div { display: grid; grid-template-columns: 1fr auto; gap: 0.125rem 1rem; align-items: baseline; padding-block: 0.625rem; border-top: 1px solid var(--primary-800); }
+    dt span { display: block; font-weight: 600; color: var(--primary-50); }
+    dt small { display: block; font-size: 0.8125rem; color: var(--primary-200); }
+    dd { font-family: var(--font-serif); font-size: 1.125rem; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; color: var(--primary-50); }
+    .is-total { border-top: 2px solid var(--primary-400); dt span { font-family: var(--font-label); letter-spacing: 0.04em; } dd { font-size: 1.25rem; } }
+  }
 
   /* The commercial project planner */
   .planner-section { scroll-margin-top: 4rem; }

@@ -1,5 +1,5 @@
 <%# locals: (heading:, eyebrow: nil, intro: nil) -%>
-<%# What a home garden gives back (healing/garden_value.js), in four kinds of return: money (home value, never more than the garden cost; lawn costs saved; food grown; against what it costs), health (the share of garden time that's moderate activity, its calories, against the 150 minutes a week adults are advised), mind (time outdoors in the garden, beside research on gardening and stress, never counted toward studies that left home gardens out) and earth (rain kept on site, lawn turned to habitat, mowing time saved). Every assumption is Site settings › Home garden calculator's. "Plan my garden" carries the estimate into the contact form. %>
+<%# What a home garden gives back (healing/garden_value.js), in four kinds of return, each saying what its number is and why it counts (Site settings' money, health and earth notes, and the mind note): money (home value, never more than the garden cost; lawn costs saved; food grown; against what it costs), health (the share of garden time that's moderate activity, its calories, against the 150 minutes a week adults are advised), mind (time outdoors in the garden, beside research on gardening and stress, never counted toward studies that left home gardens out) and earth (rain kept on site, lawn turned to habitat, mowing time saved). Every assumption is Site settings › Home garden calculator's. "Plan my garden" carries the estimate into the contact form. %>
 <% calc = healing_settings.home_calculator %>
 <% shares = ->(text) { text.to_s.split(",").map(&:to_f).select(&:positive?).presence || [1.0] } %>
 <% number = ->(value, fallback) { value.present? ? value.to_s.delete("%$").to_f : fallback } %>
@@ -57,18 +57,21 @@
           <p class="eyebrow">Net return after <span data-garden-years><%= years %></span> years</p>
           <p class="roi__big" data-garden="net">—</p>
           <p class="muted roi__range" data-garden="net-range"></p>
-          <dl class="roi__figures">
-            <div><dt>Home value</dt><dd data-garden="home-gain">—</dd></div>
-            <div><dt>Lawn costs saved</dt><dd data-garden="lawn-saved">—</dd></div>
-            <div><dt>Food grown</dt><dd data-garden="produce">—</dd></div>
-          </dl>
+          <div class="calc-explain">
+            <p class="calc-explain__title">What this number is</p>
+            <p data-garden="money-what"></p>
+            <dl class="calc-breakdown" data-garden-breakdown></dl>
+            <% if calc.money_why.present? %>
+              <p class="calc-explain__why"><strong>Why it counts:</strong> <%= calc.money_why %></p>
+            <% end %>
+          </div>
           <div class="roi__chart" data-garden-chart aria-hidden="true"></div>
           <p class="small muted roi__legend"><span class="roi__key roi__key--net"></span> Net value, mid estimate <span class="roi__key roi__key--band"></span> Low to high</p>
         </div>
         <div class="returns__panel" id="garden-panel-health" role="tabpanel" aria-labelledby="garden-tab-health" data-garden-panel="health" hidden>
           <p class="eyebrow">Moderate activity, each growing season</p>
           <p class="roi__big" data-garden="active-hours">—</p>
-          <p class="muted roi__range">Counting <%= (config[:activeShare] * 100).round %>% of garden time as active work: digging, planting, weeding.</p>
+          <p class="calc-explain__what" data-garden="health-what"></p>
           <div class="meter-row">
             <%= render "website/shared/meter", key: "guideline", caption: "of the 150 minutes a week of moderate activity adults are advised to get, through the season" %>
             <div class="meter-facts">
@@ -76,12 +79,16 @@
               <p><strong data-garden="kcal-total">—</strong> <span class="muted">over <span data-garden-years></span> years</span></p>
             </div>
           </div>
+          <% if calc.health_why.present? %>
+            <p class="calc-explain__why"><strong>Why it counts:</strong> <%= calc.health_why %></p>
+          <% end %>
         </div>
         <div class="returns__panel" id="garden-panel-mind" role="tabpanel" aria-labelledby="garden-tab-mind" data-garden-panel="mind" hidden>
           <p class="eyebrow">Time outdoors, in a garden you made</p>
           <p class="roi__big" data-garden="garden-minutes">—</p>
-          <p class="muted roi__range" data-garden="season-hours"></p>
+          <p class="calc-explain__what" data-garden="mind-what"></p>
           <% if calc.mind_note.present? %>
+            <p class="calc-explain__why calc-explain__why--title"><strong>Why it counts:</strong></p>
             <div class="mind-notes">
               <% calc.mind_note.split(/\n\s*\n/).each do |note| %>
                 <p><%= note.strip %></p>
@@ -96,7 +103,10 @@
             <div><dt>Habitat from lawn</dt><dd data-garden="habitat">—</dd></div>
             <div><dt>Mowing time saved</dt><dd data-garden="mowing">—</dd></div>
           </dl>
-          <p class="muted small" data-garden="earth-total"></p>
+          <p class="calc-explain__what" data-garden="earth-what"></p>
+          <% if calc.earth_why.present? %>
+            <p class="calc-explain__why"><strong>Why it counts:</strong> <%= calc.earth_why %></p>
+          <% end %>
         </div>
         <details class="roi__assumptions">
           <summary>What this assumes</summary>

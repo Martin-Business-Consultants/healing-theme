@@ -39,9 +39,9 @@ function estimate(c, i) {
   const gallons = i.roof * c.precip * c.gallonsPerInch * c.capture
   return {
     net, last: net[net.length - 1], spent: i.investment + i.care * last,
-    homeGain: homeGain(mid(...c.homePct), last),
-    lawnSaved: years.reduce((sum, year) => sum + i.lawn * mid(...c.lawn) * share(c.lawnRamp, year), 0),
-    produce: i.edible * mid(...c.produce) * last,
+    homeGain: [homeGain(c.homePct[0], last), homeGain(c.homePct[1], last)],
+    lawnSaved: c.lawn.map((rate) => years.reduce((sum, year) => sum + i.lawn * rate * share(c.lawnRamp, year), 0)),
+    produce: c.produce.map((rate) => i.edible * rate * last),
     hoursSeason, kcal, guideline: (weeklyMinutes * c.activeShare) / c.guideline, weeklyMinutes, outdoorHours: i.hours * c.seasonWeeks,
     gallons, mowHours: (i.lawn / 1000) * c.mowMinutes / 60
   }
@@ -74,6 +74,33 @@ function setUp(root) {
       edible: number("edible"), roof: number("roof"), hours: number("hours"), years: Math.max(1, number("years")) }
   }
 
+  // What the money number is, line by line: each part's range and its assumption.
+  const explainMoney = (r, inputs) => {
+    const range = ([a, b]) => (Math.round(a) === Math.round(b) ? money(a) : `${money(a)} to ${money(b)}`)
+    const n = (x) => count(x)
+    const lines = [
+      ["Home value", `${config.homePct[0]}–${config.homePct[1]}% of ${money(inputs.home)}, once, as the garden fills in; never more than it cost`, `+${range(r.homeGain)}`],
+      inputs.lawn > 0 && ["Lawn costs saved", `${n(inputs.lawn)} sq ft no longer mowed, watered or fed, at $${config.lawn[0].toFixed(2)}–$${config.lawn[1].toFixed(2)} a sq ft a year`, `+${range(r.lawnSaved)}`],
+      inputs.edible > 0 && ["Food grown", `${n(inputs.edible)} sq ft of beds at $${config.produce[0].toFixed(2)}–$${config.produce[1].toFixed(2)} of produce a sq ft a season`, `+${range(r.produce)}`],
+      ["Garden and care", `${money(inputs.investment)} to plant${inputs.care ? `, ${money(inputs.care)} a year to keep` : ""}`, `−${money(r.spent)}`],
+    ].filter(Boolean)
+    out("money-what").textContent = `Over ${inputs.years} years: what the garden adds to your home's value, what you save on lawn care, and the food your beds grow, after what the garden and its care cost. The big number is the middle of the range.`
+    const list = root.querySelector("[data-garden-breakdown]")
+    list.replaceChildren(...lines.map(([term, detail, amount]) => {
+      const row = document.createElement("div")
+      row.innerHTML = "<dt><span></span><small></small></dt><dd></dd>"
+      row.querySelector("span").textContent = term
+      row.querySelector("small").textContent = detail
+      row.querySelector("dd").textContent = amount
+      return row
+    }))
+    const total = document.createElement("div")
+    total.className = "is-total"
+    total.innerHTML = "<dt><span>Net return</span></dt><dd></dd>"
+    total.querySelector("dd").textContent = `${money(r.last.low)} to ${money(r.last.high)}`
+    list.append(total)
+  }
+
   const update = () => {
     const inputs = read()
     const r = estimate(config, inputs)
@@ -84,12 +111,11 @@ function setUp(root) {
     tween(out("net"), shown, r.last.mid)
     shown = r.last.mid
     out("net-range").textContent = `After the ${money(r.spent)} it costs: ${money(r.last.low)} to ${money(r.last.high)}`
-    out("home-gain").textContent = money(r.homeGain)
-    out("lawn-saved").textContent = money(r.lawnSaved)
-    out("produce").textContent = money(r.produce)
+    explainMoney(r, inputs)
     draw(root.querySelector("[data-garden-chart]"), r.net, years !== inputs.years)
     years = inputs.years
 
+    out("health-what").textContent = `Hours of moderate activity each growing season: ${Math.round(config.activeShare * 100)}% of your ${inputs.hours} hours a week in the garden, counted as active work (digging, planting, weeding), over ${config.seasonWeeks} weeks.`
     out("active-hours").textContent = `${count(r.hoursSeason)} hours`
     out("kcal").textContent = count(r.kcal)
     out("kcal-total").textContent = count(r.kcal * inputs.years)
@@ -97,14 +123,15 @@ function setUp(root) {
     setMeter(root, "guideline", r.guideline)
 
     out("garden-minutes").textContent = `${count(r.weeklyMinutes)} min a week`
-    out("season-hours").textContent = `${count(r.outdoorHours)} hours outdoors a season, ${count(r.outdoorHours * inputs.years)} over ${inputs.years} years`
+    out("mind-what").textContent = `The time you'd spend outdoors in your garden: ${count(r.outdoorHours)} hours a ${config.seasonWeeks}-week season, ${count(r.outdoorHours * inputs.years)} over ${inputs.years} years.`
 
     out("gallons").textContent = `${count(r.gallons)} gal`
     out("habitat").textContent = `${count(inputs.lawn)} sq ft`
     out("mowing").textContent = `${r.mowHours.toFixed(1)} hours`
-    out("earth-total").textContent = r.gallons > 0
-      ? `${count(r.gallons * inputs.years)} gallons of rain soaked into your own ground over ${inputs.years} years, instead of running to the storm drain.`
-      : "Add the roof area that could drain to a rain garden to see the rain it would keep on site."
+    out("earth-what").textContent = (r.gallons > 0
+      ? `Rain from ${count(inputs.roof)} sq ft of roof, at ${config.precip} inches a year, that a rain garden holds in your own ground instead of sending to the storm drain: ${count(r.gallons * inputs.years)} gallons over ${inputs.years} years. `
+      : "Add the roof area that could drain to a rain garden to see the rain it would keep on site. ") +
+      `Habitat is the lawn you turn into planting; mowing time is what that lawn no longer needs.`
 
     root.querySelector('[data-garden-summary="money"]').textContent = money(r.last.mid)
     root.querySelector('[data-garden-summary="health"]').textContent = `${count(r.hoursSeason)} h`

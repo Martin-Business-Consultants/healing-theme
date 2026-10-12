@@ -11,7 +11,8 @@
     "contentLocation" => ({"@type" => "Place", "name" => study.location} if study.location.present?),
     "image" => photos.map { website_url(it[:src]) }.presence}.compact) %>
 <% end %>
-<% cards = [["target", "Goal", study.goal], ["alert-triangle", "Challenges", study.challenges], ["bulb", "Solution", study.solution], ["plant-2", "Outcome", study.outcome]] %>
+<% cards = [["target", "Goal", "What they wanted", study.goal, "goal"], ["alert-triangle", "Challenges", "What stood in the way", study.challenges, "challenges"],
+  ["bulb", "Solution", "What we did", study.solution, "solution"], ["plant-2", "Outcome", "What changed", study.outcome, "outcome"]].reject { website_plain_text(it[3]).blank? } %>
 <% rows = study.gallery.map { |row| row.images.map(&:image).compact_blank }.reject(&:empty?) %>
 <% others = healing_case_studies.reject { it.slug == entry.slug } %>
 <div class="study-hero">
@@ -22,27 +23,50 @@
   <% if study.location.present? %>
     <p class="h3 study__location"><%= study.location %></p>
   <% end %>
-  <div class="study__cards">
-    <% cards.each do |icon, title, text| %>
-      <% next if website_plain_text(text).blank? %>
-      <div class="study-card">
-        <div class="study-card__head"><%= healing_icon(icon) %><h2 class="h3"><%= title %></h2></div>
-        <p class="muted"><%= website_plain_text(text) %></p>
-      </div>
+  <%# The story in four cards, numbered: the goal and the challenges, what we did, and the outcome, set apart in the dark. %>
+  <ol class="study__cards" data-reveal-group>
+    <% cards.each_with_index do |(icon, title, kicker, text, key), index| %>
+      <% card_class = "study-card study-card--#{key}" %>
+      <li class="<%= card_class %>">
+        <div class="study-card__head">
+          <span class="study-card__icon"><%= healing_icon(icon) %></span>
+          <span class="study-card__num"><%= format("%02d", index + 1) %></span>
+        </div>
+        <p class="study-card__kicker"><%= kicker %></p>
+        <h2 class="study-card__title"><%= title %></h2>
+        <p class="study-card__text"><%= website_plain_text(text) %></p>
+      </li>
     <% end %>
-  </div>
+  </ol>
   <% if entry.body_markdown.present? %>
     <div class="prose study__body"><%= website_markdown(entry.body_markdown) %></div>
   <% end %>
-  <div class="gallery">
+  <%# The photos in rows; each opens the lightbox (healing/controllers/lightbox_controller). %>
+  <% photo_count = rows.sum(&:size) %>
+  <div class="gallery" data-controller="lightbox">
+    <% index = 0 %>
     <% rows.each do |row| %>
       <% row_class = "gallery__row gallery__row--#{[row.size, 3].min}" %>
       <div class="<%= row_class %>">
         <% row.each do |image| %>
-          <%= website_image_tag image, sizes: "(min-width: 1024px) #{(1120.0 / row.size).round}px, #{(100.0 / row.size).round}vw" %>
+          <%= tag.button(type: "button", class: "gallery__open", "aria-label": "Open photo #{index + 1} of #{photo_count}", data: {action: "lightbox#open", lightbox_index_param: index}) do %>
+            <%= website_image_tag image, sizes: "(min-width: 1024px) #{(1120.0 / row.size).round}px, #{(100.0 / row.size).round}vw", data: {lightbox_target: "thumb"} %>
+          <% end %>
+          <% index += 1 %>
         <% end %>
       </div>
     <% end %>
+    <dialog class="lightbox" aria-label="Photos" data-lightbox-target="dialog"
+      data-action="close->lightbox#closed click->lightbox#backdrop keydown->lightbox#keydown pointerdown->lightbox#swipeStart pointerup->lightbox#swipeEnd">
+      <figure class="lightbox__figure">
+        <img class="lightbox__image" src="data:," alt="" data-lightbox-target="image">
+        <figcaption class="lightbox__caption" data-lightbox-target="caption" hidden></figcaption>
+      </figure>
+      <p class="lightbox__count" data-lightbox-target="count"></p>
+      <button type="button" class="lightbox__button lightbox__close" aria-label="Close" data-action="lightbox#close"><%= healing_icon("x") %></button>
+      <button type="button" class="lightbox__button lightbox__prev" aria-label="Previous photo" data-action="lightbox#prev"><%= healing_icon("arrow-long-left") %></button>
+      <button type="button" class="lightbox__button lightbox__next" aria-label="Next photo" data-action="lightbox#next"><%= healing_icon("arrow-long-right") %></button>
+    </dialog>
   </div>
 </article>
 <%= render "website/shared/testimonial_quote" %>
