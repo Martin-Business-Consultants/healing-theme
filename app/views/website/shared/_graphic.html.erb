@@ -1,0 +1,28 @@
+<%# locals: (name:) -%>
+<%# An entry's illustration, by its "Illustration" field (shared/graphics): nothing for "none" or a name with no drawing. %>
+<% case name %>
+<% when "rain_garden" %>
+  <%= render "website/shared/graphics/rain_garden" %>
+<% when "seasons" %>
+  <%= render "website/shared/graphics/seasons" %>
+<% when "bed_layers" %>
+  <%= render "website/shared/graphics/bed_layers" %>
+<% when "care_calendar" %>
+  <%= render "website/shared/graphics/care_calendar" %>
+<% when "site_analysis" %>
+  <%= render "website/shared/graphics/site_analysis" %>
+<% when "planting_plan" %>
+  <%= render "website/shared/graphics/planting_plan" %>
+<% when "plant_layers" %>
+  <%= render "website/shared/graphics/plant_layers" %>
+<% when "spacing" %>
+  <%= render "website/shared/graphics/spacing" %>
+<% when "healthy_plant" %>
+  <%= render "website/shared/graphics/healthy_plant" %>
+<% when "container" %>
+  <%= render "website/shared/graphics/container" %>
+<% when "herb_spiral" %>
+  <%= render "website/shared/graphics/herb_spiral" %>
+<% when "map" %>
+  <div data-reveal><%= render "website/shared/area_map", links: healing_area_links, base: healing_base %></div>
+<% end %>

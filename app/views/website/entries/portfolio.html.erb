@@ -2,7 +2,15 @@
 <%# A case study's own page. %>
 <% study = website_fields(entry) %>
 <% content_for :nav, "over_photo" %>
-<% content_for :head, website_seo_tags(entry, description: study.description, image: study.hero_image) %>
+<% photos = ([study.hero_image] + study.gallery.flat_map { |row| row.images.map(&:image) }).compact_blank.uniq.filter_map { website_image(it) } %>
+<% content_for :head do %>
+  <%= website_seo_tags entry, description: study.description, image: study.hero_image %>
+  <%# The case study itself (the page's #main): where it is and its photos. %>
+  <%= website_json_ld({"@context" => "https://schema.org", "@type" => "CreativeWork", "@id" => "#{website_url(request.path)}#main", "name" => entry.title,
+    "description" => study.description, "creator" => {"@id" => "#{website_url("/")}#organization"}, "dateCreated" => study.date&.to_s&.first(10),
+    "contentLocation" => ({"@type" => "Place", "name" => study.location} if study.location.present?),
+    "image" => photos.map { website_url(it[:src]) }.presence}.compact) %>
+<% end %>
 <% cards = [["target", "Goal", study.goal], ["alert-triangle", "Challenges", study.challenges], ["bulb", "Solution", study.solution], ["plant-2", "Outcome", study.outcome]] %>
 <% rows = study.gallery.map { |row| row.images.map(&:image).compact_blank }.reject(&:empty?) %>
 <% others = healing_case_studies.reject { it.slug == entry.slug } %>

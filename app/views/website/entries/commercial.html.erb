@@ -1,10 +1,10 @@
 <%# locals: (entry:) -%>
-<%# A commercial service's own page: what's included and who it suits, its illustration (Illustration: the rain garden, the seasons, or the service area map), how it works, its questions, the other commercial services, and the planner with this service ticked. %>
+<%# A commercial service's own page: what's included and who it suits, its illustration (shared/graphic, by its Illustration field), how it works, its questions, the other commercial services, and the planner with this service ticked. %>
 <% service = website_fields(entry) %>
 <% content_for :nav, "over_photo" %>
 <% content_for :head do %>
   <%= website_seo_tags entry, description: service.summary, image: service.image.presence || healing_settings.share_image %>
-  <%= healing_service_json_ld name: entry.title, description: service.summary, type: "Commercial landscaping", audience: "Businesses and property managers" %>
+  <%= healing_service_json_ld image: service.image.presence, name: entry.title, description: service.summary, type: "Commercial landscaping", audience: "Businesses and property managers" %>
 <% end %>
 <% links = capture do %>
   <%= healing_button "Plan a project", href: "#plan", variant: :secondary, arrow: true %>
@@ -31,14 +31,7 @@
       <% end %>
     </div>
     <div>
-      <% case service.graphic %>
-      <% when "rain_garden" %>
-        <%= render "website/shared/graphic_rain_garden" %>
-      <% when "seasons" %>
-        <%= render "website/shared/graphic_seasons" %>
-      <% when "map" %>
-        <div data-reveal><%= render "website/shared/area_map", links: healing_area_links, base: healing_base %></div>
-      <% end %>
+      <%= render "website/shared/graphic", name: service.graphic %>
       <% if entry.body_markdown.present? %>
         <div class="prose" data-reveal><%= website_markdown(entry.body_markdown) %></div>
       <% end %>

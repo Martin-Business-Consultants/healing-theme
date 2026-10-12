@@ -1,0 +1,34 @@
+<%# locals: () -%>
+<%# Choosing a healthy plant at the nursery: a potted plant, its pot cut away to show the roots, with what to check, from the leaves down. Drawn in on scroll (data-draw). %>
+<figure class="graphic graphic--panel" data-reveal>
+  <svg viewBox="0 0 800 400" role="img" aria-labelledby="healthy-plant-title healthy-plant-desc">
+    <title id="healthy-plant-title">What to look for in a healthy plant</title>
+    <desc id="healthy-plant-desc">A potted perennial with labels: even-colored leaves, no pests under the leaves, new growth and buds rather than all open flowers, white roots that aren't circling the pot, and a label whose sun and size match the plan.</desc>
+    <rect class="g-sky" width="800" height="400" rx="16" />
+    <g transform="translate(-110 0)">
+    <%# the plant %>
+    <path class="g-line g-stem" d="M300 230v-110M300 200q-40-30-70-20M300 180q40-36 76-24M300 150q-30-30-56-26M300 140q24-34 50-30" />
+    <% [[226, 178, -1], [378, 154, 1], [242, 122, -1], [352, 108, 1], [300, 92, 0]].each do |x, y, side| %>
+      <ellipse class="g-leaf" cx="<%= x %>" cy="<%= y %>" rx="26" ry="12" transform="rotate(<%= side * -20 %> <%= x %> <%= y %>)" />
+    <% end %>
+    <circle class="g-bud" cx="300" cy="70" r="7" />
+    <circle class="g-bud" cx="322" cy="80" r="5" />
+    <circle class="g-bloom" cx="276" cy="78" r="9" />
+    <%# the pot, cut away %>
+    <path class="g-pot" d="M220 230h160l-18 140h-124z" />
+    <path class="g-native" d="M232 244h136l-14 112h-108z" />
+    <path class="g-root g-root--white" d="M300 244c-4 30 6 60-4 100M300 260c-24 14-34 40-40 70M300 262c22 16 32 40 36 70M276 300c-10 20-8 34-4 48M326 296c8 18 8 34 4 50" data-draw />
+    </g>
+    <%# checks %>
+    <g class="g-label">
+      <% [[282, 110, 360, 100, "Fresh, even-colored leaves"], [270, 160, 360, 150, "No pests under the leaves"], [220, 78, 360, 50, "Buds and new growth, not all in bloom"],
+         [252, 300, 360, 290, "White roots, not circling the pot"], [270, 236, 360, 236, "Label: sun, size and spacing fit your plan"]].each do |x1, y1, x2, y2, text| %>
+        <path class="g-leader" d="M<%= x1 %> <%= y1 %>L<%= x2 - 8 %> <%= y2 - 4 %>" />
+        <circle class="g-check" cx="<%= x2 + 4 %>" cy="<%= y2 - 5 %>" r="9" />
+        <path class="g-check-mark" d="M<%= x2 %> <%= y2 - 5 %>l3 3l5-6" />
+        <text x="<%= x2 + 20 %>" y="<%= y2 %>"><%= text %></text>
+      <% end %>
+    </g>
+  </svg>
+  <figcaption class="small muted">What we check before a plant comes home with you.</figcaption>
+</figure>

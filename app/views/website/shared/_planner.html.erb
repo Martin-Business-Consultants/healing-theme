@@ -66,9 +66,11 @@
                     <% end %>
                     <% if service_fields&.features&.any? %>
                       <span class="choice__more" data-choice-more>
-                        <% service_fields.features.first(3).each do |feature| %>
-                          <span><%= healing_icon("check") %><%= feature %></span>
-                        <% end %>
+                        <span class="choice__more-inner">
+                          <% service_fields.features.first(3).each do |feature| %>
+                            <span><%= healing_icon("check") %><%= feature %></span>
+                          <% end %>
+                        </span>
                       </span>
                     <% end %>
                   </span>

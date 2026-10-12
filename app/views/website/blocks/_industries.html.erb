@@ -16,3 +16,4 @@
     <%= render "website/shared/entry_cards", entries: healing_industries, link_label: "See the numbers" %>
   </div>
 </section>
+<% content_for :head, healing_item_list_json_ld("Industries", healing_industries) %>

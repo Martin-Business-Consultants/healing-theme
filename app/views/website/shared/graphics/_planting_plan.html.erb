@@ -1,0 +1,43 @@
+<%# locals: () -%>
+<%# A sample planting plan: a bed drawn from above, each plant a circle as wide as it grows, keyed by letter to a plant list with quantities. Planted in on scroll (data-reveal-group). %>
+<% plants = [
+  ["A", "Little bluestem", "grass", 18, [[150, 120], [186, 98], [222, 118], [258, 96], [294, 118], [330, 98], [366, 120]]],
+  ["B", "Purple coneflower", "bloom", 16, [[170, 168], [214, 162], [258, 170], [302, 164], [346, 170]]],
+  ["C", "Black-eyed Susan", "gold", 15, [[196, 214], [240, 220], [286, 214], [330, 220], [374, 210]]],
+  ["D", "Prairie dropseed", "green", 13, [[130, 210], [154, 248], [196, 258], [240, 262], [284, 260], [328, 258], [372, 252], [410, 230], [420, 176]]],
+  ["E", "Aromatic aster", "violet", 20, [[112, 160], [398, 130], [440, 196]]]
+] %>
+<figure class="graphic graphic--panel" data-reveal>
+  <div class="graphic__with-key">
+    <svg viewBox="0 0 520 330" role="img" aria-labelledby="planting-plan-title planting-plan-desc">
+      <title id="planting-plan-title">A sample planting plan</title>
+      <desc id="planting-plan-desc">A curved bed drawn from above, with each plant shown at its full width and lettered to a plant list: seven little bluestem, five purple coneflower, five black-eyed Susan, nine prairie dropseed and three aromatic aster.</desc>
+      <rect class="g-paper" x="10" y="10" width="500" height="310" rx="16" />
+      <path class="g-bed" d="M80 150q30-90 200-90t200 70q10 90-120 140t-220 0q-80-40-60-120z" />
+      <g data-reveal-group>
+        <% plants.each do |letter, _, tone, radius, spots| %>
+          <% plant_class = "g-plant g-plant--#{tone}" %>
+          <g class="<%= plant_class %>">
+            <% spots.each do |x, y| %>
+              <circle cx="<%= x %>" cy="<%= y %>" r="<%= radius %>" />
+              <text x="<%= x %>" y="<%= y + 5 %>" text-anchor="middle"><%= letter %></text>
+            <% end %>
+          </g>
+        <% end %>
+      </g>
+      <path class="g-dimension" d="M40 296h80M40 290v12M80 292v8M120 290v12" />
+      <text class="g-label g-label--small" x="130" y="301">4 ft</text>
+    </svg>
+    <table class="graphic__list">
+      <caption class="eyebrow">Plant list</caption>
+      <thead><tr><th scope="col">Key</th><th scope="col">Plant</th><th scope="col">Qty</th></tr></thead>
+      <tbody>
+        <% plants.each do |letter, name, tone, _, spots| %>
+          <% swatch_class = "graphic__swatch g-plant--#{tone}" %>
+          <tr><td><span class="<%= swatch_class %>"><%= letter %></span></td><td><%= name %></td><td><%= spots.size %></td></tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <figcaption class="small muted">An example: every plan names each plant, where it goes and how many to buy.</figcaption>
+</figure>

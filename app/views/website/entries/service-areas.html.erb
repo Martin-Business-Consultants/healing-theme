@@ -4,7 +4,7 @@
 <% content_for :nav, "over_photo" %>
 <% content_for :head do %>
   <%= website_seo_tags entry, description: area.summary, image: area.image.presence || healing_settings.share_image %>
-  <%= healing_service_json_ld name: "Garden & landscape design in #{area.region}", description: area.summary, type: "Landscape design", towns: area.towns %>
+  <%= healing_service_json_ld image: area.image.presence, name: "Garden & landscape design in #{area.region}", description: area.summary, type: "Landscape design", towns: area.towns %>
 <% end %>
 <% links = capture do %>
   <%= healing_button healing_settings.booking_label, href: "#contact", variant: :secondary, arrow: true %>

@@ -1,0 +1,49 @@
+<%# locals: () -%>
+<%# What a consultation reads, as a sketch of a yard from above: the sun's path, a tree's shade, where water collects, the slope, the soil and what's growing, numbered to a key. Drawn in on scroll (data-draw). %>
+<% notes = [
+  ["Sun & shade", "Where the sun falls through the day"],
+  ["Water", "Downspouts, wet spots and slope"],
+  ["Soil", "Sand, loam or clay, and how it drains"],
+  ["What's there", "Plants worth keeping, and what's struggling"],
+  ["How you live", "Paths, views and time to garden"]
+] %>
+<figure class="graphic graphic--panel" data-reveal>
+  <div class="graphic__with-key">
+    <svg viewBox="0 0 520 420" role="img" aria-labelledby="site-analysis-title site-analysis-desc">
+      <title id="site-analysis-title">What a garden consultation looks at</title>
+      <desc id="site-analysis-desc">A yard seen from above, marked with the sun's path, the shade of a tree, a wet spot by a downspout, the slope, the soil and the existing plants.</desc>
+      <rect class="g-paper" x="10" y="10" width="500" height="400" rx="16" />
+      <path class="g-grid" d="<%= (1..9).map { |i| "M#{10 + i * 50} 10v400" }.join %><%= (1..7).map { |i| "M10 #{10 + i * 50}h500" }.join %>" />
+      <%# the sun's path, east to west across the south %>
+      <path class="g-sun-path" d="M40 380q220-120 440 0" data-draw />
+      <circle class="g-sun" cx="160" cy="333" r="12" />
+      <circle class="g-sun" cx="370" cy="327" r="12" />
+      <%# the house, along the north %>
+      <rect class="g-house" x="130" y="30" width="260" height="90" rx="4" />
+      <text class="g-label g-label--small" x="260" y="80" text-anchor="middle">House</text>
+      <path class="g-water-line" d="M390 116q30 30 40 70" data-draw />
+      <%# a tree and its shade %>
+      <ellipse class="g-shade" cx="104" cy="214" rx="78" ry="54" />
+      <circle class="g-tree" cx="84" cy="196" r="44" />
+      <%# a wet spot, the slope, a bed and lawn %>
+      <path class="g-wet" d="M408 196q40-10 62 20t-20 40q-48 4-54-28t12-32z" />
+      <path class="g-arrow" d="M300 160l70 50M362 196l8 14l-16 2" data-draw />
+      <path class="g-bed" d="M190 250q60-30 130 0t60 70q-80 30-170 0t-20-70z" />
+      <% [[230, 278], [262, 290], [296, 280], [330, 300], [270, 316]].each do |x, y| %>
+        <circle class="g-leaf" cx="<%= x %>" cy="<%= y %>" r="10" />
+      <% end %>
+      <path class="g-north" d="M478 40l10 26h-20z" />
+      <text class="g-label g-label--small" x="478" y="84" text-anchor="middle">N</text>
+      <%# numbered notes %>
+      <% [[160, 360, 1], [440, 230, 2], [320, 190, 3], [262, 248, 4], [100, 140, 5]].each do |x, y, number| %>
+        <g class="g-pin"><circle cx="<%= x %>" cy="<%= y %>" r="13" /><text x="<%= x %>" y="<%= y + 5 %>" text-anchor="middle"><%= number %></text></g>
+      <% end %>
+    </svg>
+    <ol class="graphic__key" data-reveal-group>
+      <% notes.each_with_index do |(title, text), index| %>
+        <li><span class="graphic__num"><%= index + 1 %></span><span><strong><%= title %></strong><span class="small muted"><%= text %></span></span></li>
+      <% end %>
+    </ol>
+  </div>
+  <figcaption class="small muted">A consultation reads the site first, so every plant chosen after it suits where it grows.</figcaption>
+</figure>

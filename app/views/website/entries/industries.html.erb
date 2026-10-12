@@ -4,7 +4,7 @@
 <% content_for :nav, "over_photo" %>
 <% content_for :head do %>
   <%= website_seo_tags entry, description: industry.summary, image: industry.image.presence || healing_settings.share_image %>
-  <%= healing_service_json_ld name: "Commercial landscape design for #{entry.title.downcase}", description: industry.summary, type: "Commercial landscape design", audience: entry.title %>
+  <%= healing_service_json_ld image: industry.image.presence, name: "Commercial landscape design for #{entry.title.downcase}", description: industry.summary, type: "Commercial landscape design", audience: entry.title %>
 <% end %>
 <% links = capture do %>
   <%= healing_button "Estimate your return", href: "#roi", variant: :secondary, arrow: true %>

@@ -1,0 +1,116 @@
+<%# locals: (heading:, eyebrow: nil, intro: nil) -%>
+<%# What a home garden gives back (healing/garden_value.js), in four kinds of return: money (home value, never more than the garden cost; lawn costs saved; food grown; against what it costs), health (the share of garden time that's moderate activity, its calories, against the 150 minutes a week adults are advised), mind (time outdoors in the garden, beside research on gardening and stress, never counted toward studies that left home gardens out) and earth (rain kept on site, lawn turned to habitat, mowing time saved). Every assumption is Site settings › Home garden calculator's. "Plan my garden" carries the estimate into the contact form. %>
+<% calc = healing_settings.home_calculator %>
+<% shares = ->(text) { text.to_s.split(",").map(&:to_f).select(&:positive?).presence || [1.0] } %>
+<% number = ->(value, fallback) { value.present? ? value.to_s.delete("%$").to_f : fallback } %>
+<% config = {
+  ramp: shares.(calc.ramp), lawnRamp: calc.lawn_ramp.present? ? shares.(calc.lawn_ramp) : shares.(calc.ramp),
+  homePct: [number.(calc.home_value_low, 1), number.(calc.home_value_high, 3)], homeCap: number.(calc.home_value_cap, 1),
+  lawn: [number.(calc.lawn_savings_low, 0.05), number.(calc.lawn_savings_high, 0.15)],
+  produce: [number.(calc.produce_low, 1), number.(calc.produce_high, 3)],
+  mowMinutes: number.(calc.mow_minutes_per_1000, 110), met: number.(calc.met, 3.8), activeShare: number.(calc.active_share, 0.5), weightLb: number.(calc.weight_lb, 170),
+  seasonWeeks: number.(calc.season_weeks, 26), precip: number.(calc.precip_inches, 33.2), capture: number.(calc.capture_share, 0.75),
+  gallonsPerInch: 0.623, guideline: 150
+} %>
+<% years = (calc.default_years.presence || 10).to_i.clamp(1, 20) %>
+<section id="garden-value" class="section roi-section">
+  <div class="container">
+    <div class="section-head section-head--spaced" data-reveal>
+      <div class="section-head__intro">
+        <% if eyebrow.present? %>
+          <p class="eyebrow"><%= eyebrow %></p>
+        <% end %>
+        <h2 class="h2 section-head__title"><%= heading %></h2>
+        <% if intro.present? %>
+          <p class="lead muted"><%= intro %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="roi garden-value" data-garden-value="<%= config.to_json %>" data-reveal>
+      <form class="roi__inputs card" data-garden-form>
+        <p class="roi__panel-title"><%= healing_icon("calculator") %> Your garden</p>
+        <%= render "website/shared/calc_field", name: "home", title: "Home value", value: calc.default_home_value.presence || 300000, step: 5000, money: true %>
+        <%= render "website/shared/calc_field", name: "investment", title: "Garden investment", value: calc.default_investment.presence || 5000, step: 250, money: true %>
+        <%= render "website/shared/calc_field", name: "care", title: "Yearly care", value: calc.default_care.presence || 0, step: 100, money: true, hint: "(optional)" %>
+        <%= render "website/shared/calc_field", name: "lawn", title: "Lawn turned into garden", value: calc.default_lawn_sqft.presence || 500, step: 50, hint: "(sq ft)" %>
+        <%= render "website/shared/calc_field", name: "edible", title: "Vegetable, herb or cut-flower beds", value: calc.default_edible_sqft.presence || 100, step: 10, hint: "(sq ft)" %>
+        <%= render "website/shared/calc_field", name: "roof", title: "Roof draining to a rain garden", value: calc.default_roof_sqft.presence || 0, step: 100, hint: "(sq ft, optional)" %>
+        <div class="field field--wide">
+          <label class="field__label" for="home-calc-hours">Time in the garden: <output data-garden-hours-out for="home-calc-hours"><%= calc.default_hours.presence || 3 %></output> hours a week</label>
+          <input class="range" id="home-calc-hours" name="hours" type="range" min="0" max="15" step="0.5" value="<%= calc.default_hours.presence || 3 %>" autocomplete="off">
+        </div>
+        <div class="field field--wide">
+          <label class="field__label" for="home-calc-years">Years out: <output data-garden-years-out for="home-calc-years"><%= years %></output></label>
+          <input class="range" id="home-calc-years" name="years" type="range" min="1" max="20" value="<%= years %>" autocomplete="off">
+        </div>
+      </form>
+      <div class="garden-value__results" aria-live="polite">
+        <div class="returns" role="tablist" aria-label="Kinds of return">
+          <% [["money", "Money"], ["health", "Health"], ["mind", "Mind"], ["earth", "Earth"]].each_with_index do |(key, title), index| %>
+            <%= tag.button(type: "button", class: "returns__tab", role: "tab", id: "garden-tab-#{key}", "aria-controls": "garden-panel-#{key}", "aria-selected": index.zero?.to_s, data: {garden_tab: key}) do %>
+              <span class="returns__tab-label"><%= title %></span>
+              <span class="returns__tab-value" data-garden-summary="<%= key %>">—</span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="returns__panel" id="garden-panel-money" role="tabpanel" aria-labelledby="garden-tab-money" data-garden-panel="money">
+          <p class="eyebrow">Net return after <span data-garden-years><%= years %></span> years</p>
+          <p class="roi__big" data-garden="net">—</p>
+          <p class="muted roi__range" data-garden="net-range"></p>
+          <dl class="roi__figures">
+            <div><dt>Home value</dt><dd data-garden="home-gain">—</dd></div>
+            <div><dt>Lawn costs saved</dt><dd data-garden="lawn-saved">—</dd></div>
+            <div><dt>Food grown</dt><dd data-garden="produce">—</dd></div>
+          </dl>
+          <div class="roi__chart" data-garden-chart aria-hidden="true"></div>
+          <p class="small muted roi__legend"><span class="roi__key roi__key--net"></span> Net value, mid estimate <span class="roi__key roi__key--band"></span> Low to high</p>
+        </div>
+        <div class="returns__panel" id="garden-panel-health" role="tabpanel" aria-labelledby="garden-tab-health" data-garden-panel="health" hidden>
+          <p class="eyebrow">Moderate activity, each growing season</p>
+          <p class="roi__big" data-garden="active-hours">—</p>
+          <p class="muted roi__range">Counting <%= (config[:activeShare] * 100).round %>% of garden time as active work: digging, planting, weeding.</p>
+          <div class="meter-row">
+            <%= render "website/shared/meter", key: "guideline", caption: "of the 150 minutes a week of moderate activity adults are advised to get, through the season" %>
+            <div class="meter-facts">
+              <p><strong data-garden="kcal">—</strong> <span class="muted">calories burned beyond resting, a season, for a <span data-garden="weight"></span>-lb adult</span></p>
+              <p><strong data-garden="kcal-total">—</strong> <span class="muted">over <span data-garden-years></span> years</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="returns__panel" id="garden-panel-mind" role="tabpanel" aria-labelledby="garden-tab-mind" data-garden-panel="mind" hidden>
+          <p class="eyebrow">Time outdoors, in a garden you made</p>
+          <p class="roi__big" data-garden="garden-minutes">—</p>
+          <p class="muted roi__range" data-garden="season-hours"></p>
+          <% if calc.mind_note.present? %>
+            <div class="mind-notes">
+              <% calc.mind_note.split(/\n\s*\n/).each do |note| %>
+                <p><%= note.strip %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="returns__panel" id="garden-panel-earth" role="tabpanel" aria-labelledby="garden-tab-earth" data-garden-panel="earth" hidden>
+          <p class="eyebrow">Given back to the land, each year</p>
+          <dl class="roi__figures roi__figures--earth">
+            <div><dt>Rain kept on site</dt><dd data-garden="gallons">—</dd></div>
+            <div><dt>Habitat from lawn</dt><dd data-garden="habitat">—</dd></div>
+            <div><dt>Mowing time saved</dt><dd data-garden="mowing">—</dd></div>
+          </dl>
+          <p class="muted small" data-garden="earth-total"></p>
+        </div>
+        <details class="roi__assumptions">
+          <summary>What this assumes</summary>
+          <div class="small muted">
+            <p>Home value: a one-time gain of <%= config[:homePct].first %>–<%= config[:homePct].last %>% as the garden fills in (<%= config[:ramp].each_with_index.map { |share, index| "#{(share * 100).round}% in year #{index + 1}#{"+" if index == config[:ramp].size - 1}" }.to_sentence %>), well below what buyers say landscaping is worth, and never more than <%= (config[:homeCap] * 100).round %>% of what the garden cost.</p>
+            <p>Lawn turned into garden saves $<%= config[:lawn].first %>–$<%= config[:lawn].last %> a square foot a year in mowing, water and fertilizer, and about <%= config[:mowMinutes].round %> minutes of mowing per 1,000 sq ft a year. Food beds grow $<%= config[:produce].first %>–$<%= config[:produce].last %> of produce a square foot a season.</p>
+            <p>Active gardening is moderate activity at <%= config[:met] %> METs (2024 Compendium of Physical Activities), over a <%= config[:seasonWeeks].round %>-week season. Rain: <%= config[:precip] %> inches a year (NOAA, Kalamazoo), 0.623 gallons per inch per square foot of roof, <%= (config[:capture] * 100).round %>% of it held by a well-sized rain garden.</p>
+            <% if calc.disclaimer.present? %>
+              <p><%= calc.disclaimer %></p>
+            <% end %>
+          </div>
+        </details>
+        <a class="button button--primary roi__cta" href="#contact" data-garden-plan><span><%= calc.button_label.presence || "Plan my garden" %></span><%= healing_icon("arrow-long-right", class: "button__arrow") %></a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,13 +1,17 @@
 <%# locals: (compact: false, selected: nil, source: nil) -%>
-<%# The CMS's "contact" form, in the site's design. Fields, labels, choices, the button and the thank-you come from the form, and a sent request goes on to Site settings › Contact › Thank-you page when one is set (so analytics can count it); it posts to the Forms plugin, which checks the honeypot, its rate limit, Cloudflare Turnstile (when Settings › Forms has its keys) and the fields, then sends its emails (healing/contact_form.js). "source" (the page the request came from) is hidden, and the compact form in the home page's header leaves out optional fields that aren't choices. %>
+<%# The CMS's "contact" form, in the site's design. Fields, labels, choices, the button and the thank-you come from the form, and a sent request goes on to Site settings › Contact › Thank-you page when one is set (so analytics can count it); it posts to the Forms plugin, which checks the honeypot, its rate limit, Cloudflare Turnstile (when Settings › Forms has its keys) and the fields, then sends its emails (healing/contact_form.js). "source" (the page the request came from) is hidden, and so is "estimate" when the form has one (the home garden calculator fills it), and the compact form in the home page's header leaves out optional fields that aren't choices. %>
 <% form = healing_contact_form %>
 <% source_field = website_form_field(form, :source) %>
-<% visible = form.fields.reject { it["name"] == source_field["name"] || (compact && !it["required"] && it["type"] != "select") } %>
+<% estimate_field = form.fields.find { it["name"] == "estimate" } %>
+<% visible = form.fields.reject { it["name"].in?([source_field["name"], estimate_field&.dig("name")]) || (compact && !it["required"] && it["type"] != "select") } %>
 <% id = compact ? "contact-form-compact" : "contact-form" %>
 <% thank_you = website_href(healing_settings.contact.thank_you_page) %>
 <form id="<%= id %>" class="contact-form <%= "contact-form--compact" if compact %>" method="post" action="<%= api_form_submissions_path(form_slug: form.slug) %>"
   data-contact-form data-honeypot="<%= Form::HONEYPOT_FIELD %>" data-success="<%= form.success_message %>"<% if thank_you %> data-redirect="<%= thank_you %>"<% end %>>
   <input type="hidden" name="<%= source_field["name"] %>" value="<%= source.presence || "website" %>">
+  <% if estimate_field %>
+    <input type="hidden" name="<%= estimate_field["name"] %>" value="" data-estimate>
+  <% end %>
   <p hidden aria-hidden="true">
     <label>Leave this empty: <input name="<%= Form::HONEYPOT_FIELD %>" tabindex="-1" autocomplete="off"></label>
   </p>
