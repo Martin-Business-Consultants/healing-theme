@@ -1,2 +1,11 @@
 <%# locals: () -%>
-<a class="logo" href="/" aria-label="Home"><%= website_settings["title"].presence || "Healing Earth Design" %></a>
+<%# The business, linking home: Navigation › Logo when there is one (its alt text is the business's name), else the name in type. %>
+<% name = website_settings["title"].presence || "Healing Earth Design" %>
+<% logo = website_global(:nav).logo %>
+<a class="logo" href="/" aria-label="<%= name %>, home">
+  <% if logo.present? && (image = website_image_tag(logo, sizes: "16rem", alt: name, loading: :eager, class: "logo__image")) %>
+    <%= image %>
+  <% else %>
+    <%= name %>
+  <% end %>
+</a>

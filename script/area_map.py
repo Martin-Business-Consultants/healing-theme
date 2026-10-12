@@ -1,28 +1,32 @@
 #!/usr/bin/env python3
-"""Southwest Michigan as an ERB partial: county outlines from the US Census
+"""West and Southwest Michigan as an ERB partial: county outlines from the US Census
 cartographic boundaries (https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json), projected equirectangular with
 cos(lat) scaling, simplified, clipped to the frame. Usage: script/area_map.py counties.json out.erb"""
 import json, math, sys
 
 src, out = sys.argv[1], sys.argv[2]
-W, H = 800, 500
-LNG0, LNG1, LAT0, LAT1 = -86.52, -84.62, 41.97, 42.86
+# The frame: from the Indiana line to above Newaygo, Lake Michigan to past
+# Calhoun. Its height follows from its width.
+LNG0, LNG1, LAT0, LAT1 = -86.56, -84.66, 41.98, 43.83
 K = math.cos(math.radians((LAT0 + LAT1) / 2))
-sx = W / ((LNG1 - LNG0) * K)
-sy = H / (LAT1 - LAT0)
-s = min(sx, sy)
-ox = (W - (LNG1 - LNG0) * K * s) / 2
-oy = (H - (LAT1 - LAT0) * s) / 2
+W = 800
+s = W / ((LNG1 - LNG0) * K)
+H = round((LAT1 - LAT0) * s)
+ox, oy = 0, 0
 
 def xy(lng, lat):
     return (ox + (lng - LNG0) * K * s, oy + (LAT1 - lat) * s)
 
-SERVED = {"26005": "allegan", "26015": "barry", "26025": "calhoun", "26077": "kalamazoo", "26159": "van-buren"}
-CONTEXT = {"26139": "Ottawa", "26081": "Kent", "26067": "Ionia", "26045": "Eaton", "26075": "Jackson",
-           "26023": "Branch", "26149": "St. Joseph", "26027": "Cass", "26021": "Berrien", "26065": "Ingham", "26059": "Hillsdale", "26037": "Clinton"}
+SERVED = {"26005": "allegan", "26015": "barry", "26025": "calhoun", "26077": "kalamazoo", "26159": "van-buren",
+          "26081": "kent", "26139": "ottawa", "26067": "ionia", "26117": "montcalm", "26121": "muskegon", "26123": "newaygo"}
+CONTEXT = {"26045": "Eaton", "26075": "Jackson", "26023": "Branch", "26149": "St. Joseph", "26027": "Cass", "26021": "Berrien",
+           "26065": "Ingham", "26059": "Hillsdale", "26037": "Clinton", "26057": "Gratiot", "26107": "Mecosta", "26127": "Oceana",
+           "26085": "Lake", "26133": "Osceola", "26073": "Isabella"}
 # Where each county's name sits (lat, lng), clear of the towns.
-LABELS = {"allegan": (42.66, -86.02), "barry": (42.565, -85.2), "calhoun": (42.17, -84.98), "kalamazoo": (42.12, -85.53), "van-buren": (42.3, -86.12)}
-NAMES = {"allegan": "Allegan", "barry": "Barry", "calhoun": "Calhoun", "kalamazoo": "Kalamazoo", "van-buren": "Van Buren"}
+LABELS = {"allegan": (42.66, -86.02), "barry": (42.565, -85.2), "calhoun": (42.17, -84.98), "kalamazoo": (42.12, -85.53), "van-buren": (42.3, -86.12),
+          "kent": (43.2, -85.43), "ottawa": (43.0, -86.0), "ionia": (42.86, -85.07), "montcalm": (43.33, -85.12), "muskegon": (43.39, -86.25), "newaygo": (43.68, -85.82)}
+NAMES = {"allegan": "Allegan", "barry": "Barry", "calhoun": "Calhoun", "kalamazoo": "Kalamazoo", "van-buren": "Van Buren",
+         "kent": "Kent", "ottawa": "Ottawa", "ionia": "Ionia", "montcalm": "Montcalm", "muskegon": "Muskegon", "newaygo": "Newaygo"}
 
 def ring_path(ring):
     pts, last = [], None
@@ -53,6 +57,11 @@ TOWNS = [
     ("Plainwell", 42.4401, -85.6489, "allegan", "w"), ("Otsego", 42.4606, -85.6964, "allegan", "nw"), ("Allegan", 42.5292, -85.8553, "allegan", "e"),
     ("South Haven", 42.4031, -86.2736, "van-buren", "e"), ("Paw Paw", 42.2178, -86.0711, "van-buren", "e"),
     ("Hastings", 42.6492, -85.2908, "barry", "e"), ("Delton", 42.4970, -85.4078, "barry", "e"), ("Gun Lake", 42.6250, -85.5300, "barry", "e"),
+    ("Grand Rapids", 42.9634, -85.6681, "kent", "e"), ("Rockford", 43.1200, -85.5600, "kent", "e"), ("Lowell", 42.9334, -85.3420, "kent", "s"),
+    ("Holland", 42.7875, -86.1089, "ottawa", "e"), ("Grand Haven", 43.0631, -86.2284, "ottawa", "e"), ("Hudsonville", 42.8709, -85.8650, "ottawa", "s"),
+    ("Ionia", 42.9873, -85.0711, "ionia", "e"), ("Belding", 43.0978, -85.2289, "ionia", "w"),
+    ("Greenville", 43.1775, -85.2528, "montcalm", "e"), ("Muskegon", 43.2342, -86.2484, "muskegon", "e"),
+    ("Fremont", 43.4675, -85.9420, "newaygo", "w"), ("Newaygo", 43.4197, -85.8000, "newaygo", "e"),
 ]
 towns = []
 for name, lat, lng, county, side in TOWNS:
@@ -60,14 +69,14 @@ for name, lat, lng, county, side in TOWNS:
     towns.append((name, county, side, x, y))
 
 lines = []
-lines.append("<%# locals: (links: {}, counties: [], base: nil, description: \"Map of the service area in Southwest Michigan\") -%>")
-lines.append("<%# Southwest Michigan, drawn from the US Census county boundaries (script/area_map.py made it). The five counties served link to their area's page (`links`, county => href); `counties` brings some forward; the pin is Richland, the home base. Drawn in on scroll (healing/area_map.js). %>")
+lines.append("<%# locals: (links: {}, counties: [], base: nil, description: \"Map of the service area in West and Southwest Michigan\") -%>")
+lines.append("<%# West and Southwest Michigan, drawn from the US Census county boundaries (script/area_map.py made it). The counties served link to their area's page (`links`, county => href); `counties` brings some forward; the pin is Richland, the home base. Drawn in on scroll (healing/motion.js). %>")
 lines.append("<% counties = Array(counties) %>")
 lines.append(f'<svg class="area-map" viewBox="0 0 {W} {H}" role="img" aria-label="<%= description %>" data-area-map>')
-lines.append('  <defs><clipPath id="area-map-frame"><rect width="800" height="500" rx="24" /></clipPath></defs>')
+lines.append(f'  <defs><clipPath id="area-map-frame"><rect width="{W}" height="{H}" rx="24" /></clipPath></defs>')
 lines.append('  <g clip-path="url(#area-map-frame)">')
-lines.append('    <rect class="area-map__lake" width="800" height="500" />')
-lines.append(f'    <text class="area-map__water" x="{xy(-86.43, 42.6)[0]:.0f}" y="{xy(-86.43, 42.6)[1]:.0f}" transform="rotate(-90 {xy(-86.43, 42.6)[0]:.0f} {xy(-86.43, 42.6)[1]:.0f})">Lake Michigan</text>')
+lines.append(f'    <rect class="area-map__lake" width="{W}" height="{H}" />')
+lines.append(f'    <text class="area-map__water" x="{xy(-86.47, 43.0)[0]:.0f}" y="{xy(-86.47, 43.0)[1]:.0f}" transform="rotate(-90 {xy(-86.47, 43.0)[0]:.0f} {xy(-86.47, 43.0)[1]:.0f})">Lake Michigan</text>')
 lines.append(context)
 lines.append("  </g>")
 lines.append('  <g class="area-map__counties">')
