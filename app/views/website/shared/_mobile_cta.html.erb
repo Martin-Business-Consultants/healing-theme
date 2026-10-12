@@ -1,7 +1,17 @@
 <%# locals: () -%>
-<%# A booking bar for small screens, shown between the header and the contact form (healing/motion.js). %>
-<% if healing_settings.mobile_cta_label.present? %>
+<%# Phones only: a bar along the bottom, Book | Call, shown between the header and the contact form (healing/motion.js). Book goes to the booking link (Site settings), Call to the business's phone (Settings › General); without a phone, Book takes the whole bar. %>
+<% phone = healing_phone %>
+<% if healing_settings.mobile_cta_label.present? || phone %>
   <div id="mobile-cta" class="mobile-cta" inert>
-    <%= healing_button healing_settings.mobile_cta_label, href: website_href(healing_settings.booking_link) || "/#contact", class: "button--wide" %>
+    <div class="<%= class_names("mobile-cta__actions", "mobile-cta__actions--pair": phone) %>">
+      <%= healing_button href: website_href(healing_settings.booking_link) || "/#contact", class: "button--wide mobile-cta__button" do %>
+        <%= healing_icon("calendar-event") %> Book
+      <% end %>
+      <% if phone %>
+        <%= healing_button href: phone[:href], variant: :outline, class: "button--wide mobile-cta__button", "aria-label": "Call #{phone[:text]}" do %>
+          <%= healing_icon("phone") %> Call
+        <% end %>
+      <% end %>
+    </div>
   </div>
 <% end %>

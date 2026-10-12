@@ -2612,7 +2612,7 @@
           }
         ],
         "copyright": "© {year} Healing Earth Design. All rights reserved.",
-        "address": "Based in Richland, Michigan. Serving Kalamazoo, Calhoun, Allegan, Van Buren and Barry counties."
+        "address": "Based in Richland, Michigan. Serving Kalamazoo, Calhoun, Allegan, Van Buren, Barry, Kent, Ottawa, Ionia, Montcalm, Muskegon and Newaygo counties."
       },
       "fields": [
         {
@@ -2824,6 +2824,12 @@
         ]
       },
       "fields": [
+        {
+          "name": "logo",
+          "label": "Logo",
+          "type": "asset",
+          "help": "Shown in place of the business name in the nav, the footer and the phone menu. Leave blank to show the name. A wide logo with a transparent background works best."
+        },
         {
           "name": "items",
           "label": "Items",
@@ -3476,90 +3482,201 @@
   ],
   "pages": [
     {
-      "path": "home",
-      "slug": "home",
-      "title": "Home",
+      "path": "garden-value",
+      "slug": "garden-value",
+      "title": "What a Garden Gives Back",
       "locale": "en",
       "blocks": [
         {
-          "type": "home_hero",
+          "type": "page_header",
           "version": 1,
           "data": {
-            "eyebrow": "Garden & landscape design by Sarah Martin",
-            "heading": "Gardens that give back to the land, and to you",
-            "subtitle": "Plant-forward designs rooted in ecology and suited to your site, your lifestyle, and your experience level",
+            "eyebrow": "What a garden gives back",
+            "title": "A garden pays you back, in more ways than money",
+            "intro": "Home value, food from your own beds, time outdoors, less stress and rain soaked into your own ground. See what a garden could give back to you, with the research behind every number.",
             "image": "24",
-            "button_label": "Book a garden consultation",
-            "secondary_label": "See the gardens",
+            "button_label": "Calculate yours",
+            "button_link": {
+              "kind": "url",
+              "value": "#garden-value"
+            },
+            "secondary_label": "Book a consultation",
             "secondary_link": {
               "kind": "url",
-              "value": "#portfolio"
-            },
-            "form_eyebrow": "Start here",
-            "form_intro": "Tell me about your space. I reply within 1–2 business days.",
-            "show_quote": true
+              "value": "#contact"
+            }
           }
         },
         {
-          "type": "proof_strip",
+          "type": "home_calculator",
           "version": 1,
           "data": {
-            "items": [
-              "Degree in sustainable horticulture & landscape design",
-              "6+ years of hands-on growing",
-              "Every plant trialed in my own garden first",
-              "Replies within 1–2 business days"
-            ]
+            "eyebrow": "Garden calculator",
+            "heading": "What could your garden give back?",
+            "intro": "Put in your own yard. The estimate uses conservative figures from published research and grows as the garden fills in. Switch between money, health, mind and earth."
           }
         },
         {
-          "type": "what_i_do",
+          "type": "value_stats",
           "version": 1,
           "data": {
-            "eyebrow": "What I Do",
-            "statement": "Thoughtful landscape design rooted in nature and care. Working with natural systems to create resilient, meaningful outdoor spaces.",
-            "tagline": "All services are plant-forward and tailored to your space, lifestyle, and experience level.",
-            "items": [
+            "eyebrow": "Money",
+            "heading": "A garden adds value you can see",
+            "background": "plain",
+            "intro": "Buyers notice a well-planted yard, landscaping tends to pay back what it costs, and food beds put produce on the table.",
+            "stats": [
               {
-                "large_text": "Consult",
-                "description": "Garden consultations and seasonal guidance"
+                "figure": "5–11%",
+                "label": "higher value buyers put on a well-landscaped home than the same home with no landscape.",
+                "source": "Behe et al., Journal of Environmental Horticulture, 2005",
+                "source_url": "https://www.pubs.ext.vt.edu/426/426-087/426-087.html"
               },
               {
-                "large_text": "Design",
-                "description": "Custom planting plans and landscape design drawings"
+                "figure": "100%",
+                "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
+                "source": "NAR & NALP, Remodeling Impact Report, 2023",
+                "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
               },
               {
-                "large_text": "Grow",
-                "description": "Native, pollinator, vegetable, cut flower, and medicinal herb gardens"
+                "figure": "$1",
+                "label": "of produce a square foot: about half a pound of vegetables at $2 a pound, in a typical food garden.",
+                "source": "National Gardening Association, 2009",
+                "source_url": "https://gardenresearch.com/files/2009-Impact-of-Gardening-in-America-White-Paper.pdf"
               },
               {
-                "large_text": "Support",
-                "description": "Plant shopping and installation support"
+                "figure": "30%",
+                "label": "or more of household water goes outdoors, mostly to keep lawns green.",
+                "source": "U.S. EPA WaterSense",
+                "source_url": "https://www.epa.gov/watersense/statistics-and-facts"
+              }
+            ],
+            "footnote": "Buyers' estimates run ahead of sale prices, so the calculator uses 1–3% for home value, and never more than the garden cost."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Health & mind",
+            "heading": "Time in the garden is good for you",
+            "background": "tinted",
+            "intro": "Digging, planting and weeding count as exercise, and gardening has been shown to bring stress down.",
+            "stats": [
+              {
+                "figure": "150 min",
+                "label": "a week of moderate activity is what adults are advised to get; active gardening counts.",
+                "source": "Physical Activity Guidelines for Americans, 2018",
+                "source_url": "https://odphp.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf"
+              },
+              {
+                "figure": "3.8 METs",
+                "label": "for moderate-effort gardening: the same moderate band as brisk walking.",
+                "source": "2024 Adult Compendium of Physical Activities",
+                "source_url": "https://pacompendium.com/lawn-garden"
+              },
+              {
+                "figure": "30 min",
+                "label": "of gardening after a stressful task lowered cortisol more than 30 minutes of reading, and mood fully recovered.",
+                "source": "Van den Berg & Custers, Journal of Health Psychology, 2011",
+                "source_url": "https://blogs.ubc.ca/2017wufor200/files/2017/01/Gardening-promotes-neuroendocrine-and-affective-restoration-from-stress-van-den-Berg-and-Custers-2011.pdf"
+              },
+              {
+                "figure": "24% → 53%",
+                "label": "of residents with healthy daily cortisol patterns, after plants were added to their bare front gardens.",
+                "source": "Chalmin-Pui et al., Landscape and Urban Planning, 2021",
+                "source_url": "https://eprints.whiterose.ac.uk/166215"
+              }
+            ],
+            "footnote": "Across 22 studies, gardening was linked to less depression and anxiety and more life satisfaction (Soga, Gaston & Yamaura, Preventive Medicine Reports, 2017)."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Earth",
+            "heading": "And it gives back to the land",
+            "background": "dark",
+            "intro": "Native plantings feed birds and pollinators, and rain gardens keep rain where it falls.",
+            "stats": [
+              {
+                "figure": "623 gal",
+                "label": "of water fall on every 1,000 square feet of roof in an inch of rain.",
+                "source": "USGS Water Science School",
+                "source_url": "https://www.usgs.gov/water-science-school/science/water-qa-how-much-water-falls-during-a-storm"
+              },
+              {
+                "figure": "96–100%",
+                "label": "of rain and snowmelt events held and soaked in by rain gardens over four years.",
+                "source": "USGS Scientific Investigations Report 2010-5077",
+                "source_url": "https://pubs.usgs.gov/publication/sir20105077"
+              },
+              {
+                "figure": "70%",
+                "label": "native plants or more: the share a yard needs for chickadees to raise enough young to sustain their numbers.",
+                "source": "Narango, Tallamy & Marra, PNAS, 2018",
+                "source_url": "https://www.pnas.org/doi/10.1073/pnas.1809259115"
               }
             ]
           }
         },
         {
-          "type": "case_studies",
+          "type": "faq",
           "version": 1,
           "data": {
-            "layout": "featured",
-            "eyebrow": "Case studies",
-            "heading": "Gardens designed with intention, rooted in ecology.",
-            "button_label": "View all case studies",
-            "button_link": {
-              "kind": "page",
-              "value": "portfolio"
-            }
+            "eyebrow": "Questions",
+            "heading": "About the garden calculator",
+            "items": [
+              {
+                "question": "Where do the numbers come from?",
+                "answer": "From published research and public data: home value studies, the Compendium of Physical Activities, federal activity guidelines, NOAA rainfall for Kalamazoo and USGS rain garden research. Each one is linked on this page, and the calculator scales them down for a single home garden."
+              },
+              {
+                "question": "Will a garden really raise my home's value?",
+                "answer": "Buyers say a well-landscaped home is worth 5–11% more, and Realtors estimate a landscape upgrade recovers about what it costs. Sale prices move less than buyers' estimates, so the calculator assumes 1–3%, and never more than the garden cost."
+              },
+              {
+                "question": "Does gardening count as exercise?",
+                "answer": "Active gardening, like digging, planting and weeding, is moderate activity. The calculator counts half of your garden time as active, against the 150 minutes a week adults are advised to get."
+              },
+              {
+                "question": "Do I need a rain garden to count the rain?",
+                "answer": "Yes. Put in the roof area that would drain to one, and the calculator estimates what a well-sized rain garden would soak into your ground each year, using Kalamazoo's average rainfall."
+              }
+            ]
           }
         },
         {
-          "type": "testimonials",
+          "type": "contact",
           "version": 1,
           "data": {
-            "eyebrow": "What clients say",
-            "cta_heading": "Ready to start on your own garden?",
-            "cta_body": "Most projects begin with a single consultation, on-site or virtual.",
+            "heading": "Let's plan a garden that gives back",
+            "source": "garden value"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "What a Garden Gives Back: Calculator | Healing Earth Design",
+        "meta_description": "Estimate what a home garden gives back: home value, food, exercise, less stress and rain kept on site. Research-backed figures for Southwest Michigan.",
+        "og_image_id": "24"
+      }
+    },
+    {
+      "path": "services",
+      "slug": "services",
+      "title": "Services",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "Services",
+            "title": "Plant-forward help, from first visit to planting day",
+            "intro": "Every service is tailored to your space, lifestyle, and experience level. All of it is focused on plants, with no hardscape installation.",
+            "image": "43",
+            "image_position": "50% 60%",
             "button_label": "Book a garden consultation",
             "button_link": {
               "kind": "url",
@@ -3571,122 +3688,201 @@
           "type": "services_list",
           "version": 1,
           "data": {
-            "eyebrow": "Services",
-            "heading": "Plant-forward help, from first visit to planting day",
-            "body": "Every service is tailored to your space, lifestyle, and experience level, and focused on plants, with no hardscape installation.",
-            "button_label": "See all services",
-            "button_link": {
-              "kind": "page",
-              "value": "services"
-            },
-            "background": "tinted"
+            "background": "plain"
           }
         },
         {
           "type": "cta_band",
           "version": 1,
           "data": {
-            "heading": "Planting for businesses, with the numbers to back it",
-            "body": "Design, installation, seasonal displays and care for shops, offices, rentals, venues and public spaces. See what planting is worth to your business.",
+            "heading": "What could a garden give back to you?",
+            "body": "Home value, food, exercise, less stress and rain kept on site. Run the numbers for your own yard.",
             "background": "primary",
             "ctas": [
               {
-                "label": "Commercial landscaping",
+                "label": "Try the garden calculator",
                 "url": {
                   "kind": "page",
-                  "value": "commercial"
+                  "value": "garden-value"
                 },
                 "style": "primary"
-              },
-              {
-                "label": "Estimate your return",
-                "url": {
-                  "kind": "url",
-                  "value": "/commercial#roi"
-                },
-                "style": "secondary"
               }
             ]
+          }
+        },
+        {
+          "type": "cta_band",
+          "version": 1,
+          "data": {
+            "heading": "Not sure where to start?",
+            "body": "Most projects begin with a garden consultation. We'll look at your site together and decide what comes next.",
+            "ctas": [
+              {
+                "label": "About consultations",
+                "url": {
+                  "kind": "entry",
+                  "value": "garden-consultation",
+                  "collection": "services"
+                },
+                "style": "primary"
+              }
+            ],
+            "background": "muted"
+          }
+        },
+        {
+          "type": "pull_quote",
+          "version": 1,
+          "data": {}
+        },
+        {
+          "type": "contact",
+          "version": 1,
+          "data": {
+            "source": "services"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "Services | Healing Earth Design",
+        "meta_description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
+        "og_image_id": "2",
+        "json_ld": {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": "https://healingearthdesignbysarah.com/services#main",
+              "url": "https://healingearthdesignbysarah.com/services",
+              "name": "Services",
+              "description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
+              "isPartOf": {
+                "@id": "https://healingearthdesignbysarah.com/#website"
+              },
+              "inLanguage": "en",
+              "breadcrumb": {
+                "@id": "https://healingearthdesignbysarah.com/services#breadcrumb"
+              },
+              "primaryImageOfPage": {
+                "@type": "ImageObject",
+                "url": "https://healingearthdesignbysarah.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--a4c2dc789b9de03e8a739c7360e6c7645655b830/IMG_0021.webp"
+              },
+              "about": {
+                "@id": "https://healingearthdesignbysarah.com/#organization"
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service"
+                    },
+                    "name": "Detailed Landscape Design"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/garden-consultation#service"
+                    },
+                    "name": "Garden Consultation"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/installation-assistance#service"
+                    },
+                    "name": "Installation Assistance"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service"
+                    },
+                    "name": "Simple Planting Plan"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance#service"
+                    },
+                    "name": "Plant Shopping Assistance"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "service-areas",
+      "slug": "service-areas",
+      "title": "Service Areas",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "Service areas",
+            "title": "Garden design across West Michigan",
+            "intro": "Based in Richland, Healing Earth Design works with homes and businesses in Kalamazoo, Calhoun, Allegan, Van Buren, Barry, Kent, Ottawa, Ionia, Montcalm, Muskegon and Newaygo counties.",
+            "image": "24",
+            "button_label": "Book a garden consultation",
+            "button_link": {
+              "kind": "url",
+              "value": "#contact"
+            }
           }
         },
         {
           "type": "service_areas",
           "version": 1,
           "data": {
-            "eyebrow": "Service area",
-            "heading": "Gardens across Southwest Michigan",
-            "intro": "Based in Richland, I work with homes and businesses in Kalamazoo, Calhoun, Allegan, Van Buren and Barry counties.",
-            "base": "Richland, MI",
-            "button_label": "All service areas",
-            "button_link": {
-              "kind": "page",
-              "value": "service-areas"
-            }
+            "eyebrow": "Where I work",
+            "heading": "Choose your area",
+            "intro": "Each area page covers the towns I serve there, what grows well in its soils, and what businesses there can have.",
+            "base": "Richland, MI"
           }
         },
         {
-          "type": "about_intro",
+          "type": "faq",
           "version": 1,
           "data": {
-            "eyebrow": "About",
-            "heading": "Healing Earth Design",
-            "body": "<p>Healing Earth Design was founded on the belief that caring for the land can be a powerful form of healing. After experiencing personal loss, I returned to school for sustainable horticulture and landscape design, finding peace and purpose through working with plants, soil, and seasonal rhythms. What began as a way to heal grew into a calling to help others reconnect with the earth in meaningful, practical ways.</p>",
-            "signoff": "- Sarah",
-            "image": "1",
-            "button_label": "Read Sarah's story",
-            "button_link": {
-              "kind": "page",
-              "value": "about"
-            }
+            "eyebrow": "Questions",
+            "heading": "About the service area",
+            "items": [
+              {
+                "question": "Do you travel outside these counties?",
+                "answer": "Get in touch. For larger projects, or for consultations held virtually, we can often help farther afield."
+              },
+              {
+                "question": "Are consultations available virtually?",
+                "answer": "Yes. Consultations are on-site or virtual, so distance is rarely a problem for a first conversation."
+              }
+            ]
+          }
+        },
+        {
+          "type": "contact",
+          "version": 1,
+          "data": {
+            "source": "service areas"
           }
         }
       ],
       "frontmatter": {},
       "seo": {
-        "meta_title": "Healing Earth Design - Sustainable Garden & Landscape Design",
-        "meta_description": "Healing Earth Design helps homeowners create beautiful, functional gardens rooted in ecology, sustainability, and care for the land.",
-        "og_image_id": "24",
-        "schema_type": "LocalBusiness",
-        "json_ld": {
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebPage",
-              "@id": "https://healingearthdesignbysarah.com/#main",
-              "url": "https://healingearthdesignbysarah.com/",
-              "name": "Healing Earth Design - Sustainable Garden & Landscape Design",
-              "description": "Healing Earth Design helps homeowners create beautiful, functional gardens rooted in ecology, sustainability, and care for the land.",
-              "isPartOf": {
-                "@id": "https://healingearthdesignbysarah.com/#website"
-              },
-              "inLanguage": "en",
-              "breadcrumb": {
-                "@id": "https://healingearthdesignbysarah.com/#breadcrumb"
-              },
-              "primaryImageOfPage": {
-                "@type": "ImageObject",
-                "url": "https://healingearthdesignbysarah.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MjQsInB1ciI6ImJsb2JfaWQifX0=--5982c1a8264108092fac59001ae4d2e1460e3f52/IMG_7280.webp"
-              },
-              "about": {
-                "@id": "https://healingearthdesignbysarah.com/#organization"
-              }
-            },
-            {
-              "@type": "Organization",
-              "@id": "https://healingearthdesignbysarah.com/#organization",
-              "founder": {
-                "@id": "https://healingearthdesignbysarah.com/about#sarah-martin"
-              },
-              "knowsAbout": [
-                "Garden design",
-                "Landscape design",
-                "Planting plans",
-                "Native and pollinator plants",
-                "Sustainable horticulture"
-              ]
-            }
-          ]
-        }
+        "meta_title": "Service Areas in West Michigan | Healing Earth Design",
+        "meta_description": "Garden and landscape design from Kalamazoo and Battle Creek to Grand Rapids, Holland, Muskegon and Greenville, for homes and businesses in West Michigan.",
+        "og_image_id": "24"
       }
     },
     {
@@ -3846,8 +4042,8 @@
           "version": 1,
           "data": {
             "eyebrow": "Service area",
-            "heading": "Based in Richland, working across Southwest Michigan",
-            "intro": "Kalamazoo, Calhoun, Allegan, Van Buren and Barry counties: choose your area to see what grows well there.",
+            "heading": "Based in Richland, working across West Michigan",
+            "intro": "From Kalamazoo and Battle Creek to Grand Rapids, Holland and Muskegon: choose your area to see what grows well there.",
             "base": "Richland, MI"
           }
         },
@@ -3865,7 +4061,7 @@
             "items": [
               {
                 "question": "What kinds of properties do you work on?",
-                "answer": "Shops, restaurants, offices, apartment communities and HOAs, inns and venues, healthcare and senior living, schools, churches, nonprofits and public spaces, across Kalamazoo, Calhoun, Allegan, Van Buren and Barry counties."
+                "answer": "Shops, restaurants, offices, apartment communities and HOAs, inns and venues, healthcare and senior living, schools, churches, nonprofits and public spaces, across Kalamazoo, Calhoun, Allegan, Van Buren, Barry, Kent, Ottawa, Ionia, Montcalm, Muskegon and Newaygo counties."
               },
               {
                 "question": "Do you build patios, walls or walkways?",
@@ -3915,19 +4111,90 @@
       }
     },
     {
-      "path": "service-areas",
-      "slug": "service-areas",
-      "title": "Service Areas",
+      "path": "home",
+      "slug": "home",
+      "title": "Home",
       "locale": "en",
       "blocks": [
         {
-          "type": "page_header",
+          "type": "home_hero",
           "version": 1,
           "data": {
-            "eyebrow": "Service areas",
-            "title": "Garden design across Southwest Michigan",
-            "intro": "Based in Richland, Healing Earth Design works with homes and businesses in Kalamazoo, Calhoun, Allegan, Van Buren and Barry counties.",
+            "eyebrow": "Garden & landscape design by Sarah Martin",
+            "heading": "Gardens that give back to the land, and to you",
+            "subtitle": "Plant-forward designs rooted in ecology and suited to your site, your lifestyle, and your experience level",
             "image": "24",
+            "button_label": "Book a garden consultation",
+            "secondary_label": "See the gardens",
+            "secondary_link": {
+              "kind": "url",
+              "value": "#portfolio"
+            },
+            "form_eyebrow": "Start here",
+            "form_intro": "Tell me about your space. I reply within 1–2 business days.",
+            "show_quote": true
+          }
+        },
+        {
+          "type": "proof_strip",
+          "version": 1,
+          "data": {
+            "items": [
+              "Degree in sustainable horticulture & landscape design",
+              "6+ years of hands-on growing",
+              "Every plant trialed in my own garden first",
+              "Replies within 1–2 business days"
+            ]
+          }
+        },
+        {
+          "type": "what_i_do",
+          "version": 1,
+          "data": {
+            "eyebrow": "What I Do",
+            "statement": "Thoughtful landscape design rooted in nature and care. Working with natural systems to create resilient, meaningful outdoor spaces.",
+            "tagline": "All services are plant-forward and tailored to your space, lifestyle, and experience level.",
+            "items": [
+              {
+                "large_text": "Consult",
+                "description": "Garden consultations and seasonal guidance"
+              },
+              {
+                "large_text": "Design",
+                "description": "Custom planting plans and landscape design drawings"
+              },
+              {
+                "large_text": "Grow",
+                "description": "Native, pollinator, vegetable, cut flower, and medicinal herb gardens"
+              },
+              {
+                "large_text": "Support",
+                "description": "Plant shopping and installation support"
+              }
+            ]
+          }
+        },
+        {
+          "type": "case_studies",
+          "version": 1,
+          "data": {
+            "layout": "featured",
+            "eyebrow": "Case studies",
+            "heading": "Gardens designed with intention, rooted in ecology.",
+            "button_label": "View all case studies",
+            "button_link": {
+              "kind": "page",
+              "value": "portfolio"
+            }
+          }
+        },
+        {
+          "type": "testimonials",
+          "version": 1,
+          "data": {
+            "eyebrow": "What clients say",
+            "cta_heading": "Ready to start on your own garden?",
+            "cta_body": "Most projects begin with a single consultation, on-site or virtual.",
             "button_label": "Book a garden consultation",
             "button_link": {
               "kind": "url",
@@ -3936,46 +4203,125 @@
           }
         },
         {
-          "type": "service_areas",
+          "type": "services_list",
           "version": 1,
           "data": {
-            "eyebrow": "Where I work",
-            "heading": "Choose your area",
-            "intro": "Each area page covers the towns I serve there, what grows well in its soils, and what businesses there can have.",
-            "base": "Richland, MI"
+            "eyebrow": "Services",
+            "heading": "Plant-forward help, from first visit to planting day",
+            "body": "Every service is tailored to your space, lifestyle, and experience level, and focused on plants, with no hardscape installation.",
+            "button_label": "See all services",
+            "button_link": {
+              "kind": "page",
+              "value": "services"
+            },
+            "background": "tinted"
           }
         },
         {
-          "type": "faq",
+          "type": "cta_band",
           "version": 1,
           "data": {
-            "eyebrow": "Questions",
-            "heading": "About the service area",
-            "items": [
+            "heading": "Planting for businesses, with the numbers to back it",
+            "body": "Design, installation, seasonal displays and care for shops, offices, rentals, venues and public spaces. See what planting is worth to your business.",
+            "background": "primary",
+            "ctas": [
               {
-                "question": "Do you travel outside these counties?",
-                "answer": "Get in touch. For larger projects, or for consultations held virtually, we can often help farther afield."
+                "label": "Commercial landscaping",
+                "url": {
+                  "kind": "page",
+                  "value": "commercial"
+                },
+                "style": "primary"
               },
               {
-                "question": "Are consultations available virtually?",
-                "answer": "Yes. Consultations are on-site or virtual, so distance is rarely a problem for a first conversation."
+                "label": "Estimate your return",
+                "url": {
+                  "kind": "url",
+                  "value": "/commercial#roi"
+                },
+                "style": "secondary"
               }
             ]
           }
         },
         {
-          "type": "contact",
+          "type": "service_areas",
           "version": 1,
           "data": {
-            "source": "service areas"
+            "eyebrow": "Service area",
+            "heading": "Gardens across West Michigan",
+            "intro": "Based in Richland, I work with homes and businesses from Kalamazoo and Battle Creek to Grand Rapids, Holland and Muskegon.",
+            "base": "Richland, MI",
+            "button_label": "All service areas",
+            "button_link": {
+              "kind": "page",
+              "value": "service-areas"
+            }
+          }
+        },
+        {
+          "type": "about_intro",
+          "version": 1,
+          "data": {
+            "eyebrow": "About",
+            "heading": "Healing Earth Design",
+            "body": "<p>Healing Earth Design was founded on the belief that caring for the land can be a powerful form of healing. After experiencing personal loss, I returned to school for sustainable horticulture and landscape design, finding peace and purpose through working with plants, soil, and seasonal rhythms. What began as a way to heal grew into a calling to help others reconnect with the earth in meaningful, practical ways.</p>",
+            "signoff": "- Sarah",
+            "image": "1",
+            "button_label": "Read Sarah's story",
+            "button_link": {
+              "kind": "page",
+              "value": "about"
+            }
           }
         }
       ],
       "frontmatter": {},
       "seo": {
-        "meta_title": "Service Areas in Southwest Michigan | Healing Earth Design",
-        "meta_description": "Garden and landscape design in Kalamazoo, Portage, Richland, Battle Creek, Plainwell, South Haven, Hastings and across Southwest Michigan.",
-        "og_image_id": "24"
+        "meta_title": "Healing Earth Design - Sustainable Garden & Landscape Design",
+        "meta_description": "Healing Earth Design helps homeowners create beautiful, functional gardens rooted in ecology, sustainability, and care for the land.",
+        "og_image_id": "24",
+        "schema_type": "LocalBusiness",
+        "json_ld": {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://healingearthdesignbysarah.com/#main",
+              "url": "https://healingearthdesignbysarah.com/",
+              "name": "Healing Earth Design - Sustainable Garden & Landscape Design",
+              "description": "Healing Earth Design helps homeowners create beautiful, functional gardens rooted in ecology, sustainability, and care for the land.",
+              "isPartOf": {
+                "@id": "https://healingearthdesignbysarah.com/#website"
+              },
+              "inLanguage": "en",
+              "breadcrumb": {
+                "@id": "https://healingearthdesignbysarah.com/#breadcrumb"
+              },
+              "primaryImageOfPage": {
+                "@type": "ImageObject",
+                "url": "https://healingearthdesignbysarah.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MjQsInB1ciI6ImJsb2JfaWQifX0=--5982c1a8264108092fac59001ae4d2e1460e3f52/IMG_7280.webp"
+              },
+              "about": {
+                "@id": "https://healingearthdesignbysarah.com/#organization"
+              }
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://healingearthdesignbysarah.com/#organization",
+              "founder": {
+                "@id": "https://healingearthdesignbysarah.com/about#sarah-martin"
+              },
+              "knowsAbout": [
+                "Garden design",
+                "Landscape design",
+                "Planting plans",
+                "Native and pollinator plants",
+                "Sustainable horticulture"
+              ]
+            }
+          ]
+        }
       }
     },
     {
@@ -4033,165 +4379,6 @@
               },
               "mainEntity": {
                 "@id": "https://healingearthdesignbysarah.com/#organization"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "path": "services",
-      "slug": "services",
-      "title": "Services",
-      "locale": "en",
-      "blocks": [
-        {
-          "type": "page_header",
-          "version": 1,
-          "data": {
-            "eyebrow": "Services",
-            "title": "Plant-forward help, from first visit to planting day",
-            "intro": "Every service is tailored to your space, lifestyle, and experience level. All of it is focused on plants, with no hardscape installation.",
-            "image": "43",
-            "image_position": "50% 60%",
-            "button_label": "Book a garden consultation",
-            "button_link": {
-              "kind": "url",
-              "value": "#contact"
-            }
-          }
-        },
-        {
-          "type": "services_list",
-          "version": 1,
-          "data": {
-            "background": "plain"
-          }
-        },
-        {
-          "type": "cta_band",
-          "version": 1,
-          "data": {
-            "heading": "What could a garden give back to you?",
-            "body": "Home value, food, exercise, less stress and rain kept on site. Run the numbers for your own yard.",
-            "background": "primary",
-            "ctas": [
-              {
-                "label": "Try the garden calculator",
-                "url": {
-                  "kind": "page",
-                  "value": "garden-value"
-                },
-                "style": "primary"
-              }
-            ]
-          }
-        },
-        {
-          "type": "cta_band",
-          "version": 1,
-          "data": {
-            "heading": "Not sure where to start?",
-            "body": "Most projects begin with a garden consultation. We'll look at your site together and decide what comes next.",
-            "ctas": [
-              {
-                "label": "About consultations",
-                "url": {
-                  "kind": "entry",
-                  "value": "garden-consultation",
-                  "collection": "services"
-                },
-                "style": "primary"
-              }
-            ],
-            "background": "muted"
-          }
-        },
-        {
-          "type": "pull_quote",
-          "version": 1,
-          "data": {}
-        },
-        {
-          "type": "contact",
-          "version": 1,
-          "data": {
-            "source": "services"
-          }
-        }
-      ],
-      "frontmatter": {},
-      "seo": {
-        "meta_title": "Services | Healing Earth Design",
-        "meta_description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
-        "og_image_id": "2",
-        "json_ld": {
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "CollectionPage",
-              "@id": "https://healingearthdesignbysarah.com/services#main",
-              "url": "https://healingearthdesignbysarah.com/services",
-              "name": "Services",
-              "description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
-              "isPartOf": {
-                "@id": "https://healingearthdesignbysarah.com/#website"
-              },
-              "inLanguage": "en",
-              "breadcrumb": {
-                "@id": "https://healingearthdesignbysarah.com/services#breadcrumb"
-              },
-              "primaryImageOfPage": {
-                "@type": "ImageObject",
-                "url": "https://healingearthdesignbysarah.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--a4c2dc789b9de03e8a739c7360e6c7645655b830/IMG_0021.webp"
-              },
-              "about": {
-                "@id": "https://healingearthdesignbysarah.com/#organization"
-              },
-              "mainEntity": {
-                "@type": "ItemList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service"
-                    },
-                    "name": "Detailed Landscape Design"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/garden-consultation#service"
-                    },
-                    "name": "Garden Consultation"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/installation-assistance#service"
-                    },
-                    "name": "Installation Assistance"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 4,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service"
-                    },
-                    "name": "Simple Planting Plan"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 5,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance#service"
-                    },
-                    "name": "Plant Shopping Assistance"
-                  }
-                ]
               }
             }
           ]
@@ -4611,236 +4798,56 @@
         "meta_title": "Privacy Policy | Healing Earth Design",
         "meta_description": "How Healing Earth Design handles what you send through the contact form: what's collected, how it's used, how long it's kept, and how to have it deleted."
       }
-    },
-    {
-      "path": "garden-value",
-      "slug": "garden-value",
-      "title": "What a Garden Gives Back",
-      "locale": "en",
-      "blocks": [
-        {
-          "type": "page_header",
-          "version": 1,
-          "data": {
-            "eyebrow": "What a garden gives back",
-            "title": "A garden pays you back, in more ways than money",
-            "intro": "Home value, food from your own beds, time outdoors, less stress and rain soaked into your own ground. See what a garden could give back to you, with the research behind every number.",
-            "image": "24",
-            "button_label": "Calculate yours",
-            "button_link": {
-              "kind": "url",
-              "value": "#garden-value"
-            },
-            "secondary_label": "Book a consultation",
-            "secondary_link": {
-              "kind": "url",
-              "value": "#contact"
-            }
-          }
-        },
-        {
-          "type": "home_calculator",
-          "version": 1,
-          "data": {
-            "eyebrow": "Garden calculator",
-            "heading": "What could your garden give back?",
-            "intro": "Put in your own yard. The estimate uses conservative figures from published research and grows as the garden fills in. Switch between money, health, mind and earth."
-          }
-        },
-        {
-          "type": "value_stats",
-          "version": 1,
-          "data": {
-            "eyebrow": "Money",
-            "heading": "A garden adds value you can see",
-            "background": "plain",
-            "intro": "Buyers notice a well-planted yard, landscaping tends to pay back what it costs, and food beds put produce on the table.",
-            "stats": [
-              {
-                "figure": "5–11%",
-                "label": "higher value buyers put on a well-landscaped home than the same home with no landscape.",
-                "source": "Behe et al., Journal of Environmental Horticulture, 2005",
-                "source_url": "https://www.pubs.ext.vt.edu/426/426-087/426-087.html"
-              },
-              {
-                "figure": "100%",
-                "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
-                "source": "NAR & NALP, Remodeling Impact Report, 2023",
-                "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
-              },
-              {
-                "figure": "$1",
-                "label": "of produce a square foot: about half a pound of vegetables at $2 a pound, in a typical food garden.",
-                "source": "National Gardening Association, 2009",
-                "source_url": "https://gardenresearch.com/files/2009-Impact-of-Gardening-in-America-White-Paper.pdf"
-              },
-              {
-                "figure": "30%",
-                "label": "or more of household water goes outdoors, mostly to keep lawns green.",
-                "source": "U.S. EPA WaterSense",
-                "source_url": "https://www.epa.gov/watersense/statistics-and-facts"
-              }
-            ],
-            "footnote": "Buyers' estimates run ahead of sale prices, so the calculator uses 1–3% for home value, and never more than the garden cost."
-          }
-        },
-        {
-          "type": "value_stats",
-          "version": 1,
-          "data": {
-            "eyebrow": "Health & mind",
-            "heading": "Time in the garden is good for you",
-            "background": "tinted",
-            "intro": "Digging, planting and weeding count as exercise, and gardening has been shown to bring stress down.",
-            "stats": [
-              {
-                "figure": "150 min",
-                "label": "a week of moderate activity is what adults are advised to get; active gardening counts.",
-                "source": "Physical Activity Guidelines for Americans, 2018",
-                "source_url": "https://odphp.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf"
-              },
-              {
-                "figure": "3.8 METs",
-                "label": "for moderate-effort gardening: the same moderate band as brisk walking.",
-                "source": "2024 Adult Compendium of Physical Activities",
-                "source_url": "https://pacompendium.com/lawn-garden"
-              },
-              {
-                "figure": "30 min",
-                "label": "of gardening after a stressful task lowered cortisol more than 30 minutes of reading, and mood fully recovered.",
-                "source": "Van den Berg & Custers, Journal of Health Psychology, 2011",
-                "source_url": "https://blogs.ubc.ca/2017wufor200/files/2017/01/Gardening-promotes-neuroendocrine-and-affective-restoration-from-stress-van-den-Berg-and-Custers-2011.pdf"
-              },
-              {
-                "figure": "24% → 53%",
-                "label": "of residents with healthy daily cortisol patterns, after plants were added to their bare front gardens.",
-                "source": "Chalmin-Pui et al., Landscape and Urban Planning, 2021",
-                "source_url": "https://eprints.whiterose.ac.uk/166215"
-              }
-            ],
-            "footnote": "Across 22 studies, gardening was linked to less depression and anxiety and more life satisfaction (Soga, Gaston & Yamaura, Preventive Medicine Reports, 2017)."
-          }
-        },
-        {
-          "type": "value_stats",
-          "version": 1,
-          "data": {
-            "eyebrow": "Earth",
-            "heading": "And it gives back to the land",
-            "background": "dark",
-            "intro": "Native plantings feed birds and pollinators, and rain gardens keep rain where it falls.",
-            "stats": [
-              {
-                "figure": "623 gal",
-                "label": "of water fall on every 1,000 square feet of roof in an inch of rain.",
-                "source": "USGS Water Science School",
-                "source_url": "https://www.usgs.gov/water-science-school/science/water-qa-how-much-water-falls-during-a-storm"
-              },
-              {
-                "figure": "96–100%",
-                "label": "of rain and snowmelt events held and soaked in by rain gardens over four years.",
-                "source": "USGS Scientific Investigations Report 2010-5077",
-                "source_url": "https://pubs.usgs.gov/publication/sir20105077"
-              },
-              {
-                "figure": "70%",
-                "label": "native plants or more: the share a yard needs for chickadees to raise enough young to sustain their numbers.",
-                "source": "Narango, Tallamy & Marra, PNAS, 2018",
-                "source_url": "https://www.pnas.org/doi/10.1073/pnas.1809259115"
-              }
-            ]
-          }
-        },
-        {
-          "type": "faq",
-          "version": 1,
-          "data": {
-            "eyebrow": "Questions",
-            "heading": "About the garden calculator",
-            "items": [
-              {
-                "question": "Where do the numbers come from?",
-                "answer": "From published research and public data: home value studies, the Compendium of Physical Activities, federal activity guidelines, NOAA rainfall for Kalamazoo and USGS rain garden research. Each one is linked on this page, and the calculator scales them down for a single home garden."
-              },
-              {
-                "question": "Will a garden really raise my home's value?",
-                "answer": "Buyers say a well-landscaped home is worth 5–11% more, and Realtors estimate a landscape upgrade recovers about what it costs. Sale prices move less than buyers' estimates, so the calculator assumes 1–3%, and never more than the garden cost."
-              },
-              {
-                "question": "Does gardening count as exercise?",
-                "answer": "Active gardening, like digging, planting and weeding, is moderate activity. The calculator counts half of your garden time as active, against the 150 minutes a week adults are advised to get."
-              },
-              {
-                "question": "Do I need a rain garden to count the rain?",
-                "answer": "Yes. Put in the roof area that would drain to one, and the calculator estimates what a well-sized rain garden would soak into your ground each year, using Kalamazoo's average rainfall."
-              }
-            ]
-          }
-        },
-        {
-          "type": "contact",
-          "version": 1,
-          "data": {
-            "heading": "Let's plan a garden that gives back",
-            "source": "garden value"
-          }
-        }
-      ],
-      "frontmatter": {},
-      "seo": {
-        "meta_title": "What a Garden Gives Back: Calculator | Healing Earth Design",
-        "meta_description": "Estimate what a home garden gives back: home value, food, exercise, less stress and rain kept on site. Research-backed figures for Southwest Michigan.",
-        "og_image_id": "24"
-      }
     }
   ],
   "entries": [
     {
       "collection": "commercial",
-      "slug": "garden-care",
-      "title": "Commercial Garden Care",
+      "slug": "seasonal-display-programs",
+      "title": "Seasonal Display Programs",
       "locale": "en",
       "frontmatter": {
-        "order": 4,
-        "image": "33",
-        "icon": "calendar-event",
-        "graphic": "care_calendar",
-        "planner_choice": "interest_garden_care",
-        "summary": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
+        "order": 2,
+        "image": "37",
+        "icon": "flower",
+        "graphic": "seasons",
+        "planner_choice": "interest_seasonal_displays",
+        "summary": "Entrance containers, window boxes and planters replanted for every season, so your front door always looks cared for.",
         "features": [
-          "Scheduled visits through the growing season",
-          "Weeding, deadheading, cutting back and dividing",
-          "Plant health checks and replacements",
-          "Mulch refresh and spring and fall clean-ups",
-          "Notes after each visit on what we did and what's next"
+          "Design of containers, window boxes and entry planters",
+          "Four seasonal changes: spring, summer, fall and the holidays",
+          "Plants and materials sourced and installed for you",
+          "Old plantings taken away at each change",
+          "Watering and care guidance, or care visits between changes"
         ],
         "ideal_for": [
-          "Any planting we've installed",
-          "Properties whose current crew mows but doesn't garden",
-          "Native and pollinator plantings in their first years"
+          "Restaurants and cafés",
+          "Shops and salons",
+          "Inns, B&Bs and venues",
+          "Office and leasing-office entrances"
         ],
         "steps": [
           {
-            "title": "Walk-through",
-            "text": "We look at the plantings, what's thriving and what isn't, and agree a schedule."
+            "title": "Look at your entrances",
+            "text": "We count your containers and window boxes, check sun and wind, and talk about your brand and colors."
           },
           {
-            "title": "Regular visits",
-            "text": "Care on a set schedule, with notes after each visit."
+            "title": "A plan for the year",
+            "text": "You see each season's look and the price for the year up front."
           },
           {
-            "title": "Season reviews",
-            "text": "Each fall we suggest what to divide, replace or add next year."
+            "title": "Change with the seasons",
+            "text": "We arrive for each change, take out what's finished and plant what's next."
           }
         ],
         "faqs": [
           {
-            "question": "Do you mow?",
-            "answer": "No. We look after the plantings; your current crew can keep mowing."
+            "question": "Can you use our own containers?",
+            "answer": "Yes. We can replant the containers you have, or source new ones that suit the building."
           },
           {
-            "question": "Can you care for plantings someone else installed?",
-            "answer": "Yes. We start with a walk-through to see what's there and what it needs."
+            "question": "What happens in winter?",
+            "answer": "The holiday and winter change uses evergreen boughs, birch, berries and lights, so the containers look full until spring."
           },
           {
             "question": "How does a commercial project start?",
@@ -4850,9 +4857,9 @@
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "Commercial Garden Care | Healing Earth Design",
-        "meta_description": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
-        "og_image_id": "33",
+        "meta_title": "Seasonal Display Programs | Healing Earth Design",
+        "meta_description": "Entrance containers, window boxes and planters replanted for every season, so your front door always looks cared for.",
+        "og_image_id": "37",
         "schema_type": "WebPage"
       }
     },
@@ -4921,68 +4928,6 @@
     },
     {
       "collection": "commercial",
-      "slug": "seasonal-display-programs",
-      "title": "Seasonal Display Programs",
-      "locale": "en",
-      "frontmatter": {
-        "order": 2,
-        "image": "37",
-        "icon": "flower",
-        "graphic": "seasons",
-        "planner_choice": "interest_seasonal_displays",
-        "summary": "Entrance containers, window boxes and planters replanted for every season, so your front door always looks cared for.",
-        "features": [
-          "Design of containers, window boxes and entry planters",
-          "Four seasonal changes: spring, summer, fall and the holidays",
-          "Plants and materials sourced and installed for you",
-          "Old plantings taken away at each change",
-          "Watering and care guidance, or care visits between changes"
-        ],
-        "ideal_for": [
-          "Restaurants and cafés",
-          "Shops and salons",
-          "Inns, B&Bs and venues",
-          "Office and leasing-office entrances"
-        ],
-        "steps": [
-          {
-            "title": "Look at your entrances",
-            "text": "We count your containers and window boxes, check sun and wind, and talk about your brand and colors."
-          },
-          {
-            "title": "A plan for the year",
-            "text": "You see each season's look and the price for the year up front."
-          },
-          {
-            "title": "Change with the seasons",
-            "text": "We arrive for each change, take out what's finished and plant what's next."
-          }
-        ],
-        "faqs": [
-          {
-            "question": "Can you use our own containers?",
-            "answer": "Yes. We can replant the containers you have, or source new ones that suit the building."
-          },
-          {
-            "question": "What happens in winter?",
-            "answer": "The holiday and winter change uses evergreen boughs, birch, berries and lights, so the containers look full until spring."
-          },
-          {
-            "question": "How does a commercial project start?",
-            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Seasonal Display Programs | Healing Earth Design",
-        "meta_description": "Entrance containers, window boxes and planters replanted for every season, so your front door always looks cared for.",
-        "og_image_id": "37",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "commercial",
       "slug": "landscape-design-installation",
       "title": "Commercial Landscape Design & Installation",
       "locale": "en",
@@ -5043,6 +4988,335 @@
       "seo": {
         "meta_title": "Commercial Landscape Design & Installation | Healing Earth",
         "meta_description": "A planting plan for your property, and our team to put it in: soil, plants and mulch, start to finish. Plants only, no hardscape.",
+        "og_image_id": "54",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "commercial",
+      "slug": "garden-care",
+      "title": "Commercial Garden Care",
+      "locale": "en",
+      "frontmatter": {
+        "order": 4,
+        "image": "33",
+        "icon": "calendar-event",
+        "graphic": "care_calendar",
+        "planner_choice": "interest_garden_care",
+        "summary": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
+        "features": [
+          "Scheduled visits through the growing season",
+          "Weeding, deadheading, cutting back and dividing",
+          "Plant health checks and replacements",
+          "Mulch refresh and spring and fall clean-ups",
+          "Notes after each visit on what we did and what's next"
+        ],
+        "ideal_for": [
+          "Any planting we've installed",
+          "Properties whose current crew mows but doesn't garden",
+          "Native and pollinator plantings in their first years"
+        ],
+        "steps": [
+          {
+            "title": "Walk-through",
+            "text": "We look at the plantings, what's thriving and what isn't, and agree a schedule."
+          },
+          {
+            "title": "Regular visits",
+            "text": "Care on a set schedule, with notes after each visit."
+          },
+          {
+            "title": "Season reviews",
+            "text": "Each fall we suggest what to divide, replace or add next year."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "Do you mow?",
+            "answer": "No. We look after the plantings; your current crew can keep mowing."
+          },
+          {
+            "question": "Can you care for plantings someone else installed?",
+            "answer": "Yes. We start with a walk-through to see what's there and what it needs."
+          },
+          {
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Commercial Garden Care | Healing Earth Design",
+        "meta_description": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
+        "og_image_id": "33",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "industries",
+      "slug": "schools-churches-nonprofits",
+      "title": "Schools, Churches & Nonprofits",
+      "locale": "en",
+      "frontmatter": {
+        "order": 6,
+        "image": "6",
+        "icon": "school",
+        "summary": "Gardens that serve a mission: outdoor classrooms, pollinator plantings, welcoming entrances and lower grounds costs for schools, churches and nonprofits.",
+        "headline": "Green grounds are a place to learn, gather and save money.",
+        "intro": "Schools with more green cover scored better in math, and classes held outdoors came back to the classroom more focused. For a church or nonprofit, the grounds are how the neighborhood first meets you. And for any organization with a tight budget, swapping lawn for native planting cuts mowing costs year after year.",
+        "drivers": [
+          {
+            "title": "Outdoor classrooms",
+            "text": "Pollinator and vegetable gardens students can plant, watch and study through the school year."
+          },
+          {
+            "title": "A welcoming front door",
+            "text": "Entrances and signs planted to say \"you're welcome here\" to visitors and neighbors."
+          },
+          {
+            "title": "Lower grounds costs",
+            "text": "Natives in place of mown lawn save on mowing and upkeep, money better spent on your mission."
+          },
+          {
+            "title": "Volunteer planting days",
+            "text": "We can plan a planting day your members, families or students can take part in."
+          }
+        ],
+        "stats": [
+          {
+            "figure": "318",
+            "label": "Chicago public schools studied: more tree cover predicted better math test scores, after controlling for disadvantage.",
+            "source": "Kuo et al., Frontiers in Psychology, 2018",
+            "source_url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2018.01669/full"
+          },
+          {
+            "figure": "Almost half",
+            "label": "fewer times a teacher had to redirect students after a lesson held outdoors in nature.",
+            "source": "Kuo, Browning & Penner, Frontiers in Psychology, 2018",
+            "source_url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.02253/full"
+          },
+          {
+            "figure": "$3,950–$4,683",
+            "label": "saved per acre each year, on average over ten years, by native plantings over mown turf.",
+            "source": "Conservation Research Institute, 2005",
+            "source_url": "https://www.auburnhills.org/wp-content/uploads/2025/03/Changing-Cost-Perceptions.pdf"
+          }
+        ],
+        "ideas": [
+          "Pollinator gardens and outdoor classrooms",
+          "Entrance and sign plantings",
+          "Native plantings in place of little-used lawn",
+          "Memorial and prayer gardens",
+          "Community and vegetable gardens",
+          "Volunteer planting days"
+        ],
+        "calc_basis": "property_value",
+        "calc_basis_label": "Property value",
+        "calc_basis_default": 2500000,
+        "calc_uplift_low": "0.25",
+        "calc_uplift_high": "1",
+        "calc_note": "A one-time gain of 0.25% to 1% of property value, well below the 5–11% perceived-value result for homes (Behe, 2005), since no study measures it for schools or churches. For these grounds the hard savings usually come from lawn turned to planting, so enter the square feet.",
+        "planner_choice": "School, church or nonprofit",
+        "faqs": [
+          {
+            "question": "Can students or volunteers help plant?",
+            "answer": "Yes. We plan the work so a group can plant with us safely, and we show everyone how to care for it afterward."
+          },
+          {
+            "question": "We have a small budget. Where should we start?",
+            "answer": "Usually with the entrance and one garden people will use, planned so it can grow in phases as funds allow."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "School & Church Landscaping | Healing Earth Design",
+        "meta_description": "Gardens that serve a mission: outdoor classrooms, pollinator plantings, welcoming entrances and lower grounds costs for schools, churches and nonprofits.",
+        "og_image_id": "6",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "industries",
+      "slug": "retail-restaurants",
+      "title": "Retail & Restaurants",
+      "locale": "en",
+      "frontmatter": {
+        "order": 1,
+        "image": "53",
+        "icon": "building-store",
+        "summary": "Plantings that make people slow down, come in and come back: entrances, patios and storefront containers for shops, cafés and restaurants.",
+        "headline": "Shoppers say they'll pay more where the street is green.",
+        "intro": "A storefront has a few seconds to say \"come in\". Full planters by the door, a patio edged in flowers and beds that look cared for tell people the business inside is cared for too. Research on business districts found shoppers would travel farther, stay longer, come more often and pay more where there's greenery. Your sidewalk and entrance are where that starts.",
+        "drivers": [
+          {
+            "title": "First impressions at the door",
+            "text": "Containers and entry beds frame the door and pull the eye from the street, from the parking lot and from across the road."
+          },
+          {
+            "title": "Patios people want to sit on",
+            "text": "Planting that softens a patio and screens the parking lot makes outdoor seating feel like a place, not a sidewalk."
+          },
+          {
+            "title": "Something new every season",
+            "text": "Seasonal displays give regulars something new to notice and give you photos for your own posts."
+          },
+          {
+            "title": "Less upkeep than lawn",
+            "text": "Turning patchy turf into planted beds cuts mowing and gives a better look for the same care budget."
+          }
+        ],
+        "stats": [
+          {
+            "figure": "9–12%",
+            "label": "more that shoppers said they'd pay for goods in business districts with trees and landscaping: 9% in small cities, 12% in large ones.",
+            "source": "Wolf, Journal of Forestry, 2005",
+            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2005_wolf001.pdf"
+          },
+          {
+            "figure": "More visits",
+            "label": "Shoppers shown greener districts said they'd travel farther, stay longer and come more often.",
+            "source": "Wolf, Journal of Forestry, 2005",
+            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2005_wolf001.pdf"
+          },
+          {
+            "figure": "$3,950–$4,683",
+            "label": "saved per acre each year, on average over ten years, by native plantings over mown turf.",
+            "source": "Conservation Research Institute, 2005",
+            "source_url": "https://www.auburnhills.org/wp-content/uploads/2025/03/Changing-Cost-Perceptions.pdf"
+          }
+        ],
+        "ideas": [
+          "Seasonal containers and window boxes by the entrance",
+          "Planted edges and screening around patios and outdoor seating",
+          "Pollinator beds in place of strips of struggling lawn",
+          "Parking-lot islands planted with tough natives",
+          "Holiday and winter entry displays"
+        ],
+        "calc_basis": "revenue",
+        "calc_basis_label": "Annual sales",
+        "calc_basis_default": 750000,
+        "calc_uplift_low": "0.25",
+        "calc_uplift_high": "1",
+        "calc_note": "Uplift of 0.25% to 1% of annual sales. Wolf (2005) found shoppers said they'd pay 9–12% more in green business districts, but that's what they said, not what they spent, and it measures whole streets of trees. A single storefront's plantings are a much smaller change, so we use a fraction of the small-city figure.",
+        "planner_choice": "Retail, restaurant or café",
+        "faqs": [
+          {
+            "question": "Will plantings really bring in more customers?",
+            "answer": "No planting guarantees sales. What the research shows is that people say they'd visit more often, stay longer and pay more where a business district is green and cared for. Entrances and patios are where your customers notice it most."
+          },
+          {
+            "question": "Can you keep containers looking good all year?",
+            "answer": "Yes. A seasonal display program replants your containers for spring, summer, fall and the holidays, so the entrance never sits empty."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Retail & Restaurant Landscaping | Healing Earth Design",
+        "meta_description": "Plantings that make people slow down, come in and come back: entrances, patios and storefront containers for shops, cafés and restaurants.",
+        "og_image_id": "53",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "industries",
+      "slug": "offices-corporate-campuses",
+      "title": "Offices & Corporate Campuses",
+      "locale": "en",
+      "frontmatter": {
+        "order": 2,
+        "image": "54",
+        "icon": "building",
+        "summary": "Grounds that help you lease space, welcome clients and give staff somewhere better to look, at lower upkeep than lawn.",
+        "headline": "Good landscaping showed up in office rents.",
+        "intro": "A study of office buildings found that landscaping with good visual appeal went with rents about 7% higher. Inside, people who can see greenery from where they work say they feel better and work better. For an owner or a tenant, the grounds are part of what the space is worth, and native plantings can cost less to keep than the lawn they replace.",
+        "drivers": [
+          {
+            "title": "Leasing and renewals",
+            "text": "A cared-for entrance and grounds help a building show well to prospective tenants and keep the ones you have."
+          },
+          {
+            "title": "Views from the desk",
+            "text": "Plantings outside the windows give staff green to look at, which workplace studies link to wellbeing and fewer sick days."
+          },
+          {
+            "title": "Lower grounds costs",
+            "text": "Natives in place of mown turf cut mowing, watering and fertilizer once they're established."
+          },
+          {
+            "title": "Sustainability you can show",
+            "text": "Pollinator habitat and rain gardens are visible, practical commitments for your ESG and community reporting."
+          }
+        ],
+        "stats": [
+          {
+            "figure": "~7%",
+            "label": "higher rent at office buildings whose landscaping had good visual appeal, in a study of 85 buildings near Cleveland.",
+            "source": "Laverne & Winson-Geideman, Journal of Arboriculture, 2003",
+            "source_url": "https://auf.isa-arbor.com/content/29/5/281"
+          },
+          {
+            "figure": "15%",
+            "label": "higher wellbeing reported by office workers with natural elements in their workplace, and 6% higher productivity.",
+            "source": "Human Spaces report, 2015 (self-reported survey of 7,600 workers)",
+            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/global-human-spaces-report/Global%20Human%20Spaces%20report%202015%20US%20FINAL.pdf"
+          },
+          {
+            "figure": "57 vs. 68",
+            "label": "hours of sick leave a year: staff with views of trees and landscape against those with none.",
+            "source": "Elzeyadi (2011), in The Economics of Biophilia, 2012",
+            "source_url": "https://www.rics.org/content/dam/ricsglobal/documents/standards/the-economics-of-biophilia_terrapin-bright-green-230818-mb.pdf"
+          },
+          {
+            "figure": "33%",
+            "label": "of office workers say an office's design would affect whether they'd work for a company.",
+            "source": "Human Spaces report, 2015",
+            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/global-human-spaces-report/Global%20Human%20Spaces%20report%202015%20US%20FINAL.pdf"
+          }
+        ],
+        "ideas": [
+          "A welcoming entrance with layered, four-season planting",
+          "Native meadow areas in place of little-used lawn",
+          "A staff garden or courtyard for breaks",
+          "Rain gardens at downspouts and parking-lot edges",
+          "Seasonal containers at the front doors"
+        ],
+        "calc_basis": "rent",
+        "calc_basis_label": "Annual rent roll",
+        "calc_basis_default": 600000,
+        "calc_uplift_low": "0.5",
+        "calc_uplift_high": "2",
+        "calc_note": "Uplift of 0.5% to 2% of annual rent. Laverne & Winson-Geideman (2003) found about 7% higher rent with good landscaping, but compared well-landscaped buildings with poorly landscaped ones in one city. Upgrading an existing building closes only part of that gap, so we use a fraction of it. Staff wellbeing gains are left out of the money.",
+        "planner_choice": "Office or corporate campus",
+        "faqs": [
+          {
+            "question": "We lease our building. Is this worth it for us?",
+            "answer": "If you renew or re-let space, the grounds are part of what people see first. If you're a tenant, ask your landlord: plantings are often a shared improvement."
+          },
+          {
+            "question": "Can native plantings look tidy enough for a corporate site?",
+            "answer": "Yes. We design with clear edges, mown borders and plants grouped in drifts, so a native planting reads as intentional, not overgrown."
+          },
+          {
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Office & Corporate Landscaping | Healing Earth Design",
+        "meta_description": "Grounds that help you lease space, welcome clients and give staff somewhere better to look, at lower upkeep than lawn.",
         "og_image_id": "54",
         "schema_type": "WebPage"
       }
@@ -5142,89 +5416,82 @@
     },
     {
       "collection": "industries",
-      "slug": "schools-churches-nonprofits",
-      "title": "Schools, Churches & Nonprofits",
+      "slug": "hotels-inns-event-venues",
+      "title": "Hotels, Inns & Event Venues",
       "locale": "en",
       "frontmatter": {
-        "order": 6,
-        "image": "6",
-        "icon": "school",
-        "summary": "Gardens that serve a mission: outdoor classrooms, pollinator plantings, welcoming entrances and lower grounds costs for schools, churches and nonprofits.",
-        "headline": "Green grounds are a place to learn, gather and save money.",
-        "intro": "Schools with more green cover scored better in math, and classes held outdoors came back to the classroom more focused. For a church or nonprofit, the grounds are how the neighborhood first meets you. And for any organization with a tight budget, swapping lawn for native planting cuts mowing costs year after year.",
+        "order": 4,
+        "image": "61",
+        "icon": "bed",
+        "summary": "Grounds guests remember and photograph: entrances, patios, lakeside planters and gardens for hotels, inns, B&Bs and venues.",
+        "headline": "Guests book the view, and they write about it.",
+        "intro": "For an inn, a B&B or a wedding venue, the grounds are part of what people pay for. Hotels charge more for rooms with garden and park views, and reviews of hotels designed around nature talk about the experience twice as often. Containers that change with the season, gardens that photograph well and planting that stands up to lakefront wind all come back in bookings and reviews.",
         "drivers": [
           {
-            "title": "Outdoor classrooms",
-            "text": "Pollinator and vegetable gardens students can plant, watch and study through the school year."
+            "title": "Photos that sell the place",
+            "text": "Gardens and seasonal displays give guests, couples and your own listings something worth photographing."
           },
           {
-            "title": "A welcoming front door",
-            "text": "Entrances and signs planted to say \"you're welcome here\" to visitors and neighbors."
+            "title": "Event-ready all season",
+            "text": "Plantings timed to peak through wedding and event season, with fresh displays as it changes."
           },
           {
-            "title": "Lower grounds costs",
-            "text": "Natives in place of mown lawn save on mowing and upkeep, money better spent on your mission."
+            "title": "Lakefront that holds up",
+            "text": "Plants chosen for wind, sun and lakefront conditions, like our own lakefront planters."
           },
           {
-            "title": "Volunteer planting days",
-            "text": "We can plan a planting day your members, families or students can take part in."
+            "title": "Better reviews",
+            "text": "Guests notice the grounds; reviews of nature-focused hotels mention the experience twice as often."
           }
         ],
         "stats": [
           {
-            "figure": "318",
-            "label": "Chicago public schools studied: more tree cover predicted better math test scores, after controlling for disadvantage.",
-            "source": "Kuo et al., Frontiers in Psychology, 2018",
-            "source_url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2018.01669/full"
+            "figure": "1.25%",
+            "label": "premium for park and garden-view rooms over city views, in the posted prices of 50 urban hotels.",
+            "source": "Human Spaces 2.0, Terrapin Bright Green, 2017",
+            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/Human%20Spaces%202.0.pdf"
           },
           {
-            "figure": "Almost half",
-            "label": "fewer times a teacher had to redirect students after a lesson held outdoors in nature.",
-            "source": "Kuo, Browning & Penner, Frontiers in Psychology, 2018",
-            "source_url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.02253/full"
-          },
-          {
-            "figure": "$3,950–$4,683",
-            "label": "saved per acre each year, on average over ten years, by native plantings over mown turf.",
-            "source": "Conservation Research Institute, 2005",
-            "source_url": "https://www.auburnhills.org/wp-content/uploads/2025/03/Changing-Cost-Perceptions.pdf"
+            "figure": "2×",
+            "label": "as often: reviews of nature-focused (biophilic) hotels mention the guest experience twice as often as conventional ones.",
+            "source": "Human Spaces 2.0, Terrapin Bright Green, 2017",
+            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/Human%20Spaces%202.0.pdf"
           }
         ],
         "ideas": [
-          "Pollinator gardens and outdoor classrooms",
-          "Entrance and sign plantings",
-          "Native plantings in place of little-used lawn",
-          "Memorial and prayer gardens",
-          "Community and vegetable gardens",
-          "Volunteer planting days"
+          "Seasonal containers at entrances, porches and decks",
+          "Ceremony and photo backdrops planted to peak in event season",
+          "Lakefront planters chosen for wind and sun",
+          "Cut-flower and herb gardens for tables and kitchens",
+          "Pollinator gardens guests can walk through"
         ],
-        "calc_basis": "property_value",
-        "calc_basis_label": "Property value",
-        "calc_basis_default": 2500000,
+        "calc_basis": "revenue",
+        "calc_basis_label": "Annual room and event revenue",
+        "calc_basis_default": 1200000,
         "calc_uplift_low": "0.25",
         "calc_uplift_high": "1",
-        "calc_note": "A one-time gain of 0.25% to 1% of property value, well below the 5–11% perceived-value result for homes (Behe, 2005), since no study measures it for schools or churches. For these grounds the hard savings usually come from lawn turned to planting, so enter the square feet.",
-        "planner_choice": "School, church or nonprofit",
+        "calc_note": "Uplift of 0.25% to 1% of room and event revenue. The one planting-specific figure we found is a 1.25% posted-price premium for garden-view rooms (Human Spaces 2.0, 2017), and it applies only to rooms with that view. We take a quarter of it where only some guests see the grounds, and close to all of it where the grounds are the experience.",
+        "planner_choice": "Hotel, inn or event venue",
         "faqs": [
           {
-            "question": "Can students or volunteers help plant?",
-            "answer": "Yes. We plan the work so a group can plant with us safely, and we show everyone how to care for it afterward."
+            "question": "Can plantings be timed for our wedding season?",
+            "answer": "Yes. We choose plants and plan displays so the grounds peak when you book the most events, with a fresh change of containers as the season turns."
           },
           {
-            "question": "We have a small budget. Where should we start?",
-            "answer": "Usually with the entrance and one garden people will use, planned so it can grow in phases as funds allow."
+            "question": "Do you plant lakefront properties?",
+            "answer": "Yes. We choose plants for wind, full sun and the conditions on the water, as in our own lakefront deck planters."
           },
           {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
           }
         ]
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "School & Church Landscaping | Healing Earth Design",
-        "meta_description": "Gardens that serve a mission: outdoor classrooms, pollinator plantings, welcoming entrances and lower grounds costs for schools, churches and nonprofits.",
-        "og_image_id": "6",
+        "meta_title": "Hotel, Inn & Venue Landscaping | Healing Earth Design",
+        "meta_description": "Grounds guests remember and photograph: entrances, patios, lakeside planters and gardens for hotels, inns, B&Bs and venues.",
+        "og_image_id": "61",
         "schema_type": "WebPage"
       }
     },
@@ -5312,87 +5579,6 @@
         "meta_title": "Healthcare & Senior Living Gardens | Healing Earth Design",
         "meta_description": "Calm, green places for patients, residents, families and staff: views, courtyards and healing gardens for clinics, senior living and wellness practices.",
         "og_image_id": "41",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "industries",
-      "slug": "hotels-inns-event-venues",
-      "title": "Hotels, Inns & Event Venues",
-      "locale": "en",
-      "frontmatter": {
-        "order": 4,
-        "image": "61",
-        "icon": "bed",
-        "summary": "Grounds guests remember and photograph: entrances, patios, lakeside planters and gardens for hotels, inns, B&Bs and venues.",
-        "headline": "Guests book the view, and they write about it.",
-        "intro": "For an inn, a B&B or a wedding venue, the grounds are part of what people pay for. Hotels charge more for rooms with garden and park views, and reviews of hotels designed around nature talk about the experience twice as often. Containers that change with the season, gardens that photograph well and planting that stands up to lakefront wind all come back in bookings and reviews.",
-        "drivers": [
-          {
-            "title": "Photos that sell the place",
-            "text": "Gardens and seasonal displays give guests, couples and your own listings something worth photographing."
-          },
-          {
-            "title": "Event-ready all season",
-            "text": "Plantings timed to peak through wedding and event season, with fresh displays as it changes."
-          },
-          {
-            "title": "Lakefront that holds up",
-            "text": "Plants chosen for wind, sun and lakefront conditions, like our own lakefront planters."
-          },
-          {
-            "title": "Better reviews",
-            "text": "Guests notice the grounds; reviews of nature-focused hotels mention the experience twice as often."
-          }
-        ],
-        "stats": [
-          {
-            "figure": "1.25%",
-            "label": "premium for park and garden-view rooms over city views, in the posted prices of 50 urban hotels.",
-            "source": "Human Spaces 2.0, Terrapin Bright Green, 2017",
-            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/Human%20Spaces%202.0.pdf"
-          },
-          {
-            "figure": "2×",
-            "label": "as often: reviews of nature-focused (biophilic) hotels mention the guest experience twice as often as conventional ones.",
-            "source": "Human Spaces 2.0, Terrapin Bright Green, 2017",
-            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/Human%20Spaces%202.0.pdf"
-          }
-        ],
-        "ideas": [
-          "Seasonal containers at entrances, porches and decks",
-          "Ceremony and photo backdrops planted to peak in event season",
-          "Lakefront planters chosen for wind and sun",
-          "Cut-flower and herb gardens for tables and kitchens",
-          "Pollinator gardens guests can walk through"
-        ],
-        "calc_basis": "revenue",
-        "calc_basis_label": "Annual room and event revenue",
-        "calc_basis_default": 1200000,
-        "calc_uplift_low": "0.25",
-        "calc_uplift_high": "1",
-        "calc_note": "Uplift of 0.25% to 1% of room and event revenue. The one planting-specific figure we found is a 1.25% posted-price premium for garden-view rooms (Human Spaces 2.0, 2017), and it applies only to rooms with that view. We take a quarter of it where only some guests see the grounds, and close to all of it where the grounds are the experience.",
-        "planner_choice": "Hotel, inn or event venue",
-        "faqs": [
-          {
-            "question": "Can plantings be timed for our wedding season?",
-            "answer": "Yes. We choose plants and plan displays so the grounds peak when you book the most events, with a fresh change of containers as the season turns."
-          },
-          {
-            "question": "Do you plant lakefront properties?",
-            "answer": "Yes. We choose plants for wind, full sun and the conditions on the water, as in our own lakefront deck planters."
-          },
-          {
-            "question": "How does a commercial project start?",
-            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Hotel, Inn & Venue Landscaping | Healing Earth Design",
-        "meta_description": "Grounds guests remember and photograph: entrances, patios, lakeside planters and gardens for hotels, inns, B&Bs and venues.",
-        "og_image_id": "61",
         "schema_type": "WebPage"
       }
     },
@@ -5486,186 +5672,6 @@
         "meta_title": "Apartment & HOA Landscaping | Healing Earth Design",
         "meta_description": "Curb appeal that helps units lease and residents stay: entrances, common areas and frontage for apartments, HOAs and rentals.",
         "og_image_id": "38",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "industries",
-      "slug": "offices-corporate-campuses",
-      "title": "Offices & Corporate Campuses",
-      "locale": "en",
-      "frontmatter": {
-        "order": 2,
-        "image": "54",
-        "icon": "building",
-        "summary": "Grounds that help you lease space, welcome clients and give staff somewhere better to look, at lower upkeep than lawn.",
-        "headline": "Good landscaping showed up in office rents.",
-        "intro": "A study of office buildings found that landscaping with good visual appeal went with rents about 7% higher. Inside, people who can see greenery from where they work say they feel better and work better. For an owner or a tenant, the grounds are part of what the space is worth, and native plantings can cost less to keep than the lawn they replace.",
-        "drivers": [
-          {
-            "title": "Leasing and renewals",
-            "text": "A cared-for entrance and grounds help a building show well to prospective tenants and keep the ones you have."
-          },
-          {
-            "title": "Views from the desk",
-            "text": "Plantings outside the windows give staff green to look at, which workplace studies link to wellbeing and fewer sick days."
-          },
-          {
-            "title": "Lower grounds costs",
-            "text": "Natives in place of mown turf cut mowing, watering and fertilizer once they're established."
-          },
-          {
-            "title": "Sustainability you can show",
-            "text": "Pollinator habitat and rain gardens are visible, practical commitments for your ESG and community reporting."
-          }
-        ],
-        "stats": [
-          {
-            "figure": "~7%",
-            "label": "higher rent at office buildings whose landscaping had good visual appeal, in a study of 85 buildings near Cleveland.",
-            "source": "Laverne & Winson-Geideman, Journal of Arboriculture, 2003",
-            "source_url": "https://auf.isa-arbor.com/content/29/5/281"
-          },
-          {
-            "figure": "15%",
-            "label": "higher wellbeing reported by office workers with natural elements in their workplace, and 6% higher productivity.",
-            "source": "Human Spaces report, 2015 (self-reported survey of 7,600 workers)",
-            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/global-human-spaces-report/Global%20Human%20Spaces%20report%202015%20US%20FINAL.pdf"
-          },
-          {
-            "figure": "57 vs. 68",
-            "label": "hours of sick leave a year: staff with views of trees and landscape against those with none.",
-            "source": "Elzeyadi (2011), in The Economics of Biophilia, 2012",
-            "source_url": "https://www.rics.org/content/dam/ricsglobal/documents/standards/the-economics-of-biophilia_terrapin-bright-green-230818-mb.pdf"
-          },
-          {
-            "figure": "33%",
-            "label": "of office workers say an office's design would affect whether they'd work for a company.",
-            "source": "Human Spaces report, 2015",
-            "source_url": "https://www.interface.com/content/dam/interfaceinc/interface/global-campaigns/human-spaces/report/global-human-spaces-report/Global%20Human%20Spaces%20report%202015%20US%20FINAL.pdf"
-          }
-        ],
-        "ideas": [
-          "A welcoming entrance with layered, four-season planting",
-          "Native meadow areas in place of little-used lawn",
-          "A staff garden or courtyard for breaks",
-          "Rain gardens at downspouts and parking-lot edges",
-          "Seasonal containers at the front doors"
-        ],
-        "calc_basis": "rent",
-        "calc_basis_label": "Annual rent roll",
-        "calc_basis_default": 600000,
-        "calc_uplift_low": "0.5",
-        "calc_uplift_high": "2",
-        "calc_note": "Uplift of 0.5% to 2% of annual rent. Laverne & Winson-Geideman (2003) found about 7% higher rent with good landscaping, but compared well-landscaped buildings with poorly landscaped ones in one city. Upgrading an existing building closes only part of that gap, so we use a fraction of it. Staff wellbeing gains are left out of the money.",
-        "planner_choice": "Office or corporate campus",
-        "faqs": [
-          {
-            "question": "We lease our building. Is this worth it for us?",
-            "answer": "If you renew or re-let space, the grounds are part of what people see first. If you're a tenant, ask your landlord: plantings are often a shared improvement."
-          },
-          {
-            "question": "Can native plantings look tidy enough for a corporate site?",
-            "answer": "Yes. We design with clear edges, mown borders and plants grouped in drifts, so a native planting reads as intentional, not overgrown."
-          },
-          {
-            "question": "How does a commercial project start?",
-            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Office & Corporate Landscaping | Healing Earth Design",
-        "meta_description": "Grounds that help you lease space, welcome clients and give staff somewhere better to look, at lower upkeep than lawn.",
-        "og_image_id": "54",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "industries",
-      "slug": "retail-restaurants",
-      "title": "Retail & Restaurants",
-      "locale": "en",
-      "frontmatter": {
-        "order": 1,
-        "image": "53",
-        "icon": "building-store",
-        "summary": "Plantings that make people slow down, come in and come back: entrances, patios and storefront containers for shops, cafés and restaurants.",
-        "headline": "Shoppers say they'll pay more where the street is green.",
-        "intro": "A storefront has a few seconds to say \"come in\". Full planters by the door, a patio edged in flowers and beds that look cared for tell people the business inside is cared for too. Research on business districts found shoppers would travel farther, stay longer, come more often and pay more where there's greenery. Your sidewalk and entrance are where that starts.",
-        "drivers": [
-          {
-            "title": "First impressions at the door",
-            "text": "Containers and entry beds frame the door and pull the eye from the street, from the parking lot and from across the road."
-          },
-          {
-            "title": "Patios people want to sit on",
-            "text": "Planting that softens a patio and screens the parking lot makes outdoor seating feel like a place, not a sidewalk."
-          },
-          {
-            "title": "Something new every season",
-            "text": "Seasonal displays give regulars something new to notice and give you photos for your own posts."
-          },
-          {
-            "title": "Less upkeep than lawn",
-            "text": "Turning patchy turf into planted beds cuts mowing and gives a better look for the same care budget."
-          }
-        ],
-        "stats": [
-          {
-            "figure": "9–12%",
-            "label": "more that shoppers said they'd pay for goods in business districts with trees and landscaping: 9% in small cities, 12% in large ones.",
-            "source": "Wolf, Journal of Forestry, 2005",
-            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2005_wolf001.pdf"
-          },
-          {
-            "figure": "More visits",
-            "label": "Shoppers shown greener districts said they'd travel farther, stay longer and come more often.",
-            "source": "Wolf, Journal of Forestry, 2005",
-            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2005_wolf001.pdf"
-          },
-          {
-            "figure": "$3,950–$4,683",
-            "label": "saved per acre each year, on average over ten years, by native plantings over mown turf.",
-            "source": "Conservation Research Institute, 2005",
-            "source_url": "https://www.auburnhills.org/wp-content/uploads/2025/03/Changing-Cost-Perceptions.pdf"
-          }
-        ],
-        "ideas": [
-          "Seasonal containers and window boxes by the entrance",
-          "Planted edges and screening around patios and outdoor seating",
-          "Pollinator beds in place of strips of struggling lawn",
-          "Parking-lot islands planted with tough natives",
-          "Holiday and winter entry displays"
-        ],
-        "calc_basis": "revenue",
-        "calc_basis_label": "Annual sales",
-        "calc_basis_default": 750000,
-        "calc_uplift_low": "0.25",
-        "calc_uplift_high": "1",
-        "calc_note": "Uplift of 0.25% to 1% of annual sales. Wolf (2005) found shoppers said they'd pay 9–12% more in green business districts, but that's what they said, not what they spent, and it measures whole streets of trees. A single storefront's plantings are a much smaller change, so we use a fraction of the small-city figure.",
-        "planner_choice": "Retail, restaurant or café",
-        "faqs": [
-          {
-            "question": "Will plantings really bring in more customers?",
-            "answer": "No planting guarantees sales. What the research shows is that people say they'd visit more often, stay longer and pay more where a business district is green and cared for. Entrances and patios are where your customers notice it most."
-          },
-          {
-            "question": "Can you keep containers looking good all year?",
-            "answer": "Yes. A seasonal display program replants your containers for spring, summer, fall and the holidays, so the entrance never sits empty."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Retail & Restaurant Landscaping | Healing Earth Design",
-        "meta_description": "Plantings that make people slow down, come in and come back: entrances, patios and storefront containers for shops, cafés and restaurants.",
-        "og_image_id": "53",
         "schema_type": "WebPage"
       }
     },
@@ -5936,55 +5942,6 @@
     },
     {
       "collection": "service-areas",
-      "slug": "hastings-delton-gun-lake",
-      "title": "Hastings, Delton & Gun Lake",
-      "locale": "en",
-      "frontmatter": {
-        "order": 4,
-        "region": "Barry County",
-        "image": "41",
-        "counties": [
-          "barry"
-        ],
-        "summary": "Garden and landscape design in Hastings, Delton, Gun Lake and across Barry County: lakefront plantings, native gardens and seasonal displays.",
-        "intro": "Barry County starts just north of Richland. We work around its lakes and towns, from Gull Lake and Delton to Gun Lake, Middleville and Hastings.",
-        "towns": [
-          "Hastings",
-          "Delton",
-          "Gun Lake",
-          "Middleville",
-          "Hickory Corners",
-          "Prairieville",
-          "Yankee Springs",
-          "Nashville"
-        ],
-        "growing": "Barry County is lake country, with rolling, glacial ground and many lakes. For lakefront homes and businesses, a planted native buffer along the shore slows runoff and filters what reaches the water, and holds the bank better than mown lawn.",
-        "commercial": "Lakeside restaurants, marinas, campgrounds, churches and the small downtowns of Hastings and Middleville can all have entrances and grounds that make visitors stop, with plantings that suit lake conditions.",
-        "faqs": [
-          {
-            "question": "Do you plant along lake shores?",
-            "answer": "Yes. Native shoreline plantings slow runoff and help hold the bank, and we choose plants that suit the water's edge."
-          },
-          {
-            "question": "Do you come to Gun Lake and Hastings?",
-            "answer": "Yes. All of Barry County is in our service area."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Hastings & Gun Lake Landscape Design | Healing Earth Design",
-        "meta_description": "Garden and landscape design in Hastings, Delton, Gun Lake and across Barry County: lakefront plantings, native gardens and seasonal displays.",
-        "og_image_id": "41",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "service-areas",
       "slug": "plainwell-otsego-allegan-south-haven",
       "title": "Plainwell, Otsego, Allegan & South Haven",
       "locale": "en",
@@ -6032,55 +5989,6 @@
         "meta_title": "Plainwell, Allegan & South Haven Landscape Design",
         "meta_description": "Garden and landscape design in Plainwell, Otsego, Allegan, South Haven and Paw Paw: lakefront containers, native plantings and design for homes and businesses.",
         "og_image_id": "61",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "service-areas",
-      "slug": "battle-creek-marshall",
-      "title": "Battle Creek & Marshall",
-      "locale": "en",
-      "frontmatter": {
-        "order": 2,
-        "region": "Calhoun County",
-        "image": "37",
-        "counties": [
-          "calhoun"
-        ],
-        "summary": "Garden and landscape design in Battle Creek, Marshall and across Calhoun County: planting plans, installation and seasonal displays for homes and businesses.",
-        "intro": "Battle Creek and Marshall are a short drive east of Richland. We work across Calhoun County, for homeowners and for the businesses, offices and organizations in its towns.",
-        "towns": [
-          "Battle Creek",
-          "Marshall",
-          "Springfield",
-          "Pennfield",
-          "Bedford",
-          "Emmett Township",
-          "Ceresco",
-          "Albion"
-        ],
-        "growing": "The Kalamazoo and Battle Creek rivers run through Calhoun County, and soils range from sandy loam to heavier ground with wet spots near the water. Low, wet areas are good places for rain gardens and moisture-loving natives like swamp milkweed, blue flag iris and sedges; drier, sunnier ground suits prairie plants.",
-        "commercial": "Downtown storefronts in Battle Creek and Marshall's historic main street suit seasonal containers and window boxes, and office and industrial campuses can save on mowing by turning little-used lawn into native planting.",
-        "faqs": [
-          {
-            "question": "Do you work in Battle Creek?",
-            "answer": "Yes. Battle Creek and Marshall are part of our regular service area."
-          },
-          {
-            "question": "Can you help with a wet spot in my yard?",
-            "answer": "Often a wet spot is the right place for a rain garden: a shallow, planted basin with deep-rooted natives that soak the water in."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Battle Creek & Marshall Landscape Design | Healing Earth",
-        "meta_description": "Garden and landscape design in Battle Creek, Marshall and across Calhoun County: planting plans, installation and seasonal displays for homes and businesses.",
-        "og_image_id": "37",
         "schema_type": "WebPage"
       }
     },
@@ -6138,6 +6046,144 @@
       }
     },
     {
+      "collection": "service-areas",
+      "slug": "hastings-delton-gun-lake",
+      "title": "Hastings, Delton & Gun Lake",
+      "locale": "en",
+      "frontmatter": {
+        "order": 4,
+        "region": "Barry County",
+        "image": "41",
+        "counties": [
+          "barry"
+        ],
+        "summary": "Garden and landscape design in Hastings, Delton, Gun Lake and across Barry County: lakefront plantings, native gardens and seasonal displays.",
+        "intro": "Barry County starts just north of Richland. We work around its lakes and towns, from Gull Lake and Delton to Gun Lake, Middleville and Hastings.",
+        "towns": [
+          "Hastings",
+          "Delton",
+          "Gun Lake",
+          "Middleville",
+          "Hickory Corners",
+          "Prairieville",
+          "Yankee Springs",
+          "Nashville"
+        ],
+        "growing": "Barry County is lake country, with rolling, glacial ground and many lakes. For lakefront homes and businesses, a planted native buffer along the shore slows runoff and filters what reaches the water, and holds the bank better than mown lawn.",
+        "commercial": "Lakeside restaurants, marinas, campgrounds, churches and the small downtowns of Hastings and Middleville can all have entrances and grounds that make visitors stop, with plantings that suit lake conditions.",
+        "faqs": [
+          {
+            "question": "Do you plant along lake shores?",
+            "answer": "Yes. Native shoreline plantings slow runoff and help hold the bank, and we choose plants that suit the water's edge."
+          },
+          {
+            "question": "Do you come to Gun Lake and Hastings?",
+            "answer": "Yes. All of Barry County is in our service area."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Hastings & Gun Lake Landscape Design | Healing Earth Design",
+        "meta_description": "Garden and landscape design in Hastings, Delton, Gun Lake and across Barry County: lakefront plantings, native gardens and seasonal displays.",
+        "og_image_id": "41",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "battle-creek-marshall",
+      "title": "Battle Creek & Marshall",
+      "locale": "en",
+      "frontmatter": {
+        "order": 2,
+        "region": "Calhoun County",
+        "image": "37",
+        "counties": [
+          "calhoun"
+        ],
+        "summary": "Garden and landscape design in Battle Creek, Marshall and across Calhoun County: planting plans, installation and seasonal displays for homes and businesses.",
+        "intro": "Battle Creek and Marshall are a short drive east of Richland. We work across Calhoun County, for homeowners and for the businesses, offices and organizations in its towns.",
+        "towns": [
+          "Battle Creek",
+          "Marshall",
+          "Springfield",
+          "Pennfield",
+          "Bedford",
+          "Emmett Township",
+          "Ceresco",
+          "Albion"
+        ],
+        "growing": "The Kalamazoo and Battle Creek rivers run through Calhoun County, and soils range from sandy loam to heavier ground with wet spots near the water. Low, wet areas are good places for rain gardens and moisture-loving natives like swamp milkweed, blue flag iris and sedges; drier, sunnier ground suits prairie plants.",
+        "commercial": "Downtown storefronts in Battle Creek and Marshall's historic main street suit seasonal containers and window boxes, and office and industrial campuses can save on mowing by turning little-used lawn into native planting.",
+        "faqs": [
+          {
+            "question": "Do you work in Battle Creek?",
+            "answer": "Yes. Battle Creek and Marshall are part of our regular service area."
+          },
+          {
+            "question": "Can you help with a wet spot in my yard?",
+            "answer": "Often a wet spot is the right place for a rain garden: a shallow, planted basin with deep-rooted natives that soak the water in."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Battle Creek & Marshall Landscape Design | Healing Earth",
+        "meta_description": "Garden and landscape design in Battle Creek, Marshall and across Calhoun County: planting plans, installation and seasonal displays for homes and businesses.",
+        "og_image_id": "37",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "services",
+      "slug": "simple-planting-plan",
+      "title": "Simple Planting Plan",
+      "locale": "en",
+      "frontmatter": {
+        "summary": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+        "icon": "pencil",
+        "image": "21",
+        "price": "$300",
+        "features": [
+          "Basic planting plan tailored to your space",
+          "Thoughtful plant selection based on site conditions",
+          "Plant list with quantities",
+          "General care guidance"
+        ],
+        "order": 2,
+        "graphic": "planting_plan"
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Simple Planting Plan | Healing Earth Design",
+        "meta_description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+        "json_ld": {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service",
+          "name": "Simple Planting Plan",
+          "serviceType": "Simple Planting Plan",
+          "description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+          "url": "https://healingearthdesignbysarah.com/services/simple-planting-plan",
+          "provider": {
+            "@id": "https://healingearthdesignbysarah.com/#organization"
+          },
+          "isRelatedTo": {
+            "@id": "https://healingearthdesignbysarah.com/services"
+          }
+        }
+      }
+    },
+    {
       "collection": "services",
       "slug": "seasonal-annual-displays",
       "title": "Seasonal Annual Displays",
@@ -6164,102 +6210,34 @@
     },
     {
       "collection": "services",
-      "slug": "herb-gardens",
-      "title": "Herb Gardens",
+      "slug": "plant-shopping-assistance",
+      "title": "Plant Shopping Assistance",
       "locale": "en",
       "frontmatter": {
-        "summary": "Fresh herbs at your fingertips. I design and plant herb gardens for the kitchen, for teas and tinctures, or both, and show you how to harvest and enjoy what you grow.",
-        "icon": "leaf",
-        "image": "67",
+        "summary": "Help at local nurseries choosing healthy plants and good substitutes that fit your design and your site.",
+        "icon": "shopping-cart",
+        "image": "18",
+        "price": "$100/hr",
         "features": [
-          "Custom herb garden design for your space, sun, and soil",
-          "Herb spirals, raised beds, and border plantings",
-          "Culinary, tea, and medicinal plant selection",
-          "Guidance on harvesting, drying, and storing your herbs",
-          "Organic methods and soil building from day one",
-          "Seasonal care plans to keep the garden thriving"
+          "Accompaniment to local nurseries or curated sourcing",
+          "Help selecting healthy plants and appropriate substitutes",
+          "Ensuring plants align with your design and site conditions"
         ],
-        "order": 7,
-        "graphic": "herb_spiral"
+        "order": 5,
+        "graphic": "healthy_plant"
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "Herb Garden Design | Healing Earth Design",
-        "meta_description": "Herb gardens designed and planted for the kitchen, for teas and tinctures, or both, with guidance on harvesting and care. Southwest Michigan."
-      }
-    },
-    {
-      "collection": "services",
-      "slug": "detailed-landscape-design",
-      "title": "Detailed Landscape Design",
-      "locale": "en",
-      "frontmatter": {
-        "summary": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
-        "icon": "notebook",
-        "image": "25",
-        "price": "$400–$1,000",
-        "features": [
-          "Custom, to-scale landscape drawings",
-          "Comprehensive plant list and quantities",
-          "Seasonal interest and ecological considerations",
-          "Design tailored to pollinators, wildlife, and long-term success"
-        ],
-        "order": 3,
-        "graphic": "plant_layers"
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Detailed Landscape Design | Healing Earth Design",
-        "meta_description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
+        "meta_title": "Plant Shopping Assistance | Healing Earth Design",
+        "meta_description": "Help at local nurseries choosing healthy plants, and good substitutes when needed, that fit your planting plan, your design and your site conditions.",
         "json_ld": {
           "@context": "https://schema.org",
           "@type": "Service",
-          "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service",
-          "name": "Detailed Landscape Design",
-          "serviceType": "Detailed Landscape Design",
-          "description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
-          "url": "https://healingearthdesignbysarah.com/services/detailed-landscape-design",
-          "provider": {
-            "@id": "https://healingearthdesignbysarah.com/#organization"
-          },
-          "isRelatedTo": {
-            "@id": "https://healingearthdesignbysarah.com/services"
-          }
-        }
-      }
-    },
-    {
-      "collection": "services",
-      "slug": "garden-consultation",
-      "title": "Garden Consultation",
-      "locale": "en",
-      "frontmatter": {
-        "summary": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
-        "icon": "message",
-        "image": "2",
-        "price": "$150",
-        "features": [
-          "1-2 hours, on-site or virtual",
-          "Evaluation of sun, soil, drainage, and existing plants",
-          "Plant-focused recommendations tailored to your lifestyle",
-          "Follow-up email with seasonal plan and next steps",
-          "Ongoing support for the remainder of the growing season"
-        ],
-        "order": 1,
-        "graphic": "site_analysis"
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Garden Consultation | Healing Earth Design",
-        "meta_description": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
-        "json_ld": {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "@id": "https://healingearthdesignbysarah.com/services/garden-consultation#service",
-          "name": "Garden Consultation",
-          "serviceType": "Garden Consultation",
-          "description": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
-          "url": "https://healingearthdesignbysarah.com/services/garden-consultation",
+          "@id": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance#service",
+          "name": "Plant Shopping Assistance",
+          "serviceType": "Plant Shopping Assistance",
+          "description": "Help at local nurseries choosing healthy plants, and good substitutes when needed, that fit your planting plan, your design and your site conditions.",
+          "url": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance",
           "provider": {
             "@id": "https://healingearthdesignbysarah.com/#organization"
           },
@@ -6311,35 +6289,62 @@
     },
     {
       "collection": "services",
-      "slug": "simple-planting-plan",
-      "title": "Simple Planting Plan",
+      "slug": "herb-gardens",
+      "title": "Herb Gardens",
       "locale": "en",
       "frontmatter": {
-        "summary": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
-        "icon": "pencil",
-        "image": "21",
-        "price": "$300",
+        "summary": "Fresh herbs at your fingertips. I design and plant herb gardens for the kitchen, for teas and tinctures, or both, and show you how to harvest and enjoy what you grow.",
+        "icon": "leaf",
+        "image": "67",
         "features": [
-          "Basic planting plan tailored to your space",
-          "Thoughtful plant selection based on site conditions",
-          "Plant list with quantities",
-          "General care guidance"
+          "Custom herb garden design for your space, sun, and soil",
+          "Herb spirals, raised beds, and border plantings",
+          "Culinary, tea, and medicinal plant selection",
+          "Guidance on harvesting, drying, and storing your herbs",
+          "Organic methods and soil building from day one",
+          "Seasonal care plans to keep the garden thriving"
         ],
-        "order": 2,
-        "graphic": "planting_plan"
+        "order": 7,
+        "graphic": "herb_spiral"
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "Simple Planting Plan | Healing Earth Design",
-        "meta_description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+        "meta_title": "Herb Garden Design | Healing Earth Design",
+        "meta_description": "Herb gardens designed and planted for the kitchen, for teas and tinctures, or both, with guidance on harvesting and care. Southwest Michigan."
+      }
+    },
+    {
+      "collection": "services",
+      "slug": "garden-consultation",
+      "title": "Garden Consultation",
+      "locale": "en",
+      "frontmatter": {
+        "summary": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
+        "icon": "message",
+        "image": "2",
+        "price": "$150",
+        "features": [
+          "1-2 hours, on-site or virtual",
+          "Evaluation of sun, soil, drainage, and existing plants",
+          "Plant-focused recommendations tailored to your lifestyle",
+          "Follow-up email with seasonal plan and next steps",
+          "Ongoing support for the remainder of the growing season"
+        ],
+        "order": 1,
+        "graphic": "site_analysis"
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Garden Consultation | Healing Earth Design",
+        "meta_description": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
         "json_ld": {
           "@context": "https://schema.org",
           "@type": "Service",
-          "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service",
-          "name": "Simple Planting Plan",
-          "serviceType": "Simple Planting Plan",
-          "description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
-          "url": "https://healingearthdesignbysarah.com/services/simple-planting-plan",
+          "@id": "https://healingearthdesignbysarah.com/services/garden-consultation#service",
+          "name": "Garden Consultation",
+          "serviceType": "Garden Consultation",
+          "description": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
+          "url": "https://healingearthdesignbysarah.com/services/garden-consultation",
           "provider": {
             "@id": "https://healingearthdesignbysarah.com/#organization"
           },
@@ -6351,34 +6356,35 @@
     },
     {
       "collection": "services",
-      "slug": "plant-shopping-assistance",
-      "title": "Plant Shopping Assistance",
+      "slug": "detailed-landscape-design",
+      "title": "Detailed Landscape Design",
       "locale": "en",
       "frontmatter": {
-        "summary": "Help at local nurseries choosing healthy plants and good substitutes that fit your design and your site.",
-        "icon": "shopping-cart",
-        "image": "18",
-        "price": "$100/hr",
+        "summary": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
+        "icon": "notebook",
+        "image": "25",
+        "price": "$400–$1,000",
         "features": [
-          "Accompaniment to local nurseries or curated sourcing",
-          "Help selecting healthy plants and appropriate substitutes",
-          "Ensuring plants align with your design and site conditions"
+          "Custom, to-scale landscape drawings",
+          "Comprehensive plant list and quantities",
+          "Seasonal interest and ecological considerations",
+          "Design tailored to pollinators, wildlife, and long-term success"
         ],
-        "order": 5,
-        "graphic": "healthy_plant"
+        "order": 3,
+        "graphic": "plant_layers"
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "Plant Shopping Assistance | Healing Earth Design",
-        "meta_description": "Help at local nurseries choosing healthy plants, and good substitutes when needed, that fit your planting plan, your design and your site conditions.",
+        "meta_title": "Detailed Landscape Design | Healing Earth Design",
+        "meta_description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
         "json_ld": {
           "@context": "https://schema.org",
           "@type": "Service",
-          "@id": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance#service",
-          "name": "Plant Shopping Assistance",
-          "serviceType": "Plant Shopping Assistance",
-          "description": "Help at local nurseries choosing healthy plants, and good substitutes when needed, that fit your planting plan, your design and your site conditions.",
-          "url": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance",
+          "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service",
+          "name": "Detailed Landscape Design",
+          "serviceType": "Detailed Landscape Design",
+          "description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
+          "url": "https://healingearthdesignbysarah.com/services/detailed-landscape-design",
           "provider": {
             "@id": "https://healingearthdesignbysarah.com/#organization"
           },
@@ -6431,6 +6437,255 @@
       "body_markdown": "",
       "seo": {
         "noindex": true
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "grand-rapids-kent-county",
+      "title": "Grand Rapids & Kent County",
+      "locale": "en",
+      "frontmatter": {
+        "order": 5,
+        "region": "Kent County",
+        "image": "40",
+        "counties": [
+          "kent"
+        ],
+        "summary": "Garden and landscape design in Grand Rapids, Wyoming, Kentwood, Rockford, Ada and across Kent County, for homes and businesses.",
+        "intro": "Grand Rapids and its suburbs are an hour north of Richland. We work across Kent County, from East Grand Rapids and Kentwood to Rockford, Ada, Caledonia and Lowell, for homeowners and for the businesses and organizations in and around the city.",
+        "towns": [
+          "Grand Rapids",
+          "Wyoming",
+          "Kentwood",
+          "Grandville",
+          "East Grand Rapids",
+          "Walker",
+          "Rockford",
+          "Ada",
+          "Cascade",
+          "Caledonia",
+          "Byron Center",
+          "Lowell"
+        ],
+        "growing": "The Grand River runs through Grand Rapids, and Kent County's ground ranges from sandy, quick-draining soil to heavier loam and clay, often in the same neighborhood. City lots bring their own conditions: compacted soil, reflected heat from pavement and shade from buildings and street trees. A site visit sorts out which you have, so natives and perennials go where they'll thrive.",
+        "commercial": "Downtown storefronts and restaurants, offices and medical buildings, apartment communities and HOAs across the suburbs: entrance plantings, seasonal display programs, native conversions of little-used lawn and garden care keep them looking cared for.",
+        "faqs": [
+          {
+            "question": "Do you work in Grand Rapids?",
+            "answer": "Yes. Grand Rapids and the rest of Kent County are in our service area, for homes and businesses."
+          },
+          {
+            "question": "Can a consultation be virtual?",
+            "answer": "Yes. Consultations are on-site or virtual, which works well for a first conversation about a property farther from Richland."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Grand Rapids Landscape Design | Healing Earth Design",
+        "meta_description": "Garden and landscape design in Grand Rapids, Wyoming, Kentwood, Rockford, Ada and across Kent County, for homes and businesses.",
+        "og_image_id": "40",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "holland-zeeland-grand-haven",
+      "title": "Holland, Zeeland & Grand Haven",
+      "locale": "en",
+      "frontmatter": {
+        "order": 6,
+        "region": "Ottawa County",
+        "image": "59",
+        "counties": [
+          "ottawa"
+        ],
+        "summary": "Garden and landscape design in Holland, Zeeland, Grand Haven, Hudsonville and across Ottawa County: lakeshore plantings, native gardens and seasonal displays.",
+        "intro": "From the Lake Michigan shore at Holland and Grand Haven to Zeeland, Hudsonville, Jenison and Allendale, we design and plant for homes, lakeshore properties and the shops, inns and offices that line Ottawa County's towns.",
+        "towns": [
+          "Holland",
+          "Zeeland",
+          "Grand Haven",
+          "Spring Lake",
+          "Hudsonville",
+          "Jenison",
+          "Allendale",
+          "Coopersville"
+        ],
+        "growing": "Near the lakeshore, soils run sandy and drain fast, and Lake Michigan moderates the weather: later springs, longer falls and lake-effect snow. Wind and full sun are the rule by the water, so plants are chosen to stand up to both, the way we did for lakeside deck planters. Inland, around Hudsonville and Zeeland, the ground holds water better and suits a wider range of perennials.",
+        "commercial": "Downtown Holland and Grand Haven storefronts, waterfront restaurants, inns and offices benefit from seasonal display programs timed to the summer visitor season, and from plantings that handle lakeshore wind.",
+        "faqs": [
+          {
+            "question": "Do you plant lakeshore properties?",
+            "answer": "Yes. We choose plants for wind, full sun and sandy soil, and plan containers that hold up through a lakeshore summer."
+          },
+          {
+            "question": "Do you work in Holland and Grand Haven?",
+            "answer": "Yes. All of Ottawa County is in our service area."
+          },
+          {
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Holland & Grand Haven Landscape Design | Healing Earth",
+        "meta_description": "Garden and landscape design in Holland, Zeeland, Grand Haven, Hudsonville and across Ottawa County: lakeshore plantings, native gardens and seasonal displays.",
+        "og_image_id": "59",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "ionia-belding",
+      "title": "Ionia & Belding",
+      "locale": "en",
+      "frontmatter": {
+        "order": 7,
+        "region": "Ionia County",
+        "image": "5",
+        "counties": [
+          "ionia"
+        ],
+        "summary": "Garden and landscape design in Ionia, Belding, Portland and across Ionia County, for homes, farms and small-town businesses.",
+        "intro": "East of Grand Rapids along the Grand River, we work with homeowners, farmhouses and the downtowns of Ionia, Belding, Portland and Saranac.",
+        "towns": [
+          "Ionia",
+          "Belding",
+          "Portland",
+          "Saranac",
+          "Lake Odessa",
+          "Muir"
+        ],
+        "growing": "Ionia County is farm country along the Grand River valley, with good loam on the uplands and wetter ground near the river and its creeks. Low spots are natural places for rain gardens and moisture-loving natives like swamp milkweed and blue flag iris; sunny, open ground suits prairie plants and pollinator beds.",
+        "commercial": "Small-town main streets, churches, schools and farm markets can have welcoming entrances and seasonal displays, and native plantings that cut down on mowing.",
+        "faqs": [
+          {
+            "question": "Do you work in Ionia County?",
+            "answer": "Yes. Ionia, Belding, Portland and the rest of the county are in our service area."
+          },
+          {
+            "question": "Can you help with a wet, low area?",
+            "answer": "Often a low area is the right place for a rain garden: a shallow, planted basin with deep-rooted natives that soak the water in."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Ionia & Belding Landscape Design | Healing Earth Design",
+        "meta_description": "Garden and landscape design in Ionia, Belding, Portland and across Ionia County, for homes, farms and small-town businesses.",
+        "og_image_id": "5",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "greenville-montcalm-county",
+      "title": "Greenville & Montcalm County",
+      "locale": "en",
+      "frontmatter": {
+        "order": 8,
+        "region": "Montcalm County",
+        "image": "16",
+        "counties": [
+          "montcalm"
+        ],
+        "summary": "Garden and landscape design in Greenville, Stanton, Howard City and across Montcalm County: native gardens, lake properties and planting plans.",
+        "intro": "North of Grand Rapids, we work with homes, lake cottages and businesses in Greenville, Stanton, Howard City and Montcalm County's lake communities.",
+        "towns": [
+          "Greenville",
+          "Stanton",
+          "Howard City",
+          "Lakeview",
+          "Carson City",
+          "Edmore",
+          "Sheridan"
+        ],
+        "growing": "Montcalm County mixes farmland with lakes and sandy, well-drained ground in much of the county. Sandy soil warms early and drains fast, which suits prairie natives and drought-tolerant perennials once they're established; lakefront lots benefit from native shoreline plantings that slow runoff and hold the bank.",
+        "commercial": "Downtown Greenville and the county's smaller towns, lakeside businesses, churches and schools can all have entrances that welcome people in, with plantings that suit sandy ground and need less water.",
+        "faqs": [
+          {
+            "question": "Do you work in Greenville?",
+            "answer": "Yes. Greenville and all of Montcalm County are in our service area."
+          },
+          {
+            "question": "What grows well in sandy soil?",
+            "answer": "Prairie natives like little bluestem, butterfly weed, blazing star and asters do well in sandy, well-drained soil once established, with mulch to hold moisture the first seasons."
+          },
+          {
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Greenville & Montcalm Landscape Design | Healing Earth",
+        "meta_description": "Garden and landscape design in Greenville, Stanton, Howard City and across Montcalm County: native gardens, lake properties and planting plans.",
+        "og_image_id": "16",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "muskegon-newaygo",
+      "title": "Muskegon & Newaygo",
+      "locale": "en",
+      "frontmatter": {
+        "order": 9,
+        "region": "Muskegon & Newaygo counties",
+        "image": "19",
+        "counties": [
+          "muskegon",
+          "newaygo"
+        ],
+        "summary": "Garden and landscape design in Muskegon, Norton Shores, Whitehall, Fremont and Newaygo: lakeshore plantings, native gardens and seasonal displays.",
+        "intro": "Along the Lake Michigan shore at Muskegon and Norton Shores, and inland to Fremont and Newaygo on the Muskegon River, we design plantings for homes, lake properties and businesses.",
+        "towns": [
+          "Muskegon",
+          "Norton Shores",
+          "North Muskegon",
+          "Whitehall",
+          "Montague",
+          "Fruitport",
+          "Fremont",
+          "Newaygo",
+          "Grant",
+          "White Cloud"
+        ],
+        "growing": "By the lake, Muskegon's soils are sandy, the wind is steady and Lake Michigan moderates the seasons. Inland Newaygo County is sandier still, with forest, rivers and lakes, ground that suits native prairie and woodland-edge plants. Choosing plants for sand and wind is what keeps a garden here thriving without constant watering.",
+        "commercial": "Lakeshore restaurants, marinas, inns and downtown Muskegon and Fremont storefronts benefit from seasonal display programs timed to summer visitors, and from native plantings that stand up to sand and wind.",
+        "faqs": [
+          {
+            "question": "Do you work in Muskegon?",
+            "answer": "Yes. Muskegon and Newaygo counties are in our service area."
+          },
+          {
+            "question": "What holds up by the lake?",
+            "answer": "Plants chosen for sand, wind and full sun, like beach grass, little bluestem, butterfly weed and sturdy annuals for containers, set in well-mulched beds."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Muskegon & Newaygo Landscape Design | Healing Earth Design",
+        "meta_description": "Garden and landscape design in Muskegon, Norton Shores, Whitehall, Fremont and Newaygo: lakeshore plantings, native gardens and seasonal displays.",
+        "og_image_id": "19",
+        "schema_type": "WebPage"
       }
     }
   ],

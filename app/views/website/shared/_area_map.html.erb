@@ -1,72 +1,123 @@
-<%# locals: (links: {}, counties: [], base: nil, description: "Map of the service area in Southwest Michigan") -%>
-<%# Southwest Michigan, drawn from the US Census county boundaries (script/area_map.py made it). The five counties served link to their area's page (`links`, county => href); `counties` brings some forward; the pin is Richland, the home base. Drawn in on scroll (healing/area_map.js). %>
+<%# locals: (links: {}, counties: [], base: nil, description: "Map of the service area in West and Southwest Michigan") -%>
+<%# West and Southwest Michigan, drawn from the US Census county boundaries (script/area_map.py made it). The counties served link to their area's page (`links`, county => href); `counties` brings some forward; the pin is Richland, the home base. Drawn in on scroll (healing/motion.js). %>
 <% counties = Array(counties) %>
-<svg class="area-map" viewBox="0 0 800 500" role="img" aria-label="<%= description %>" data-area-map>
-  <defs><clipPath id="area-map-frame"><rect width="800" height="500" rx="24" /></clipPath></defs>
+<svg class="area-map" viewBox="0 0 800 1063" role="img" aria-label="<%= description %>" data-area-map>
+  <defs><clipPath id="area-map-frame"><rect width="800" height="1063" rx="24" /></clipPath></defs>
   <g clip-path="url(#area-map-frame)">
-    <rect class="area-map__lake" width="800" height="500" />
-    <text class="area-map__water" x="43" y="146" transform="rotate(-90 43 146)">Lake Michigan</text>
-    <path class="area-map__context" d="M308.5 -193.9L309.4 -96.0L310.7 -71.3L311.9 51.6L135.0 51.9L134.2 42.8L133.8 15.0L134.2 0.5L132.8 -13.2L132.0 -33.2L127.8 -72.1L125.1 -87.5L120.3 -106.6L117.9 -110.9L117.7 -116.3L116.0 -125.5L108.8 -145.1L260.0 -145.5L259.6 -194.3L308.5 -193.9Z" />
-    <path class="area-map__context" d="M308.6 -243.3L399.3 -244.0L403.1 -244.0L506.9 -243.9L506.8 -145.4L508.0 50.6L410.1 51.6L340.8 51.6L311.9 51.6L310.7 -71.3L309.4 -96.0L308.5 -193.9L308.6 -243.3Z" />
-    <path class="area-map__context" d="M506.8 -145.4L704.1 -145.4L704.0 50.3L605.6 50.1L508.0 50.6L506.8 -145.4Z" />
-    <path class="area-map__context" d="M802.2 246.1L753.2 246.3L606.7 246.4L605.6 50.1L704.0 50.3L801.2 50.6L802.2 246.1Z" />
-    <path class="area-map__context" d="M996.4 442.9L900.5 441.9L756.9 443.6L753.2 246.3L802.2 246.1L992.8 244.6L996.8 244.6L996.4 442.9Z" />
-    <path class="area-map__context" d="M528.6 442.8L708.4 442.4L708.9 618.0L664.4 618.2L652.6 618.3L648.2 618.2L620.7 618.1L587.8 618.1L585.4 618.1L565.0 618.2L554.9 618.1L539.8 618.1L523.5 618.0L515.3 618.0L514.6 442.9L528.6 442.8Z" />
-    <path class="area-map__context" d="M335.9 618.5L325.3 618.5L315.0 618.5L308.2 618.5L321.1 596.2L320.0 444.2L514.6 442.9L515.2 618.0L512.7 618.0L508.6 617.9L504.5 618.0L499.3 618.0L491.2 618.0L479.2 618.0L459.1 618.1L457.0 618.2L422.4 618.3L384.4 618.5L378.2 618.5L374.0 618.4L367.8 618.5L366.5 618.5L362.8 618.5L335.9 618.5Z" />
-    <path class="area-map__context" d="M129.2 443.0L320.0 444.2L321.1 596.2L308.2 618.5L274.7 618.3L273.5 618.3L267.8 618.3L232.1 618.1L225.3 618.0L220.1 618.0L195.7 617.8L169.8 617.7L131.4 618.0L127.9 618.0L129.2 443.0Z" />
-    <path class="area-map__context" d="M-19.5 514.7L-12.6 493.6L-12.1 492.2L-11.3 489.6L-9.2 483.3L-6.2 477.0L-4.5 473.5L-3.0 470.5L-0.7 465.6L0.2 463.7L0.9 462.2L10.6 442.1L13.7 435.7L18.4 424.1L20.4 416.7L23.0 413.8L28.1 407.8L29.1 406.6L38.8 393.3L40.0 391.7L54.0 372.8L54.8 371.6L56.2 369.6L57.8 367.2L61.3 362.0L62.5 360.0L63.4 358.4L70.3 346.6L128.9 346.4L129.2 443.0L127.9 618.0L111.5 617.9L13.5 618.2L6.3 618.3L4.2 618.3L-43.8 618.2L-88.0 618.0L-110.4 617.8L-112.0 617.8L-120.0 617.8L-111.0 611.3L-108.0 609.1L-101.0 604.3L-99.7 603.3L-90.0 595.7L-83.3 590.5L-75.7 584.6L-67.7 577.2L-60.3 570.5L-47.5 556.4L-46.0 554.7L-39.6 547.6L-37.1 544.8L-36.0 543.6L-34.2 541.2L-32.3 538.2L-27.4 530.7L-26.3 529.0L-22.5 521.1L-21.7 519.5L-21.1 518.2L-20.1 516.2L-19.5 514.7Z" />
-    <path class="area-map__context" d="M985.6 46.8L988.1 83.9L992.8 244.6L802.2 246.1L801.2 50.6L900.3 50.6L900.3 47.3L985.6 46.8Z" />
-    <path class="area-map__context" d="M886.7 648.4L885.5 648.5L869.5 648.9L716.8 653.9L716.9 647.5L716.9 640.1L716.9 633.2L716.8 630.6L716.8 627.5L711.5 617.9L708.9 618.0L708.4 442.4L756.9 443.6L900.5 441.9L901.7 647.8L886.7 648.4Z" />
-    <path class="area-map__context" d="M898.6 -144.9L899.5 -53.4L900.3 47.3L900.3 50.6L801.2 50.6L704.0 50.3L704.1 -145.4L898.6 -144.9Z" />
+    <rect class="area-map__lake" width="800" height="1063" />
+    <text class="area-map__water" x="38" y="477" transform="rotate(-90 38 477)">Lake Michigan</text>
+    <path class="area-map__context" d="M825.1 809.4L775.4 809.6L626.7 809.7L625.6 608.9L725.4 609.0L824.1 609.4L825.1 809.4Z" />
+    <path class="area-map__context" d="M1022.3 1010.8L924.9 1009.7L779.1 1011.5L775.4 809.6L825.1 809.4L1018.6 807.9L1022.7 807.9L1022.3 1010.8Z" />
+    <path class="area-map__context" d="M547.4 1010.6L729.9 1010.3L730.5 1189.9L685.3 1190.1L673.3 1190.2L668.8 1190.2L640.9 1190.0L607.5 1190.1L605.0 1190.0L584.3 1190.1L574.0 1190.0L558.8 1190.0L542.2 1189.9L533.9 1189.9L533.2 1010.8L547.4 1010.6Z" />
+    <path class="area-map__context" d="M351.8 1190.4L341.1 1190.4L330.5 1190.4L323.6 1190.4L336.8 1167.6L335.6 1012.1L533.2 1010.8L533.8 1189.9L531.2 1189.9L527.1 1189.8L522.9 1189.9L517.6 1189.9L509.4 1189.9L497.2 1190.0L476.8 1190.1L474.7 1190.1L439.6 1190.3L401.0 1190.4L394.7 1190.4L390.4 1190.4L384.1 1190.4L382.8 1190.4L379.1 1190.4L351.8 1190.4Z" />
+    <path class="area-map__context" d="M141.9 1010.8L335.6 1012.1L336.8 1167.6L323.6 1190.4L289.7 1190.3L288.4 1190.3L282.6 1190.2L246.4 1190.0L239.5 1189.9L234.2 1189.9L209.4 1189.7L183.1 1189.6L144.2 1189.9L140.6 1189.9L141.9 1010.8Z" />
+    <path class="area-map__context" d="M-9.1 1084.3L-2.0 1062.6L-1.5 1061.2L-0.6 1058.5L1.5 1052.1L4.5 1045.7L6.2 1042.1L7.7 1039.0L10.1 1034.0L11.0 1032.0L11.7 1030.5L21.5 1010.0L24.7 1003.3L29.4 991.5L31.5 984.0L34.1 980.9L39.3 974.8L40.3 973.6L50.2 960.1L51.4 958.4L65.6 939.1L66.4 937.8L67.8 935.7L69.5 933.3L73.0 927.9L74.2 925.9L75.2 924.3L82.2 912.2L141.7 912.0L141.9 1010.8L140.6 1189.9L124.0 1189.8L24.5 1190.2L17.1 1190.2L15.1 1190.2L-33.7 1190.1L-78.5 1189.9L-101.3 1189.8L-102.9 1189.8L-111.0 1189.8L-101.9 1183.0L-98.8 1180.8L-91.8 1175.9L-90.4 1174.9L-80.5 1167.1L-73.8 1161.8L-66.1 1155.8L-57.9 1148.2L-50.4 1141.3L-37.5 1126.9L-35.9 1125.1L-29.4 1117.9L-26.9 1115.0L-25.8 1113.8L-24.0 1111.4L-22.0 1108.3L-17.1 1100.6L-16.0 1098.9L-12.1 1090.8L-11.3 1089.1L-10.6 1087.8L-9.6 1085.7L-9.1 1084.3Z" />
+    <path class="area-map__context" d="M1011.3 605.5L1013.9 643.4L1018.6 807.9L825.1 809.4L824.1 609.4L924.8 609.3L924.8 606.0L1011.3 605.5Z" />
+    <path class="area-map__context" d="M910.9 1221.0L909.7 1221.1L893.4 1221.6L738.5 1226.6L738.5 1220.1L738.5 1212.6L738.5 1205.5L738.5 1202.8L738.5 1199.6L733.1 1189.9L730.5 1189.9L729.9 1010.3L779.1 1011.5L924.9 1009.7L926.1 1220.4L910.9 1221.0Z" />
+    <path class="area-map__context" d="M923.0 409.3L923.9 502.9L924.8 606.0L924.8 609.3L824.1 609.4L725.4 609.0L725.5 408.8L923.0 409.3Z" />
+    <path class="area-map__context" d="M822.1 209.2L922.2 209.2L923.0 403.3L923.0 405.4L923.0 409.3L725.5 408.8L721.7 209.1L822.1 209.2Z" />
+    <path class="area-map__context" d="M420.0 207.9L420.0 8.3L619.4 9.4L621.1 209.1L420.0 207.9Z" />
+    <path class="area-map__context" d="M41.2 205.6L38.4 194.3L35.0 183.8L34.2 181.6L33.2 179.3L32.4 177.6L22.8 158.0L21.4 155.1L20.1 152.4L19.3 150.8L18.6 149.4L17.9 147.9L16.9 145.8L12.8 136.0L9.3 123.0L8.9 120.7L8.7 119.2L8.0 113.2L8.1 107.8L8.2 106.1L8.9 99.4L9.2 98.1L12.8 88.0L13.6 86.5L17.7 80.3L18.5 79.2L19.2 78.1L20.6 76.0L22.1 74.1L23.3 72.5L24.5 71.0L26.9 68.0L30.2 63.8L32.9 60.3L40.7 49.0L41.5 47.9L48.2 33.9L49.4 30.5L51.5 23.8L54.3 8.3L54.3 6.2L60.4 6.0L219.8 8.3L219.2 208.4L41.6 205.6Z" />
+    <path class="area-map__context" d="M218.1 -193.8L311.1 -192.1L419.1 -192.5L420.0 8.3L219.8 8.3L219.4 6.3L218.1 -193.8Z" />
+    <path class="area-map__context" d="M620.2 -192.1L619.4 9.4L420.0 8.3L419.1 -192.5L515.9 -192.6L620.2 -192.1Z" />
+    <path class="area-map__context" d="M621.1 209.1L619.4 9.4L822.7 8.5L822.1 209.2L721.7 209.1L621.1 209.1Z" />
   </g>
   <g class="area-map__counties">
     <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("allegan"), "is-dimmed" => counties.any? && !counties.include?("allegan")) %>
     <% county = capture do %>
-      <path class="<%= county_class %>" data-county="allegan" d="M311.9 51.6L340.8 51.6L410.1 51.6L411.1 246.4L319.4 246.8L108.1 247.6L113.2 233.8L118.1 213.4L121.5 182.8L121.8 179.8L124.1 165.8L125.8 159.9L127.1 155.4L127.9 150.1L126.7 124.9L127.7 120.8L132.1 109.9L135.1 94.3L135.9 79.0L135.3 54.6L135.0 51.9L311.9 51.6Z" />
-      <text class="area-map__county-name" x="213" y="112" text-anchor="middle">ALLEGAN</text>
+      <path class="<%= county_class %>" data-county="allegan" d="M327.4 610.4L356.8 610.3L427.1 610.4L428.1 809.7L335.0 810.1L120.5 810.9L125.7 796.8L130.6 775.9L134.1 744.6L134.5 741.5L136.7 727.2L138.4 721.2L139.8 716.6L140.6 711.2L139.3 685.4L140.4 681.2L144.8 670.0L147.9 654.1L148.7 638.4L148.1 613.5L147.8 610.7L327.4 610.4Z" />
+      <text class="area-map__county-name" x="227" y="673" text-anchor="middle">ALLEGAN</text>
     <% end %>
     <%= links["allegan"] ? link_to(county, links["allegan"], class: "area-map__link", "aria-label": "Allegan County") : county %>
     <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("barry"), "is-dimmed" => counties.any? && !counties.include?("barry")) %>
     <% county = capture do %>
-      <path class="<%= county_class %>" data-county="barry" d="M605.6 50.1L606.7 246.4L512.5 247.3L411.1 246.4L410.1 51.6L508.0 50.6L605.6 50.1Z" />
-      <text class="area-map__county-name" x="553" y="166" text-anchor="middle">BARRY</text>
+      <path class="<%= county_class %>" data-county="barry" d="M625.6 608.9L626.7 809.7L531.0 810.6L428.1 809.7L427.1 610.4L526.5 609.4L625.6 608.9Z" />
+      <text class="area-map__county-name" x="573" y="727" text-anchor="middle">BARRY</text>
     <% end %>
     <%= links["barry"] ? link_to(county, links["barry"], class: "area-map__link", "aria-label": "Barry County") : county %>
     <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("calhoun"), "is-dimmed" => counties.any? && !counties.include?("calhoun")) %>
     <% county = capture do %>
-      <path class="<%= county_class %>" data-county="calhoun" d="M528.6 442.8L514.6 442.9L513.2 344.9L512.2 249.0L512.5 247.3L606.7 246.4L753.2 246.3L756.9 443.6L708.4 442.4L528.6 442.8Z" />
-      <text class="area-map__county-name" x="645" y="388" text-anchor="middle">CALHOUN</text>
+      <path class="<%= county_class %>" data-county="calhoun" d="M547.4 1010.6L533.2 1010.8L531.8 910.5L530.7 812.4L531.0 810.6L626.7 809.7L775.4 809.6L779.1 1011.5L729.9 1010.3L547.4 1010.6Z" />
+      <text class="area-map__county-name" x="665" y="954" text-anchor="middle">CALHOUN</text>
     <% end %>
     <%= links["calhoun"] ? link_to(county, links["calhoun"], class: "area-map__link", "aria-label": "Calhoun County") : county %>
     <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("kalamazoo"), "is-dimmed" => counties.any? && !counties.include?("kalamazoo")) %>
     <% county = capture do %>
-      <path class="<%= county_class %>" data-county="kalamazoo" d="M512.5 247.3L512.2 249.0L513.2 344.9L514.6 442.9L320.0 444.2L319.4 246.8L411.1 246.4L512.5 247.3Z" />
-      <text class="area-map__county-name" x="417" y="416" text-anchor="middle">KALAMAZOO</text>
+      <path class="<%= county_class %>" data-county="kalamazoo" d="M531.0 810.6L530.7 812.4L531.8 910.5L533.2 1010.8L335.6 1012.1L335.0 810.1L428.1 809.7L531.0 810.6Z" />
+      <text class="area-map__county-name" x="434" y="983" text-anchor="middle">KALAMAZOO</text>
     <% end %>
     <%= links["kalamazoo"] ? link_to(county, links["kalamazoo"], class: "area-map__link", "aria-label": "Kalamazoo County") : county %>
     <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("van-buren"), "is-dimmed" => counties.any? && !counties.include?("van-buren")) %>
     <% county = capture do %>
-      <path class="<%= county_class %>" data-county="van-buren" d="M129.2 443.0L128.9 346.4L70.3 346.6L73.9 340.4L88.2 308.6L98.4 281.9L103.7 261.5L103.5 257.4L106.8 250.9L108.1 247.6L319.4 246.8L320.0 444.2L129.2 443.0Z" />
-      <text class="area-map__county-name" x="172" y="315" text-anchor="middle">VAN BUREN</text>
+      <path class="<%= county_class %>" data-county="van-buren" d="M141.9 1010.8L141.7 912.0L82.2 912.2L85.8 905.8L100.3 873.3L110.7 846.0L116.0 825.1L115.8 821.0L119.2 814.4L120.5 810.9L335.0 810.1L335.6 1012.1L141.9 1010.8Z" />
+      <text class="area-map__county-name" x="185" y="879" text-anchor="middle">VAN BUREN</text>
     <% end %>
     <%= links["van-buren"] ? link_to(county, links["van-buren"], class: "area-map__link", "aria-label": "Van Buren County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("kent"), "is-dimmed" => counties.any? && !counties.include?("kent")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="kent" d="M324.0 308.7L416.2 308.0L420.0 308.0L525.3 308.0L525.3 408.8L526.5 609.4L427.1 610.4L356.8 610.3L327.4 610.4L326.2 484.6L324.8 459.4L323.9 359.2L324.0 308.7Z" />
+      <text class="area-map__county-name" x="476" y="362" text-anchor="middle">KENT</text>
+    <% end %>
+    <%= links["kent"] ? link_to(county, links["kent"], class: "area-map__link", "aria-label": "Kent County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("ottawa"), "is-dimmed" => counties.any? && !counties.include?("ottawa")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="ottawa" d="M323.9 359.2L324.8 459.4L326.2 484.6L327.4 610.4L147.8 610.7L147.0 601.4L146.6 573.0L147.1 558.1L145.6 544.0L144.8 523.7L140.5 483.8L137.8 468.0L132.9 448.5L130.5 444.1L130.3 438.6L128.6 429.2L121.3 409.1L274.8 408.8L274.4 358.7L323.9 359.2Z" />
+      <text class="area-map__county-name" x="236" y="477" text-anchor="middle">OTTAWA</text>
+    <% end %>
+    <%= links["ottawa"] ? link_to(county, links["ottawa"], class: "area-map__link", "aria-label": "Ottawa County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("ionia"), "is-dimmed" => counties.any? && !counties.include?("ionia")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="ionia" d="M525.3 408.8L725.5 408.8L725.4 609.0L625.6 608.9L526.5 609.4L525.3 408.8Z" />
+      <text class="area-map__county-name" x="627" y="558" text-anchor="middle">IONIA</text>
+    <% end %>
+    <%= links["ionia"] ? link_to(county, links["ionia"], class: "area-map__link", "aria-label": "Ionia County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("montcalm"), "is-dimmed" => counties.any? && !counties.include?("montcalm")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="montcalm" d="M525.3 408.8L525.3 308.0L420.0 308.0L420.0 207.9L621.1 209.1L721.7 209.1L725.5 408.8L525.3 408.8Z" />
+      <text class="area-map__county-name" x="606" y="287" text-anchor="middle">MONTCALM</text>
+    <% end %>
+    <%= links["montcalm"] ? link_to(county, links["montcalm"], class: "area-map__link", "aria-label": "Montcalm County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("muskegon"), "is-dimmed" => counties.any? && !counties.include?("muskegon")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="muskegon" d="M41.2 205.6L219.2 208.4L219.4 308.4L324.0 308.7L323.9 359.2L274.4 358.7L274.8 408.8L121.3 409.1L117.6 398.9L109.9 381.4L104.7 369.7L102.6 365.0L96.9 353.1L90.7 340.1L89.0 336.6L88.4 335.4L87.5 333.5L86.5 331.5L85.1 328.4L74.6 306.6L73.2 303.8L72.2 301.7L70.7 298.5L70.2 297.4L69.2 295.3L66.7 289.1L66.1 287.7L65.3 285.7L64.1 282.6L62.3 277.5L55.8 258.3L52.7 249.5L51.4 244.9L51.0 243.5L47.0 229.2L44.4 218.7L43.8 216.1L43.4 214.8L43.1 213.6L41.2 205.6Z" />
+      <text class="area-map__county-name" x="131" y="253" text-anchor="middle">MUSKEGON</text>
+    <% end %>
+    <%= links["muskegon"] ? link_to(county, links["muskegon"], class: "area-map__link", "aria-label": "Muskegon County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("newaygo"), "is-dimmed" => counties.any? && !counties.include?("newaygo")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="newaygo" d="M420.0 308.0L416.2 308.0L324.0 308.7L219.4 308.4L219.2 208.4L219.8 8.3L420.0 8.3L420.0 207.9L420.0 308.0Z" />
+      <text class="area-map__county-name" x="312" y="86" text-anchor="middle">NEWAYGO</text>
+    <% end %>
+    <%= links["newaygo"] ? link_to(county, links["newaygo"], class: "area-map__link", "aria-label": "Newaygo County") : county %>
   </g>
   <g class="area-map__towns" aria-hidden="true">
-    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="392.9" cy="319.3" r="4" /><text x="401.9" y="323.3" text-anchor="start">Kalamazoo</text></g>
-    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="395.9" cy="370.1" r="4" /><text x="404.9" y="374.1" text-anchor="start">Portage</text></g>
-    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="489.9" cy="293.8" r="4" /><text x="498.9" y="305.8" text-anchor="start">Augusta</text></g>
-    <g class="area-map__town" data-town-county="calhoun"><circle cx="561.9" cy="302.7" r="4" /><text x="570.9" y="306.7" text-anchor="start">Battle Creek</text></g>
-    <g class="area-map__town" data-town-county="calhoun"><circle cx="651.6" cy="330.2" r="4" /><text x="660.6" y="334.2" text-anchor="start">Marshall</text></g>
-    <g class="area-map__town" data-town-county="allegan"><circle cx="367.3" cy="235.9" r="4" /><text x="358.3" y="239.9" text-anchor="end">Plainwell</text></g>
-    <g class="area-map__town" data-town-county="allegan"><circle cx="347.6" cy="224.4" r="4" /><text x="338.6" y="218.4" text-anchor="end">Otsego</text></g>
-    <g class="area-map__town" data-town-county="allegan"><circle cx="281.7" cy="185.8" r="4" /><text x="290.7" y="189.8" text-anchor="start">Allegan</text></g>
-    <g class="area-map__town" data-town-county="van-buren"><circle cx="108.2" cy="256.7" r="4" /><text x="117.2" y="260.7" text-anchor="start">South Haven</text></g>
-    <g class="area-map__town" data-town-county="van-buren"><circle cx="192.2" cy="360.8" r="4" /><text x="201.2" y="364.8" text-anchor="start">Paw Paw</text></g>
-    <g class="area-map__town" data-town-county="barry"><circle cx="515.8" cy="118.4" r="4" /><text x="524.8" y="122.4" text-anchor="start">Hastings</text></g>
-    <g class="area-map__town" data-town-county="barry"><circle cx="467.3" cy="203.9" r="4" /><text x="476.3" y="207.9" text-anchor="start">Delton</text></g>
-    <g class="area-map__town" data-town-county="barry"><circle cx="416.6" cy="132.0" r="4" /><text x="425.6" y="136.0" text-anchor="start">Gun Lake</text></g>
+    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="409.6" cy="884.3" r="4" /><text x="418.6" y="888.3" text-anchor="start">Kalamazoo</text></g>
+    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="412.6" cy="936.3" r="4" /><text x="421.6" y="940.3" text-anchor="start">Portage</text></g>
+    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="508.1" cy="858.2" r="4" /><text x="517.1" y="870.2" text-anchor="start">Augusta</text></g>
+    <g class="area-map__town" data-town-county="calhoun"><circle cx="581.2" cy="867.3" r="4" /><text x="590.2" y="871.3" text-anchor="start">Battle Creek</text></g>
+    <g class="area-map__town" data-town-county="calhoun"><circle cx="672.3" cy="895.4" r="4" /><text x="681.3" y="899.4" text-anchor="start">Marshall</text></g>
+    <g class="area-map__town" data-town-county="allegan"><circle cx="383.6" cy="799.0" r="4" /><text x="374.6" y="803.0" text-anchor="end">Plainwell</text></g>
+    <g class="area-map__town" data-town-county="allegan"><circle cx="363.6" cy="787.2" r="4" /><text x="354.6" y="781.2" text-anchor="end">Otsego</text></g>
+    <g class="area-map__town" data-town-county="allegan"><circle cx="296.7" cy="747.7" r="4" /><text x="305.7" y="751.7" text-anchor="start">Allegan</text></g>
+    <g class="area-map__town" data-town-county="van-buren"><circle cx="120.6" cy="820.2" r="4" /><text x="129.6" y="824.2" text-anchor="start">South Haven</text></g>
+    <g class="area-map__town" data-town-county="van-buren"><circle cx="205.9" cy="926.7" r="4" /><text x="214.9" y="930.7" text-anchor="start">Paw Paw</text></g>
+    <g class="area-map__town" data-town-county="barry"><circle cx="534.4" cy="678.8" r="4" /><text x="543.4" y="682.8" text-anchor="start">Hastings</text></g>
+    <g class="area-map__town" data-town-county="barry"><circle cx="485.1" cy="766.2" r="4" /><text x="494.1" y="770.2" text-anchor="start">Delton</text></g>
+    <g class="area-map__town" data-town-county="barry"><circle cx="433.7" cy="692.7" r="4" /><text x="442.7" y="696.7" text-anchor="start">Gun Lake</text></g>
+    <g class="area-map__town" data-town-county="kent"><circle cx="375.5" cy="498.1" r="4" /><text x="384.5" y="502.1" text-anchor="start">Grand Rapids</text></g>
+    <g class="area-map__town" data-town-county="kent"><circle cx="421.1" cy="408.1" r="4" /><text x="430.1" y="412.1" text-anchor="start">Rockford</text></g>
+    <g class="area-map__town" data-town-county="kent"><circle cx="512.8" cy="515.4" r="4" /><text x="521.8" y="527.4" text-anchor="start">Lowell</text></g>
+    <g class="area-map__town" data-town-county="ottawa"><circle cx="189.9" cy="599.3" r="4" /><text x="198.9" y="603.3" text-anchor="start">Holland</text></g>
+    <g class="area-map__town" data-town-county="ottawa"><circle cx="139.6" cy="440.8" r="4" /><text x="148.6" y="444.8" text-anchor="start">Grand Haven</text></g>
+    <g class="area-map__town" data-town-county="ottawa"><circle cx="292.6" cy="551.3" r="4" /><text x="301.6" y="563.3" text-anchor="start">Hudsonville</text></g>
+    <g class="area-map__town" data-town-county="ionia"><circle cx="626.9" cy="484.4" r="4" /><text x="635.9" y="488.4" text-anchor="start">Ionia</text></g>
+    <g class="area-map__town" data-town-county="ionia"><circle cx="560.5" cy="420.9" r="4" /><text x="551.5" y="424.9" text-anchor="end">Belding</text></g>
+    <g class="area-map__town" data-town-county="montcalm"><circle cx="550.4" cy="375.1" r="4" /><text x="559.4" y="379.1" text-anchor="start">Greenville</text></g>
+    <g class="area-map__town" data-town-county="muskegon"><circle cx="131.2" cy="342.5" r="4" /><text x="140.2" y="346.5" text-anchor="start">Muskegon</text></g>
+    <g class="area-map__town" data-town-county="newaygo"><circle cx="260.2" cy="208.4" r="4" /><text x="251.2" y="212.4" text-anchor="end">Fremont</text></g>
+    <g class="area-map__town" data-town-county="newaygo"><circle cx="320.0" cy="235.9" r="4" /><text x="329.0" y="239.9" text-anchor="start">Newaygo</text></g>
   </g>
-  <g class="area-map__base" transform="translate(447.6 271.3)" data-area-base>
+  <g class="area-map__base" transform="translate(465.1 835.2)" data-area-base>
     <circle class="area-map__pulse" r="18" />
     <path class="area-map__pin" d="M0 0c-7-9-12-15-12-21a12 12 0 0 1 24 0c0 6-5 12-12 21z" />
     <circle class="area-map__pin-dot" cy="-21" r="4.5" />

@@ -351,6 +351,10 @@
     text-transform: uppercase;
   }
 
+  /* A logo image sits in the bar's height, as wide as its shape needs. */
+  .logo__image { width: auto; height: 2.75rem; max-width: 14rem; object-fit: contain; .footer & { height: 3.5rem; margin-inline: auto; } .mobile-menu & { height: 2.25rem; max-width: 11rem; } }
+  .mobile-menu__top .logo { font-size: 1rem; }
+
   /* The nav: fixed over the page, always solid; the announcement folds away once the page scrolls (.is-scrolled). Menus open below the bar (.mega). */
   .nav {
     position: fixed;
@@ -610,7 +614,9 @@
 
   .mobile-menu__top {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     padding: 0.5rem 0;
 
     button { padding: 0.5rem; }
@@ -633,6 +639,20 @@
     &.is-visible { opacity: 1; translate: 0 0; }
 
     @media (width >= 48rem) { display: none; }
+  }
+
+  .mobile-cta__actions {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .mobile-cta__actions--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .mobile-cta__button {
+    justify-content: center;
+
+    > span { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .icon { width: 1.15em; height: 1.15em; }
   }
 
   /* Forms */

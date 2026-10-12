@@ -261,9 +261,10 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     json_ld = ->(body) { Nokogiri::HTML5(body).css('script[type="application/ld+json"]').map { JSON.parse(it.text) }.flat_map { it["@graph"] || [it] } }
     service = SNAPSHOT["entries"].find { it["collection"] == "services" }
     get "/services/#{service["slug"]}"
-    node = json_ld.(response.body).find { it["@type"] == "Service" }
+    # Nodes with one @id are one thing (an SEO panel's Service merges with the theme's).
+    node = json_ld.(response.body).select { it["@type"] == "Service" }.reduce({}) { |merged, part| merged.merge(part) { |_, a, b| a.presence || b } }
     expect(node["@id"]).to end_with("/services/#{service["slug"]}#service")
-    expect(node["areaServed"]).to be_present
+    expect(node["areaServed"].map { it["name"] }).to include("Grand Rapids", "Kalamazoo")
 
     study = SNAPSHOT["entries"].find { it["collection"] == "portfolio" && it.dig("frontmatter", "location").present? }
     get "/portfolio/#{study["slug"]}"
@@ -273,6 +274,20 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
 
     get "/commercial"
     expect(json_ld.(response.body).select { it["@type"] == "ItemList" }.map { it["name"] }).to include("Industries", "Commercial services", "Service areas")
+  end
+
+  it "shows Navigation › Logo in place of the business name, and the name without one" do
+    get "/"
+    expect(Nokogiri::HTML5(response.body).at_css("#nav .logo").text.strip).to eq(SNAPSHOT.dig("site", "name"))
+
+    png = Base64.decode64("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=")
+    logo = Asset.create!(folder: "/branding", file: {io: StringIO.new(png), filename: "logo.png", content_type: "image/png"})
+    nav = Global.find_by!(slug: "nav")
+    nav.update!(data: nav.data.merge("logo" => logo.id.to_s))
+    get "/"
+    page = Nokogiri::HTML5(response.body)
+    expect(page.css(".logo img.logo__image").map { it["alt"] }.uniq).to eq([SNAPSHOT.dig("site", "name")])
+    expect(page.css(".logo img.logo__image").size).to eq(4) # the bar, the phone menu, the footer (small and wide)
   end
 
   it "loads its own scripts and stylesheet, none of the admin's" do
