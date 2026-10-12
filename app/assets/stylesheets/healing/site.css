@@ -462,7 +462,7 @@
   .mega__inner {
     &.container { max-width: 84rem; }
     display: grid;
-    grid-template-columns: 14rem minmax(0, 1fr) 17rem;
+    grid-template-columns: 14rem minmax(0, 1fr) 18rem;
     gap: 2.5rem;
     padding-block: 2rem;
   }
@@ -507,7 +507,8 @@
     color: var(--primary-50);
     background: var(--primary-900);
 
-    .button { color: var(--primary-950); background: var(--primary-100); &:hover { background: var(--base-50); } }
+    /* One line, centered with its arrow, however narrow the card. */
+    .button { padding: 0.75rem 1rem; font-size: 0.9375rem; white-space: nowrap; color: var(--primary-950); background: var(--primary-100); &:hover { background: var(--base-50); } }
   }
 
   .mega__quote {
