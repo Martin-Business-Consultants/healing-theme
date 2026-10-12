@@ -99,7 +99,7 @@ module HealingHelper
   PLANNERS = {
     commercial: {form: "commercial", id: "planner", services: :commercial, source: "commercial planner", icon_field: "property_type",
       icons: {"retail" => "building-store", "office" => "building", "apartment" => "buildings", "hotel" => "bed", "healthcare" => "heart-handshake",
-              "school" => "school", "municipal" => "building-community"},
+              "school" => "school", "municipal" => "building-community", "real estate" => "home"},
       steps: [
         ["Your property", "Tell me what kind of place it is and where.", %w[property_type company location]],
         ["What you'd like", "Pick everything that interests you. Each one shows what's included.", %w[interest_design_install interest_seasonal_displays interest_native_rain_gardens interest_garden_care priority]],
