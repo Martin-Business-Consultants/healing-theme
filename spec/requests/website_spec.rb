@@ -218,6 +218,63 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(page.css(".footer__areas a").map { it["href"] }).to match_array(areas.map { "/service-areas/#{it["slug"]}" })
   end
 
+  it "opens a menu for every nav item with columns, filled from its collections, with the phone to call" do
+    Setting.set("general", Setting.get("general").merge("phone" => "2692541769"))
+    get "/"
+    page = Nokogiri::HTML5(response.body)
+    nav = SNAPSHOT["globals"].find { it["slug"] == "nav" }["data"]["items"]
+    menus = nav.select { it["groups"].present? }
+
+    expect(page.css("[data-menu-button]").map { it.text.strip }).to eq(menus.map { it["label"] })
+    commercial = page.css("[data-menu-panel]")[menus.index { it["label"] == "Commercial" }]
+    industries = SNAPSHOT["entries"].select { it["collection"] == "industries" }
+    expect(commercial.css(".mega__link").map { it["href"] }).to include(*industries.map { "/industries/#{it["slug"]}" })
+    expect(page.at_css(".nav__phone")["href"]).to eq("tel:+12692541769")
+    expect(page.at_css(".nav__phone").text).to include("(269) 254-1769")
+    expect(page.css(".mobile-menu__group").size).to eq(menus.size)
+  end
+
+  it "draws an illustration on every service's and commercial service's page" do
+    SNAPSHOT["entries"].select { it["collection"].in?(%w[services commercial]) }.each do |entry|
+      get "/#{entry["collection"]}/#{entry["slug"]}"
+      graphic = entry.dig("frontmatter", "graphic")
+      next if graphic.blank? || graphic == "none"
+
+      expect(Nokogiri::HTML5(response.body).at_css("figure.graphic, .area-map")).to be_present, "#{entry["slug"]} has no #{graphic}"
+    end
+  end
+
+  it "gives the home garden calculator its assumptions, and the contact form a hidden place for its estimate" do
+    get "/garden-value"
+    page = Nokogiri::HTML5(response.body)
+    config = JSON.parse(page.at_css("[data-garden-value]")["data-garden-value"])
+    calc = SNAPSHOT["globals"].find { it["slug"] == "site_settings" }.dig("data", "home_calculator")
+
+    expect(config).to include("met" => calc["met"].to_f, "homeCap" => calc["home_value_cap"].to_f, "activeShare" => calc["active_share"].to_f, "precip" => calc["precip_inches"].to_f)
+    expect(config["produce"]).to eq([calc["produce_low"].to_f, calc["produce_high"].to_f])
+    expect(page.css("[data-garden-tab]").map { it["data-garden-tab"] }).to eq(%w[money health mind earth])
+    estimate = page.at_css("form[data-contact-form] input[name=estimate]")
+    expect(estimate["type"]).to eq("hidden")
+  end
+
+  it "describes every service and case study in structured data" do
+    json_ld = ->(body) { Nokogiri::HTML5(body).css('script[type="application/ld+json"]').map { JSON.parse(it.text) }.flat_map { it["@graph"] || [it] } }
+    service = SNAPSHOT["entries"].find { it["collection"] == "services" }
+    get "/services/#{service["slug"]}"
+    node = json_ld.(response.body).find { it["@type"] == "Service" }
+    expect(node["@id"]).to end_with("/services/#{service["slug"]}#service")
+    expect(node["areaServed"]).to be_present
+
+    study = SNAPSHOT["entries"].find { it["collection"] == "portfolio" && it.dig("frontmatter", "location").present? }
+    get "/portfolio/#{study["slug"]}"
+    node = json_ld.(response.body).find { it["@type"] == "CreativeWork" }
+    expect(node.dig("contentLocation", "name")).to eq(study.dig("frontmatter", "location"))
+    expect(node["name"]).to eq(study["title"])
+
+    get "/commercial"
+    expect(json_ld.(response.body).select { it["@type"] == "ItemList" }.map { it["name"] }).to include("Industries", "Commercial services", "Service areas")
+  end
+
   it "loads its own scripts and stylesheet, none of the admin's" do
     get "/"
 

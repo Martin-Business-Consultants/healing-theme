@@ -1,0 +1,39 @@
+<%# locals: () -%>
+<%# A season of garden care, March to November: what each visit takes on, as bars across the months. Grows in on scroll (data-reveal-group). %>
+<% months = %w[Mar Apr May Jun Jul Aug Sep Oct Nov] %>
+<% tasks = [
+  ["Spring clean-up", 0, 2, "spring"],
+  ["Mulch refresh", 1, 3, "soil"],
+  ["Weeding", 2, 7, "green"],
+  ["Deadheading", 3, 7, "bloom"],
+  ["Dividing & transplanting", 1, 3, "green"],
+  ["Dividing & transplanting", 6, 7, "green"],
+  ["Plant health checks", 1, 8, "soil"],
+  ["Fall cut-back, stems left for pollinators", 7, 9, "fall"]
+] %>
+<% rows = tasks.map(&:first).uniq %>
+<figure class="graphic graphic--panel" data-reveal>
+  <div class="care-calendar" role="img" aria-label="A season of garden care from March to November: spring clean-up in March and April, mulch in April and May, weeding and deadheading through summer, dividing in spring and September, health checks all season, and a fall cut-back that leaves stems for pollinators.">
+    <div class="care-calendar__months" aria-hidden="true">
+      <span></span>
+      <% months.each do |month| %>
+        <span><%= month %></span>
+      <% end %>
+    </div>
+    <div class="care-calendar__rows" aria-hidden="true" data-reveal-group>
+      <% rows.each do |row| %>
+        <div class="care-calendar__row">
+          <span class="care-calendar__task"><%= row %></span>
+          <div class="care-calendar__track">
+            <% tasks.select { it.first == row }.each do |_, from, to, tone| %>
+              <% bar_class = "care-calendar__bar care-calendar__bar--#{tone}" %>
+              <% bar_style = "--from: #{from}; --to: #{to}" %>
+              <span class="<%= bar_class %>" style="<%= bar_style %>"></span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <figcaption class="small muted">Visits follow the season: more in spring and summer, a tidy close in fall.</figcaption>
+</figure>

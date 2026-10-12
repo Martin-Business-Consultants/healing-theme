@@ -1,0 +1,43 @@
+<%# locals: () -%>
+<%# Planting day, in two drawings: from above, young plants set in staggered rows at the distance their full size needs (the dashed rings); and in section, one planted at the right depth, in a hole twice as wide as its roots, with mulch kept off the stem. Drawn in on scroll (data-draw). %>
+<figure class="graphic graphic--panel" data-reveal>
+  <svg viewBox="0 0 800 380" role="img" aria-labelledby="spacing-title spacing-desc">
+    <title id="spacing-title">Spacing and planting depth</title>
+    <desc id="spacing-desc">Left, young plants seen from above in staggered rows, each at the center of a dashed ring showing its full size, eighteen inches apart. Right, one plant in section: its crown level with the soil, in a hole twice as wide as the root ball, with mulch pulled back from the stem.</desc>
+    <rect class="g-paper" x="10" y="10" width="380" height="360" rx="16" />
+    <text class="g-label" x="30" y="44">From above</text>
+    <% (0..2).each do |row| %>
+      <% (0..3).each do |col| %>
+        <% x = 80 + col * 84 + (row.odd? ? 42 : 0) %>
+        <% next if x > 360 %>
+        <% y = 110 + row * 74 %>
+        <circle class="g-ring" cx="<%= x %>" cy="<%= y %>" r="42" />
+        <circle class="g-leaf" cx="<%= x %>" cy="<%= y %>" r="13" />
+      <% end %>
+    <% end %>
+    <path class="g-dimension" d="M80 330h84M80 324v12M164 324v12" />
+    <text class="g-label g-label--small" x="122" y="354" text-anchor="middle">18 in apart</text>
+    <text class="g-label g-label--small" x="190" y="336">rings: full size</text>
+    <rect class="g-paper" x="410" y="10" width="380" height="360" rx="16" />
+    <text class="g-label" x="430" y="44">In section</text>
+    <path class="g-native" d="M420 200h360v100h-360z" />
+    <path class="g-amended" d="M520 200h160q-4 70-80 80q-76-10-80-80z" />
+    <path class="g-mulch" d="M420 192h158v8h-158zM622 192h158v8h-158z" />
+    <path class="g-rootball" d="M560 200h80q0 54-40 60q-40-6-40-60z" />
+    <path class="g-root" d="M580 240q-20 20-36 26M620 240q20 22 34 24M600 258v26" data-draw />
+    <path class="g-line g-stem" d="M600 200v-70M600 160q-26-20-40-14M600 150q24-20 40-12M600 130q-10-24-2-36" />
+    <path class="g-leaf" d="M560 146q16-16 40-4q-20 14-40 4zM640 138q-16-14-40-2q20 12 40 2z" />
+    <path class="g-line g-ground" d="M420 200h100M680 200h100" />
+    <g class="g-label">
+      <path class="g-leader" d="M606 200h54" />
+      <text x="664" y="170" class="g-label--small">crown level</text>
+      <text x="664" y="186" class="g-label--small">with the soil</text>
+      <path class="g-leader" d="M584 196l-40-60" />
+      <text x="430" y="122" class="g-label--small">mulch kept</text>
+      <text x="430" y="138" class="g-label--small">off the stem</text>
+      <path class="g-dimension" d="M520 318h160M520 312v12M680 312v12" />
+      <text x="600" y="346" text-anchor="middle" class="g-label--small">hole twice as wide as the roots</text>
+    </g>
+  </svg>
+  <figcaption class="small muted">Planted small and spaced for their full size, plants fill in within a couple of seasons without crowding.</figcaption>
+</figure>

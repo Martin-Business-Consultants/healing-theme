@@ -30,6 +30,27 @@ module HealingHelper
   # Where the business is based (Settings › General), e.g. "Richland, MI": the map's pin.
   def healing_base = website_settings.values_at("city", "state").compact_blank.join(", ").presence
 
+  # The business's phone (Settings › General), as shown and as a tel: link; nil without one.
+  def healing_phone
+    digits = website_settings["phone"].to_s.gsub(/\D/, "").delete_prefix("1")
+    {text: "(#{digits[0, 3]}) #{digits[3, 3]}-#{digits[6, 4]}", href: "tel:+1#{digits}"} if digits.size == 10
+  end
+
+  # A nav menu column's links ({label, href, description, icon}): a
+  # collection's published entries when it has a Source, else its own links.
+  # Services and commercial services keep their summaries; the longer lists
+  # (industries, areas, case studies) are names alone.
+  def healing_menu_links(group)
+    source = group.source.to_s
+    return group.links.map { {label: it.label, href: website_href(it.link) || "/", description: it.description.presence} } if source.in?(["", "none"])
+
+    website_entries(source.to_sym).map do |entry|
+      fields = website_fields(entry).to_h
+      {label: entry.title, href: website_path(entry), icon: fields["icon"].presence,
+       description: (fields["summary"].to_s.truncate(70, separator: " ") if source.in?(%w[services commercial]))}
+    end
+  end
+
   # Every town the service areas name, for the business's areaServed.
   def healing_towns = healing_service_areas.flat_map { website_fields(it).towns }.uniq
 
@@ -47,15 +68,27 @@ module HealingHelper
     end})
   end
 
-  # A service the business offers, as schema.org's Service, provided by the
-  # organization the CMS describes (WebsiteHelper's #organization) where the
-  # service areas reach (or `towns`).
-  def healing_service_json_ld(name:, description:, type: nil, audience: nil, towns: healing_towns)
+  # A service the business offers, as schema.org's Service (#service on its
+  # page, so a Service written in the SEO panel merges with it), provided by
+  # the organization the CMS describes (WebsiteHelper's #organization) where
+  # the service areas reach (or `towns`).
+  def healing_service_json_ld(name:, description:, type: nil, audience: nil, image: nil, towns: healing_towns)
     home = website_url("/")
-    website_json_ld({"@context" => "https://schema.org", "@type" => "Service", "name" => name, "description" => description,
-      "serviceType" => type, "url" => website_url(request.path), "provider" => {"@id" => "#{home}#organization"},
+    url = website_url(request.path)
+    image = website_image(image)
+    website_json_ld({"@context" => "https://schema.org", "@type" => "Service", "@id" => "#{url}#service", "name" => name, "description" => description,
+      "serviceType" => type || name, "url" => url, "provider" => {"@id" => "#{home}#organization"}, "image" => (website_url(image[:src]) if image),
       "audience" => ({"@type" => "BusinessAudience", "name" => audience} if audience),
-      "areaServed" => towns.map { {"@type" => "City", "name" => it} }.presence}.compact)
+      "areaServed" => towns.map { {"@type" => "City", "name" => it} }.presence, "mainEntityOfPage" => {"@id" => "#{url}#main"}}.compact)
+  end
+
+  # Records a section lists (industries, services, areas), as schema.org's
+  # ItemList, in their order, each linking to its page.
+  def healing_item_list_json_ld(name, entries)
+    return if entries.empty?
+
+    website_json_ld({"@context" => "https://schema.org", "@type" => "ItemList", "name" => name, "itemListElement" =>
+      entries.each_with_index.map { |entry, index| {"@type" => "ListItem", "position" => index + 1, "name" => entry.title, "url" => website_url(website_path(entry))} }})
   end
 
   # The "commercial" form (the Forms plugin), drawn step by step by commercial_planner.

@@ -20,3 +20,4 @@
     <%= render "website/shared/entry_cards", entries: healing_commercial_services %>
   </div>
 </section>
+<% content_for :head, healing_item_list_json_ld("Commercial services", healing_commercial_services) %>

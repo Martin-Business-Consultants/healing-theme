@@ -1,0 +1,39 @@
+<%# locals: () -%>
+<%# How a seasonal container is built: a thriller for height, fillers to round it out, spillers over the edge. Drawn in on scroll (data-draw). %>
+<figure class="graphic graphic--panel" data-reveal>
+  <svg viewBox="0 0 800 400" role="img" aria-labelledby="container-title container-desc">
+    <title id="container-title">Thriller, filler, spiller</title>
+    <desc id="container-desc">A planted container: a tall grass in the middle for height, mounding flowers around it, and trailing vines spilling over the rim.</desc>
+    <rect class="g-sky" width="800" height="400" rx="16" />
+    <%# thriller %>
+    <path class="g-line g-thriller" d="M300 220q-10-90-40-150M300 220q-2-100 6-170M300 220q8-90 34-150M300 220q-24-70-64-110M300 220q24-70 62-100" />
+    <%# fillers %>
+    <% [[236, 206], [272, 192], [328, 192], [364, 206], [300, 200]].each do |x, y| %>
+      <circle class="g-leaf" cx="<%= x %>" cy="<%= y %>" r="26" />
+    <% end %>
+    <% [[236, 196], [266, 182], [334, 182], [364, 196], [300, 186], [250, 214], [350, 214]].each do |x, y| %>
+      <circle class="g-bloom" cx="<%= x %>" cy="<%= y %>" r="7" />
+    <% end %>
+    <%# the pot %>
+    <path class="g-pot" d="M200 226h200l-26 150h-148z" />
+    <path class="g-pot-rim" d="M192 216h216v14h-216z" />
+    <%# spillers %>
+    <path class="g-spiller" d="M208 222q-30 40-24 110q4 20-8 40M220 224q-10 50 4 90M392 222q30 44 22 104q-2 24 10 36M380 224q12 40 0 80" data-draw />
+    <% [[188, 300], [180, 340], [222, 290], [414, 300], [420, 344], [382, 290]].each do |x, y| %>
+      <ellipse class="g-leaf g-leaf--lime" cx="<%= x %>" cy="<%= y %>" rx="12" ry="8" />
+    <% end %>
+    <%# labels %>
+    <g class="g-label">
+      <path class="g-leader" d="M330 70h150" />
+      <text x="490" y="66">Thriller</text>
+      <text x="490" y="86" class="g-label--small">height and drama in the middle</text>
+      <path class="g-leader" d="M392 196h88" />
+      <text x="490" y="192">Filler</text>
+      <text x="490" y="212" class="g-label--small">mounding color that rounds it out</text>
+      <path class="g-leader" d="M420 320h60" />
+      <text x="490" y="316">Spiller</text>
+      <text x="490" y="336" class="g-label--small">trails over the edge to soften it</text>
+    </g>
+  </svg>
+  <figcaption class="small muted">Every container we plant has all three, chosen for its sun and the season.</figcaption>
+</figure>

@@ -1,0 +1,16 @@
+<%# locals: (name:, title:, value:, step:, money: false, hint: nil) -%>
+<%# A number the home garden calculator asks for; `money` puts a $ before it. %>
+<% input_id = "home-calc-#{name}" %>
+<div class="field field--wide">
+  <label class="field__label" for="<%= input_id %>">
+    <%= title %>
+    <% if hint %>
+      <span class="field__optional"><%= hint %></span>
+    <% end %>
+  </label>
+  <% if money %>
+    <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="<%= input_id %>" name="<%= name %>" type="number" inputmode="numeric" min="0" step="<%= step %>" value="<%= value %>" autocomplete="off"></div>
+  <% else %>
+    <input class="field__input" id="<%= input_id %>" name="<%= name %>" type="number" inputmode="numeric" min="0" step="<%= step %>" value="<%= value %>" autocomplete="off">
+  <% end %>
+</div>

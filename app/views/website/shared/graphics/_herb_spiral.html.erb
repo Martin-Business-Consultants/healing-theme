@@ -1,0 +1,39 @@
+<%# locals: () -%>
+<%# An herb spiral from above: a stone wall that winds up to a dry, sunny top and down to a moist foot, each zone with the herbs that like it. The wall draws itself in on scroll (data-draw). %>
+<% center = [210, 200] %>
+<% wall = (0..540).step(6).map do |degree|
+  angle = degree * Math::PI / 180
+  radius = 22 + degree * 0.28
+  "#{(center[0] + radius * Math.cos(angle)).round(1)} #{(center[1] + radius * Math.sin(angle)).round(1)}"
+end %>
+<% zones = [
+  ["Top: dry and sunny", "Rosemary, thyme, sage, lavender", "dry"],
+  ["Middle: well drained", "Oregano, savory, chives, calendula", "mid"],
+  ["Foot: moist and cooler", "Parsley, cilantro, lemon balm, mint", "moist"]
+] %>
+<figure class="graphic graphic--panel" data-reveal>
+  <div class="graphic__with-key">
+    <svg viewBox="0 0 420 400" role="img" aria-labelledby="herb-spiral-title herb-spiral-desc">
+      <title id="herb-spiral-title">How an herb spiral works</title>
+      <desc id="herb-spiral-desc">An herb spiral seen from above. A stone wall winds up to a dry, sunny top for rosemary, thyme, sage and lavender, through a well-drained middle for oregano and chives, down to a moist foot for parsley, cilantro and mint.</desc>
+      <circle class="g-zone g-zone--moist" cx="210" cy="200" r="178" />
+      <circle class="g-zone g-zone--mid" cx="210" cy="200" r="118" />
+      <circle class="g-zone g-zone--dry" cx="210" cy="200" r="62" />
+      <path class="g-wall" d="M<%= wall.join("L") %>" data-draw />
+      <% [[210, 200, "dry"], [196, 186, "dry"], [228, 214, "dry"], [140, 150, "mid"], [290, 160, "mid"], [270, 280, "mid"], [150, 270, "mid"],
+         [80, 120, "moist"], [340, 110, "moist"], [360, 290, "moist"], [70, 300, "moist"], [210, 360, "moist"]].each do |x, y, zone| %>
+        <% herb_class = "g-herb g-herb--#{zone}" %>
+        <circle class="<%= herb_class %>" cx="<%= x %>" cy="<%= y %>" r="9" />
+      <% end %>
+      <circle class="g-sun" cx="390" cy="34" r="16" />
+      <text class="g-label g-label--small" x="368" y="70" text-anchor="end">sun from the south</text>
+    </svg>
+    <ol class="graphic__key" data-reveal-group>
+      <% zones.each_with_index do |(title, herbs, zone), index| %>
+        <% swatch_class = "graphic__num g-zone--#{zone}" %>
+        <li><span class="<%= swatch_class %>"><%= index + 1 %></span><span><strong><%= title %></strong><span class="small muted"><%= herbs %></span></span></li>
+      <% end %>
+    </ol>
+  </div>
+  <figcaption class="small muted">One small bed, several growing conditions: each herb goes where it does best.</figcaption>
+</figure>

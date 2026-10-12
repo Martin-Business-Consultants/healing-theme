@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "healing"
-  spec.version = "0.4.0"
+  spec.version = "0.5.0"
   spec.summary = "The Healing Earth Design website, as a CMS theme"
   spec.authors = ["Martin Business Consultants"]
   spec.files = Dir["{app,config,lib}/**/*"]

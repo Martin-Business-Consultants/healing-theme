@@ -1,0 +1,46 @@
+<%# locals: () -%>
+<%# What goes into a planted bed, in section: mulch over compost-rich garden soil over the native soil, plants spaced for their full size, roots reaching down. Drawn in on scroll (data-draw). %>
+<figure class="graphic graphic--panel" data-reveal>
+  <svg viewBox="0 0 800 400" role="img" aria-labelledby="bed-layers-title bed-layers-desc">
+    <title id="bed-layers-title">What goes into a planted bed</title>
+    <desc id="bed-layers-desc">A cross-section of a new bed: two to three inches of mulch, over six to eight inches of garden soil with compost worked in, over the native soil, with plants spaced for their full size.</desc>
+    <rect class="g-sky" width="800" height="400" />
+    <path class="g-native" d="M0 236h590v164h-590z" />
+    <path class="g-amended" d="M40 214h500q20 0 30 22v40h-560v-40q10-22 30-22z" />
+    <path class="g-mulch" d="M40 200h500q14 0 22 14h-544q8-14 22-14z" />
+    <path class="g-turf-band" d="M0 200h40v10h-40zM560 200h30v10h-30z" />
+    <path class="g-line g-ground" d="M0 200h590" />
+    <%# plants, at their spacing, and their roots %>
+    <% [[110, :grass], [200, :flower], [290, :grass], [380, :flower], [470, :mound]].each do |x, kind| %>
+      <path class="g-root" d="M<%= x %> 214c-2 30 4 60-2 110M<%= x %> 226c-14 16-18 40-26 62M<%= x %> 230c12 18 16 44 24 66" data-draw />
+      <% case kind %>
+      <% when :grass %>
+        <path class="g-line g-stem" d="M<%= x %> 200q-8-50-30-80M<%= x %> 200q0-60 2-92M<%= x %> 200q10-50 30-74M<%= x %> 200q-16-36-40-46M<%= x %> 200q18-34 42-40" />
+      <% when :flower %>
+        <path class="g-line g-stem" d="M<%= x %> 200v-86M<%= x - 16 %> 200v-60M<%= x + 16 %> 200v-70" />
+        <% [[x, 106], [x - 16, 132], [x + 16, 122]].each do |cx, cy| %>
+          <circle class="g-bloom" cx="<%= cx %>" cy="<%= cy %>" r="9" />
+          <circle class="g-bloom-eye" cx="<%= cx %>" cy="<%= cy %>" r="3.5" />
+        <% end %>
+      <% else %>
+        <path class="g-leaf" d="M<%= x - 34 %> 200q0-44 34-44t34 44z" />
+      <% end %>
+    <% end %>
+    <%# spacing %>
+    <path class="g-dimension" d="M110 74h90M110 68v12M200 68v12" />
+    <text class="g-label g-label--small" x="155" y="62" text-anchor="middle">spaced for full size</text>
+    <%# labels %>
+    <g class="g-label">
+      <path class="g-leader" d="M548 207h62" />
+      <text x="616" y="204">Mulch, 2–3 in</text>
+      <text class="g-label--small" x="616" y="222">holds water, stops weeds</text>
+      <path class="g-leader" d="M560 250h48" />
+      <text x="616" y="256">Garden soil + compost</text>
+      <text class="g-label--small" x="616" y="274">worked in 6–8 in deep</text>
+      <path class="g-leader" d="M560 330h48" />
+      <text x="616" y="336">Your native soil</text>
+      <text class="g-label--small" x="616" y="354">roots reach well into it</text>
+    </g>
+  </svg>
+  <figcaption class="small muted">Good beds start below ground: the soil is prepared before a single plant goes in.</figcaption>
+</figure>

@@ -1,19 +1,100 @@
 <%# locals: (over_photo:) -%>
-<%# The bar over the top of every page. Over a photo header it starts white and turns solid once the page scrolls (healing/nav.js). %>
-<% items = website_global(:nav).items.map { {text: it.label, href: website_href(it.link) || "/"} } %>
+<%# The bar over the top of every page, always solid. An item with columns (Navigation › Menu columns) opens a menu: its intro and "See all" link, a column a collection or a list of links, a client quote, its button, the phone, and Site settings' contact highlights as proof (healing/nav.js opens it on click or hover and closes it on Escape or a click outside). On a phone, the burger opens a drawer where each menu is an accordion. %>
+<% items = website_global(:nav).items %>
 <% booking_href = website_href(healing_settings.booking_link) || "/#contact" %>
-<div id="nav" class="nav <%= "nav--over-photo" if over_photo %>" data-nav>
+<% phone = healing_phone %>
+<% highlights = healing_settings.contact.highlights.first(3) %>
+<% nav_class = class_names("nav", "nav--over-photo" => over_photo) %>
+<div id="nav" class="<%= nav_class %>" data-nav>
   <%= render "website/shared/announcement" %>
   <div class="nav__bar">
     <header class="nav__inner container">
       <%= render "website/shared/logo" %>
       <nav class="nav__menu" aria-label="Main">
         <ul>
-          <% items.each do |item| %>
-            <%= render "website/shared/nav_link", **item %>
+          <% items.each_with_index do |item, index| %>
+            <% href = website_href(item.link) || "/" %>
+            <% if item.groups.any? %>
+              <% panel_id = "menu-#{index}" %>
+              <li class="nav__item" data-menu>
+                <button type="button" class="nav-link nav-link--menu" aria-expanded="false" aria-controls="<%= panel_id %>" data-menu-button>
+                  <%= item.label %><%= healing_icon("chevron-down", class: "nav-link__chevron") %>
+                </button>
+                <div class="mega" id="<%= panel_id %>" hidden data-menu-panel>
+                  <div class="mega__inner container">
+                    <div class="mega__intro">
+                      <p class="eyebrow"><%= item.label %></p>
+                      <% if item.description.present? %>
+                        <p class="mega__description"><%= item.description %></p>
+                      <% end %>
+                      <%= link_to href, class: "text-link mega__all" do %>See all <%= item.label.downcase %> <%= healing_icon("arrow-long-right") %><% end %>
+                    </div>
+                    <div class="mega__groups">
+                      <% item.groups.each do |group| %>
+                        <% links = healing_menu_links(group) %>
+                        <% next if links.empty? %>
+                        <% group_class = class_names("mega__group", "mega__group--compact" => links.none? { it[:description] }) %>
+                        <div class="<%= group_class %>">
+                          <% if group.heading.present? %>
+                            <p class="mega__heading"><%= group.heading %></p>
+                          <% end %>
+                          <ul data-menu-links>
+                            <% links.each do |link| %>
+                              <li>
+                                <%= link_to link[:href], class: "mega__link", "aria-current": ("page" if healing_current?(link[:href])) do %>
+                                  <% if link[:icon] %>
+                                    <span class="mega__icon"><%= healing_icon(link[:icon]) %></span>
+                                  <% end %>
+                                  <span>
+                                    <span class="mega__label"><%= link[:label] %></span>
+                                    <% if link[:description] %>
+                                      <span class="mega__text"><%= link[:description] %></span>
+                                    <% end %>
+                                  </span>
+                                <% end %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+                    </div>
+                    <aside class="mega__proof">
+                      <% if item.quote.present? %>
+                        <figure class="mega__quote">
+                          <blockquote>“<%= item.quote.strip %>”</blockquote>
+                          <% if item.quote_name.present? %>
+                            <figcaption><%= item.quote_name %></figcaption>
+                          <% end %>
+                        </figure>
+                      <% end %>
+                      <% if item.cta_label.present? && (cta_href = website_href(item.cta_link)) %>
+                        <%= healing_button item.cta_label, href: cta_href, arrow: true, class: "button--wide" %>
+                      <% end %>
+                      <% if phone %>
+                        <%= link_to phone[:href], class: "mega__phone" do %><%= healing_icon("phone") %>Call <%= phone[:text] %><% end %>
+                      <% end %>
+                    </aside>
+                  </div>
+                  <% if highlights.any? %>
+                    <div class="mega__strip">
+                      <ul class="container">
+                        <% highlights.each do |point| %>
+                          <li><%= healing_icon("check") %><%= point %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                </div>
+              </li>
+            <% else %>
+              <%= render "website/shared/nav_link", text: item.label, href: %>
+            <% end %>
           <% end %>
         </ul>
       </nav>
+      <% if phone %>
+        <%= link_to phone[:href], class: "nav__phone", aria: {label: "Call #{phone[:text]}"} do %><%= healing_icon("phone") %><span><%= phone[:text] %></span><% end %>
+      <% end %>
       <%= healing_button healing_settings.booking_label, href: booking_href, class: "nav__cta" %>
       <button type="button" class="nav__burger" aria-label="Open the menu" aria-controls="mobile-menu" aria-expanded="false" data-menu-open>
         <%= healing_icon("menu-2") %>
@@ -30,9 +111,29 @@
   <nav aria-label="Main">
     <ul>
       <% items.each do |item| %>
-        <%= render "website/shared/nav_link", **item %>
+        <% href = website_href(item.link) || "/" %>
+        <% if item.groups.any? %>
+          <li>
+            <details class="mobile-menu__group">
+              <summary class="nav-link"><%= item.label %><%= healing_icon("chevron-down", class: "nav-link__chevron") %></summary>
+              <ul>
+                <% item.groups.each do |group| %>
+                  <% healing_menu_links(group).each do |link| %>
+                    <li><%= link_to link[:label], link[:href], class: "mobile-menu__link" %></li>
+                  <% end %>
+                <% end %>
+                <li><%= link_to "See all #{item.label.downcase}", href, class: "mobile-menu__link mobile-menu__link--all" %></li>
+              </ul>
+            </details>
+          </li>
+        <% else %>
+          <%= render "website/shared/nav_link", text: item.label, href: %>
+        <% end %>
       <% end %>
     </ul>
   </nav>
   <%= healing_button healing_settings.booking_label, href: booking_href, class: "button--wide" %>
+  <% if phone %>
+    <%= link_to phone[:href], class: "mobile-menu__phone" do %><%= healing_icon("phone") %>Call <%= phone[:text] %><% end %>
+  <% end %>
 </dialog>

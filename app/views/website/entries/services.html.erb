@@ -1,9 +1,12 @@
 <%# locals: (entry:) -%>
-<%# A service's own page. The words around it are in Site settings › Service pages. %>
+<%# A service's own page, with its illustration (shared/graphic, by its Illustration field). The words around it are in Site settings › Service pages. %>
 <% service = website_fields(entry) %>
 <% labels = healing_settings.service_page %>
 <% content_for :nav, "over_photo" %>
-<% content_for :head, website_seo_tags(entry, description: service.summary, image: service.image.presence || healing_settings.share_image) %>
+<% content_for :head do %>
+  <%= website_seo_tags entry, description: service.summary, image: service.image.presence || healing_settings.share_image %>
+  <%= healing_service_json_ld name: entry.title, description: service.summary, image: service.image.presence %>
+<% end %>
 <% links = capture do %>
   <% if labels.button_label.present? %>
     <%= healing_button labels.button_label, href: "#contact", variant: :secondary, arrow: true %>
@@ -15,8 +18,9 @@
 <%= render "website/shared/page_header", eyebrow: labels.eyebrow, title: entry.title, intro: service.summary,
   image: service.image.presence || website_fields(healing_services.first).image, links: (links if links.to_s.strip.present?) %>
 <% body = website_markdown(entry.body_markdown) %>
+<% graphic = service.graphic unless service.graphic.in?([nil, "", "none"]) %>
 <section class="section">
-  <div class="container service <%= "service--with-body" if body.present? %>">
+  <div class="container service <%= "service--with-body" if body.present? || graphic %>">
     <div data-reveal>
       <% if labels.included_label.present? %>
         <p class="eyebrow"><%= labels.included_label %></p>
@@ -27,8 +31,13 @@
         <% end %>
       </ul>
     </div>
-    <% if body.present? %>
-      <div class="prose" data-reveal><%= body %></div>
+    <% if body.present? || graphic %>
+      <div>
+        <%= render "website/shared/graphic", name: graphic %>
+        <% if body.present? %>
+          <div class="prose" data-reveal><%= body %></div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </section>

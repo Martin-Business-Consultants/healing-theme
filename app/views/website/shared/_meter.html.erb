@@ -1,0 +1,10 @@
+<%# locals: (key:, caption:) -%>
+<%# A ring that fills to a share (healing/garden_value.js sets it, past 100% it stays full), with the share in its middle and what it's a share of beside it. %>
+<div class="meter">
+  <svg class="meter__ring" viewBox="0 0 120 120" aria-hidden="true">
+    <circle class="meter__track" cx="60" cy="60" r="52" />
+    <circle class="meter__fill" cx="60" cy="60" r="52" pathLength="100" data-garden-meter="<%= key %>" />
+  </svg>
+  <p class="meter__value" data-garden-meter-value="<%= key %>">—</p>
+  <p class="meter__label small muted"><%= caption %></p>
+</div>
