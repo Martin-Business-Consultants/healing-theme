@@ -7,5 +7,5 @@ require "healing/engine"
 # pages, and its stylesheet and scripts. Plain CSS and an importmap; nothing
 # is built.
 module Healing
-  VERSION = "0.5.1"
+  VERSION = "0.5.2"
 end

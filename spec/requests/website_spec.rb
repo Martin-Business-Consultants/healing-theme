@@ -62,9 +62,9 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(response.body).to include(SNAPSHOT["globals"].find { it["slug"] == "site_settings" }.dig("data", "not_found", "heading"))
   end
 
-  it "posts the contact form to the Forms plugin, with every field it draws" do
-    get "/contact"
-    form = Nokogiri::HTML5(response.body).at_css("form[data-contact-form]")
+  it "posts the quick contact form to the Forms plugin, with every field it draws" do
+    get "/"
+    form = Nokogiri::HTML5(response.body).at_css("form#contact-form-compact")
     names = form.css("input, select, textarea").map { it["name"] }.compact - [Form::HONEYPOT_FIELD]
 
     expect(names - Form.find_by!(slug: "contact").fields.map { it["name"] }).to be_empty
@@ -77,11 +77,30 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(response).to have_http_status(:unprocessable_content)
   end
 
+  it "draws the garden planner in the contact section, every field the garden form has, and ticks a service's own choice on its page" do
+    get "/contact"
+    form = Nokogiri::HTML5(response.body).at_css("#contact form[data-planner]")
+    garden = Form.find_by!(slug: "garden")
+    names = form.css("input, select, textarea").map { it["name"] }.compact.uniq - [Form::HONEYPOT_FIELD]
+
+    expect(names).to match_array(garden.fields.map { it["name"] })
+    expect(form["action"]).to end_with("/garden/submissions")
+    expect(form.css(".choice--service .choice__text").size).to eq(SNAPSHOT["entries"].count { it["collection"] == "services" && it.dig("frontmatter", "planner_choice").present? })
+
+    post form["action"], params: {location: "Richland", sun: "Part sun, part shade", interest_herbs: "Yes", name: "Ann", email: "ann@example.com", source: "contact"}, as: :json
+    expect(response).to have_http_status(:created)
+    expect(FormSubmission.last.data).to include("sun" => "Part sun, part shade", "interest_herbs" => "Yes")
+
+    service = SNAPSHOT["entries"].find { it["collection"] == "services" && it.dig("frontmatter", "planner_choice").present? }
+    get "/services/#{service["slug"]}"
+    expect(Nokogiri::HTML5(response.body).css("#contact form[data-planner] input[type=checkbox][checked]").map { it["name"] }).to eq([service.dig("frontmatter", "planner_choice")])
+  end
+
   it "sends the contact form on to the thank-you page once Site settings has one, and keeps the thank-you on the form until then" do
     settings = Global.find_by!(slug: "site_settings")
     settings.update!(data: settings.data.merge("contact" => settings.data["contact"].except("thank_you_page")))
     get "/contact"
-    expect(Nokogiri::HTML5(response.body).at_css("form[data-contact-form]")["data-redirect"]).to be_nil
+    expect(Nokogiri::HTML5(response.body).css("form[data-contact-form]").map { it["data-redirect"] }).to all(be_nil)
 
     settings.update!(data: settings.data.deep_merge("contact" => {"thank_you_page" => {"kind" => "page", "value" => "thank-you"}}))
     Page.find_or_create_by!(slug: "thank-you") do |page|
@@ -253,7 +272,7 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(config).to include("met" => calc["met"].to_f, "homeCap" => calc["home_value_cap"].to_f, "activeShare" => calc["active_share"].to_f, "precip" => calc["precip_inches"].to_f)
     expect(config["produce"]).to eq([calc["produce_low"].to_f, calc["produce_high"].to_f])
     expect(page.css("[data-garden-tab]").map { it["data-garden-tab"] }).to eq(%w[money health mind earth])
-    estimate = page.at_css("form[data-contact-form] input[name=estimate]")
+    estimate = page.at_css("#contact form[data-contact-form] input[name=estimate]")
     expect(estimate["type"]).to eq("hidden")
   end
 

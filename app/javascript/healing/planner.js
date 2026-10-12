@@ -23,14 +23,10 @@ function setUp(form) {
   form.querySelector("[data-planner-bar]").hidden = false
   review.hidden = false
 
-  const fieldsOf = (step) => [...step.querySelectorAll("input, select, textarea")]
-
-  // The first required question on this step left unanswered, with its message.
+  // The first required question on this step left unanswered, in page order.
   function missing(step) {
-    for (const group of step.querySelectorAll('[role="radiogroup"][aria-required="true"]')) {
-      if (!group.querySelector("input:checked")) return group
-    }
-    return fieldsOf(step).find((input) => input.type !== "radio" && !input.checkValidity())
+    return [...step.querySelectorAll('[role="radiogroup"][aria-required="true"], input:not([type="radio"]):not([type="checkbox"]), select, textarea')].find((el) =>
+      el.matches('[role="radiogroup"]') ? !el.querySelector("input:checked") : !el.checkValidity())
   }
 
   function complain(target) {
@@ -52,13 +48,15 @@ function setUp(form) {
       const answers = []
       const services = [...step.querySelectorAll('input[type="checkbox"]:checked')].map((box) => box.closest("label").querySelector(".choice__title").textContent.trim())
       if (services.length) answers.push(["Services", services.join(", ")])
-      step.querySelectorAll('[role="radiogroup"]').forEach((group) => {
-        const checked = group.querySelector("input:checked")
-        if (checked) answers.push([group.querySelector(".field__label").firstChild.textContent.trim(), checked.value])
-      })
-      step.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]), select, textarea').forEach((input) => {
-        const label = form.querySelector(`label[for="${CSS.escape(input.id)}"]`)
-        if (input.value.trim() && label) answers.push([label.firstChild.textContent.trim(), input.value.trim()])
+      // Each question's answer, in the order the step asks them.
+      step.querySelectorAll('[role="radiogroup"], input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]), select, textarea').forEach((el) => {
+        if (el.matches('[role="radiogroup"]')) {
+          const checked = el.querySelector("input:checked")
+          if (checked) answers.push([el.querySelector(".field__label").firstChild.textContent.trim(), checked.value])
+          return
+        }
+        const label = form.querySelector(`label[for="${CSS.escape(el.id)}"]`)
+        if (el.value.trim() && label) answers.push([label.firstChild.textContent.trim(), el.value.trim()])
       })
       const group = document.createElement("div")
       group.className = "planner__summary-group"

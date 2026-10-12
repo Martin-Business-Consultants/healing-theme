@@ -91,9 +91,39 @@ module HealingHelper
       entries.each_with_index.map { |entry, index| {"@type" => "ListItem", "position" => index + 1, "name" => entry.title, "url" => website_url(website_path(entry))} }})
   end
 
-  # The "commercial" form (the Forms plugin), drawn step by step by commercial_planner.
-  def healing_planner_form
-    @healing_planner_form ||= Form.find_by!(slug: "commercial", status: "published")
+  # The two planners (shared/planner_form): a CMS form drawn in steps, each
+  # service choice explained by an entry of `services` (by its
+  # "planner_choice"), and `icon_field`'s choices as cards with icons (by a
+  # word in the choice). Steps name the form's fields; one they don't name
+  # joins the last step.
+  PLANNERS = {
+    commercial: {form: "commercial", id: "planner", services: :commercial, source: "commercial planner", icon_field: "property_type",
+      icons: {"retail" => "building-store", "office" => "building", "apartment" => "buildings", "hotel" => "bed", "healthcare" => "heart-handshake",
+              "school" => "school", "municipal" => "building-community"},
+      steps: [
+        ["Your property", "Tell me what kind of place it is and where.", %w[property_type company location]],
+        ["What you'd like", "Pick everything that interests you. Each one shows what's included.", %w[interest_design_install interest_seasonal_displays interest_native_rain_gardens interest_garden_care priority]],
+        ["Scope & timing", "Rough answers are fine; they help me come prepared.", %w[scope timeline budget]],
+        ["How to reach you", "I reply within 1–2 business days.", %w[name role email phone message]]
+      ]},
+    garden: {form: "garden", id: "garden-planner", services: :services, source: "garden planner", icon_field: "sun",
+      icons: {"mostly sun" => "sun", "part" => "plant-2", "shade" => "trees", "not sure" => "leaf"},
+      steps: [
+        ["Your yard", "Where it is and what it's like now.", %w[location sun soil current]],
+        ["What you'd like", "Pick everything that interests you. Each one shows what's included.", %w[interest_consultation interest_planting_plan interest_design interest_installation interest_shopping interest_displays interest_herbs priority]],
+        ["Size & timing", "Rough answers are fine; they help me come prepared.", %w[size timeline budget]],
+        ["How to reach you", "I reply within 1–2 business days.", %w[name email phone message]]
+      ]}
+  }.freeze
+
+  # A planner and its published form, or nil when the CMS has no such form.
+  def healing_planner(kind)
+    @healing_planners ||= {}
+    return @healing_planners[kind] if @healing_planners.key?(kind)
+
+    config = PLANNERS.fetch(kind)
+    form = Form.find_by(slug: config[:form], status: "published")
+    @healing_planners[kind] = (config.merge(form:) if form)
   end
 
   # Cloudflare Turnstile ({site_key:, theme:}; theme is auto, light or dark)
