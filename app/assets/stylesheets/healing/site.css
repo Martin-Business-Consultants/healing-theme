@@ -1855,26 +1855,33 @@
 
   .planner { display: flex; flex-direction: column; gap: 1.5rem; scroll-margin-top: 6rem; }
 
+  /* A step: its title (a legend) and hint, then its questions in a grid of
+     their own, since browsers lay out a legend inside a grid fieldset
+     differently. */
   .planner__step {
-    display: grid;
-    gap: 1.25rem;
     min-width: 0;
-
-    @media (width >= 40rem) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    > :is(legend, .planner__legend, .planner__hint, .choice-grid, .planner__summary) { grid-column: 1 / -1; }
 
     /* Without scripts, every step shows, one after another. */
     & + .planner__step { padding-top: 1.5rem; border-top: 1px solid var(--base-200); }
   }
 
-  .planner.is-stepped {
-    .planner__step { display: none; padding-top: 0; border-top: 0; }
-    .planner__step.is-current { display: grid; }
+  .planner__fields {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+
+    @media (width >= 40rem) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    > .choice-grid { grid-column: 1 / -1; }
   }
 
-  .planner__legend { float: left; width: 100%; font-family: var(--font-serif); font-size: 1.75rem; line-height: 1.2; color: var(--base-900); }
-  .planner__count { display: block; margin-bottom: 0.375rem; font-family: var(--font-label); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary-600); }
-  .planner__hint { margin-top: -0.5rem; }
+  .planner.is-stepped {
+    .planner__step { display: none; padding-top: 0; border-top: 0; }
+    .planner__step.is-current { display: block; }
+  }
+
+  .planner__legend { display: block; width: 100%; padding: 0; font-family: var(--font-serif); font-size: 1.75rem; line-height: 1.2; color: var(--base-900); }
+  .planner__count { display: block; margin-bottom: 0.375rem; font-family: var(--font-label); font-size: 0.75rem; font-weight: 600; line-height: 1.2; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary-600); }
+  .planner__hint { margin-top: 0.5rem; }
 
   .planner__progress {
     display: grid;
@@ -1946,7 +1953,7 @@
   /* Without scripts, only the one Send button. */
   .planner:not(.is-stepped) :is(.planner__back, .planner__next) { display: none; }
 
-  .planner__summary { display: grid; gap: 1rem; }
+  .planner__summary { display: grid; gap: 1rem; margin-top: 1.25rem; }
 
   .planner__summary-group {
     display: grid;

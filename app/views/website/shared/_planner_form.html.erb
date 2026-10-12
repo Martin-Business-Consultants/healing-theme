@@ -26,6 +26,7 @@
     <fieldset class="planner__step" data-planner-step="<%= index %>">
       <legend class="planner__legend"><span class="planner__count">Step <%= index + 1 %> of <%= steps.size %></span><%= title %></legend>
       <p class="small muted planner__hint"><%= hint %></p>
+      <div class="planner__fields">
       <% checkboxes = names.map { website_form_field(form, it) }.select { it["type"] == "checkbox" } %>
       <% if checkboxes.any? %>
         <div class="choice-grid choice-grid--services" role="group" aria-label="Services">
@@ -97,6 +98,7 @@
           </div>
         <% end %>
       <% end %>
+      </div>
     </fieldset>
   <% end %>
   <div class="planner__step planner__review" data-planner-step="<%= steps.size %>" data-planner-review hidden>
