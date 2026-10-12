@@ -1,0 +1,83 @@
+<%# locals: (entry:) -%>
+<%# A service area's own page: the towns it covers on the map, what grows there, what businesses there can have, the services, recent gardens, its questions, and the contact form, with a way on to the commercial planner. Structured data names the area's towns. %>
+<% area = website_fields(entry) %>
+<% content_for :nav, "over_photo" %>
+<% content_for :head do %>
+  <%= website_seo_tags entry, description: area.summary, image: area.image.presence || healing_settings.share_image %>
+  <%= healing_service_json_ld name: "Garden & landscape design in #{area.region}", description: area.summary, type: "Landscape design", towns: area.towns %>
+<% end %>
+<% links = capture do %>
+  <%= healing_button healing_settings.booking_label, href: "#contact", variant: :secondary, arrow: true %>
+  <%= healing_photo_link "For businesses", "#for-business" %>
+<% end %>
+<%= render "website/shared/page_header", eyebrow: area.region, title: entry.title, intro: area.summary,
+  image: area.image.presence || healing_settings.share_image, links: %>
+<section class="section">
+  <div class="container areas areas--entry">
+    <div class="areas__copy" data-reveal>
+      <p class="eyebrow">Where I work</p>
+      <h2 class="h2">Communities served</h2>
+      <% if area.intro.present? %>
+        <p class="lead muted"><%= website_plain_text(area.intro) %></p>
+      <% end %>
+      <ul class="chips chips--towns">
+        <% area.towns.each do |town| %>
+          <li class="chip"><%= healing_icon("map-pin") %><%= town %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="areas__map" data-reveal>
+      <%= render "website/shared/area_map", links: healing_area_links, counties: area.counties, base: healing_base,
+        description: "Map of #{area.region} within the service area in Southwest Michigan" %>
+    </div>
+  </div>
+</section>
+<% if area.growing.present? || area.commercial.present? %>
+  <section class="section section--muted">
+    <div class="container local-notes">
+      <% if area.growing.present? %>
+        <div class="local-note" data-reveal>
+          <span class="local-note__icon"><%= healing_icon("plant-2") %></span>
+          <h2 class="h3">Growing in <%= area.region %></h2>
+          <p class="muted"><%= website_plain_text(area.growing) %></p>
+        </div>
+      <% end %>
+      <% if area.commercial.present? %>
+        <div id="for-business" class="local-note" data-reveal>
+          <span class="local-note__icon"><%= healing_icon("building-store") %></span>
+          <h2 class="h3">For businesses here</h2>
+          <p class="muted"><%= website_plain_text(area.commercial) %></p>
+          <%= healing_button "Plan a commercial project", href: "/commercial#plan", variant: :outline, arrow: true %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+<% end %>
+<section class="section">
+  <div class="container">
+    <div data-reveal>
+      <p class="eyebrow">Services</p>
+      <h2 class="h2 section-head__title">For homes in <%= area.region %></h2>
+    </div>
+    <div class="more-services"><%= render "website/shared/service_cards" %></div>
+  </div>
+</section>
+<% if healing_commercial_services.any? %>
+  <section class="section section--muted">
+    <div class="container">
+      <div data-reveal>
+        <p class="eyebrow">Commercial</p>
+        <h2 class="h2 section-head__title">For businesses and properties</h2>
+      </div>
+      <div class="more-services"><%= render "website/shared/entry_cards", entries: healing_commercial_services %></div>
+    </div>
+  </section>
+<% end %>
+<% if healing_case_studies.any? %>
+  <section class="container container--grid more-studies">
+    <h2 class="h2 centered">Recent gardens</h2>
+    <%= render "website/shared/portfolio_grid", portfolios: healing_case_studies.first(3), morph: false %>
+  </section>
+<% end %>
+<%= render "website/shared/faq", eyebrow: "Questions", heading: "Questions from #{area.region}", items: area.faqs %>
+<%= render "website/shared/contact", source: "area: #{entry.title}" %>

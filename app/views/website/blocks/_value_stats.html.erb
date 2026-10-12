@@ -1,0 +1,22 @@
+<%# locals: (data:) -%>
+<%# Figures from published research, each with what it measures and its source, counting up as they come into view (healing/motion.js, data-count). %>
+<% background = {"tinted" => "section--muted", "dark" => "section--dark"}[data.background] %>
+<section class="section <%= background %>">
+  <div class="container">
+    <div class="section-head section-head--spaced" data-reveal>
+      <div class="section-head__intro">
+        <% if data.eyebrow.present? %>
+          <p class="eyebrow"><%= data.eyebrow %></p>
+        <% end %>
+        <h2 class="h2 section-head__title"><%= data.heading %></h2>
+        <% if data.intro.present? %>
+          <p class="lead muted"><%= data.intro %></p>
+        <% end %>
+      </div>
+    </div>
+    <%= render "website/shared/stats", stats: data.stats %>
+    <% if data.footnote.present? %>
+      <p class="small muted stats__footnote" data-reveal><%= data.footnote %></p>
+    <% end %>
+  </div>
+</section>

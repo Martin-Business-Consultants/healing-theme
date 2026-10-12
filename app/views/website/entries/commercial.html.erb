@@ -1,0 +1,81 @@
+<%# locals: (entry:) -%>
+<%# A commercial service's own page: what's included and who it suits, its illustration (Illustration: the rain garden, the seasons, or the service area map), how it works, its questions, the other commercial services, and the planner with this service ticked. %>
+<% service = website_fields(entry) %>
+<% content_for :nav, "over_photo" %>
+<% content_for :head do %>
+  <%= website_seo_tags entry, description: service.summary, image: service.image.presence || healing_settings.share_image %>
+  <%= healing_service_json_ld name: entry.title, description: service.summary, type: "Commercial landscaping", audience: "Businesses and property managers" %>
+<% end %>
+<% links = capture do %>
+  <%= healing_button "Plan a project", href: "#plan", variant: :secondary, arrow: true %>
+  <%= healing_photo_link "All commercial services", "/commercial" %>
+<% end %>
+<%= render "website/shared/page_header", eyebrow: "Commercial services", title: entry.title, intro: service.summary,
+  image: service.image.presence || healing_settings.share_image, links: %>
+<section class="section">
+  <div class="container service service--with-body">
+    <div data-reveal>
+      <p class="eyebrow">What's included</p>
+      <ul class="features">
+        <% service.features.each do |feature| %>
+          <li><%= healing_icon("check") %><span><%= feature %></span></li>
+        <% end %>
+      </ul>
+      <% if service.ideal_for.any? %>
+        <p class="eyebrow ideal-for__title">Ideal for</p>
+        <ul class="chips">
+          <% service.ideal_for.each do |item| %>
+            <li class="chip"><%= item %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div>
+      <% case service.graphic %>
+      <% when "rain_garden" %>
+        <%= render "website/shared/graphic_rain_garden" %>
+      <% when "seasons" %>
+        <%= render "website/shared/graphic_seasons" %>
+      <% when "map" %>
+        <div data-reveal><%= render "website/shared/area_map", links: healing_area_links, base: healing_base %></div>
+      <% end %>
+      <% if entry.body_markdown.present? %>
+        <div class="prose" data-reveal><%= website_markdown(entry.body_markdown) %></div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<% if service.steps.any? %>
+  <section class="section section--muted">
+    <div class="container">
+      <div data-reveal>
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2 section-head__title">From first visit to finished planting</h2>
+      </div>
+      <ol class="steps" data-reveal-group>
+        <% service.steps.each do |step| %>
+          <li class="step">
+            <h3 class="h3"><%= step.title %></h3>
+            <% if step.text.present? %>
+              <p class="muted"><%= website_plain_text(step.text) %></p>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </section>
+<% end %>
+<%= render "website/shared/testimonial_quote" %>
+<%= render "website/shared/faq", eyebrow: "Questions", heading: "About #{entry.title.downcase}", items: service.faqs %>
+<section class="section">
+  <div class="container">
+    <div data-reveal>
+      <p class="eyebrow">More for businesses</p>
+      <h2 class="h2 section-head__title">Other commercial services</h2>
+    </div>
+    <div class="more-services"><%= render "website/shared/entry_cards", entries: healing_commercial_services, exclude: entry.slug %></div>
+  </div>
+</section>
+<%= render "website/shared/planner", eyebrow: "Plan your project", heading: "Tell me about your property",
+  intro: "A few quick questions, and I'll come back within 1–2 business days with ideas, next steps and a rough budget.", source: "commercial: #{entry.title}",
+  checked: [service.planner_choice].compact_blank %>

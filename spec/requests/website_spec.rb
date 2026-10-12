@@ -69,25 +69,24 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
 
     expect(names - Form.find_by!(slug: "contact").fields.map { it["name"] }).to be_empty
 
-    services = form.css("select[name=service] option").map(&:text)
-    expect(services).to eq(SNAPSHOT["entries"].select { it["collection"] == "services" }.sort_by { it.dig("frontmatter", "order") }.map { it["title"] } + ["Not sure yet"])
-
-    post form["action"], params: {name: "Ann", email: "ann@example.com", message: "A shady yard", service: services.first, source: "contact"}, as: :json
+    post form["action"], params: {name: "Ann", email: "ann@example.com", message: "A shady yard", source: "contact"}, as: :json
     expect(response).to have_http_status(:created)
-    expect(FormSubmission.last.data).to include("name" => "Ann", "service" => services.first, "source" => "contact")
+    expect(FormSubmission.last.data).to include("name" => "Ann", "source" => "contact")
 
-    post form["action"], params: {name: "Ann", email: "ann@example.com", message: "A shady yard", service: "Hardscaping"}, as: :json
+    post form["action"], params: {name: "Ann", email: "ann@example.com"}, as: :json
     expect(response).to have_http_status(:unprocessable_content)
   end
 
   it "sends the contact form on to the thank-you page once Site settings has one, and keeps the thank-you on the form until then" do
+    settings = Global.find_by!(slug: "site_settings")
+    settings.update!(data: settings.data.merge("contact" => settings.data["contact"].except("thank_you_page")))
     get "/contact"
     expect(Nokogiri::HTML5(response.body).at_css("form[data-contact-form]")["data-redirect"]).to be_nil
 
-    settings = Global.find_by!(slug: "site_settings")
     settings.update!(data: settings.data.deep_merge("contact" => {"thank_you_page" => {"kind" => "page", "value" => "thank-you"}}))
-    Page.create!(slug: "thank-you", title: "Thank You", status: "published", locale: "en",
-      blocks: [{"type" => "page_title", "version" => 1, "data" => {"heading" => "Thank you"}}])
+    Page.find_or_create_by!(slug: "thank-you") do |page|
+      page.assign_attributes(title: "Thank You", status: "published", locale: "en", blocks: [{"type" => "page_title", "version" => 1, "data" => {"heading" => "Thank you"}}])
+    end
 
     get "/"
     expect(Nokogiri::HTML5(response.body).css("form[data-contact-form]").map { it["data-redirect"] }).to all(eq("/thank-you"))
@@ -138,6 +137,85 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     mail = FormSubmissionMailer.with(form_email: email, submission:, recipients: ["ann@example.com"]).deliver.message
     expect(mail.html_part.body.decoded).to include(%(src="cid:logo@cms"))
     expect(mail.attachments.sole).to be_inline
+  end
+
+  it "posts the commercial planner to the Forms plugin, with every field it draws, in steps" do
+    get "/commercial"
+    page = Nokogiri::HTML5(response.body)
+    form = page.at_css("form[data-planner]")
+    commercial = Form.find_by!(slug: "commercial")
+    names = form.css("input, select, textarea").map { it["name"] }.compact.uniq - [Form::HONEYPOT_FIELD]
+
+    expect(names).to match_array(commercial.fields.map { it["name"] })
+    expect(form.css("[data-planner-step]").size).to eq(5)
+    expect(form.css('input[name="property_type"]').map { it["value"] }).to eq(commercial.fields.find { it["name"] == "property_type" }["options"].map { it["value"] })
+    # Each service choice shows what that service includes.
+    expect(form.css(".choice--service .choice__text").size).to eq(4)
+
+    post form["action"], params: {property_type: "Office or corporate campus", location: "Portage", interest_garden_care: "Yes",
+      name: "Ann", email: "ann@example.com", estimate: "Offices; 10 years", source: "commercial"}, as: :json
+    expect(response).to have_http_status(:created)
+    expect(FormSubmission.last.data).to include("property_type" => "Office or corporate campus", "interest_garden_care" => "Yes", "estimate" => "Offices; 10 years")
+
+    post form["action"], params: {property_type: "Hardscaping", location: "Portage", name: "Ann", email: "ann@example.com"}, as: :json
+    expect(response).to have_http_status(:unprocessable_content)
+  end
+
+  it "picks the planner's kind of property on an industry's page, and ticks the service on a service's page" do
+    industry = SNAPSHOT["entries"].find { it["collection"] == "industries" }
+    get "/industries/#{industry["slug"]}"
+    expect(Nokogiri::HTML5(response.body).at_css('form[data-planner] input[name="property_type"][checked]')["value"]).to eq(industry.dig("frontmatter", "planner_choice"))
+
+    service = SNAPSHOT["entries"].find { it["collection"] == "commercial" }
+    get "/commercial/#{service["slug"]}"
+    expect(Nokogiri::HTML5(response.body).css("form[data-planner] input[type=checkbox][checked]").map { it["name"] }).to eq([service.dig("frontmatter", "planner_choice")])
+  end
+
+  it "gives the ROI calculator every industry's assumptions, and an industry's page its own alone" do
+    get "/commercial"
+    config = JSON.parse(Nokogiri::HTML5(response.body).at_css("[data-roi]")["data-roi"])
+    industries = SNAPSHOT["entries"].select { it["collection"] == "industries" }.sort_by { it.dig("frontmatter", "order") }
+
+    expect(config["industries"].map { it["slug"] }).to eq(industries.map { it["slug"] })
+    expect(config["industries"].first).to include("basis" => industries.first.dig("frontmatter", "calc_basis"),
+      "low" => industries.first.dig("frontmatter", "calc_uplift_low").to_f, "high" => industries.first.dig("frontmatter", "calc_uplift_high").to_f)
+    expect(config["ramp"]).to all(be_between(0, 1))
+    expect(config["lawn"].size).to eq(2)
+
+    get "/industries/#{industries.last["slug"]}"
+    expect(JSON.parse(Nokogiri::HTML5(response.body).at_css("[data-roi]")["data-roi"])["industries"].map { it["slug"] }).to eq([industries.last["slug"]])
+  end
+
+  it "tells search engines and AI assistants what the business is, where it works and what it answers" do
+    json_ld = ->(body) { Nokogiri::HTML5(body).css('script[type="application/ld+json"]').map { JSON.parse(it.text) } }
+
+    Setting.set("general", Setting.get("general").merge("city" => "Richland", "state" => "MI"))
+    get "/"
+    business = json_ld.(response.body).find { it["@type"] == "LocalBusiness" }
+    expect(business["@id"]).to end_with("/#organization")
+    expect(business["address"]).to include("addressLocality" => "Richland", "addressRegion" => "MI")
+    expect(business["areaServed"].map { it["name"] }).to include("Kalamazoo", "Battle Creek")
+    expect(business.dig("hasOfferCatalog", "itemListElement").map { it["name"] }).to eq(["Home gardens", "Commercial"])
+
+    area = SNAPSHOT["entries"].find { it["collection"] == "service-areas" }
+    get "/service-areas/#{area["slug"]}"
+    data = json_ld.(response.body)
+    expect(data.find { it["@type"] == "Service" }["areaServed"].map { it["name"] }).to eq(area.dig("frontmatter", "towns"))
+    expect(data.find { it["@type"] == "FAQPage" }["mainEntity"].size).to eq(area.dig("frontmatter", "faqs").size)
+
+    get "/commercial"
+    expect(json_ld.(response.body).map { it["@type"] }).to include("FAQPage")
+  end
+
+  it "maps the service areas, each county linking to its area, and lists them in the footer" do
+    get "/service-areas"
+    page = Nokogiri::HTML5(response.body)
+    areas = SNAPSHOT["entries"].select { it["collection"] == "service-areas" }
+
+    areas.each do |area|
+      area.dig("frontmatter", "counties").each { expect(page.at_css(%(.area-map a[href="/service-areas/#{area["slug"]}"] [data-county="#{it}"]))).to be_present }
+    end
+    expect(page.css(".footer__areas a").map { it["href"] }).to match_array(areas.map { "/service-areas/#{it["slug"]}" })
   end
 
   it "loads its own scripts and stylesheet, none of the admin's" do

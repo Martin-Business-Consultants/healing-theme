@@ -5,7 +5,8 @@
 <% content_for :nav, "over_photo" if over_photo %>
 <% content_for :head do %>
   <%= website_seo_tags page, image: healing_settings.share_image %>
-  <% if page.path == "home" && page.seo.to_h["json_ld"].blank? %>
+  <%# The business, on the home page: the same #organization as the SEO panel's JSON-LD, so search engines merge the two. %>
+  <% if page.path == "home" %>
     <%= render "website/shared/business_json_ld", page: %>
   <% end %>
 <% end %>

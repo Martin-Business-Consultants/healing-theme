@@ -1,6 +1,8 @@
 // The contact form posts to the Forms plugin without leaving the page:
 // the thank-you from the form, or each field's error beside it. Once sent,
-// it goes on to the thank-you page instead, when the site has one.
+// it goes on to the thank-you page instead, when the site has one. The
+// commercial planner posts the same way, and hears "contact-form:errors"
+// and "contact-form:sent" (healing/planner.js).
 const FALLBACK = "Couldn't send that. Please check your connection and try again."
 const MESSAGES = {
   captcha_failed: "Please complete the check and try again.",
@@ -18,6 +20,7 @@ function preselect(form) {
 }
 
 function showErrors(form, errors) {
+  form.dispatchEvent(new CustomEvent("contact-form:errors", { detail: { errors } }))
   for (const [name, messages] of Object.entries(errors)) {
     const el = form.querySelector(`[data-error-for="${CSS.escape(name)}"]`)
     if (!el) continue
@@ -35,6 +38,7 @@ async function submit(event) {
   const data = new FormData(form)
   const done = () => {
     form.reset()
+    form.dispatchEvent(new CustomEvent("contact-form:sent"))
     status.textContent = form.dataset.success || "Thank you!"
     status.hidden = false
   }

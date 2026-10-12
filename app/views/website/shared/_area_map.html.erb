@@ -1,0 +1,75 @@
+<%# locals: (links: {}, counties: [], base: nil, description: "Map of the service area in Southwest Michigan") -%>
+<%# Southwest Michigan, drawn from the US Census county boundaries (script/area_map.py made it). The five counties served link to their area's page (`links`, county => href); `counties` brings some forward; the pin is Richland, the home base. Drawn in on scroll (healing/area_map.js). %>
+<% counties = Array(counties) %>
+<svg class="area-map" viewBox="0 0 800 500" role="img" aria-label="<%= description %>" data-area-map>
+  <defs><clipPath id="area-map-frame"><rect width="800" height="500" rx="24" /></clipPath></defs>
+  <g clip-path="url(#area-map-frame)">
+    <rect class="area-map__lake" width="800" height="500" />
+    <text class="area-map__water" x="43" y="146" transform="rotate(-90 43 146)">Lake Michigan</text>
+    <path class="area-map__context" d="M308.5 -193.9L309.4 -96.0L310.7 -71.3L311.9 51.6L135.0 51.9L134.2 42.8L133.8 15.0L134.2 0.5L132.8 -13.2L132.0 -33.2L127.8 -72.1L125.1 -87.5L120.3 -106.6L117.9 -110.9L117.7 -116.3L116.0 -125.5L108.8 -145.1L260.0 -145.5L259.6 -194.3L308.5 -193.9Z" />
+    <path class="area-map__context" d="M308.6 -243.3L399.3 -244.0L403.1 -244.0L506.9 -243.9L506.8 -145.4L508.0 50.6L410.1 51.6L340.8 51.6L311.9 51.6L310.7 -71.3L309.4 -96.0L308.5 -193.9L308.6 -243.3Z" />
+    <path class="area-map__context" d="M506.8 -145.4L704.1 -145.4L704.0 50.3L605.6 50.1L508.0 50.6L506.8 -145.4Z" />
+    <path class="area-map__context" d="M802.2 246.1L753.2 246.3L606.7 246.4L605.6 50.1L704.0 50.3L801.2 50.6L802.2 246.1Z" />
+    <path class="area-map__context" d="M996.4 442.9L900.5 441.9L756.9 443.6L753.2 246.3L802.2 246.1L992.8 244.6L996.8 244.6L996.4 442.9Z" />
+    <path class="area-map__context" d="M528.6 442.8L708.4 442.4L708.9 618.0L664.4 618.2L652.6 618.3L648.2 618.2L620.7 618.1L587.8 618.1L585.4 618.1L565.0 618.2L554.9 618.1L539.8 618.1L523.5 618.0L515.3 618.0L514.6 442.9L528.6 442.8Z" />
+    <path class="area-map__context" d="M335.9 618.5L325.3 618.5L315.0 618.5L308.2 618.5L321.1 596.2L320.0 444.2L514.6 442.9L515.2 618.0L512.7 618.0L508.6 617.9L504.5 618.0L499.3 618.0L491.2 618.0L479.2 618.0L459.1 618.1L457.0 618.2L422.4 618.3L384.4 618.5L378.2 618.5L374.0 618.4L367.8 618.5L366.5 618.5L362.8 618.5L335.9 618.5Z" />
+    <path class="area-map__context" d="M129.2 443.0L320.0 444.2L321.1 596.2L308.2 618.5L274.7 618.3L273.5 618.3L267.8 618.3L232.1 618.1L225.3 618.0L220.1 618.0L195.7 617.8L169.8 617.7L131.4 618.0L127.9 618.0L129.2 443.0Z" />
+    <path class="area-map__context" d="M-19.5 514.7L-12.6 493.6L-12.1 492.2L-11.3 489.6L-9.2 483.3L-6.2 477.0L-4.5 473.5L-3.0 470.5L-0.7 465.6L0.2 463.7L0.9 462.2L10.6 442.1L13.7 435.7L18.4 424.1L20.4 416.7L23.0 413.8L28.1 407.8L29.1 406.6L38.8 393.3L40.0 391.7L54.0 372.8L54.8 371.6L56.2 369.6L57.8 367.2L61.3 362.0L62.5 360.0L63.4 358.4L70.3 346.6L128.9 346.4L129.2 443.0L127.9 618.0L111.5 617.9L13.5 618.2L6.3 618.3L4.2 618.3L-43.8 618.2L-88.0 618.0L-110.4 617.8L-112.0 617.8L-120.0 617.8L-111.0 611.3L-108.0 609.1L-101.0 604.3L-99.7 603.3L-90.0 595.7L-83.3 590.5L-75.7 584.6L-67.7 577.2L-60.3 570.5L-47.5 556.4L-46.0 554.7L-39.6 547.6L-37.1 544.8L-36.0 543.6L-34.2 541.2L-32.3 538.2L-27.4 530.7L-26.3 529.0L-22.5 521.1L-21.7 519.5L-21.1 518.2L-20.1 516.2L-19.5 514.7Z" />
+    <path class="area-map__context" d="M985.6 46.8L988.1 83.9L992.8 244.6L802.2 246.1L801.2 50.6L900.3 50.6L900.3 47.3L985.6 46.8Z" />
+    <path class="area-map__context" d="M886.7 648.4L885.5 648.5L869.5 648.9L716.8 653.9L716.9 647.5L716.9 640.1L716.9 633.2L716.8 630.6L716.8 627.5L711.5 617.9L708.9 618.0L708.4 442.4L756.9 443.6L900.5 441.9L901.7 647.8L886.7 648.4Z" />
+    <path class="area-map__context" d="M898.6 -144.9L899.5 -53.4L900.3 47.3L900.3 50.6L801.2 50.6L704.0 50.3L704.1 -145.4L898.6 -144.9Z" />
+  </g>
+  <g class="area-map__counties">
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("allegan"), "is-dimmed" => counties.any? && !counties.include?("allegan")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="allegan" d="M311.9 51.6L340.8 51.6L410.1 51.6L411.1 246.4L319.4 246.8L108.1 247.6L113.2 233.8L118.1 213.4L121.5 182.8L121.8 179.8L124.1 165.8L125.8 159.9L127.1 155.4L127.9 150.1L126.7 124.9L127.7 120.8L132.1 109.9L135.1 94.3L135.9 79.0L135.3 54.6L135.0 51.9L311.9 51.6Z" />
+      <text class="area-map__county-name" x="213" y="112" text-anchor="middle">ALLEGAN</text>
+    <% end %>
+    <%= links["allegan"] ? link_to(county, links["allegan"], class: "area-map__link", "aria-label": "Allegan County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("barry"), "is-dimmed" => counties.any? && !counties.include?("barry")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="barry" d="M605.6 50.1L606.7 246.4L512.5 247.3L411.1 246.4L410.1 51.6L508.0 50.6L605.6 50.1Z" />
+      <text class="area-map__county-name" x="553" y="166" text-anchor="middle">BARRY</text>
+    <% end %>
+    <%= links["barry"] ? link_to(county, links["barry"], class: "area-map__link", "aria-label": "Barry County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("calhoun"), "is-dimmed" => counties.any? && !counties.include?("calhoun")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="calhoun" d="M528.6 442.8L514.6 442.9L513.2 344.9L512.2 249.0L512.5 247.3L606.7 246.4L753.2 246.3L756.9 443.6L708.4 442.4L528.6 442.8Z" />
+      <text class="area-map__county-name" x="645" y="388" text-anchor="middle">CALHOUN</text>
+    <% end %>
+    <%= links["calhoun"] ? link_to(county, links["calhoun"], class: "area-map__link", "aria-label": "Calhoun County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("kalamazoo"), "is-dimmed" => counties.any? && !counties.include?("kalamazoo")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="kalamazoo" d="M512.5 247.3L512.2 249.0L513.2 344.9L514.6 442.9L320.0 444.2L319.4 246.8L411.1 246.4L512.5 247.3Z" />
+      <text class="area-map__county-name" x="417" y="416" text-anchor="middle">KALAMAZOO</text>
+    <% end %>
+    <%= links["kalamazoo"] ? link_to(county, links["kalamazoo"], class: "area-map__link", "aria-label": "Kalamazoo County") : county %>
+    <% county_class = class_names("area-map__county", "is-highlighted" => counties.include?("van-buren"), "is-dimmed" => counties.any? && !counties.include?("van-buren")) %>
+    <% county = capture do %>
+      <path class="<%= county_class %>" data-county="van-buren" d="M129.2 443.0L128.9 346.4L70.3 346.6L73.9 340.4L88.2 308.6L98.4 281.9L103.7 261.5L103.5 257.4L106.8 250.9L108.1 247.6L319.4 246.8L320.0 444.2L129.2 443.0Z" />
+      <text class="area-map__county-name" x="172" y="315" text-anchor="middle">VAN BUREN</text>
+    <% end %>
+    <%= links["van-buren"] ? link_to(county, links["van-buren"], class: "area-map__link", "aria-label": "Van Buren County") : county %>
+  </g>
+  <g class="area-map__towns" aria-hidden="true">
+    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="392.9" cy="319.3" r="4" /><text x="401.9" y="323.3" text-anchor="start">Kalamazoo</text></g>
+    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="395.9" cy="370.1" r="4" /><text x="404.9" y="374.1" text-anchor="start">Portage</text></g>
+    <g class="area-map__town" data-town-county="kalamazoo"><circle cx="489.9" cy="293.8" r="4" /><text x="498.9" y="305.8" text-anchor="start">Augusta</text></g>
+    <g class="area-map__town" data-town-county="calhoun"><circle cx="561.9" cy="302.7" r="4" /><text x="570.9" y="306.7" text-anchor="start">Battle Creek</text></g>
+    <g class="area-map__town" data-town-county="calhoun"><circle cx="651.6" cy="330.2" r="4" /><text x="660.6" y="334.2" text-anchor="start">Marshall</text></g>
+    <g class="area-map__town" data-town-county="allegan"><circle cx="367.3" cy="235.9" r="4" /><text x="358.3" y="239.9" text-anchor="end">Plainwell</text></g>
+    <g class="area-map__town" data-town-county="allegan"><circle cx="347.6" cy="224.4" r="4" /><text x="338.6" y="218.4" text-anchor="end">Otsego</text></g>
+    <g class="area-map__town" data-town-county="allegan"><circle cx="281.7" cy="185.8" r="4" /><text x="290.7" y="189.8" text-anchor="start">Allegan</text></g>
+    <g class="area-map__town" data-town-county="van-buren"><circle cx="108.2" cy="256.7" r="4" /><text x="117.2" y="260.7" text-anchor="start">South Haven</text></g>
+    <g class="area-map__town" data-town-county="van-buren"><circle cx="192.2" cy="360.8" r="4" /><text x="201.2" y="364.8" text-anchor="start">Paw Paw</text></g>
+    <g class="area-map__town" data-town-county="barry"><circle cx="515.8" cy="118.4" r="4" /><text x="524.8" y="122.4" text-anchor="start">Hastings</text></g>
+    <g class="area-map__town" data-town-county="barry"><circle cx="467.3" cy="203.9" r="4" /><text x="476.3" y="207.9" text-anchor="start">Delton</text></g>
+    <g class="area-map__town" data-town-county="barry"><circle cx="416.6" cy="132.0" r="4" /><text x="425.6" y="136.0" text-anchor="start">Gun Lake</text></g>
+  </g>
+  <g class="area-map__base" transform="translate(447.6 271.3)" data-area-base>
+    <circle class="area-map__pulse" r="18" />
+    <path class="area-map__pin" d="M0 0c-7-9-12-15-12-21a12 12 0 0 1 24 0c0 6-5 12-12 21z" />
+    <circle class="area-map__pin-dot" cy="-21" r="4.5" />
+    <% if base.present? %><text class="area-map__base-label" x="16" y="-26"><%= base %></text><% end %>
+  </g>
+</svg>

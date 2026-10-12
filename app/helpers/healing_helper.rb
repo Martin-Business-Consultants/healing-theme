@@ -14,6 +14,55 @@ module HealingHelper
 
   def healing_testimonials = website_entries(:testimonials)
 
+  def healing_industries = website_entries(:industries)
+
+  def healing_commercial_services = website_entries(:commercial)
+
+  def healing_service_areas = website_entries(:"service-areas")
+
+  # Each county on the service area map, to the page of the area it's in.
+  def healing_area_links
+    healing_service_areas.each_with_object({}) do |area, links|
+      website_fields(area).counties.each { links[it] ||= website_path(area) }
+    end
+  end
+
+  # Where the business is based (Settings › General), e.g. "Richland, MI": the map's pin.
+  def healing_base = website_settings.values_at("city", "state").compact_blank.join(", ").presence
+
+  # Every town the service areas name, for the business's areaServed.
+  def healing_towns = healing_service_areas.flat_map { website_fields(it).towns }.uniq
+
+  # A percentage typed into a string field ("1.5", "2%"), as a number.
+  def healing_percent(value) = value.to_s.delete("%").strip.to_f
+
+  # Questions and answers ({question, answer} rows) as schema.org's FAQPage,
+  # for search engines and AI assistants; nil when there are none.
+  def healing_faq_json_ld(items)
+    items = Array(items).select { it.question.present? && it.answer.present? }
+    return if items.empty?
+
+    website_json_ld({"@context" => "https://schema.org", "@type" => "FAQPage", "mainEntity" => items.map do |item|
+      {"@type" => "Question", "name" => item.question, "acceptedAnswer" => {"@type" => "Answer", "text" => website_plain_text(item.answer)}}
+    end})
+  end
+
+  # A service the business offers, as schema.org's Service, provided by the
+  # organization the CMS describes (WebsiteHelper's #organization) where the
+  # service areas reach (or `towns`).
+  def healing_service_json_ld(name:, description:, type: nil, audience: nil, towns: healing_towns)
+    home = website_url("/")
+    website_json_ld({"@context" => "https://schema.org", "@type" => "Service", "name" => name, "description" => description,
+      "serviceType" => type, "url" => website_url(request.path), "provider" => {"@id" => "#{home}#organization"},
+      "audience" => ({"@type" => "BusinessAudience", "name" => audience} if audience),
+      "areaServed" => towns.map { {"@type" => "City", "name" => it} }.presence}.compact)
+  end
+
+  # The "commercial" form (the Forms plugin), drawn step by step by commercial_planner.
+  def healing_planner_form
+    @healing_planner_form ||= Form.find_by!(slug: "commercial", status: "published")
+  end
+
   # Cloudflare Turnstile ({site_key:, theme:}; theme is auto, light or dark)
   # when Settings › Forms has it set up (the Forms plugin then refuses a
   # submission without its token), else nil.
@@ -44,7 +93,7 @@ module HealingHelper
   # from a collection, the services say); `selected` picks the one for an
   # entry (a service page preselects its service). A name ending in "date"
   # is a date picker.
-  def healing_form_control(field, id:, compact:, selected: nil)
+  def healing_form_control(field, id:, compact: false, selected: nil)
     name = field["name"]
     attributes = {class: "field__input", id:, name:, required: field["required"].present?}
     case field["type"]

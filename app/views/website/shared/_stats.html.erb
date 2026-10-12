@@ -1,0 +1,21 @@
+<%# locals: (stats:) -%>
+<%# Research figures ({figure, label, source, source_url} rows) as tiles; a figure's first number counts up into view (healing/motion.js, data-count). %>
+<% if stats.any? %>
+  <ul class="stats" data-reveal-group>
+    <% stats.each do |stat| %>
+      <li class="stat">
+        <p class="stat__figure" data-count><%= stat.figure %></p>
+        <p class="stat__label"><%= stat.label %></p>
+        <% if stat.source.present? %>
+          <p class="stat__source small muted">
+            <% if stat.source_url.present? %>
+              <%= link_to stat.source_url, target: "_blank", rel: "noopener" do %><%= stat.source %><%= healing_icon("external-link", label: "opens in a new tab") %><% end %>
+            <% else %>
+              <%= stat.source %>
+            <% end %>
+          </p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

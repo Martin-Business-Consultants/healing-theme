@@ -1,5 +1,5 @@
 <%# locals: () -%>
-<%# The "footer" global: the first link group left of the logo, the second right of it, any more beside the copyright. %>
+<%# The "footer" global: the first link group left of the logo, the second right of it, any more beside the copyright; its address, and a link to every service area. %>
 <% footer = website_global(:footer) %>
 <% groups = footer.columns.map { |column| column.items.map { {label: it.label, href: website_href(it.link) || "/"} } } %>
 <% left, right, *more = groups %>
@@ -22,6 +22,16 @@
     </div>
     <% if healing_settings.footer_blurb.present? %>
       <p class="footer__blurb muted"><%= healing_settings.footer_blurb %></p>
+    <% end %>
+    <% if footer.address.present? %>
+      <p class="footer__address small muted"><%= healing_icon("map-pin") %><span><%= footer.address %></span></p>
+    <% end %>
+    <% if (areas = healing_service_areas).any? %>
+      <nav class="footer__areas small" aria-label="Service areas">
+        <% areas.each do |area| %>
+          <%= link_to area.title, website_path(area) %>
+        <% end %>
+      </nav>
     <% end %>
     <% if healing_settings.socials.any? %>
       <div class="footer__socials">

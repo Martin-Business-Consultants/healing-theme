@@ -1,0 +1,91 @@
+<%# locals: (entry:) -%>
+<%# An industry's own page: what planting is worth to it, the research behind that, the ROI calculator for it alone, what we'd plant, its questions, and the planner with its kind of property chosen. %>
+<% industry = website_fields(entry) %>
+<% content_for :nav, "over_photo" %>
+<% content_for :head do %>
+  <%= website_seo_tags entry, description: industry.summary, image: industry.image.presence || healing_settings.share_image %>
+  <%= healing_service_json_ld name: "Commercial landscape design for #{entry.title.downcase}", description: industry.summary, type: "Commercial landscape design", audience: entry.title %>
+<% end %>
+<% links = capture do %>
+  <%= healing_button "Estimate your return", href: "#roi", variant: :secondary, arrow: true %>
+  <%= healing_photo_link "Plan a project", "#plan" %>
+<% end %>
+<%= render "website/shared/page_header", eyebrow: "Commercial landscaping", title: entry.title, intro: industry.summary,
+  image: industry.image.presence || healing_settings.share_image, links: %>
+<% if industry.headline.present? || industry.intro.present? %>
+  <section class="section">
+    <div class="container statement">
+      <p class="eyebrow statement__eyebrow" data-reveal>Why it pays</p>
+      <div data-reveal>
+        <% if industry.headline.present? %>
+          <h2 class="h2 statement__text"><%= industry.headline %></h2>
+        <% end %>
+        <% if industry.intro.present? %>
+          <p class="lead muted"><%= website_plain_text(industry.intro) %></p>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
+<% if industry.stats.any? %>
+  <section class="section section--muted">
+    <div class="container">
+      <div data-reveal>
+        <p class="eyebrow">The research</p>
+        <h2 class="h2 section-head__title">What the studies found</h2>
+      </div>
+      <%= render "website/shared/stats", stats: industry.stats %>
+    </div>
+  </section>
+<% end %>
+<% if industry.drivers.any? %>
+  <section class="section">
+    <div class="container">
+      <div data-reveal>
+        <p class="eyebrow">Where the value comes from</p>
+        <h2 class="h2 section-head__title">How better planting pays back</h2>
+      </div>
+      <ul class="drivers" data-reveal-group>
+        <% industry.drivers.each_with_index do |driver, index| %>
+          <li class="driver">
+            <span class="driver__num"><%= format("%02d", index + 1) %></span>
+            <h3 class="h3"><%= driver.title %></h3>
+            <% if driver.text.present? %>
+              <p class="muted"><%= website_plain_text(driver.text) %></p>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </section>
+<% end %>
+<%= render "website/shared/roi_calculator", eyebrow: "ROI calculator", heading: "What could planting return for you?", industry: entry,
+  intro: "Put in your own figures. The estimate uses conservative ranges drawn from the research above, and grows as the plantings fill in." %>
+<% if industry.ideas.any? %>
+  <section class="section section--muted">
+    <div class="container service">
+      <div data-reveal>
+        <p class="eyebrow">What we'd plant</p>
+        <h2 class="h2 section-head__title">Ideas for <%= entry.title.downcase %></h2>
+        <ul class="features">
+          <% industry.ideas.each do |idea| %>
+            <li><%= healing_icon("check") %><span><%= idea %></span></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </section>
+<% end %>
+<%= render "website/shared/testimonial_quote" %>
+<%= render "website/shared/faq", eyebrow: "Questions", heading: "Common questions from #{entry.title.downcase}", items: industry.faqs %>
+<section class="section">
+  <div class="container">
+    <div data-reveal>
+      <p class="eyebrow">Other industries</p>
+      <h2 class="h2 section-head__title">Planting that pays, wherever you do business</h2>
+    </div>
+    <div class="more-services"><%= render "website/shared/entry_cards", entries: healing_industries, exclude: entry.slug, link_label: "See the numbers" %></div>
+  </div>
+</section>
+<%= render "website/shared/planner", eyebrow: "Plan your project", heading: "Tell me about your property", property: industry.planner_choice.presence,
+  intro: "A few quick questions, and I'll come back within 1–2 business days with ideas, next steps and a rough budget.", source: "industry: #{entry.title}" %>
