@@ -2482,6 +2482,12 @@
             "help": "The drawing beside what's included: rain garden, seasons wheel, bed layers, care calendar, site analysis, planting plan, planting layers, spacing, healthy plant, container, herb spiral or the service area map"
           },
           {
+            "name": "planner_choice",
+            "label": "Planner choice",
+            "type": "string",
+            "help": "The garden planner's checkbox for this service: its field name in the Garden project form, e.g. interest_consultation"
+          },
+          {
             "name": "order",
             "label": "Order",
             "type": "integer",
@@ -3482,346 +3488,6 @@
   ],
   "pages": [
     {
-      "path": "garden-value",
-      "slug": "garden-value",
-      "title": "What a Garden Gives Back",
-      "locale": "en",
-      "blocks": [
-        {
-          "type": "page_header",
-          "version": 1,
-          "data": {
-            "eyebrow": "What a garden gives back",
-            "title": "A garden pays you back, in more ways than money",
-            "intro": "Home value, food from your own beds, time outdoors, less stress and rain soaked into your own ground. See what a garden could give back to you, with the research behind every number.",
-            "image": "24",
-            "button_label": "Calculate yours",
-            "button_link": {
-              "kind": "url",
-              "value": "#garden-value"
-            },
-            "secondary_label": "Book a consultation",
-            "secondary_link": {
-              "kind": "url",
-              "value": "#contact"
-            }
-          }
-        },
-        {
-          "type": "home_calculator",
-          "version": 1,
-          "data": {
-            "eyebrow": "Garden calculator",
-            "heading": "What could your garden give back?",
-            "intro": "Put in your own yard. The estimate uses conservative figures from published research and grows as the garden fills in. Switch between money, health, mind and earth."
-          }
-        },
-        {
-          "type": "value_stats",
-          "version": 1,
-          "data": {
-            "eyebrow": "Money",
-            "heading": "A garden adds value you can see",
-            "background": "plain",
-            "intro": "Buyers notice a well-planted yard, landscaping tends to pay back what it costs, and food beds put produce on the table.",
-            "stats": [
-              {
-                "figure": "5–11%",
-                "label": "higher value buyers put on a well-landscaped home than the same home with no landscape.",
-                "source": "Behe et al., Journal of Environmental Horticulture, 2005",
-                "source_url": "https://www.pubs.ext.vt.edu/426/426-087/426-087.html"
-              },
-              {
-                "figure": "100%",
-                "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
-                "source": "NAR & NALP, Remodeling Impact Report, 2023",
-                "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
-              },
-              {
-                "figure": "$1",
-                "label": "of produce a square foot: about half a pound of vegetables at $2 a pound, in a typical food garden.",
-                "source": "National Gardening Association, 2009",
-                "source_url": "https://gardenresearch.com/files/2009-Impact-of-Gardening-in-America-White-Paper.pdf"
-              },
-              {
-                "figure": "30%",
-                "label": "or more of household water goes outdoors, mostly to keep lawns green.",
-                "source": "U.S. EPA WaterSense",
-                "source_url": "https://www.epa.gov/watersense/statistics-and-facts"
-              }
-            ],
-            "footnote": "Buyers' estimates run ahead of sale prices, so the calculator uses 1–3% for home value, and never more than the garden cost."
-          }
-        },
-        {
-          "type": "value_stats",
-          "version": 1,
-          "data": {
-            "eyebrow": "Health & mind",
-            "heading": "Time in the garden is good for you",
-            "background": "tinted",
-            "intro": "Digging, planting and weeding count as exercise, and gardening has been shown to bring stress down.",
-            "stats": [
-              {
-                "figure": "150 min",
-                "label": "a week of moderate activity is what adults are advised to get; active gardening counts.",
-                "source": "Physical Activity Guidelines for Americans, 2018",
-                "source_url": "https://odphp.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf"
-              },
-              {
-                "figure": "3.8 METs",
-                "label": "for moderate-effort gardening: the same moderate band as brisk walking.",
-                "source": "2024 Adult Compendium of Physical Activities",
-                "source_url": "https://pacompendium.com/lawn-garden"
-              },
-              {
-                "figure": "30 min",
-                "label": "of gardening after a stressful task lowered cortisol more than 30 minutes of reading, and mood fully recovered.",
-                "source": "Van den Berg & Custers, Journal of Health Psychology, 2011",
-                "source_url": "https://blogs.ubc.ca/2017wufor200/files/2017/01/Gardening-promotes-neuroendocrine-and-affective-restoration-from-stress-van-den-Berg-and-Custers-2011.pdf"
-              },
-              {
-                "figure": "24% → 53%",
-                "label": "of residents with healthy daily cortisol patterns, after plants were added to their bare front gardens.",
-                "source": "Chalmin-Pui et al., Landscape and Urban Planning, 2021",
-                "source_url": "https://eprints.whiterose.ac.uk/166215"
-              }
-            ],
-            "footnote": "Across 22 studies, gardening was linked to less depression and anxiety and more life satisfaction (Soga, Gaston & Yamaura, Preventive Medicine Reports, 2017)."
-          }
-        },
-        {
-          "type": "value_stats",
-          "version": 1,
-          "data": {
-            "eyebrow": "Earth",
-            "heading": "And it gives back to the land",
-            "background": "dark",
-            "intro": "Native plantings feed birds and pollinators, and rain gardens keep rain where it falls.",
-            "stats": [
-              {
-                "figure": "623 gal",
-                "label": "of water fall on every 1,000 square feet of roof in an inch of rain.",
-                "source": "USGS Water Science School",
-                "source_url": "https://www.usgs.gov/water-science-school/science/water-qa-how-much-water-falls-during-a-storm"
-              },
-              {
-                "figure": "96–100%",
-                "label": "of rain and snowmelt events held and soaked in by rain gardens over four years.",
-                "source": "USGS Scientific Investigations Report 2010-5077",
-                "source_url": "https://pubs.usgs.gov/publication/sir20105077"
-              },
-              {
-                "figure": "70%",
-                "label": "native plants or more: the share a yard needs for chickadees to raise enough young to sustain their numbers.",
-                "source": "Narango, Tallamy & Marra, PNAS, 2018",
-                "source_url": "https://www.pnas.org/doi/10.1073/pnas.1809259115"
-              }
-            ]
-          }
-        },
-        {
-          "type": "faq",
-          "version": 1,
-          "data": {
-            "eyebrow": "Questions",
-            "heading": "About the garden calculator",
-            "items": [
-              {
-                "question": "Where do the numbers come from?",
-                "answer": "From published research and public data: home value studies, the Compendium of Physical Activities, federal activity guidelines, NOAA rainfall for Kalamazoo and USGS rain garden research. Each one is linked on this page, and the calculator scales them down for a single home garden."
-              },
-              {
-                "question": "Will a garden really raise my home's value?",
-                "answer": "Buyers say a well-landscaped home is worth 5–11% more, and Realtors estimate a landscape upgrade recovers about what it costs. Sale prices move less than buyers' estimates, so the calculator assumes 1–3%, and never more than the garden cost."
-              },
-              {
-                "question": "Does gardening count as exercise?",
-                "answer": "Active gardening, like digging, planting and weeding, is moderate activity. The calculator counts half of your garden time as active, against the 150 minutes a week adults are advised to get."
-              },
-              {
-                "question": "Do I need a rain garden to count the rain?",
-                "answer": "Yes. Put in the roof area that would drain to one, and the calculator estimates what a well-sized rain garden would soak into your ground each year, using Kalamazoo's average rainfall."
-              }
-            ]
-          }
-        },
-        {
-          "type": "contact",
-          "version": 1,
-          "data": {
-            "heading": "Let's plan a garden that gives back",
-            "source": "garden value"
-          }
-        }
-      ],
-      "frontmatter": {},
-      "seo": {
-        "meta_title": "What a Garden Gives Back: Calculator | Healing Earth Design",
-        "meta_description": "Estimate what a home garden gives back: home value, food, exercise, less stress and rain kept on site. Research-backed figures for Southwest Michigan.",
-        "og_image_id": "24"
-      }
-    },
-    {
-      "path": "services",
-      "slug": "services",
-      "title": "Services",
-      "locale": "en",
-      "blocks": [
-        {
-          "type": "page_header",
-          "version": 1,
-          "data": {
-            "eyebrow": "Services",
-            "title": "Plant-forward help, from first visit to planting day",
-            "intro": "Every service is tailored to your space, lifestyle, and experience level. All of it is focused on plants, with no hardscape installation.",
-            "image": "43",
-            "image_position": "50% 60%",
-            "button_label": "Book a garden consultation",
-            "button_link": {
-              "kind": "url",
-              "value": "#contact"
-            }
-          }
-        },
-        {
-          "type": "services_list",
-          "version": 1,
-          "data": {
-            "background": "plain"
-          }
-        },
-        {
-          "type": "cta_band",
-          "version": 1,
-          "data": {
-            "heading": "What could a garden give back to you?",
-            "body": "Home value, food, exercise, less stress and rain kept on site. Run the numbers for your own yard.",
-            "background": "primary",
-            "ctas": [
-              {
-                "label": "Try the garden calculator",
-                "url": {
-                  "kind": "page",
-                  "value": "garden-value"
-                },
-                "style": "primary"
-              }
-            ]
-          }
-        },
-        {
-          "type": "cta_band",
-          "version": 1,
-          "data": {
-            "heading": "Not sure where to start?",
-            "body": "Most projects begin with a garden consultation. We'll look at your site together and decide what comes next.",
-            "ctas": [
-              {
-                "label": "About consultations",
-                "url": {
-                  "kind": "entry",
-                  "value": "garden-consultation",
-                  "collection": "services"
-                },
-                "style": "primary"
-              }
-            ],
-            "background": "muted"
-          }
-        },
-        {
-          "type": "pull_quote",
-          "version": 1,
-          "data": {}
-        },
-        {
-          "type": "contact",
-          "version": 1,
-          "data": {
-            "source": "services"
-          }
-        }
-      ],
-      "frontmatter": {},
-      "seo": {
-        "meta_title": "Services | Healing Earth Design",
-        "meta_description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
-        "og_image_id": "2",
-        "json_ld": {
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "CollectionPage",
-              "@id": "https://healingearthdesignbysarah.com/services#main",
-              "url": "https://healingearthdesignbysarah.com/services",
-              "name": "Services",
-              "description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
-              "isPartOf": {
-                "@id": "https://healingearthdesignbysarah.com/#website"
-              },
-              "inLanguage": "en",
-              "breadcrumb": {
-                "@id": "https://healingearthdesignbysarah.com/services#breadcrumb"
-              },
-              "primaryImageOfPage": {
-                "@type": "ImageObject",
-                "url": "https://healingearthdesignbysarah.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--a4c2dc789b9de03e8a739c7360e6c7645655b830/IMG_0021.webp"
-              },
-              "about": {
-                "@id": "https://healingearthdesignbysarah.com/#organization"
-              },
-              "mainEntity": {
-                "@type": "ItemList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service"
-                    },
-                    "name": "Detailed Landscape Design"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/garden-consultation#service"
-                    },
-                    "name": "Garden Consultation"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/installation-assistance#service"
-                    },
-                    "name": "Installation Assistance"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 4,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service"
-                    },
-                    "name": "Simple Planting Plan"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 5,
-                    "item": {
-                      "@id": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance#service"
-                    },
-                    "name": "Plant Shopping Assistance"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
       "path": "service-areas",
       "slug": "service-areas",
       "title": "Service Areas",
@@ -4319,6 +3985,346 @@
                 "Native and pollinator plants",
                 "Sustainable horticulture"
               ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "path": "garden-value",
+      "slug": "garden-value",
+      "title": "What a Garden Gives Back",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "What a garden gives back",
+            "title": "A garden pays you back, in more ways than money",
+            "intro": "Home value, food from your own beds, time outdoors, less stress and rain soaked into your own ground. See what a garden could give back to you, with the research behind every number.",
+            "image": "24",
+            "button_label": "Calculate yours",
+            "button_link": {
+              "kind": "url",
+              "value": "#garden-value"
+            },
+            "secondary_label": "Book a consultation",
+            "secondary_link": {
+              "kind": "url",
+              "value": "#contact"
+            }
+          }
+        },
+        {
+          "type": "home_calculator",
+          "version": 1,
+          "data": {
+            "eyebrow": "Garden calculator",
+            "heading": "What could your garden give back?",
+            "intro": "Put in your own yard. The estimate uses conservative figures from published research and grows as the garden fills in. Switch between money, health, mind and earth."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Money",
+            "heading": "A garden adds value you can see",
+            "background": "plain",
+            "intro": "Buyers notice a well-planted yard, landscaping tends to pay back what it costs, and food beds put produce on the table.",
+            "stats": [
+              {
+                "figure": "5–11%",
+                "label": "higher value buyers put on a well-landscaped home than the same home with no landscape.",
+                "source": "Behe et al., Journal of Environmental Horticulture, 2005",
+                "source_url": "https://www.pubs.ext.vt.edu/426/426-087/426-087.html"
+              },
+              {
+                "figure": "100%",
+                "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
+                "source": "NAR & NALP, Remodeling Impact Report, 2023",
+                "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+              },
+              {
+                "figure": "$1",
+                "label": "of produce a square foot: about half a pound of vegetables at $2 a pound, in a typical food garden.",
+                "source": "National Gardening Association, 2009",
+                "source_url": "https://gardenresearch.com/files/2009-Impact-of-Gardening-in-America-White-Paper.pdf"
+              },
+              {
+                "figure": "30%",
+                "label": "or more of household water goes outdoors, mostly to keep lawns green.",
+                "source": "U.S. EPA WaterSense",
+                "source_url": "https://www.epa.gov/watersense/statistics-and-facts"
+              }
+            ],
+            "footnote": "Buyers' estimates run ahead of sale prices, so the calculator uses 1–3% for home value, and never more than the garden cost."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Health & mind",
+            "heading": "Time in the garden is good for you",
+            "background": "tinted",
+            "intro": "Digging, planting and weeding count as exercise, and gardening has been shown to bring stress down.",
+            "stats": [
+              {
+                "figure": "150 min",
+                "label": "a week of moderate activity is what adults are advised to get; active gardening counts.",
+                "source": "Physical Activity Guidelines for Americans, 2018",
+                "source_url": "https://odphp.health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf"
+              },
+              {
+                "figure": "3.8 METs",
+                "label": "for moderate-effort gardening: the same moderate band as brisk walking.",
+                "source": "2024 Adult Compendium of Physical Activities",
+                "source_url": "https://pacompendium.com/lawn-garden"
+              },
+              {
+                "figure": "30 min",
+                "label": "of gardening after a stressful task lowered cortisol more than 30 minutes of reading, and mood fully recovered.",
+                "source": "Van den Berg & Custers, Journal of Health Psychology, 2011",
+                "source_url": "https://blogs.ubc.ca/2017wufor200/files/2017/01/Gardening-promotes-neuroendocrine-and-affective-restoration-from-stress-van-den-Berg-and-Custers-2011.pdf"
+              },
+              {
+                "figure": "24% → 53%",
+                "label": "of residents with healthy daily cortisol patterns, after plants were added to their bare front gardens.",
+                "source": "Chalmin-Pui et al., Landscape and Urban Planning, 2021",
+                "source_url": "https://eprints.whiterose.ac.uk/166215"
+              }
+            ],
+            "footnote": "Across 22 studies, gardening was linked to less depression and anxiety and more life satisfaction (Soga, Gaston & Yamaura, Preventive Medicine Reports, 2017)."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Earth",
+            "heading": "And it gives back to the land",
+            "background": "dark",
+            "intro": "Native plantings feed birds and pollinators, and rain gardens keep rain where it falls.",
+            "stats": [
+              {
+                "figure": "623 gal",
+                "label": "of water fall on every 1,000 square feet of roof in an inch of rain.",
+                "source": "USGS Water Science School",
+                "source_url": "https://www.usgs.gov/water-science-school/science/water-qa-how-much-water-falls-during-a-storm"
+              },
+              {
+                "figure": "96–100%",
+                "label": "of rain and snowmelt events held and soaked in by rain gardens over four years.",
+                "source": "USGS Scientific Investigations Report 2010-5077",
+                "source_url": "https://pubs.usgs.gov/publication/sir20105077"
+              },
+              {
+                "figure": "70%",
+                "label": "native plants or more: the share a yard needs for chickadees to raise enough young to sustain their numbers.",
+                "source": "Narango, Tallamy & Marra, PNAS, 2018",
+                "source_url": "https://www.pnas.org/doi/10.1073/pnas.1809259115"
+              }
+            ]
+          }
+        },
+        {
+          "type": "faq",
+          "version": 1,
+          "data": {
+            "eyebrow": "Questions",
+            "heading": "About the garden calculator",
+            "items": [
+              {
+                "question": "Where do the numbers come from?",
+                "answer": "From published research and public data: home value studies, the Compendium of Physical Activities, federal activity guidelines, NOAA rainfall for Kalamazoo and USGS rain garden research. Each one is linked on this page, and the calculator scales them down for a single home garden."
+              },
+              {
+                "question": "Will a garden really raise my home's value?",
+                "answer": "Buyers say a well-landscaped home is worth 5–11% more, and Realtors estimate a landscape upgrade recovers about what it costs. Sale prices move less than buyers' estimates, so the calculator assumes 1–3%, and never more than the garden cost."
+              },
+              {
+                "question": "Does gardening count as exercise?",
+                "answer": "Active gardening, like digging, planting and weeding, is moderate activity. The calculator counts half of your garden time as active, against the 150 minutes a week adults are advised to get."
+              },
+              {
+                "question": "Do I need a rain garden to count the rain?",
+                "answer": "Yes. Put in the roof area that would drain to one, and the calculator estimates what a well-sized rain garden would soak into your ground each year, using Kalamazoo's average rainfall."
+              }
+            ]
+          }
+        },
+        {
+          "type": "contact",
+          "version": 1,
+          "data": {
+            "heading": "Let's plan a garden that gives back",
+            "source": "garden value"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "What a Garden Gives Back: Calculator | Healing Earth Design",
+        "meta_description": "Estimate what a home garden gives back: home value, food, exercise, less stress and rain kept on site. Research-backed figures for Southwest Michigan.",
+        "og_image_id": "24"
+      }
+    },
+    {
+      "path": "services",
+      "slug": "services",
+      "title": "Services",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "Services",
+            "title": "Plant-forward help, from first visit to planting day",
+            "intro": "Every service is tailored to your space, lifestyle, and experience level. All of it is focused on plants, with no hardscape installation.",
+            "image": "43",
+            "image_position": "50% 60%",
+            "button_label": "Book a garden consultation",
+            "button_link": {
+              "kind": "url",
+              "value": "#contact"
+            }
+          }
+        },
+        {
+          "type": "services_list",
+          "version": 1,
+          "data": {
+            "background": "plain"
+          }
+        },
+        {
+          "type": "cta_band",
+          "version": 1,
+          "data": {
+            "heading": "What could a garden give back to you?",
+            "body": "Home value, food, exercise, less stress and rain kept on site. Run the numbers for your own yard.",
+            "background": "primary",
+            "ctas": [
+              {
+                "label": "Try the garden calculator",
+                "url": {
+                  "kind": "page",
+                  "value": "garden-value"
+                },
+                "style": "primary"
+              }
+            ]
+          }
+        },
+        {
+          "type": "cta_band",
+          "version": 1,
+          "data": {
+            "heading": "Not sure where to start?",
+            "body": "Most projects begin with a garden consultation. We'll look at your site together and decide what comes next.",
+            "ctas": [
+              {
+                "label": "About consultations",
+                "url": {
+                  "kind": "entry",
+                  "value": "garden-consultation",
+                  "collection": "services"
+                },
+                "style": "primary"
+              }
+            ],
+            "background": "muted"
+          }
+        },
+        {
+          "type": "pull_quote",
+          "version": 1,
+          "data": {}
+        },
+        {
+          "type": "contact",
+          "version": 1,
+          "data": {
+            "source": "services"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "Services | Healing Earth Design",
+        "meta_description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
+        "og_image_id": "2",
+        "json_ld": {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "CollectionPage",
+              "@id": "https://healingearthdesignbysarah.com/services#main",
+              "url": "https://healingearthdesignbysarah.com/services",
+              "name": "Services",
+              "description": "Garden consultations, planting plans, detailed landscape design, plant shopping and planting-day help: plant-forward services tailored to your space.",
+              "isPartOf": {
+                "@id": "https://healingearthdesignbysarah.com/#website"
+              },
+              "inLanguage": "en",
+              "breadcrumb": {
+                "@id": "https://healingearthdesignbysarah.com/services#breadcrumb"
+              },
+              "primaryImageOfPage": {
+                "@type": "ImageObject",
+                "url": "https://healingearthdesignbysarah.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--a4c2dc789b9de03e8a739c7360e6c7645655b830/IMG_0021.webp"
+              },
+              "about": {
+                "@id": "https://healingearthdesignbysarah.com/#organization"
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service"
+                    },
+                    "name": "Detailed Landscape Design"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/garden-consultation#service"
+                    },
+                    "name": "Garden Consultation"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/installation-assistance#service"
+                    },
+                    "name": "Installation Assistance"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service"
+                    },
+                    "name": "Simple Planting Plan"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "item": {
+                      "@id": "https://healingearthdesignbysarah.com/services/plant-shopping-assistance#service"
+                    },
+                    "name": "Plant Shopping Assistance"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -5942,6 +5948,255 @@
     },
     {
       "collection": "service-areas",
+      "slug": "muskegon-newaygo",
+      "title": "Muskegon & Newaygo",
+      "locale": "en",
+      "frontmatter": {
+        "order": 9,
+        "region": "Muskegon & Newaygo counties",
+        "image": "19",
+        "counties": [
+          "muskegon",
+          "newaygo"
+        ],
+        "summary": "Garden and landscape design in Muskegon, Norton Shores, Whitehall, Fremont and Newaygo: lakeshore plantings, native gardens and seasonal displays.",
+        "intro": "Along the Lake Michigan shore at Muskegon and Norton Shores, and inland to Fremont and Newaygo on the Muskegon River, we design plantings for homes, lake properties and businesses.",
+        "towns": [
+          "Muskegon",
+          "Norton Shores",
+          "North Muskegon",
+          "Whitehall",
+          "Montague",
+          "Fruitport",
+          "Fremont",
+          "Newaygo",
+          "Grant",
+          "White Cloud"
+        ],
+        "growing": "By the lake, Muskegon's soils are sandy, the wind is steady and Lake Michigan moderates the seasons. Inland Newaygo County is sandier still, with forest, rivers and lakes, ground that suits native prairie and woodland-edge plants. Choosing plants for sand and wind is what keeps a garden here thriving without constant watering.",
+        "commercial": "Lakeshore restaurants, marinas, inns and downtown Muskegon and Fremont storefronts benefit from seasonal display programs timed to summer visitors, and from native plantings that stand up to sand and wind.",
+        "faqs": [
+          {
+            "question": "Do you work in Muskegon?",
+            "answer": "Yes. Muskegon and Newaygo counties are in our service area."
+          },
+          {
+            "question": "What holds up by the lake?",
+            "answer": "Plants chosen for sand, wind and full sun, like beach grass, little bluestem, butterfly weed and sturdy annuals for containers, set in well-mulched beds."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Muskegon & Newaygo Landscape Design | Healing Earth Design",
+        "meta_description": "Garden and landscape design in Muskegon, Norton Shores, Whitehall, Fremont and Newaygo: lakeshore plantings, native gardens and seasonal displays.",
+        "og_image_id": "19",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "greenville-montcalm-county",
+      "title": "Greenville & Montcalm County",
+      "locale": "en",
+      "frontmatter": {
+        "order": 8,
+        "region": "Montcalm County",
+        "image": "16",
+        "counties": [
+          "montcalm"
+        ],
+        "summary": "Garden and landscape design in Greenville, Stanton, Howard City and across Montcalm County: native gardens, lake properties and planting plans.",
+        "intro": "North of Grand Rapids, we work with homes, lake cottages and businesses in Greenville, Stanton, Howard City and Montcalm County's lake communities.",
+        "towns": [
+          "Greenville",
+          "Stanton",
+          "Howard City",
+          "Lakeview",
+          "Carson City",
+          "Edmore",
+          "Sheridan"
+        ],
+        "growing": "Montcalm County mixes farmland with lakes and sandy, well-drained ground in much of the county. Sandy soil warms early and drains fast, which suits prairie natives and drought-tolerant perennials once they're established; lakefront lots benefit from native shoreline plantings that slow runoff and hold the bank.",
+        "commercial": "Downtown Greenville and the county's smaller towns, lakeside businesses, churches and schools can all have entrances that welcome people in, with plantings that suit sandy ground and need less water.",
+        "faqs": [
+          {
+            "question": "Do you work in Greenville?",
+            "answer": "Yes. Greenville and all of Montcalm County are in our service area."
+          },
+          {
+            "question": "What grows well in sandy soil?",
+            "answer": "Prairie natives like little bluestem, butterfly weed, blazing star and asters do well in sandy, well-drained soil once established, with mulch to hold moisture the first seasons."
+          },
+          {
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Greenville & Montcalm Landscape Design | Healing Earth",
+        "meta_description": "Garden and landscape design in Greenville, Stanton, Howard City and across Montcalm County: native gardens, lake properties and planting plans.",
+        "og_image_id": "16",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "ionia-belding",
+      "title": "Ionia & Belding",
+      "locale": "en",
+      "frontmatter": {
+        "order": 7,
+        "region": "Ionia County",
+        "image": "5",
+        "counties": [
+          "ionia"
+        ],
+        "summary": "Garden and landscape design in Ionia, Belding, Portland and across Ionia County, for homes, farms and small-town businesses.",
+        "intro": "East of Grand Rapids along the Grand River, we work with homeowners, farmhouses and the downtowns of Ionia, Belding, Portland and Saranac.",
+        "towns": [
+          "Ionia",
+          "Belding",
+          "Portland",
+          "Saranac",
+          "Lake Odessa",
+          "Muir"
+        ],
+        "growing": "Ionia County is farm country along the Grand River valley, with good loam on the uplands and wetter ground near the river and its creeks. Low spots are natural places for rain gardens and moisture-loving natives like swamp milkweed and blue flag iris; sunny, open ground suits prairie plants and pollinator beds.",
+        "commercial": "Small-town main streets, churches, schools and farm markets can have welcoming entrances and seasonal displays, and native plantings that cut down on mowing.",
+        "faqs": [
+          {
+            "question": "Do you work in Ionia County?",
+            "answer": "Yes. Ionia, Belding, Portland and the rest of the county are in our service area."
+          },
+          {
+            "question": "Can you help with a wet, low area?",
+            "answer": "Often a low area is the right place for a rain garden: a shallow, planted basin with deep-rooted natives that soak the water in."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Ionia & Belding Landscape Design | Healing Earth Design",
+        "meta_description": "Garden and landscape design in Ionia, Belding, Portland and across Ionia County, for homes, farms and small-town businesses.",
+        "og_image_id": "5",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "holland-zeeland-grand-haven",
+      "title": "Holland, Zeeland & Grand Haven",
+      "locale": "en",
+      "frontmatter": {
+        "order": 6,
+        "region": "Ottawa County",
+        "image": "59",
+        "counties": [
+          "ottawa"
+        ],
+        "summary": "Garden and landscape design in Holland, Zeeland, Grand Haven, Hudsonville and across Ottawa County: lakeshore plantings, native gardens and seasonal displays.",
+        "intro": "From the Lake Michigan shore at Holland and Grand Haven to Zeeland, Hudsonville, Jenison and Allendale, we design and plant for homes, lakeshore properties and the shops, inns and offices that line Ottawa County's towns.",
+        "towns": [
+          "Holland",
+          "Zeeland",
+          "Grand Haven",
+          "Spring Lake",
+          "Hudsonville",
+          "Jenison",
+          "Allendale",
+          "Coopersville"
+        ],
+        "growing": "Near the lakeshore, soils run sandy and drain fast, and Lake Michigan moderates the weather: later springs, longer falls and lake-effect snow. Wind and full sun are the rule by the water, so plants are chosen to stand up to both, the way we did for lakeside deck planters. Inland, around Hudsonville and Zeeland, the ground holds water better and suits a wider range of perennials.",
+        "commercial": "Downtown Holland and Grand Haven storefronts, waterfront restaurants, inns and offices benefit from seasonal display programs timed to the summer visitor season, and from plantings that handle lakeshore wind.",
+        "faqs": [
+          {
+            "question": "Do you plant lakeshore properties?",
+            "answer": "Yes. We choose plants for wind, full sun and sandy soil, and plan containers that hold up through a lakeshore summer."
+          },
+          {
+            "question": "Do you work in Holland and Grand Haven?",
+            "answer": "Yes. All of Ottawa County is in our service area."
+          },
+          {
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Holland & Grand Haven Landscape Design | Healing Earth",
+        "meta_description": "Garden and landscape design in Holland, Zeeland, Grand Haven, Hudsonville and across Ottawa County: lakeshore plantings, native gardens and seasonal displays.",
+        "og_image_id": "59",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
+      "slug": "grand-rapids-kent-county",
+      "title": "Grand Rapids & Kent County",
+      "locale": "en",
+      "frontmatter": {
+        "order": 5,
+        "region": "Kent County",
+        "image": "40",
+        "counties": [
+          "kent"
+        ],
+        "summary": "Garden and landscape design in Grand Rapids, Wyoming, Kentwood, Rockford, Ada and across Kent County, for homes and businesses.",
+        "intro": "Grand Rapids and its suburbs are an hour north of Richland. We work across Kent County, from East Grand Rapids and Kentwood to Rockford, Ada, Caledonia and Lowell, for homeowners and for the businesses and organizations in and around the city.",
+        "towns": [
+          "Grand Rapids",
+          "Wyoming",
+          "Kentwood",
+          "Grandville",
+          "East Grand Rapids",
+          "Walker",
+          "Rockford",
+          "Ada",
+          "Cascade",
+          "Caledonia",
+          "Byron Center",
+          "Lowell"
+        ],
+        "growing": "The Grand River runs through Grand Rapids, and Kent County's ground ranges from sandy, quick-draining soil to heavier loam and clay, often in the same neighborhood. City lots bring their own conditions: compacted soil, reflected heat from pavement and shade from buildings and street trees. A site visit sorts out which you have, so natives and perennials go where they'll thrive.",
+        "commercial": "Downtown storefronts and restaurants, offices and medical buildings, apartment communities and HOAs across the suburbs: entrance plantings, seasonal display programs, native conversions of little-used lawn and garden care keep them looking cared for.",
+        "faqs": [
+          {
+            "question": "Do you work in Grand Rapids?",
+            "answer": "Yes. Grand Rapids and the rest of Kent County are in our service area, for homes and businesses."
+          },
+          {
+            "question": "Can a consultation be virtual?",
+            "answer": "Yes. Consultations are on-site or virtual, which works well for a first conversation about a property farther from Richland."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Grand Rapids Landscape Design | Healing Earth Design",
+        "meta_description": "Garden and landscape design in Grand Rapids, Wyoming, Kentwood, Rockford, Ada and across Kent County, for homes and businesses.",
+        "og_image_id": "40",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "service-areas",
       "slug": "plainwell-otsego-allegan-south-haven",
       "title": "Plainwell, Otsego, Allegan & South Haven",
       "locale": "en",
@@ -6160,7 +6415,8 @@
           "General care guidance"
         ],
         "order": 2,
-        "graphic": "planting_plan"
+        "graphic": "planting_plan",
+        "planner_choice": "interest_planting_plan"
       },
       "body_markdown": "",
       "seo": {
@@ -6200,7 +6456,8 @@
         ],
         "order": 6,
         "image": "52",
-        "graphic": "container"
+        "graphic": "container",
+        "planner_choice": "interest_displays"
       },
       "body_markdown": "",
       "seo": {
@@ -6224,7 +6481,8 @@
           "Ensuring plants align with your design and site conditions"
         ],
         "order": 5,
-        "graphic": "healthy_plant"
+        "graphic": "healthy_plant",
+        "planner_choice": "interest_shopping"
       },
       "body_markdown": "",
       "seo": {
@@ -6264,7 +6522,8 @@
           "Plant-focused only — no hardscape installation"
         ],
         "order": 4,
-        "graphic": "spacing"
+        "graphic": "spacing",
+        "planner_choice": "interest_installation"
       },
       "body_markdown": "",
       "seo": {
@@ -6305,7 +6564,8 @@
           "Seasonal care plans to keep the garden thriving"
         ],
         "order": 7,
-        "graphic": "herb_spiral"
+        "graphic": "herb_spiral",
+        "planner_choice": "interest_herbs"
       },
       "body_markdown": "",
       "seo": {
@@ -6331,7 +6591,8 @@
           "Ongoing support for the remainder of the growing season"
         ],
         "order": 1,
-        "graphic": "site_analysis"
+        "graphic": "site_analysis",
+        "planner_choice": "interest_consultation"
       },
       "body_markdown": "",
       "seo": {
@@ -6371,7 +6632,8 @@
           "Design tailored to pollinators, wildlife, and long-term success"
         ],
         "order": 3,
-        "graphic": "plant_layers"
+        "graphic": "plant_layers",
+        "planner_choice": "interest_design"
       },
       "body_markdown": "",
       "seo": {
@@ -6437,255 +6699,6 @@
       "body_markdown": "",
       "seo": {
         "noindex": true
-      }
-    },
-    {
-      "collection": "service-areas",
-      "slug": "grand-rapids-kent-county",
-      "title": "Grand Rapids & Kent County",
-      "locale": "en",
-      "frontmatter": {
-        "order": 5,
-        "region": "Kent County",
-        "image": "40",
-        "counties": [
-          "kent"
-        ],
-        "summary": "Garden and landscape design in Grand Rapids, Wyoming, Kentwood, Rockford, Ada and across Kent County, for homes and businesses.",
-        "intro": "Grand Rapids and its suburbs are an hour north of Richland. We work across Kent County, from East Grand Rapids and Kentwood to Rockford, Ada, Caledonia and Lowell, for homeowners and for the businesses and organizations in and around the city.",
-        "towns": [
-          "Grand Rapids",
-          "Wyoming",
-          "Kentwood",
-          "Grandville",
-          "East Grand Rapids",
-          "Walker",
-          "Rockford",
-          "Ada",
-          "Cascade",
-          "Caledonia",
-          "Byron Center",
-          "Lowell"
-        ],
-        "growing": "The Grand River runs through Grand Rapids, and Kent County's ground ranges from sandy, quick-draining soil to heavier loam and clay, often in the same neighborhood. City lots bring their own conditions: compacted soil, reflected heat from pavement and shade from buildings and street trees. A site visit sorts out which you have, so natives and perennials go where they'll thrive.",
-        "commercial": "Downtown storefronts and restaurants, offices and medical buildings, apartment communities and HOAs across the suburbs: entrance plantings, seasonal display programs, native conversions of little-used lawn and garden care keep them looking cared for.",
-        "faqs": [
-          {
-            "question": "Do you work in Grand Rapids?",
-            "answer": "Yes. Grand Rapids and the rest of Kent County are in our service area, for homes and businesses."
-          },
-          {
-            "question": "Can a consultation be virtual?",
-            "answer": "Yes. Consultations are on-site or virtual, which works well for a first conversation about a property farther from Richland."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Grand Rapids Landscape Design | Healing Earth Design",
-        "meta_description": "Garden and landscape design in Grand Rapids, Wyoming, Kentwood, Rockford, Ada and across Kent County, for homes and businesses.",
-        "og_image_id": "40",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "service-areas",
-      "slug": "holland-zeeland-grand-haven",
-      "title": "Holland, Zeeland & Grand Haven",
-      "locale": "en",
-      "frontmatter": {
-        "order": 6,
-        "region": "Ottawa County",
-        "image": "59",
-        "counties": [
-          "ottawa"
-        ],
-        "summary": "Garden and landscape design in Holland, Zeeland, Grand Haven, Hudsonville and across Ottawa County: lakeshore plantings, native gardens and seasonal displays.",
-        "intro": "From the Lake Michigan shore at Holland and Grand Haven to Zeeland, Hudsonville, Jenison and Allendale, we design and plant for homes, lakeshore properties and the shops, inns and offices that line Ottawa County's towns.",
-        "towns": [
-          "Holland",
-          "Zeeland",
-          "Grand Haven",
-          "Spring Lake",
-          "Hudsonville",
-          "Jenison",
-          "Allendale",
-          "Coopersville"
-        ],
-        "growing": "Near the lakeshore, soils run sandy and drain fast, and Lake Michigan moderates the weather: later springs, longer falls and lake-effect snow. Wind and full sun are the rule by the water, so plants are chosen to stand up to both, the way we did for lakeside deck planters. Inland, around Hudsonville and Zeeland, the ground holds water better and suits a wider range of perennials.",
-        "commercial": "Downtown Holland and Grand Haven storefronts, waterfront restaurants, inns and offices benefit from seasonal display programs timed to the summer visitor season, and from plantings that handle lakeshore wind.",
-        "faqs": [
-          {
-            "question": "Do you plant lakeshore properties?",
-            "answer": "Yes. We choose plants for wind, full sun and sandy soil, and plan containers that hold up through a lakeshore summer."
-          },
-          {
-            "question": "Do you work in Holland and Grand Haven?",
-            "answer": "Yes. All of Ottawa County is in our service area."
-          },
-          {
-            "question": "How does a commercial project start?",
-            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Holland & Grand Haven Landscape Design | Healing Earth",
-        "meta_description": "Garden and landscape design in Holland, Zeeland, Grand Haven, Hudsonville and across Ottawa County: lakeshore plantings, native gardens and seasonal displays.",
-        "og_image_id": "59",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "service-areas",
-      "slug": "ionia-belding",
-      "title": "Ionia & Belding",
-      "locale": "en",
-      "frontmatter": {
-        "order": 7,
-        "region": "Ionia County",
-        "image": "5",
-        "counties": [
-          "ionia"
-        ],
-        "summary": "Garden and landscape design in Ionia, Belding, Portland and across Ionia County, for homes, farms and small-town businesses.",
-        "intro": "East of Grand Rapids along the Grand River, we work with homeowners, farmhouses and the downtowns of Ionia, Belding, Portland and Saranac.",
-        "towns": [
-          "Ionia",
-          "Belding",
-          "Portland",
-          "Saranac",
-          "Lake Odessa",
-          "Muir"
-        ],
-        "growing": "Ionia County is farm country along the Grand River valley, with good loam on the uplands and wetter ground near the river and its creeks. Low spots are natural places for rain gardens and moisture-loving natives like swamp milkweed and blue flag iris; sunny, open ground suits prairie plants and pollinator beds.",
-        "commercial": "Small-town main streets, churches, schools and farm markets can have welcoming entrances and seasonal displays, and native plantings that cut down on mowing.",
-        "faqs": [
-          {
-            "question": "Do you work in Ionia County?",
-            "answer": "Yes. Ionia, Belding, Portland and the rest of the county are in our service area."
-          },
-          {
-            "question": "Can you help with a wet, low area?",
-            "answer": "Often a low area is the right place for a rain garden: a shallow, planted basin with deep-rooted natives that soak the water in."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Ionia & Belding Landscape Design | Healing Earth Design",
-        "meta_description": "Garden and landscape design in Ionia, Belding, Portland and across Ionia County, for homes, farms and small-town businesses.",
-        "og_image_id": "5",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "service-areas",
-      "slug": "greenville-montcalm-county",
-      "title": "Greenville & Montcalm County",
-      "locale": "en",
-      "frontmatter": {
-        "order": 8,
-        "region": "Montcalm County",
-        "image": "16",
-        "counties": [
-          "montcalm"
-        ],
-        "summary": "Garden and landscape design in Greenville, Stanton, Howard City and across Montcalm County: native gardens, lake properties and planting plans.",
-        "intro": "North of Grand Rapids, we work with homes, lake cottages and businesses in Greenville, Stanton, Howard City and Montcalm County's lake communities.",
-        "towns": [
-          "Greenville",
-          "Stanton",
-          "Howard City",
-          "Lakeview",
-          "Carson City",
-          "Edmore",
-          "Sheridan"
-        ],
-        "growing": "Montcalm County mixes farmland with lakes and sandy, well-drained ground in much of the county. Sandy soil warms early and drains fast, which suits prairie natives and drought-tolerant perennials once they're established; lakefront lots benefit from native shoreline plantings that slow runoff and hold the bank.",
-        "commercial": "Downtown Greenville and the county's smaller towns, lakeside businesses, churches and schools can all have entrances that welcome people in, with plantings that suit sandy ground and need less water.",
-        "faqs": [
-          {
-            "question": "Do you work in Greenville?",
-            "answer": "Yes. Greenville and all of Montcalm County are in our service area."
-          },
-          {
-            "question": "What grows well in sandy soil?",
-            "answer": "Prairie natives like little bluestem, butterfly weed, blazing star and asters do well in sandy, well-drained soil once established, with mulch to hold moisture the first seasons."
-          },
-          {
-            "question": "How does a commercial project start?",
-            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Greenville & Montcalm Landscape Design | Healing Earth",
-        "meta_description": "Garden and landscape design in Greenville, Stanton, Howard City and across Montcalm County: native gardens, lake properties and planting plans.",
-        "og_image_id": "16",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "service-areas",
-      "slug": "muskegon-newaygo",
-      "title": "Muskegon & Newaygo",
-      "locale": "en",
-      "frontmatter": {
-        "order": 9,
-        "region": "Muskegon & Newaygo counties",
-        "image": "19",
-        "counties": [
-          "muskegon",
-          "newaygo"
-        ],
-        "summary": "Garden and landscape design in Muskegon, Norton Shores, Whitehall, Fremont and Newaygo: lakeshore plantings, native gardens and seasonal displays.",
-        "intro": "Along the Lake Michigan shore at Muskegon and Norton Shores, and inland to Fremont and Newaygo on the Muskegon River, we design plantings for homes, lake properties and businesses.",
-        "towns": [
-          "Muskegon",
-          "Norton Shores",
-          "North Muskegon",
-          "Whitehall",
-          "Montague",
-          "Fruitport",
-          "Fremont",
-          "Newaygo",
-          "Grant",
-          "White Cloud"
-        ],
-        "growing": "By the lake, Muskegon's soils are sandy, the wind is steady and Lake Michigan moderates the seasons. Inland Newaygo County is sandier still, with forest, rivers and lakes, ground that suits native prairie and woodland-edge plants. Choosing plants for sand and wind is what keeps a garden here thriving without constant watering.",
-        "commercial": "Lakeshore restaurants, marinas, inns and downtown Muskegon and Fremont storefronts benefit from seasonal display programs timed to summer visitors, and from native plantings that stand up to sand and wind.",
-        "faqs": [
-          {
-            "question": "Do you work in Muskegon?",
-            "answer": "Yes. Muskegon and Newaygo counties are in our service area."
-          },
-          {
-            "question": "What holds up by the lake?",
-            "answer": "Plants chosen for sand, wind and full sun, like beach grass, little bluestem, butterfly weed and sturdy annuals for containers, set in well-mulched beds."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Muskegon & Newaygo Landscape Design | Healing Earth Design",
-        "meta_description": "Garden and landscape design in Muskegon, Norton Shores, Whitehall, Fremont and Newaygo: lakeshore plantings, native gardens and seasonal displays.",
-        "og_image_id": "19",
-        "schema_type": "WebPage"
       }
     }
   ],
@@ -6953,6 +6966,253 @@
       ],
       "submit_label": "Send My Request",
       "success_message": "Thank you! Your request is on its way, and I'll reply within 1–2 business days."
+    },
+    {
+      "slug": "garden",
+      "title": "Garden project",
+      "fields": [
+        {
+          "name": "location",
+          "label": "Where is your garden?",
+          "type": "text",
+          "required": true,
+          "placeholder": "Town, or the street address"
+        },
+        {
+          "name": "sun",
+          "label": "How much sun does it get?",
+          "type": "radio",
+          "required": true,
+          "options": [
+            {
+              "value": "Mostly sun (6+ hours)",
+              "label": "Mostly sun (6+ hours)"
+            },
+            {
+              "value": "Part sun, part shade",
+              "label": "Part sun, part shade"
+            },
+            {
+              "value": "Mostly shade",
+              "label": "Mostly shade"
+            },
+            {
+              "value": "A mix, or not sure",
+              "label": "A mix, or not sure"
+            }
+          ]
+        },
+        {
+          "name": "soil",
+          "label": "What's the soil like?",
+          "type": "radio",
+          "required": false,
+          "options": [
+            {
+              "value": "Sandy, drains fast",
+              "label": "Sandy, drains fast"
+            },
+            {
+              "value": "Loamy",
+              "label": "Loamy"
+            },
+            {
+              "value": "Heavy clay, stays wet",
+              "label": "Heavy clay, stays wet"
+            },
+            {
+              "value": "Not sure",
+              "label": "Not sure"
+            }
+          ]
+        },
+        {
+          "name": "current",
+          "label": "What's there now?",
+          "type": "textarea",
+          "placeholder": "Lawn, an old bed, a slope, a wet spot…"
+        },
+        {
+          "name": "interest_consultation",
+          "label": "Garden consultation",
+          "type": "checkbox"
+        },
+        {
+          "name": "interest_planting_plan",
+          "label": "Simple planting plan",
+          "type": "checkbox"
+        },
+        {
+          "name": "interest_design",
+          "label": "Detailed landscape design",
+          "type": "checkbox"
+        },
+        {
+          "name": "interest_installation",
+          "label": "Installation help",
+          "type": "checkbox"
+        },
+        {
+          "name": "interest_shopping",
+          "label": "Plant shopping help",
+          "type": "checkbox"
+        },
+        {
+          "name": "interest_displays",
+          "label": "Seasonal displays",
+          "type": "checkbox"
+        },
+        {
+          "name": "interest_herbs",
+          "label": "Herb garden",
+          "type": "checkbox"
+        },
+        {
+          "name": "priority",
+          "label": "What matters most?",
+          "type": "radio",
+          "required": false,
+          "options": [
+            {
+              "value": "Pollinators & birds",
+              "label": "Pollinators & birds"
+            },
+            {
+              "value": "Food & herbs",
+              "label": "Food & herbs"
+            },
+            {
+              "value": "Less upkeep",
+              "label": "Less upkeep"
+            },
+            {
+              "value": "Color all season",
+              "label": "Color all season"
+            },
+            {
+              "value": "Privacy & screening",
+              "label": "Privacy & screening"
+            },
+            {
+              "value": "Handling rainwater",
+              "label": "Handling rainwater"
+            }
+          ]
+        },
+        {
+          "name": "size",
+          "label": "How big is the area?",
+          "type": "radio",
+          "required": false,
+          "options": [
+            {
+              "value": "A bed or a few containers",
+              "label": "A bed or a few containers"
+            },
+            {
+              "value": "Part of the yard",
+              "label": "Part of the yard"
+            },
+            {
+              "value": "The front or back yard",
+              "label": "The front or back yard"
+            },
+            {
+              "value": "The whole property",
+              "label": "The whole property"
+            }
+          ]
+        },
+        {
+          "name": "timeline",
+          "label": "When would you like to start?",
+          "type": "radio",
+          "required": false,
+          "options": [
+            {
+              "value": "As soon as possible",
+              "label": "As soon as possible"
+            },
+            {
+              "value": "This fall",
+              "label": "This fall"
+            },
+            {
+              "value": "Spring planting",
+              "label": "Spring planting"
+            },
+            {
+              "value": "Just planning ahead",
+              "label": "Just planning ahead"
+            }
+          ]
+        },
+        {
+          "name": "budget",
+          "label": "Budget range",
+          "type": "radio",
+          "required": false,
+          "options": [
+            {
+              "value": "Under $500",
+              "label": "Under $500"
+            },
+            {
+              "value": "$500–$1,500",
+              "label": "$500–$1,500"
+            },
+            {
+              "value": "$1,500–$5,000",
+              "label": "$1,500–$5,000"
+            },
+            {
+              "value": "$5,000 or more",
+              "label": "$5,000 or more"
+            },
+            {
+              "value": "Not sure yet",
+              "label": "Not sure yet"
+            }
+          ]
+        },
+        {
+          "name": "name",
+          "label": "Your name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "phone",
+          "label": "Phone",
+          "type": "tel"
+        },
+        {
+          "name": "message",
+          "label": "Anything else I should know?",
+          "type": "textarea",
+          "placeholder": "What you love, what isn't working, any deadlines"
+        },
+        {
+          "name": "estimate",
+          "label": "Garden estimate",
+          "type": "text",
+          "help": "Filled in by the site when the visitor used the garden calculator. Not shown to visitors."
+        },
+        {
+          "name": "source",
+          "label": "Sent from",
+          "type": "text",
+          "help": "Filled in by the site: the page the request came from. Not shown to visitors."
+        }
+      ],
+      "submit_label": "Send my garden plans",
+      "success_message": "Thank you! Your garden plans are on their way, and I'll reply within 1–2 business days with ideas and next steps."
     }
   ],
   "site": {

@@ -1,5 +1,6 @@
 <%# locals: (heading: nil, description: nil, selected: nil, source: nil) -%>
-<%# The contact section: Site settings' copy, highlights and photo beside the contact form. A block can change the heading and description, preselect a service and name the source. %>
+<%# The contact section: Site settings' copy, highlights and photo beside the garden planner (shared/planner_form, the "garden" form), or the contact form while the CMS has no garden form. A block can change the heading and description, preselect a service (ticked in the planner) and name the source. %>
+<% planner = healing_planner(:garden) %>
 <% contact = healing_settings.contact %>
 <% icons = %w[clock map-pin plant-2] %>
 <section id="contact" class="section section--tint contact">
@@ -23,8 +24,15 @@
         <%= website_image_tag contact.image, sizes: "(min-width: 1024px) 34rem, 100vw" %>
       </div>
     </div>
-    <div class="card card--form" data-reveal>
-      <%= render "website/shared/contact_form", selected:, source: %>
-    </div>
+    <% if planner %>
+      <% service = healing_services.find { it.slug == selected } if selected.present? %>
+      <div data-reveal>
+        <%= render "website/shared/planner_form", planner:, source:, checked: [service && website_fields(service).planner_choice].compact_blank %>
+      </div>
+    <% else %>
+      <div class="card card--form" data-reveal>
+        <%= render "website/shared/contact_form", selected:, source: %>
+      </div>
+    <% end %>
   </div>
 </section>

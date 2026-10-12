@@ -1334,6 +1334,13 @@
 
   .step__season { font-family: var(--font-serif); font-size: 2.25rem; font-style: italic; line-height: 2.5rem; color: var(--bloom); }
 
+  /* Every case study, as a page's grid: room below it before whatever follows (a quote, the contact form). */
+  .case-studies-grid {
+    padding-bottom: 4rem;
+
+    @media (width >= 48rem) { padding-bottom: 6rem; }
+  }
+
   .pull-quote {
     padding-block: 4rem;
     color: var(--primary-50);
