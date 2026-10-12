@@ -1,0 +1,36 @@
+<%# locals: () -%>
+<%# A year of seasonal displays as a wheel: four plantings, one a season, so the entrance never sits empty. Turns into view on scroll (healing/motion.js, data-spin-in). %>
+<% seasons = [
+  ["Spring", "Pansies, violas, spring bulbs and fresh greens", "spring"],
+  ["Summer", "Long-blooming annuals, coleus, sweet potato vine", "summer"],
+  ["Fall", "Mums, ornamental kale, grasses and pumpkins", "fall"],
+  ["Holidays & winter", "Evergreen boughs, birch, berries and lights", "winter"]
+] %>
+<figure class="graphic graphic--seasons" data-reveal>
+  <div class="seasons">
+    <svg class="seasons__wheel" viewBox="-110 -110 220 220" aria-hidden="true" data-spin-in>
+      <% seasons.each_with_index do |(_, _, key), index| %>
+        <% start = (index * 90 - 90) * Math::PI / 180 %>
+        <% stop = ((index + 1) * 90 - 90 - 4) * Math::PI / 180 %>
+        <% arc_class = "seasons__arc seasons__arc--#{key}" %>
+        <path class="<%= arc_class %>" d="M<%= (100 * Math.cos(start)).round(2) %> <%= (100 * Math.sin(start)).round(2) %>A100 100 0 0 1 <%= (100 * Math.cos(stop)).round(2) %> <%= (100 * Math.sin(stop)).round(2) %>L<%= (58 * Math.cos(stop)).round(2) %> <%= (58 * Math.sin(stop)).round(2) %>A58 58 0 0 0 <%= (58 * Math.cos(start)).round(2) %> <%= (58 * Math.sin(start)).round(2) %>z" />
+      <% end %>
+      <circle class="seasons__hub" r="46" />
+      <text class="seasons__hub-text" y="-4" text-anchor="middle">4 plantings</text>
+      <text class="seasons__hub-text seasons__hub-text--small" y="14" text-anchor="middle">a year</text>
+    </svg>
+    <ol class="seasons__list" data-reveal-group>
+      <% seasons.each do |title, text, key| %>
+        <li class="seasons__item">
+          <% swatch_class = "seasons__swatch seasons__arc--#{key}" %>
+          <span class="<%= swatch_class %>" aria-hidden="true"></span>
+          <div>
+            <p class="seasons__title"><%= title %></p>
+            <p class="small muted"><%= text %></p>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+  <figcaption class="small muted">One visit a season: we take out what's finished and plant what's next.</figcaption>
+</figure>

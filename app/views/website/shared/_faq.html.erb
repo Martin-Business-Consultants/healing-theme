@@ -1,0 +1,23 @@
+<%# locals: (items:, heading: nil, eyebrow: nil) -%>
+<%# Questions and answers ({question, answer} rows) as disclosures, each one's answer opening smoothly (::details-content), and as schema.org's FAQPage for search engines and AI assistants. %>
+<% if items.any? %>
+  <section class="section">
+    <div class="container faq">
+      <div class="faq__head" data-reveal>
+        <% if eyebrow.present? %>
+          <p class="eyebrow"><%= eyebrow %></p>
+        <% end %>
+        <h2 class="h2"><%= heading.presence || "Questions & answers" %></h2>
+      </div>
+      <div class="faq__list" data-reveal-group>
+        <% items.each do |item| %>
+          <details class="faq__item">
+            <summary class="faq__question"><span><%= item.question %></span><span class="faq__toggle" aria-hidden="true"></span></summary>
+            <div class="faq__answer muted"><%= simple_format(website_plain_text(item.answer)) %></div>
+          </details>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <% content_for :head, healing_faq_json_ld(items) %>
+<% end %>

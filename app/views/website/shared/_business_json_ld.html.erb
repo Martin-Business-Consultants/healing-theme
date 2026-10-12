@@ -1,12 +1,24 @@
 <%# locals: (page:) -%>
-<%# On the home page, what the business is, from Settings › General. %>
+<%# On the home page, what the business is, from Settings › General: the same #organization the CMS describes on every page, with what search engines and AI assistants need for local answers. A street address when there is one, else the town alone (a service-area business); where it works (Service areas); and what it offers (Services and Commercial services). %>
 <% settings = website_settings %>
-<% address = {"@type" => "PostalAddress", "streetAddress" => settings["address_line1"], "addressLocality" => settings["city"],
-  "addressRegion" => settings["state"], "postalCode" => settings["zip"], "addressCountry" => "US"} if settings["address_line1"].present? && settings["city"].present? %>
+<% home = website_url("/") %>
+<% address = if settings["address_line1"].present? && settings["city"].present?
+  {"@type" => "PostalAddress", "streetAddress" => settings["address_line1"], "addressLocality" => settings["city"],
+   "addressRegion" => settings["state"], "postalCode" => settings["zip"], "addressCountry" => "US"}.compact_blank
+elsif settings["city"].present?
+  {"@type" => "PostalAddress", "addressLocality" => settings["city"], "addressRegion" => settings["state"], "addressCountry" => "US"}.compact_blank
+end %>
 <% image = website_image(page.seo.to_h["og_image_id"].presence || healing_settings.share_image) %>
+<% offers = ->(name, entries) { {"@type" => "OfferCatalog", "name" => name, "itemListElement" => entries.map { {"@type" => "Offer", "itemOffered" => {"@type" => "Service", "name" => it.title, "url" => website_url(website_path(it))}} }} } %>
+<% areas = healing_service_areas.map { {"@type" => "AdministrativeArea", "name" => website_fields(it).region} } + healing_towns.map { {"@type" => "City", "name" => it} } %>
 <%= website_json_ld({
-  "@context" => "https://schema.org", "@type" => page.seo.to_h["schema_type"].presence || "LocalBusiness",
+  "@context" => "https://schema.org", "@type" => page.seo.to_h["schema_type"].presence || "LocalBusiness", "@id" => "#{home}#organization",
   "name" => settings["title"], "description" => settings["description"].presence || page.seo.to_h["meta_description"],
-  "url" => website_url("/"), "email" => settings["email"].presence, "telephone" => settings["phone"].presence, "address" => address,
-  "image" => (website_url(image[:src]) if image), "founder" => {"@type" => "Person", "name" => "Sarah Martin"}
+  "url" => home, "email" => settings["email"].presence, "telephone" => settings["phone"].presence, "address" => address,
+  "image" => (website_url(image[:src]) if image), "founder" => {"@type" => "Person", "name" => "Sarah Martin"},
+  "areaServed" => areas.presence,
+  "knowsAbout" => ["Landscape design", "Native plants", "Pollinator gardens", "Rain gardens", "Seasonal container plantings", "Commercial landscaping"],
+  "hasOfferCatalog" => {"@type" => "OfferCatalog", "name" => "Services", "itemListElement" => [
+    offers.("Home gardens", healing_services), offers.("Commercial", healing_commercial_services)
+  ].reject { it["itemListElement"].empty? }}
 }.compact) %>

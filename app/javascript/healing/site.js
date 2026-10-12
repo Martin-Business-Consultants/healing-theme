@@ -3,3 +3,6 @@
 import "healing/nav"
 import "healing/motion"
 import "healing/contact_form"
+import "healing/planner"
+import "healing/roi"
+import "healing/before_after"

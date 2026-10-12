@@ -1,0 +1,18 @@
+<%# locals: (data:) -%>
+<%# Every published industry as a card, linking to its page. %>
+<section id="industries" class="section">
+  <div class="container">
+    <div class="section-head section-head--spaced" data-reveal>
+      <div class="section-head__intro">
+        <% if data.eyebrow.present? %>
+          <p class="eyebrow"><%= data.eyebrow %></p>
+        <% end %>
+        <h2 class="h2 section-head__title"><%= data.heading %></h2>
+        <% if data.intro.present? %>
+          <p class="lead muted"><%= data.intro %></p>
+        <% end %>
+      </div>
+    </div>
+    <%= render "website/shared/entry_cards", entries: healing_industries, link_label: "See the numbers" %>
+  </div>
+</section>

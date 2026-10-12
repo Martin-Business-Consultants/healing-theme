@@ -1,0 +1,52 @@
+<%# locals: () -%>
+<%# A rain garden in section: the roof's water runs to a shallow planted basin, where deep native roots take it into the ground instead of the storm drain; beside it, lawn, whose short roots shed it. Drawn in on scroll (healing/motion.js, data-draw). %>
+<figure class="graphic graphic--rain" data-reveal>
+  <svg viewBox="0 0 800 380" role="img" aria-labelledby="rain-garden-title rain-garden-desc">
+    <title id="rain-garden-title">How a rain garden works</title>
+    <desc id="rain-garden-desc">Water from a roof or parking lot runs into a shallow planted basin. Deep-rooted native plants soak it into the ground, where lawn beside it would shed it to the storm drain.</desc>
+    <%# the building and its downspout %>
+    <path class="g-line g-structure" d="M24 168V58h96v110" />
+    <path class="g-line g-structure" d="M14 64l58-40l58 40" />
+    <path class="g-line g-structure" d="M120 80h22v74q0 14 14 14h24" />
+    <%# the ground: lawn, the basin, lawn %>
+    <path class="g-soil" d="M0 168h220q40 0 60 40h240q20-40 60-40h220v212h-800z" />
+    <path class="g-mulch" d="M280 208h240l-6 12h-228z" />
+    <path class="g-amended" d="M286 220h228l-24 56h-180z" />
+    <path class="g-line g-ground" d="M0 168h220q40 0 60 40h240q20-40 60-40h220" />
+    <%# water: the runoff and the pool %>
+    <path class="g-water-line" d="M182 172q30 4 56 18t44 18" data-draw />
+    <path class="g-water" d="M286 196h228l-6 12h-216z" />
+    <%# lawn and its shallow roots %>
+    <g class="g-turf">
+      <% [596, 630, 664, 698, 732, 766, 30, 64, 98, 132, 166, 200].each do |x| %>
+        <path class="g-line" d="M<%= x %> 168l-4-10m4 10l4-11m-4 11v-12" />
+        <path class="g-root g-root--short" d="M<%= x %> 170v14m0-6l-5 6m5-8l5 6" />
+      <% end %>
+    </g>
+    <%# the planting and its deep roots %>
+    <g class="g-plants">
+      <% [[318, 196, :grass], [352, 190, :flower], [392, 194, :grass], [430, 188, :flower], [470, 194, :grass], [496, 192, :flower]].each do |x, top, kind| %>
+        <path class="g-root" d="M<%= x %> 208c-2 40 6 80-4 150M<%= x %> 230c-14 20-20 50-30 76M<%= x %> 240c12 24 16 56 26 84" data-draw />
+        <% if kind == :grass %>
+          <path class="g-line g-stem" d="M<%= x %> 208q-6-40-22-60M<%= x %> 208q2-46 4-70M<%= x %> 208q8-40 24-56" />
+        <% else %>
+          <path class="g-line g-stem" d="M<%= x %> 208v-<%= 208 - top + 30 %>" />
+          <circle class="g-bloom" cx="<%= x %>" cy="<%= top - 30 %>" r="9" />
+          <circle class="g-bloom-eye" cx="<%= x %>" cy="<%= top - 30 %>" r="3.5" />
+        <% end %>
+      <% end %>
+    </g>
+    <%# labels %>
+    <g class="g-label">
+      <text x="156" y="40">Runoff from the roof</text>
+      <text x="156" y="60">or the parking lot</text>
+      <path class="g-leader" d="M150 70l0 64" />
+      <text x="400" y="112" text-anchor="middle">A shallow basin holds the water,</text>
+      <text x="400" y="132" text-anchor="middle">then drains within a day or two</text>
+      <text x="400" y="372" text-anchor="middle">Deep native roots open the soil and soak it in</text>
+      <text x="690" y="216" text-anchor="middle">Lawn: short roots,</text>
+      <text x="690" y="236" text-anchor="middle">water runs off</text>
+    </g>
+  </svg>
+  <figcaption class="small muted">A rain garden catches water where it falls, so less of it runs off to the storm drain.</figcaption>
+</figure>

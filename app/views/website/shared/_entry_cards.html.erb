@@ -1,0 +1,19 @@
+<%# locals: (entries:, exclude: nil, link_label: "Learn more") -%>
+<%# Entries with an icon and a summary (industries, commercial services) as cards linking to their pages, laid out like the service cards. %>
+<% entries = entries.reject { it.slug == exclude } %>
+<% list_class = "service-cards service-cards--#{entries.size}" %>
+<ul class="<%= list_class %>" data-reveal-group>
+  <% entries.each do |entry| %>
+    <% card = website_fields(entry) %>
+    <li>
+      <%= link_to website_path(entry), class: "service-card" do %>
+        <span class="service-card__icon"><%= healing_icon(card.icon.presence || "plant-2") %></span>
+        <h3 class="service-card__title"><%= entry.title %></h3>
+        <% if card.summary.present? %>
+          <p class="muted"><%= card.summary %></p>
+        <% end %>
+        <span class="more-link"><%= link_label %> <%= healing_icon("arrow-long-right") %></span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

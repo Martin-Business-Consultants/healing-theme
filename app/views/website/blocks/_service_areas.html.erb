@@ -1,0 +1,35 @@
+<%# locals: (data:) -%>
+<%# The service area map beside every published area, each linking to its page. %>
+<% areas = healing_service_areas %>
+<% button_href = website_href(data.button_link) %>
+<section id="service-areas" class="section">
+  <div class="container areas">
+    <div class="areas__copy" data-reveal>
+      <% if data.eyebrow.present? %>
+        <p class="eyebrow"><%= data.eyebrow %></p>
+      <% end %>
+      <h2 class="h2"><%= data.heading %></h2>
+      <% if data.intro.present? %>
+        <p class="lead muted"><%= data.intro %></p>
+      <% end %>
+      <ul class="areas__list" data-reveal-group>
+        <% areas.each do |area| %>
+          <% area_fields = website_fields(area) %>
+          <li>
+            <%= link_to website_path(area), class: "area-link", data: {area_counties: area_fields.counties.join(" ")} do %>
+              <span class="area-link__title"><%= area.title %></span>
+              <span class="small muted"><%= area_fields.towns.first(4).join(" · ") %></span>
+              <%= healing_icon("arrow-long-right", class: "area-link__arrow") %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <% if data.button_label.present? && button_href %>
+        <%= healing_button data.button_label, href: button_href, variant: :outline, arrow: true %>
+      <% end %>
+    </div>
+    <div class="areas__map" data-reveal>
+      <%= render "website/shared/area_map", links: healing_area_links, base: data.base.presence || healing_base %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<%# locals: (data:) -%>
+<%# Every published commercial service as a card, linking to its page. %>
+<% button_href = website_href(data.button_link) %>
+<section id="commercial-services" class="section section--muted">
+  <div class="container">
+    <div class="section-head section-head--spaced" data-reveal>
+      <div class="section-head__intro">
+        <% if data.eyebrow.present? %>
+          <p class="eyebrow"><%= data.eyebrow %></p>
+        <% end %>
+        <h2 class="h2 section-head__title"><%= data.heading %></h2>
+        <% if data.intro.present? %>
+          <p class="lead muted"><%= data.intro %></p>
+        <% end %>
+      </div>
+      <% if data.button_label.present? && button_href %>
+        <%= healing_button data.button_label, href: button_href, variant: :outline, arrow: true %>
+      <% end %>
+    </div>
+    <%= render "website/shared/entry_cards", entries: healing_commercial_services %>
+  </div>
+</section>

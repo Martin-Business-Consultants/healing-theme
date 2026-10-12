@@ -1,0 +1,96 @@
+<%# locals: (heading:, eyebrow: nil, intro: nil, industry: nil) -%>
+<%# The ROI calculator (healing/roi.js): what a planting project could return over the years, from each industry's assumptions (Industries: what the uplift applies to, a low and a high %) and Site settings › ROI calculator (the maturity ramps, lawn savings, starting figures, the disclaimer). With `industry` (an industry's page) it's that industry's alone. "Plan this project" carries the estimate into the planner. Without scripts it shows the assumptions only. %>
+<% calc = healing_settings.calculator %>
+<% industries = industry ? [industry] : healing_industries %>
+<% options = industries.map do |entry|
+  assumptions = website_fields(entry)
+  {slug: entry.slug, name: entry.title, basis: assumptions.calc_basis, label: assumptions.calc_basis_label, amount: assumptions.calc_basis_default,
+   low: healing_percent(assumptions.calc_uplift_low), high: healing_percent(assumptions.calc_uplift_high), note: assumptions.calc_note, property: assumptions.planner_choice, href: website_path(entry)}
+end %>
+<% shares = ->(text) { text.to_s.split(",").map(&:to_f).select(&:positive?).presence || [1.0] } %>
+<% ramp = shares.(calc.ramp) %>
+<% lawn_ramp = calc.lawn_ramp.present? ? shares.(calc.lawn_ramp) : ramp %>
+<% config = {industries: options, ramp:, lawnRamp: lawn_ramp, lawn: [calc.lawn_savings_low, calc.lawn_savings_high].map { it.to_f }} %>
+<% years = (calc.default_years.presence || 10).to_i.clamp(1, 20) %>
+<% if options.any? %>
+  <section id="roi" class="section roi-section">
+    <div class="container">
+      <div class="section-head section-head--spaced" data-reveal>
+        <div class="section-head__intro">
+          <% if eyebrow.present? %>
+            <p class="eyebrow"><%= eyebrow %></p>
+          <% end %>
+          <h2 class="h2 section-head__title"><%= heading %></h2>
+          <% if intro.present? %>
+            <p class="lead muted"><%= intro %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="roi" data-roi="<%= config.to_json %>" data-reveal>
+        <form class="roi__inputs card" data-roi-form>
+          <p class="roi__panel-title"><%= healing_icon("calculator") %> Your numbers</p>
+          <% if options.size > 1 %>
+            <div class="field field--wide">
+              <label class="field__label" for="roi-industry">Your industry</label>
+              <select class="field__input" id="roi-industry" name="industry">
+                <% options.each do |option| %>
+                  <option value="<%= option[:slug] %>"><%= option[:name] %></option>
+                <% end %>
+              </select>
+            </div>
+          <% else %>
+            <input type="hidden" name="industry" value="<%= options.first[:slug] %>">
+          <% end %>
+          <div class="field field--wide">
+            <label class="field__label" for="roi-amount" data-roi-amount-label><%= options.first[:label] %></label>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-amount" name="amount" autocomplete="off" type="number" inputmode="numeric" min="0" step="1000" value="<%= options.first[:amount] %>"></div>
+          </div>
+          <div class="field field--wide">
+            <label class="field__label" for="roi-investment">Planting investment</label>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-investment" name="investment" autocomplete="off" type="number" inputmode="numeric" min="0" step="500" value="<%= calc.default_investment.presence || 10000 %>"></div>
+          </div>
+          <div class="field field--wide">
+            <label class="field__label" for="roi-care">Yearly care <span class="field__optional">(optional)</span></label>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-care" name="care" autocomplete="off" type="number" inputmode="numeric" min="0" step="250" value="<%= calc.default_care.presence || 0 %>"></div>
+          </div>
+          <div class="field field--wide">
+            <label class="field__label" for="roi-lawn">Lawn converted to planting <span class="field__optional">(sq ft, optional)</span></label>
+            <input class="field__input" id="roi-lawn" name="lawn" autocomplete="off" type="number" inputmode="numeric" min="0" step="100" value="<%= calc.default_lawn_sqft.presence || 0 %>">
+          </div>
+          <div class="field field--wide">
+            <label class="field__label" for="roi-years">Years out: <output data-roi-years-out for="roi-years"><%= years %></output></label>
+            <input class="range" id="roi-years" name="years" autocomplete="off" type="range" min="1" max="20" value="<%= years %>">
+          </div>
+        </form>
+        <div class="roi__results" aria-live="polite">
+          <div class="roi__headline">
+            <p class="eyebrow">Estimated net return after <span data-roi-years><%= years %></span> years</p>
+            <p class="roi__big" data-roi-value>—</p>
+            <p class="muted roi__range" data-roi-range></p>
+          </div>
+          <dl class="roi__figures">
+            <div><dt>Return on investment</dt><dd data-roi-roi>—</dd></div>
+            <div><dt>Pays for itself</dt><dd data-roi-payback>—</dd></div>
+            <div><dt>Total invested</dt><dd data-roi-cost>—</dd></div>
+          </dl>
+          <div class="roi__chart" data-roi-chart aria-hidden="true"></div>
+          <p class="small muted roi__legend"><span class="roi__key roi__key--net"></span> Net value, mid estimate <span class="roi__key roi__key--band"></span> Low to high</p>
+          <details class="roi__assumptions">
+            <summary>What this assumes</summary>
+            <div class="small muted">
+              <p data-roi-note><%= options.first[:note] %></p>
+              <p>Plantings take time to fill in, so the benefit grows: <%= ramp.each_with_index.map { |share, index| "#{(share * 100).round}% in year #{index + 1}#{"+" if index == ramp.size - 1}" }.to_sentence %>.</p>
+              <% if config[:lawn].any?(&:positive?) %>
+                <p>Lawn turned to planting saves $<%= config[:lawn].first %>–$<%= config[:lawn].last %> a square foot each year in mowing, watering and fertilizer, once the planting has settled in: <%= lawn_ramp.each_with_index.map { |share, index| "#{(share * 100).round}% in year #{index + 1}#{"+" if index == lawn_ramp.size - 1}" }.to_sentence %>.</p>
+              <% end %>
+              <% if calc.disclaimer.present? %>
+                <p><%= calc.disclaimer %></p>
+              <% end %>
+            </div>
+          </details>
+          <a class="button button--primary roi__cta" href="#plan" data-roi-plan><span><%= calc.button_label.presence || "Plan this project" %></span><%= healing_icon("arrow-long-right", class: "button__arrow") %></a>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

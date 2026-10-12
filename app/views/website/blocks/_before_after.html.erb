@@ -1,0 +1,45 @@
+<%# locals: (data:) -%>
+<%# A project's before and after. Side by side (the default): the photos in a row, with one of the work between them when there is one. Slider, for two photos taken from the same spot: the after laid over the before and uncovered with a handle (healing/before_after.js); without scripts, side by side. %>
+<% button_href = website_href(data.button_link) %>
+<% slider = data.layout == "slider" %>
+<% frames = [[data.before_image, data.before_label.presence || "Before", "before"]] %>
+<% frames << [data.during_image, data.during_label.presence || "During", "during"] if !slider && data.during_image.present? %>
+<% frames << [data.after_image, data.after_label.presence || "After", "after"] %>
+<% figure_class = class_names("compare", "compare--#{frames.size}" => !slider) %>
+<section class="section">
+  <div class="container before-after">
+    <div class="before-after__copy" data-reveal>
+      <% if data.eyebrow.present? %>
+        <p class="eyebrow"><%= data.eyebrow %></p>
+      <% end %>
+      <% if data.heading.present? %>
+        <h2 class="h2"><%= data.heading %></h2>
+      <% end %>
+      <% if data.text.present? %>
+        <p class="lead muted"><%= website_plain_text(data.text) %></p>
+      <% end %>
+      <% if data.button_label.present? && button_href %>
+        <%= healing_button data.button_label, href: button_href, variant: :outline, arrow: true %>
+      <% end %>
+    </div>
+    <figure class="<%= figure_class %>" data-reveal data-compare="<%= slider ? "slider" : "row" %>">
+      <div class="compare__frame" data-reveal-group>
+        <% frames.each do |image, caption, key| %>
+          <% frame_class = "compare__#{key}" %>
+          <div class="<%= frame_class %>"<% if key == "after" && slider %> data-compare-after<% end %>>
+            <%= website_image_tag image, sizes: "(min-width: 1024px) #{slider ? 40 : (40.0 / frames.size).round(1)}rem, 100vw" %>
+            <% tag_class = class_names("compare__tag", "compare__tag--after" => key == "after") %>
+            <span class="<%= tag_class %>"><%= caption %></span>
+          </div>
+        <% end %>
+        <% if slider %>
+          <div class="compare__handle" aria-hidden="true" data-compare-handle><span></span></div>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after" autocomplete="off" data-compare-range hidden>
+        <% end %>
+      </div>
+      <% if data.caption.present? %>
+        <figcaption class="small muted"><%= data.caption %></figcaption>
+      <% end %>
+    </figure>
+  </div>
+</section>
