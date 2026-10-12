@@ -6400,43 +6400,29 @@
     },
     {
       "collection": "services",
-      "slug": "simple-planting-plan",
-      "title": "Simple Planting Plan",
+      "slug": "herb-gardens",
+      "title": "Herb Gardens",
       "locale": "en",
       "frontmatter": {
-        "summary": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
-        "icon": "pencil",
-        "image": "21",
-        "price": "$300",
+        "summary": "Fresh herbs at your fingertips. I design and plant herb gardens for the kitchen, for teas and tinctures, or both, and show you how to harvest and enjoy what you grow.",
+        "icon": "leaf",
+        "image": "67",
         "features": [
-          "Basic planting plan tailored to your space",
-          "Thoughtful plant selection based on site conditions",
-          "Plant list with quantities",
-          "General care guidance"
+          "Custom herb garden design for your space, sun, and soil",
+          "Herb spirals, raised beds, and border plantings",
+          "Culinary, tea, and medicinal plant selection",
+          "Guidance on harvesting, drying, and storing your herbs",
+          "Organic methods and soil building from day one",
+          "Seasonal care plans to keep the garden thriving"
         ],
-        "order": 2,
-        "graphic": "planting_plan",
-        "planner_choice": "interest_planting_plan"
+        "order": 7,
+        "graphic": "herb_spiral",
+        "planner_choice": "interest_herbs"
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "Simple Planting Plan | Healing Earth Design",
-        "meta_description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
-        "json_ld": {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service",
-          "name": "Simple Planting Plan",
-          "serviceType": "Simple Planting Plan",
-          "description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
-          "url": "https://healingearthdesignbysarah.com/services/simple-planting-plan",
-          "provider": {
-            "@id": "https://healingearthdesignbysarah.com/#organization"
-          },
-          "isRelatedTo": {
-            "@id": "https://healingearthdesignbysarah.com/services"
-          }
-        }
+        "meta_title": "Herb Garden Design | Healing Earth Design",
+        "meta_description": "Herb gardens designed and planted for the kitchen, for teas and tinctures, or both, with guidance on harvesting and care. Southwest Michigan."
       }
     },
     {
@@ -6548,29 +6534,84 @@
     },
     {
       "collection": "services",
-      "slug": "herb-gardens",
-      "title": "Herb Gardens",
+      "slug": "detailed-landscape-design",
+      "title": "Detailed Landscape Design",
       "locale": "en",
       "frontmatter": {
-        "summary": "Fresh herbs at your fingertips. I design and plant herb gardens for the kitchen, for teas and tinctures, or both, and show you how to harvest and enjoy what you grow.",
-        "icon": "leaf",
-        "image": "67",
+        "summary": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
+        "icon": "notebook",
+        "image": "25",
+        "price": "$400–$1,000",
         "features": [
-          "Custom herb garden design for your space, sun, and soil",
-          "Herb spirals, raised beds, and border plantings",
-          "Culinary, tea, and medicinal plant selection",
-          "Guidance on harvesting, drying, and storing your herbs",
-          "Organic methods and soil building from day one",
-          "Seasonal care plans to keep the garden thriving"
+          "Custom, to-scale landscape drawings",
+          "Comprehensive plant list and quantities",
+          "Seasonal interest and ecological considerations",
+          "Design tailored to pollinators, wildlife, and long-term success"
         ],
-        "order": 7,
-        "graphic": "herb_spiral",
-        "planner_choice": "interest_herbs"
+        "order": 3,
+        "graphic": "plant_layers",
+        "planner_choice": "interest_design"
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "Herb Garden Design | Healing Earth Design",
-        "meta_description": "Herb gardens designed and planted for the kitchen, for teas and tinctures, or both, with guidance on harvesting and care. Southwest Michigan."
+        "meta_title": "Detailed Landscape Design | Healing Earth Design",
+        "meta_description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
+        "json_ld": {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service",
+          "name": "Detailed Landscape Design",
+          "serviceType": "Detailed Landscape Design",
+          "description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
+          "url": "https://healingearthdesignbysarah.com/services/detailed-landscape-design",
+          "provider": {
+            "@id": "https://healingearthdesignbysarah.com/#organization"
+          },
+          "isRelatedTo": {
+            "@id": "https://healingearthdesignbysarah.com/services"
+          }
+        }
+      }
+    },
+    {
+      "collection": "services",
+      "slug": "simple-planting-plan",
+      "title": "Simple Planting Plan",
+      "locale": "en",
+      "frontmatter": {
+        "summary": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+        "icon": "pencil",
+        "image": "21",
+        "price": "$300",
+        "features": [
+          "Basic planting plan tailored to your space",
+          "Thoughtful plant selection based on site conditions",
+          "Plant list with quantities",
+          "General care guidance"
+        ],
+        "order": 2,
+        "graphic": "planting_plan",
+        "planner_choice": "interest_planting_plan"
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Simple Planting Plan | Healing Earth Design",
+        "meta_description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+        "json_ld": {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": "https://healingearthdesignbysarah.com/services/simple-planting-plan#service",
+          "name": "Simple Planting Plan",
+          "serviceType": "Simple Planting Plan",
+          "description": "A straightforward planting plan tailored to your space, with plants chosen for your site conditions, a plant list with quantities, and care guidance.",
+          "url": "https://healingearthdesignbysarah.com/services/simple-planting-plan",
+          "provider": {
+            "@id": "https://healingearthdesignbysarah.com/#organization"
+          },
+          "isRelatedTo": {
+            "@id": "https://healingearthdesignbysarah.com/services"
+          }
+        }
       }
     },
     {
@@ -6606,47 +6647,6 @@
           "serviceType": "Garden Consultation",
           "description": "A one-to-two hour visit, on-site or virtual, to read your sun, soil, drainage, and existing plants, and leave you with a seasonal plan and clear next steps.",
           "url": "https://healingearthdesignbysarah.com/services/garden-consultation",
-          "provider": {
-            "@id": "https://healingearthdesignbysarah.com/#organization"
-          },
-          "isRelatedTo": {
-            "@id": "https://healingearthdesignbysarah.com/services"
-          }
-        }
-      }
-    },
-    {
-      "collection": "services",
-      "slug": "detailed-landscape-design",
-      "title": "Detailed Landscape Design",
-      "locale": "en",
-      "frontmatter": {
-        "summary": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
-        "icon": "notebook",
-        "image": "25",
-        "price": "$400–$1,000",
-        "features": [
-          "Custom, to-scale landscape drawings",
-          "Comprehensive plant list and quantities",
-          "Seasonal interest and ecological considerations",
-          "Design tailored to pollinators, wildlife, and long-term success"
-        ],
-        "order": 3,
-        "graphic": "plant_layers",
-        "planner_choice": "interest_design"
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Detailed Landscape Design | Healing Earth Design",
-        "meta_description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
-        "json_ld": {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "@id": "https://healingearthdesignbysarah.com/services/detailed-landscape-design#service",
-          "name": "Detailed Landscape Design",
-          "serviceType": "Detailed Landscape Design",
-          "description": "Custom, to-scale drawings and a complete plant list for a garden designed around pollinators, wildlife, and long-term success.",
-          "url": "https://healingearthdesignbysarah.com/services/detailed-landscape-design",
           "provider": {
             "@id": "https://healingearthdesignbysarah.com/#organization"
           },
@@ -6700,6 +6700,99 @@
       "seo": {
         "noindex": true
       }
+    },
+    {
+      "collection": "industries",
+      "slug": "realty-real-estate",
+      "title": "Realty & Real Estate",
+      "locale": "en",
+      "frontmatter": {
+        "order": 8,
+        "image": "51",
+        "icon": "home",
+        "summary": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
+        "headline": "Curb appeal is the first showing.",
+        "intro": "Buyers form an opinion before they reach the front door, and most of them see the house first in listing photos. Nearly every Realtor says curb appeal matters in attracting a buyer, and most have told sellers to improve it before listing. Fresh beds, clean mulch and full containers at the door are among the simplest ways to make a property look cared for.",
+        "drivers": [
+          {
+            "title": "Listing photos that stop the scroll",
+            "text": "A planted, mulched entrance and seasonal containers make the front of the house the photo buyers click on."
+          },
+          {
+            "title": "Showings that start well",
+            "text": "The walk to the door sets the tone for the whole showing; cared-for plantings say the house has been cared for too."
+          },
+          {
+            "title": "Model homes and new builds",
+            "text": "Bare lots look unfinished. Foundation plantings and a planted entrance help a new home look ready to live in."
+          },
+          {
+            "title": "Low care buyers won't worry about",
+            "text": "Sturdy, plant-forward beds that look good without much work reassure buyers who don't want a project."
+          }
+        ],
+        "stats": [
+          {
+            "figure": "97%",
+            "label": "of Realtors say curb appeal is important in attracting a buyer.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "92%",
+            "label": "of Realtors have suggested sellers improve curb appeal before listing.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "100%",
+            "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "1.7 days",
+            "label": "sooner sale, on average, for houses with street trees in front, which also sold for $8,870 more (Portland, Oregon; trees, not plantings).",
+            "source": "Donovan & Butry, Landscape and Urban Planning, 2010",
+            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2010_donovan001.pdf"
+          }
+        ],
+        "ideas": [
+          "A pre-listing refresh: beds weeded, edged and mulched",
+          "Seasonal containers at the front door for photos and open houses",
+          "Foundation and entrance plantings for new builds and model homes",
+          "Low-care plantings buyers won't see as a chore",
+          "Care visits while a property is on the market"
+        ],
+        "calc_basis": "property_value",
+        "calc_basis_label": "Sale price",
+        "calc_basis_default": 350000,
+        "calc_uplift_low": "0.5",
+        "calc_uplift_high": "2",
+        "calc_note": "A one-time gain of 0.5% to 2% of the sale price. Buyers say a well-landscaped home is worth 5–11% more (Behe et al., 2005), and Realtors estimate a landscape upgrade recovers about what it costs (NAR & NALP, 2023). Buyers' estimates run ahead of sale prices, so the calculator uses a small fraction of them.",
+        "planner_choice": "Real estate: listings, model homes or new builds",
+        "faqs": [
+          {
+            "question": "Can you refresh a property before it's listed?",
+            "answer": "Yes. Tell us the listing date, and we'll plan a refresh of beds, mulch and containers around it so the property is ready for photos."
+          },
+          {
+            "question": "Do you work with agents and builders on more than one property?",
+            "answer": "Yes. We can set up a refresh or planting plan you can repeat across listings, model homes or a development."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Real Estate & Listing Landscaping | Healing Earth Design",
+        "meta_description": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
+        "og_image_id": "51",
+        "schema_type": "WebPage"
+      }
     }
   ],
   "forms": [
@@ -6740,6 +6833,10 @@
             {
               "value": "Municipal or public space",
               "label": "Municipal or public space"
+            },
+            {
+              "value": "Real estate: listings, model homes or new builds",
+              "label": "Real estate: listings, model homes or new builds"
             },
             {
               "value": "Something else",
