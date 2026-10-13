@@ -349,6 +349,17 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(band.at_css("figcaption").text).to eq(testimonial["title"])
   end
 
+  it "carries the ad click on a landing page's planner, and draws its illustration" do
+    get "/business-seasonal-displays"
+    page = Nokogiri::HTML5(response.body)
+    tracking = page.at_css("form[data-planner] input[name=tracking]")
+
+    expect(tracking["type"]).to eq("hidden")
+    expect(tracking).to have_attribute("data-tracking")
+    expect(page.at_css(".illustration figure.graphic")).to be_present
+    expect(page.at_css('meta[name="robots"]')["content"]).to start_with("noindex")
+  end
+
   it "loads its own scripts and stylesheet, none of the admin's" do
     get "/"
 
