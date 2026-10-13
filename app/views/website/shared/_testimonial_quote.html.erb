@@ -1,9 +1,10 @@
-<%# locals: (text: nil, attribution: nil) -%>
-<%# A large client quote on a dark band. Without text of its own, Site settings' featured quote. %>
+<%# locals: (text: nil, attribution: nil, testimonial: nil) -%>
+<%# A large client quote on a dark band: a testimonial picked in the CMS (`testimonial`, a Testimonials slug), else text of its own, else Site settings' featured quote. %>
 <% featured = healing_settings.quote %>
+<% picked = healing_testimonials.find { it.slug == testimonial } if testimonial.present? %>
 <% own = website_plain_text(text).presence %>
-<% quote = own || featured.text.to_s.strip.presence %>
-<% name = (own ? attribution : featured.attribution).to_s.sub(/\A[-–—\s]+/, "").presence %>
+<% quote = (picked && website_plain_text(website_fields(picked).quote).presence) || own || featured.text.to_s.strip.presence %>
+<% name = (picked ? picked.title : (own ? attribution : featured.attribution)).to_s.sub(/\A[-–—\s]+/, "").presence %>
 <% if quote %>
   <figure class="pull-quote">
     <div class="container container--narrow" data-reveal>

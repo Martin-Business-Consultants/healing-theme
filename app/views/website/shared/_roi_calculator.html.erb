@@ -45,19 +45,19 @@ end %>
           <% end %>
           <div class="field field--wide">
             <label class="field__label" for="roi-amount" data-roi-amount-label><%= options.first[:label] %></label>
-            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-amount" name="amount" autocomplete="off" type="number" inputmode="numeric" min="0" step="1000" value="<%= options.first[:amount] %>"></div>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-amount" name="amount" autocomplete="off" type="text" inputmode="numeric" data-number value="<%= number_with_delimiter(options.first[:amount]) %>"></div>
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-investment">Planting investment</label>
-            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-investment" name="investment" autocomplete="off" type="number" inputmode="numeric" min="0" step="500" value="<%= options.first[:investment] %>"></div>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-investment" name="investment" autocomplete="off" type="text" inputmode="numeric" data-number value="<%= number_with_delimiter(options.first[:investment]) %>"></div>
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-care">Yearly care <span class="field__optional">(optional)</span></label>
-            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-care" name="care" autocomplete="off" type="number" inputmode="numeric" min="0" step="250" value="<%= options.first[:care] %>"></div>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-care" name="care" autocomplete="off" type="text" inputmode="numeric" data-number value="<%= number_with_delimiter(options.first[:care]) %>"></div>
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-lawn">Lawn converted to planting <span class="field__optional">(sq ft, optional)</span></label>
-            <input class="field__input" id="roi-lawn" name="lawn" autocomplete="off" type="number" inputmode="numeric" min="0" step="100" value="<%= options.first[:lawn] %>">
+            <input class="field__input" id="roi-lawn" name="lawn" autocomplete="off" type="text" inputmode="numeric" data-number value="<%= number_with_delimiter(options.first[:lawn]) %>">
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-years">Years out: <output data-roi-years-out for="roi-years"><%= years %></output></label>

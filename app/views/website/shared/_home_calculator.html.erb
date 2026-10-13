@@ -29,12 +29,12 @@
     <div class="roi garden-value" data-garden-value="<%= config.to_json %>" data-reveal>
       <form class="roi__inputs card" data-garden-form>
         <p class="roi__panel-title"><%= healing_icon("calculator") %> Your garden</p>
-        <%= render "website/shared/calc_field", name: "home", title: "Home value", value: calc.default_home_value.presence || 300000, step: 5000, money: true %>
-        <%= render "website/shared/calc_field", name: "investment", title: "Garden investment", value: calc.default_investment.presence || 5000, step: 250, money: true %>
-        <%= render "website/shared/calc_field", name: "care", title: "Yearly care", value: calc.default_care.presence || 0, step: 100, money: true, hint: "(optional)" %>
-        <%= render "website/shared/calc_field", name: "lawn", title: "Lawn turned into garden", value: calc.default_lawn_sqft.presence || 500, step: 50, hint: "(sq ft)" %>
-        <%= render "website/shared/calc_field", name: "edible", title: "Vegetable, herb or cut-flower beds", value: calc.default_edible_sqft.presence || 100, step: 10, hint: "(sq ft)" %>
-        <%= render "website/shared/calc_field", name: "roof", title: "Roof draining to a rain garden", value: calc.default_roof_sqft.presence || 0, step: 100, hint: "(sq ft, optional)" %>
+        <%= render "website/shared/calc_field", name: "home", title: "Home value", value: calc.default_home_value.presence || 300000, money: true %>
+        <%= render "website/shared/calc_field", name: "investment", title: "Garden investment", value: calc.default_investment.presence || 5000, money: true %>
+        <%= render "website/shared/calc_field", name: "care", title: "Yearly care", value: calc.default_care.presence || 0, money: true, hint: "(optional)" %>
+        <%= render "website/shared/calc_field", name: "lawn", title: "Lawn turned into garden", value: calc.default_lawn_sqft.presence || 500, hint: "(sq ft)" %>
+        <%= render "website/shared/calc_field", name: "edible", title: "Vegetable, herb or cut-flower beds", value: calc.default_edible_sqft.presence || 100, hint: "(sq ft)" %>
+        <%= render "website/shared/calc_field", name: "roof", title: "Roof draining to a rain garden", value: calc.default_roof_sqft.presence || 0, hint: "(sq ft, optional)" %>
         <div class="field field--wide">
           <label class="field__label" for="home-calc-hours">Time in the garden: <output data-garden-hours-out for="home-calc-hours"><%= calc.default_hours.presence || 3 %></output> hours a week</label>
           <input class="range" id="home-calc-hours" name="hours" type="range" min="0" max="15" step="0.5" value="<%= calc.default_hours.presence || 3 %>" autocomplete="off">

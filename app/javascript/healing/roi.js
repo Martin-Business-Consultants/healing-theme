@@ -11,6 +11,7 @@
 // estimate, with the low-to-high range behind it. "Plan this project" writes
 // the estimate into the planner and picks the kind of property there.
 import { draw, money, tween } from "healing/chart"
+import { formatNumber, numberValue } from "healing/number_field"
 
 // Year-by-year cumulative benefit at one uplift percentage, in its two
 // parts: what the plantings add to the basis (sales, rent, or the property's
@@ -59,7 +60,7 @@ function setUp(root) {
 
   const read = () => {
     const data = new FormData(form)
-    const number = (name) => Math.max(0, parseFloat(data.get(name)) || 0)
+    const number = (name) => numberValue(data.get(name))
     return { industry: data.get("industry"), amount: number("amount"), investment: number("investment"), care: number("care"), lawn: number("lawn"), years: Math.max(1, number("years")) }
   }
 
@@ -99,7 +100,7 @@ function setUp(root) {
       const industry = config.industries.find((i) => i.slug === inputs.industry)
       // and its own starting investment, care and lawn.
       for (const name of ["amount", "investment", "care", "lawn"]) {
-        form.elements[name].value = industry[name]
+        form.elements[name].value = formatNumber(industry[name])
         inputs[name] = industry[name]
       }
       out("amount-label").textContent = industry.label

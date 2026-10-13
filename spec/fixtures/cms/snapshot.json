@@ -397,6 +397,13 @@
       "version": 1,
       "fields": [
         {
+          "name": "testimonial",
+          "label": "Client quote",
+          "type": "record_ref",
+          "of_collection": "testimonials",
+          "help": "Pick a testimonial, or leave blank to use the text below (or, with no text, Site settings' featured quote)."
+        },
+        {
           "name": "text",
           "label": "Quote",
           "type": "string",
@@ -619,6 +626,13 @@
       "category": "Content",
       "version": 1,
       "fields": [
+        {
+          "name": "testimonial",
+          "label": "Client quote",
+          "type": "record_ref",
+          "of_collection": "testimonials",
+          "help": "Pick a testimonial, or leave blank to use the text below (or, with no text, Site settings' featured quote)."
+        },
         {
           "name": "text",
           "label": "Quote",
@@ -2048,6 +2062,13 @@
             ]
           },
           {
+            "name": "testimonial",
+            "label": "Client quote",
+            "type": "record_ref",
+            "of_collection": "testimonials",
+            "help": "The testimonial in the quote band. Leave blank for Site settings' featured quote."
+          },
+          {
             "name": "order",
             "label": "Order",
             "type": "integer",
@@ -2256,6 +2277,13 @@
             ]
           },
           {
+            "name": "testimonial",
+            "label": "Client quote",
+            "type": "record_ref",
+            "of_collection": "testimonials",
+            "help": "The testimonial in the quote band. Leave blank for Site settings' featured quote."
+          },
+          {
             "name": "order",
             "label": "Order",
             "type": "integer",
@@ -2335,10 +2363,42 @@
             ]
           },
           {
+            "name": "testimonial",
+            "label": "Client quote",
+            "type": "record_ref",
+            "of_collection": "testimonials",
+            "help": "The testimonial in the quote band. Leave blank for Site settings' featured quote."
+          },
+          {
             "name": "order",
             "label": "Order",
             "type": "integer",
             "help": "Lower numbers come first."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "posts",
+      "name": "Posts",
+      "enable_blocks": false,
+      "schema": {
+        "fields": [
+          {
+            "name": "excerpt",
+            "label": "Excerpt",
+            "type": "text",
+            "help": "Shown in listings and previews."
+          },
+          {
+            "name": "cover_image",
+            "label": "Cover image",
+            "type": "asset"
+          },
+          {
+            "name": "author",
+            "label": "Author",
+            "type": "string"
           }
         ]
       }
@@ -2504,6 +2564,13 @@
             "label": "Planner choice",
             "type": "string",
             "help": "The garden planner's checkbox for this service: its field name in the Garden project form, e.g. interest_consultation"
+          },
+          {
+            "name": "testimonial",
+            "label": "Client quote",
+            "type": "record_ref",
+            "of_collection": "testimonials",
+            "help": "The testimonial in the quote band. Leave blank for Site settings' featured quote."
           },
           {
             "name": "order",
@@ -2959,7 +3026,13 @@
       "slug": "scripts",
       "name": "Scripts",
       "data": {
-        "items": []
+        "items": [
+          {
+            "name": "Google Analytics",
+            "head": "",
+            "body": "<!-- Google tag (gtag.js) -->\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-GY0PSV4123\"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag('js', new Date());\n\n  gtag('config', 'G-GY0PSV4123');\n</script>"
+          }
+        ]
       },
       "fields": [
         {
@@ -2978,13 +3051,13 @@
             {
               "name": "head",
               "label": "Head",
-              "type": "text",
+              "type": "code",
               "help": "Pasted into <head>."
             },
             {
               "name": "body",
               "label": "Body",
-              "type": "text",
+              "type": "code",
               "help": "Pasted just before the closing </body> tag."
             }
           ]
@@ -3526,6 +3599,17 @@
     }
   ],
   "pages": [
+    {
+      "path": "read-the-live-site-from-outside-and-fix-technical-blockers",
+      "slug": "read-the-live-site-from-outside-and-fix-technical-blockers",
+      "title": "Read the live site from outside and fix technical blockers",
+      "locale": "en",
+      "blocks": [],
+      "frontmatter": {},
+      "seo": {
+        "meta_description": "Run Market › Competitors › Read the site on healingearthdesignbysarah.com to check page speed, indexing, schema, analytics, forms, call tracking, chat a..."
+      }
+    },
     {
       "path": "service-areas",
       "slug": "service-areas",
@@ -5100,97 +5184,97 @@
     },
     {
       "collection": "industries",
-      "slug": "realty-real-estate",
-      "title": "Realty & Real Estate",
+      "slug": "municipal-public-spaces",
+      "title": "Municipal & Public Spaces",
       "locale": "en",
       "frontmatter": {
-        "order": 8,
-        "image": "51",
-        "icon": "home",
-        "summary": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
-        "headline": "Curb appeal is the first showing.",
-        "intro": "Buyers form an opinion before they reach the front door, and most of them see the house first in listing photos. Nearly every Realtor says curb appeal matters in attracting a buyer, and most have told sellers to improve it before listing. Fresh beds, clean mulch and full containers at the door are among the simplest ways to make a property look cared for.",
+        "order": 7,
+        "image": "39",
+        "icon": "building-community",
+        "summary": "Downtown planters, park beds, medians and rain gardens for townships, villages, downtown authorities and parks.",
+        "headline": "Greener public spaces raise values and handle stormwater.",
+        "intro": "Homes beside parks sell for more, rain gardens hold water that would otherwise run to the storm drain, and greening neglected land has been linked to less crime. For a township, village or downtown authority, planted public spaces are a visible return on public money, and native plantings cost less to keep than mown turf.",
         "drivers": [
           {
-            "title": "Listing photos that stop the scroll",
-            "text": "A planted, mulched entrance and seasonal containers make the front of the house the photo buyers click on."
+            "title": "Downtowns people want to visit",
+            "text": "Planters and seasonal displays along main streets give visitors a reason to linger."
           },
           {
-            "title": "Showings that start well",
-            "text": "The walk to the door sets the tone for the whole showing; cared-for plantings say the house has been cared for too."
+            "title": "Stormwater handled where it falls",
+            "text": "Rain gardens and bioswales soak up runoff from roofs, streets and lots."
           },
           {
-            "title": "Model homes and new builds",
-            "text": "Bare lots look unfinished. Foundation plantings and a planted entrance help a new home look ready to live in."
+            "title": "Lower mowing bills",
+            "text": "Native plantings on medians, ponds and park edges replace turf that has to be mown all season."
           },
           {
-            "title": "Low care buyers won't worry about",
-            "text": "Sturdy, plant-forward beds that look good without much work reassure buyers who don't want a project."
+            "title": "Habitat that's on view",
+            "text": "Pollinator plantings in public places show residents what native gardens can be."
           }
         ],
         "stats": [
           {
-            "figure": "97%",
-            "label": "of Realtors say curb appeal is important in attracting a buyer.",
-            "source": "NAR & NALP, Remodeling Impact Report, 2023",
-            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+            "figure": "8–10%",
+            "label": "higher value for properties next to a passive park, the starting point recommended by a review of 33 U.S. studies.",
+            "source": "Crompton & Nicholls, Journal of Leisure Research",
+            "source_url": "https://www.nrpa.org/globalassets/journals/jlr/2001/volume-33/jlr-volume-33-number-1-pp-1-31.pdf"
           },
           {
-            "figure": "92%",
-            "label": "of Realtors have suggested sellers improve curb appeal before listing.",
-            "source": "NAR & NALP, Remodeling Impact Report, 2023",
-            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+            "figure": "96–100%",
+            "label": "of rain and snowmelt events held and soaked in by rain gardens over four years in Madison, Wisconsin.",
+            "source": "USGS Scientific Investigations Report 2010-5077",
+            "source_url": "https://pubs.usgs.gov/publication/sir20105077"
           },
           {
-            "figure": "100%",
-            "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
-            "source": "NAR & NALP, Remodeling Impact Report, 2023",
-            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+            "figure": "15–80%",
+            "label": "lower capital costs when projects used low-impact stormwater design such as rain gardens instead of pipes and vaults.",
+            "source": "U.S. EPA, 2007",
+            "source_url": "https://www.epa.gov/sites/default/files/2015-10/documents/2008_01_02_nps_lid_costs07uments_reducingstormwatercosts-2.pdf"
           },
           {
-            "figure": "1.7 days",
-            "label": "sooner sale, on average, for houses with street trees in front, which also sold for $8,870 more (Portland, Oregon; trees, not plantings).",
-            "source": "Donovan & Butry, Landscape and Urban Planning, 2010",
-            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2010_donovan001.pdf"
+            "figure": "29%",
+            "label": "less gun violence around vacant lots that were cleaned and greened, in below-poverty Philadelphia neighborhoods.",
+            "source": "Branas et al., PNAS, 2018",
+            "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5866574/"
           }
         ],
         "ideas": [
-          "A pre-listing refresh: beds weeded, edged and mulched",
-          "Seasonal containers at the front door for photos and open houses",
-          "Foundation and entrance plantings for new builds and model homes",
-          "Low-care plantings buyers won't see as a chore",
-          "Care visits while a property is on the market"
+          "Downtown planters and hanging-basket programs",
+          "Rain gardens and bioswales",
+          "Native plantings on medians, pond edges and park borders",
+          "Entrance and welcome-sign plantings",
+          "Pollinator demonstration gardens"
         ],
         "calc_basis": "property_value",
-        "calc_basis_label": "Sale price",
-        "calc_basis_default": 350000,
-        "calc_uplift_low": "1",
-        "calc_uplift_high": "3",
-        "calc_note": "A one-time gain of 1% to 3% of the sale price, the same range the home garden calculator uses. Buyers say a well-landscaped home is worth 5–11% more (Behe et al., 2005), and Realtors estimate a landscape upgrade recovers about what it costs (NAR & NALP, 2023); buyers' estimates run ahead of sale prices, so the calculator stays well below them. It starts from a pre-listing refresh with no yearly care, since the gain comes when the property sells.",
-        "planner_choice": "Real estate: listings, model homes or new builds",
+        "calc_basis_label": "Value of property next to it",
+        "calc_basis_default": 5000000,
+        "calc_uplift_low": "0.25",
+        "calc_uplift_high": "1",
+        "calc_note": "A one-time gain of 0.25% to 1% of the value of property beside it. Parks add 8–10% to adjacent values (Crompton & Nicholls) and greening vacant lots about 5.6% (Heckert & Mennis, 2012), but planting a frontage or median is a much smaller change, so we take a small fraction. Crime and stormwater benefits are left out of the money.",
+        "planner_choice": "Municipal or public space",
         "faqs": [
           {
-            "question": "Can you refresh a property before it's listed?",
-            "answer": "Yes. Tell us the listing date, and we'll plan a refresh of beds, mulch and containers around it so the property is ready for photos."
+            "question": "Do you work with townships and downtown authorities?",
+            "answer": "Yes. We can provide a written plan and pricing for a board or council to review, and phase the work to fit a budget year."
           },
           {
-            "question": "Do you work with agents and builders on more than one property?",
-            "answer": "Yes. We can set up a refresh or planting plan you can repeat across listings, model homes or a development."
+            "question": "Can a rain garden handle runoff from a parking lot?",
+            "answer": "Often, yes, when it's sized for the area that drains to it and planted with deep-rooted natives. In a USGS study, rain gardens held 96–100% of events over four years."
           },
           {
             "question": "Do you build patios, walls or walkways?",
             "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
           }
         ],
-        "calc_investment_default": 2500,
-        "calc_care_default": 0,
-        "calc_lawn_default": 0
+        "calc_investment_default": 25000,
+        "calc_care_default": 2400,
+        "calc_lawn_default": 40000
       },
       "body_markdown": "",
       "seo": {
-        "meta_title": "Real Estate & Listing Landscaping | Healing Earth Design",
-        "meta_description": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
-        "og_image_id": "51",
+        "meta_title": "Municipal & Public Space Planting | Healing Earth Design",
+        "meta_description": "Downtown planters, park beds, medians and rain gardens for townships, villages, downtown authorities and parks.",
+        "og_image_id": "39",
         "schema_type": "WebPage"
       }
     },
@@ -5282,6 +5366,102 @@
         "meta_title": "School & Church Landscaping | Healing Earth Design",
         "meta_description": "Gardens that serve a mission: outdoor classrooms, pollinator plantings, welcoming entrances and lower grounds costs for schools, churches and nonprofits.",
         "og_image_id": "6",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "industries",
+      "slug": "realty-real-estate",
+      "title": "Realty & Real Estate",
+      "locale": "en",
+      "frontmatter": {
+        "order": 8,
+        "image": "51",
+        "icon": "home",
+        "summary": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
+        "headline": "Curb appeal is the first showing.",
+        "intro": "Buyers form an opinion before they reach the front door, and most of them see the house first in listing photos. Nearly every Realtor says curb appeal matters in attracting a buyer, and most have told sellers to improve it before listing. Fresh beds, clean mulch and full containers at the door are among the simplest ways to make a property look cared for.",
+        "drivers": [
+          {
+            "title": "Listing photos that stop the scroll",
+            "text": "A planted, mulched entrance and seasonal containers make the front of the house the photo buyers click on."
+          },
+          {
+            "title": "Showings that start well",
+            "text": "The walk to the door sets the tone for the whole showing; cared-for plantings say the house has been cared for too."
+          },
+          {
+            "title": "Model homes and new builds",
+            "text": "Bare lots look unfinished. Foundation plantings and a planted entrance help a new home look ready to live in."
+          },
+          {
+            "title": "Low care buyers won't worry about",
+            "text": "Sturdy, plant-forward beds that look good without much work reassure buyers who don't want a project."
+          }
+        ],
+        "stats": [
+          {
+            "figure": "97%",
+            "label": "of Realtors say curb appeal is important in attracting a buyer.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "92%",
+            "label": "of Realtors have suggested sellers improve curb appeal before listing.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "100%",
+            "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "1.7 days",
+            "label": "sooner sale, on average, for houses with street trees in front, which also sold for $8,870 more (Portland, Oregon; trees, not plantings).",
+            "source": "Donovan & Butry, Landscape and Urban Planning, 2010",
+            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2010_donovan001.pdf"
+          }
+        ],
+        "ideas": [
+          "A pre-listing refresh: beds weeded, edged and mulched",
+          "Seasonal containers at the front door for photos and open houses",
+          "Foundation and entrance plantings for new builds and model homes",
+          "Low-care plantings buyers won't see as a chore",
+          "Care visits while a property is on the market"
+        ],
+        "calc_basis": "property_value",
+        "calc_basis_label": "Sale price",
+        "calc_basis_default": 350000,
+        "calc_uplift_low": "1",
+        "calc_uplift_high": "3",
+        "calc_note": "A one-time gain of 1% to 3% of the sale price, the same range the home garden calculator uses. Buyers say a well-landscaped home is worth 5–11% more (Behe et al., 2005), and Realtors estimate a landscape upgrade recovers about what it costs (NAR & NALP, 2023); buyers' estimates run ahead of sale prices, so the calculator stays well below them. It starts from a pre-listing refresh with no yearly care, since the gain comes when the property sells.",
+        "planner_choice": "Real estate: listings, model homes or new builds",
+        "faqs": [
+          {
+            "question": "Can you refresh a property before it's listed?",
+            "answer": "Yes. Tell us the listing date, and we'll plan a refresh of beds, mulch and containers around it so the property is ready for photos."
+          },
+          {
+            "question": "Do you work with agents and builders on more than one property?",
+            "answer": "Yes. We can set up a refresh or planting plan you can repeat across listings, model homes or a development."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ],
+        "calc_investment_default": 2500,
+        "calc_care_default": 0,
+        "calc_lawn_default": 0
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Real Estate & Listing Landscaping | Healing Earth Design",
+        "meta_description": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
+        "og_image_id": "51",
         "schema_type": "WebPage"
       }
     },
@@ -5462,102 +5642,6 @@
         "meta_title": "Office & Corporate Landscaping | Healing Earth Design",
         "meta_description": "Grounds that help you lease space, welcome clients and give staff somewhere better to look, at lower upkeep than lawn.",
         "og_image_id": "54",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "industries",
-      "slug": "municipal-public-spaces",
-      "title": "Municipal & Public Spaces",
-      "locale": "en",
-      "frontmatter": {
-        "order": 7,
-        "image": "39",
-        "icon": "building-community",
-        "summary": "Downtown planters, park beds, medians and rain gardens for townships, villages, downtown authorities and parks.",
-        "headline": "Greener public spaces raise values and handle stormwater.",
-        "intro": "Homes beside parks sell for more, rain gardens hold water that would otherwise run to the storm drain, and greening neglected land has been linked to less crime. For a township, village or downtown authority, planted public spaces are a visible return on public money, and native plantings cost less to keep than mown turf.",
-        "drivers": [
-          {
-            "title": "Downtowns people want to visit",
-            "text": "Planters and seasonal displays along main streets give visitors a reason to linger."
-          },
-          {
-            "title": "Stormwater handled where it falls",
-            "text": "Rain gardens and bioswales soak up runoff from roofs, streets and lots."
-          },
-          {
-            "title": "Lower mowing bills",
-            "text": "Native plantings on medians, ponds and park edges replace turf that has to be mown all season."
-          },
-          {
-            "title": "Habitat that's on view",
-            "text": "Pollinator plantings in public places show residents what native gardens can be."
-          }
-        ],
-        "stats": [
-          {
-            "figure": "8–10%",
-            "label": "higher value for properties next to a passive park, the starting point recommended by a review of 33 U.S. studies.",
-            "source": "Crompton & Nicholls, Journal of Leisure Research",
-            "source_url": "https://www.nrpa.org/globalassets/journals/jlr/2001/volume-33/jlr-volume-33-number-1-pp-1-31.pdf"
-          },
-          {
-            "figure": "96–100%",
-            "label": "of rain and snowmelt events held and soaked in by rain gardens over four years in Madison, Wisconsin.",
-            "source": "USGS Scientific Investigations Report 2010-5077",
-            "source_url": "https://pubs.usgs.gov/publication/sir20105077"
-          },
-          {
-            "figure": "15–80%",
-            "label": "lower capital costs when projects used low-impact stormwater design such as rain gardens instead of pipes and vaults.",
-            "source": "U.S. EPA, 2007",
-            "source_url": "https://www.epa.gov/sites/default/files/2015-10/documents/2008_01_02_nps_lid_costs07uments_reducingstormwatercosts-2.pdf"
-          },
-          {
-            "figure": "29%",
-            "label": "less gun violence around vacant lots that were cleaned and greened, in below-poverty Philadelphia neighborhoods.",
-            "source": "Branas et al., PNAS, 2018",
-            "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5866574/"
-          }
-        ],
-        "ideas": [
-          "Downtown planters and hanging-basket programs",
-          "Rain gardens and bioswales",
-          "Native plantings on medians, pond edges and park borders",
-          "Entrance and welcome-sign plantings",
-          "Pollinator demonstration gardens"
-        ],
-        "calc_basis": "property_value",
-        "calc_basis_label": "Value of property next to it",
-        "calc_basis_default": 5000000,
-        "calc_uplift_low": "0.25",
-        "calc_uplift_high": "1",
-        "calc_note": "A one-time gain of 0.25% to 1% of the value of property beside it. Parks add 8–10% to adjacent values (Crompton & Nicholls) and greening vacant lots about 5.6% (Heckert & Mennis, 2012), but planting a frontage or median is a much smaller change, so we take a small fraction. Crime and stormwater benefits are left out of the money.",
-        "planner_choice": "Municipal or public space",
-        "faqs": [
-          {
-            "question": "Do you work with townships and downtown authorities?",
-            "answer": "Yes. We can provide a written plan and pricing for a board or council to review, and phase the work to fit a budget year."
-          },
-          {
-            "question": "Can a rain garden handle runoff from a parking lot?",
-            "answer": "Often, yes, when it's sized for the area that drains to it and planted with deep-rooted natives. In a USGS study, rain gardens held 96–100% of events over four years."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ],
-        "calc_investment_default": 25000,
-        "calc_care_default": 2400,
-        "calc_lawn_default": 40000
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Municipal & Public Space Planting | Healing Earth Design",
-        "meta_description": "Downtown planters, park beds, medians and rain gardens for townships, villages, downtown authorities and parks.",
-        "og_image_id": "39",
         "schema_type": "WebPage"
       }
     },
@@ -6086,6 +6170,15 @@
           ]
         }
       }
+    },
+    {
+      "collection": "posts",
+      "slug": "publish-seasonal-garden-planning-guides-that-answer-the-searches-you-re-missing",
+      "title": "Publish seasonal garden-planning guides that answer the searches you're missing",
+      "locale": "en",
+      "frontmatter": {},
+      "body_markdown": "Write posts for fall garden planning, spring bulb planning, native plant choices and 'what to plant in West Michigan'. Format with clear headings, photos, FAQ blocks and video so they can win people_also_ask and AI overviews. Tracked 'fall garden planning kalamazoo' has ai_overview, video, people_also_ask and related_searches; this site is not in the top 30. CMS shows 0 published in the last 90 days across case studies, services, testimonials, industries, commercial services and service areas.",
+      "seo": {}
     },
     {
       "collection": "service-areas",

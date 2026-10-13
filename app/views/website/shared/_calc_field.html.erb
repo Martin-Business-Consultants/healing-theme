@@ -1,5 +1,5 @@
-<%# locals: (name:, title:, value:, step:, money: false, hint: nil) -%>
-<%# A number the home garden calculator asks for; `money` puts a $ before it. %>
+<%# locals: (name:, title:, value:, money: false, hint: nil) -%>
+<%# A number the home garden calculator asks for, shown with commas (healing/number_field.js); `money` puts a $ before it. %>
 <% input_id = "home-calc-#{name}" %>
 <div class="field field--wide">
   <label class="field__label" for="<%= input_id %>">
@@ -9,8 +9,8 @@
     <% end %>
   </label>
   <% if money %>
-    <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="<%= input_id %>" name="<%= name %>" type="number" inputmode="numeric" min="0" step="<%= step %>" value="<%= value %>" autocomplete="off"></div>
+    <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="<%= input_id %>" name="<%= name %>" type="text" inputmode="numeric" data-number value="<%= number_with_delimiter(value) %>" autocomplete="off"></div>
   <% else %>
-    <input class="field__input" id="<%= input_id %>" name="<%= name %>" type="number" inputmode="numeric" min="0" step="<%= step %>" value="<%= value %>" autocomplete="off">
+    <input class="field__input" id="<%= input_id %>" name="<%= name %>" type="text" inputmode="numeric" data-number value="<%= number_with_delimiter(value) %>" autocomplete="off">
   <% end %>
 </div>
