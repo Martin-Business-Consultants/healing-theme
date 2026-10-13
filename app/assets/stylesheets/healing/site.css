@@ -2487,6 +2487,8 @@
   .seasons__swatch { flex-shrink: 0; width: 0.875rem; height: 0.875rem; margin-top: 0.3rem; border-radius: 999px; background: var(--season); }
   .seasons__title { font-family: var(--font-label); font-weight: 600; }
 
+  .illustration__graphic { margin-top: 2.5rem; }
+
   /* The other illustrations (shared/graphics): one palette across them */
   .graphic--panel > svg, .graphic__with-key { padding: 1rem; border-radius: 1rem; background: var(--base-100); }
   .graphic__with-key {

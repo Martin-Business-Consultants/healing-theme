@@ -1,0 +1,18 @@
+<%# locals: (data:) -%>
+<%# One of the theme's illustrations (shared/graphic), with a heading and a line above it. %>
+<section class="section">
+  <div class="container container--narrow illustration">
+    <% if data.heading.present? %>
+      <div data-reveal>
+        <% if data.eyebrow.present? %>
+          <p class="eyebrow"><%= data.eyebrow %></p>
+        <% end %>
+        <h2 class="h2 section-head__title"><%= data.heading %></h2>
+        <% if data.intro.present? %>
+          <p class="lead muted"><%= data.intro %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="illustration__graphic"><%= render "website/shared/graphic", name: data.graphic %></div>
+  </div>
+</section>

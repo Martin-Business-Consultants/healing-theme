@@ -1,8 +1,10 @@
 <%# locals: (planner:, source: nil, property: nil, checked: []) -%>
-<%# A planner (HealingHelper::PLANNERS): its CMS form in steps, then a review of the answers before it's sent. Questions, choices, the button and the thank-you are the form's; a field the steps don't name joins the last step, so one added in the CMS still shows. Each service choice shows what that service includes (the planner's services, by their "planner_choice"), and its icon field's choices are cards with icons. Without scripts it's one long form; healing/planner.js makes it steps, and it posts like the contact form (healing/contact_form.js), "estimate" carrying a calculator's result. `property` preselects the icon field's choice, `checked` ticks services. %>
+<%# A planner (HealingHelper::PLANNERS): its CMS form in steps, then a review of the answers before it's sent. Questions, choices, the button and the thank-you are the form's; a field the steps don't name joins the last step, so one added in the CMS still shows. Each service choice shows what that service includes (the planner's services, by their "planner_choice"), and its icon field's choices are cards with icons. Without scripts it's one long form; healing/planner.js makes it steps, and it posts like the contact form (healing/contact_form.js), "estimate" carrying a calculator's result. `property` preselects the icon field's choice, `checked` ticks services. A "tracking" field, when the form has one, carries the ad click and UTM tags (healing/attribution.js). %>
 <% form = planner[:form] %>
 <% steps = planner[:steps].map { |title, hint, names| [title, hint, names.dup] } %>
 <% hidden = %w[estimate source].map { website_form_field(form, it)["name"] } %>
+<% tracking = form.fields.find { it["name"] == "tracking" } %>
+<% hidden << tracking["name"] if tracking %>
 <% named = steps.flat_map(&:last) %>
 <% named.each { website_form_field(form, it) } %>
 <% steps.last.last.concat(form.fields.map { it["name"] } - named - hidden) %>
@@ -13,6 +15,9 @@
   data-contact-form data-planner data-honeypot="<%= Form::HONEYPOT_FIELD %>" data-success="<%= form.success_message %>"<% if thank_you %> data-redirect="<%= thank_you %>"<% end %>>
   <input type="hidden" name="<%= website_form_field(form, :source)["name"] %>" value="<%= source.presence || planner[:source] %>">
   <input type="hidden" name="<%= website_form_field(form, :estimate)["name"] %>" value="" data-planner-estimate data-estimate>
+  <% if tracking %>
+    <input type="hidden" name="<%= tracking["name"] %>" value="" data-tracking>
+  <% end %>
   <p hidden aria-hidden="true">
     <label>Leave this empty: <input name="<%= Form::HONEYPOT_FIELD %>" tabindex="-1" autocomplete="off"></label>
   </p>

@@ -1333,6 +1333,50 @@
       "defaults": {}
     },
     {
+      "slug": "illustration",
+      "label": "Illustration",
+      "category": "Sections",
+      "version": 1,
+      "fields": [
+        {
+          "name": "graphic",
+          "label": "Illustration",
+          "type": "select",
+          "required": true,
+          "options": [
+            "rain_garden",
+            "seasons",
+            "bed_layers",
+            "care_calendar",
+            "site_analysis",
+            "planting_plan",
+            "plant_layers",
+            "spacing",
+            "healthy_plant",
+            "container",
+            "herb_spiral",
+            "map"
+          ]
+        },
+        {
+          "name": "eyebrow",
+          "label": "Eyebrow",
+          "type": "string"
+        },
+        {
+          "name": "heading",
+          "label": "Heading",
+          "type": "string"
+        },
+        {
+          "name": "intro",
+          "label": "Intro",
+          "type": "text"
+        }
+      ],
+      "defaults": {}
+    },
+    {
       "slug": "media_text",
       "label": "Media + text",
       "category": "Sections",
@@ -4927,9 +4971,780 @@
         "meta_title": "Privacy Policy | Healing Earth Design",
         "meta_description": "How Healing Earth Design handles what you send through the contact form: what's collected, how it's used, how long it's kept, and how to have it deleted."
       }
+    },
+    {
+      "path": "business-seasonal-displays",
+      "slug": "business-seasonal-displays",
+      "title": "Seasonal Displays for Businesses",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "For businesses · Southwest Michigan",
+            "title": "Holiday and winter planters for your storefront",
+            "intro": "Full, cared-for containers at your door through the holidays, then spring, summer and fall. We design, plant and change them each season, so your entrance never sits empty.",
+            "image": "51",
+            "button_label": "Plan your displays",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            },
+            "secondary_label": "Call (269) 254-1769",
+            "secondary_link": {
+              "kind": "url",
+              "value": "tel:+12692541769"
+            }
+          }
+        },
+        {
+          "type": "proof_strip",
+          "version": 1,
+          "data": {
+            "items": [
+              "Design, plants and installation included",
+              "Four seasonal changes a year",
+              "Plants only: no mowing, no hardscape",
+              "Replies within 1–2 business days"
+            ]
+          }
+        },
+        {
+          "type": "illustration",
+          "version": 1,
+          "data": {
+            "graphic": "seasons",
+            "eyebrow": "One program, all year",
+            "heading": "Four plantings a year, so the entrance never sits empty",
+            "intro": "We take out what's finished and plant what's next: holiday and winter now, then spring, summer and fall."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Why it pays",
+            "heading": "Shoppers notice a cared-for street",
+            "intro": "People spend more time, and say they'd spend more money, where a business district is green and cared for.",
+            "stats": [
+              {
+                "figure": "9–12%",
+                "label": "more that shoppers said they'd pay for goods in business districts with trees and landscaping.",
+                "source": "Wolf, Journal of Forestry, 2005",
+                "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2005_wolf001.pdf"
+              },
+              {
+                "figure": "More visits",
+                "label": "Shoppers shown greener districts said they'd travel farther, stay longer and come more often.",
+                "source": "Wolf, Journal of Forestry, 2005",
+                "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2005_wolf001.pdf"
+              }
+            ],
+            "background": "tinted",
+            "footnote": "Figures from the published studies linked; they measure streetscapes and whole landscapes, not any one project."
+          }
+        },
+        {
+          "type": "steps",
+          "version": 1,
+          "data": {
+            "eyebrow": "How it works",
+            "heading": "A year of displays, planned once",
+            "items": [
+              {
+                "season": "Now",
+                "title": "Walk your entrances",
+                "text": "We count your containers and window boxes, check sun and wind, and talk through your colors and brand."
+              },
+              {
+                "season": "Then",
+                "title": "A plan and price for the year",
+                "text": "You see each season's look and the price for the year up front, with the holiday change first."
+              },
+              {
+                "season": "All year",
+                "title": "We change them each season",
+                "text": "We arrive for each change, take out what's finished and plant what's next. No watering schedule to manage between changes unless you'd like care visits."
+              }
+            ],
+            "button_label": "Start your plan",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            }
+          }
+        },
+        {
+          "type": "before_after",
+          "version": 1,
+          "data": {
+            "eyebrow": "Case study · Richland, MI",
+            "heading": "From bare ground to a welcoming entrance",
+            "text": "A new business building with bare soil around it. We designed the beds, coordinated plants and supplies, and our team brought in garden soil, planted and mulched.",
+            "layout": "side_by_side",
+            "before_image": "56",
+            "during_image": "57",
+            "after_image": "35",
+            "before_label": "Before",
+            "during_label": "Planting day",
+            "after_label": "After",
+            "caption": "Bare ground beside a new building; our team planting; the finished beds.",
+            "button_label": "Read the case study",
+            "button_link": {
+              "kind": "entry",
+              "value": "richland-commercial-landscape",
+              "collection": "portfolio"
+            }
+          }
+        },
+        {
+          "type": "pull_quote",
+          "version": 1,
+          "data": {}
+        },
+        {
+          "type": "faq",
+          "version": 1,
+          "data": {
+            "eyebrow": "Questions",
+            "heading": "About seasonal displays",
+            "items": [
+              {
+                "question": "Can you use our own containers?",
+                "answer": "Yes. We can replant the containers you have, or source new ones that suit the building."
+              },
+              {
+                "question": "What do the holiday and winter displays look like?",
+                "answer": "Evergreen boughs, birch, berries and lights, arranged to look full from November until spring planting."
+              },
+              {
+                "question": "How soon can the holiday display go in?",
+                "answer": "We plan holiday installs through November. Earlier requests get the first dates."
+              },
+              {
+                "question": "Do you mow, plow or build patios?",
+                "answer": "No. We design, plant and care for plantings. Your current crew can keep mowing and plowing, and if your project needs hardscape we'll plan the planting around your contractor's work."
+              }
+            ]
+          }
+        },
+        {
+          "type": "commercial_planner",
+          "version": 1,
+          "data": {
+            "eyebrow": "Plan your project",
+            "heading": "Plan your displays",
+            "intro": "Tell us about your entrances and when you'd like the first change. We'll reply within 1–2 business days with ideas and a price for the year.",
+            "points": [
+              "Replies within 1–2 business days",
+              "Site visits on-site or virtual",
+              "Plants only: design, installation, displays and care",
+              "No obligation"
+            ],
+            "source": "lp: seasonal displays"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "Seasonal & Holiday Planters for Businesses | SW Michigan",
+        "meta_description": "Holiday, winter, spring and summer planters and window boxes for storefronts, restaurants and offices in Southwest Michigan, designed and changed for you.",
+        "og_image_id": "51",
+        "noindex": true
+      }
+    },
+    {
+      "path": "business-landscape-design",
+      "slug": "business-landscape-design",
+      "title": "Commercial Landscape Design",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "For businesses · Southwest Michigan",
+            "title": "Plan this winter. Plant first in spring.",
+            "intro": "Commercial planting design and installation for entrances, frontage and new buildings. We design over the winter, so your property is first on the spring install schedule.",
+            "image": "54",
+            "button_label": "Start your plan",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            },
+            "secondary_label": "Call (269) 254-1769",
+            "secondary_link": {
+              "kind": "url",
+              "value": "tel:+12692541769"
+            }
+          }
+        },
+        {
+          "type": "proof_strip",
+          "version": 1,
+          "data": {
+            "items": [
+              "Design to installation, one team",
+              "Plants only: no hardscape",
+              "Plans finished over the winter",
+              "Southwest Michigan and Grand Rapids"
+            ]
+          }
+        },
+        {
+          "type": "illustration",
+          "version": 1,
+          "data": {
+            "graphic": "bed_layers",
+            "eyebrow": "Built to last",
+            "heading": "Good beds start below ground",
+            "intro": "Soil prepared before a single plant goes in, plants spaced for their full size, and mulch to hold water and stop weeds."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Why it pays",
+            "heading": "Grounds are part of what a property is worth",
+            "intro": "Good landscaping shows up in rents and resale, and planting costs less to keep than mown turf.",
+            "stats": [
+              {
+                "figure": "~7%",
+                "label": "higher rent at office buildings whose landscaping had good visual appeal.",
+                "source": "Laverne & Winson-Geideman, 2003",
+                "source_url": "https://auf.isa-arbor.com/content/29/5/281"
+              },
+              {
+                "figure": "$3,950–$4,683",
+                "label": "saved per acre each year by native plantings over mown turf, averaged over ten years.",
+                "source": "Conservation Research Institute, 2005",
+                "source_url": "https://www.auburnhills.org/wp-content/uploads/2025/03/Changing-Cost-Perceptions.pdf"
+              },
+              {
+                "figure": "100%",
+                "label": "of the cost of a landscape upgrade that Realtors estimate is recovered at sale.",
+                "source": "NAR & NALP, 2023",
+                "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+              }
+            ],
+            "background": "tinted",
+            "footnote": "Figures from the published studies linked; they measure streetscapes and whole landscapes, not any one project."
+          }
+        },
+        {
+          "type": "steps",
+          "version": 1,
+          "data": {
+            "eyebrow": "From winter to spring",
+            "heading": "From a winter plan to a spring planting",
+            "items": [
+              {
+                "season": "Winter",
+                "title": "Site visit and goals",
+                "text": "We walk the property, look at sun, soil and drainage, and talk through how people arrive and what it should say."
+              },
+              {
+                "season": "Winter",
+                "title": "Plan and price",
+                "text": "A planting plan or detailed design with a plant list, and a clear price for installation."
+              },
+              {
+                "season": "Spring",
+                "title": "Installation",
+                "text": "Our team prepares the beds, brings in soil, plants and mulches, first on the spring schedule."
+              },
+              {
+                "season": "All season",
+                "title": "Care",
+                "text": "A care plan for your crew, or regular care visits from us."
+              }
+            ],
+            "button_label": "Start your plan",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            }
+          }
+        },
+        {
+          "type": "before_after",
+          "version": 1,
+          "data": {
+            "eyebrow": "Case study · Richland, MI",
+            "heading": "From bare ground to a welcoming entrance",
+            "text": "A new business building with bare soil around it. We designed the beds, coordinated plants and supplies, and our team brought in garden soil, planted and mulched.",
+            "layout": "side_by_side",
+            "before_image": "56",
+            "during_image": "57",
+            "after_image": "35",
+            "before_label": "Before",
+            "during_label": "Planting day",
+            "after_label": "After",
+            "caption": "Bare ground beside a new building; our team planting; the finished beds.",
+            "button_label": "Read the case study",
+            "button_link": {
+              "kind": "entry",
+              "value": "richland-commercial-landscape",
+              "collection": "portfolio"
+            }
+          }
+        },
+        {
+          "type": "pull_quote",
+          "version": 1,
+          "data": {}
+        },
+        {
+          "type": "faq",
+          "version": 1,
+          "data": {
+            "eyebrow": "Questions",
+            "heading": "About design and installation",
+            "items": [
+              {
+                "question": "Why plan in winter?",
+                "answer": "Design takes time, and spring install dates and the best nursery stock go first. A plan finished over the winter means planting as soon as the ground is ready."
+              },
+              {
+                "question": "Do you install the plants yourselves?",
+                "answer": "Yes. Our team prepares the beds and installs soil, plants and mulch; see the Richland case study above."
+              },
+              {
+                "question": "Do you mow, plow or build patios?",
+                "answer": "No. We design, plant and care for plantings. Your current crew can keep mowing and plowing, and if your project needs hardscape we'll plan the planting around your contractor's work."
+              }
+            ]
+          }
+        },
+        {
+          "type": "commercial_planner",
+          "version": 1,
+          "data": {
+            "eyebrow": "Plan your project",
+            "heading": "Start your plan",
+            "intro": "A few questions about your property, what you'd like and when. We'll reply within 1–2 business days with next steps and a rough budget.",
+            "points": [
+              "Replies within 1–2 business days",
+              "Site visits on-site or virtual",
+              "Plants only: design, installation, displays and care",
+              "No obligation"
+            ],
+            "source": "lp: design and installation"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "Commercial Landscape Design & Installation | SW Michigan",
+        "meta_description": "Planting design and installation for entrances, frontage and new buildings in Southwest Michigan. Plan this winter, plant first in spring.",
+        "og_image_id": "54",
+        "noindex": true
+      }
+    },
+    {
+      "path": "hoa-property-landscaping",
+      "slug": "hoa-property-landscaping",
+      "title": "HOA & Property Landscaping",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "For HOAs and property managers",
+            "title": "Entrances and common areas that help units lease",
+            "intro": "Entrance and sign plantings, seasonal color and a care plan your crew can follow, for HOAs, apartment communities and rental properties. Budgeted in phases if you need it.",
+            "image": "53",
+            "button_label": "Plan a property",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            },
+            "secondary_label": "Call (269) 254-1769",
+            "secondary_link": {
+              "kind": "url",
+              "value": "tel:+12692541769"
+            }
+          }
+        },
+        {
+          "type": "proof_strip",
+          "version": 1,
+          "data": {
+            "items": [
+              "Entrance and sign plantings",
+              "Seasonal color programs",
+              "A care schedule your crew can follow",
+              "Phased budgets for boards"
+            ]
+          }
+        },
+        {
+          "type": "illustration",
+          "version": 1,
+          "data": {
+            "graphic": "care_calendar",
+            "eyebrow": "Looks the same in August as in May",
+            "heading": "A season of care, planned",
+            "intro": "Plantings stay sharp when the work is scheduled: clean-ups, mulch, weeding, deadheading and a fall cut-back."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Why it pays",
+            "heading": "Curb appeal is the first showing",
+            "intro": "Landscaping shows up in rents and in how buyers and renters value a property.",
+            "stats": [
+              {
+                "figure": "$21",
+                "label": "more a month in rent for a rental with a street tree in front; $5.62 for a tree on the lot.",
+                "source": "Donovan & Butry, 2011",
+                "source_url": "https://research.fs.usda.gov/download/treesearch/39906.pdf"
+              },
+              {
+                "figure": "5–11%",
+                "label": "higher perceived value for a well-landscaped home than the same home with no landscape.",
+                "source": "Behe et al., 2005",
+                "source_url": "https://www.pubs.ext.vt.edu/426/426-087/426-087.html"
+              },
+              {
+                "figure": "97%",
+                "label": "of Realtors say curb appeal is important in attracting a buyer.",
+                "source": "NAR & NALP, 2023",
+                "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+              }
+            ],
+            "background": "tinted",
+            "footnote": "Figures from the published studies linked; they measure streetscapes and whole landscapes, not any one project."
+          }
+        },
+        {
+          "type": "steps",
+          "version": 1,
+          "data": {
+            "eyebrow": "How it works",
+            "heading": "Planned with the board, kept up all season",
+            "items": [
+              {
+                "title": "Walk the property",
+                "text": "We walk the entrances and common areas with the board or manager and note what's working and what isn't."
+              },
+              {
+                "title": "A plan and a phased budget",
+                "text": "A planting plan and a price you can phase to fit the reserve schedule, ready to present to the board."
+              },
+              {
+                "title": "Plant and keep it up",
+                "text": "Our team plants, then leaves a care schedule for your crew or takes on the planting care ourselves."
+              }
+            ],
+            "button_label": "Start your plan",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            }
+          }
+        },
+        {
+          "type": "before_after",
+          "version": 1,
+          "data": {
+            "eyebrow": "Case study · Richland, MI",
+            "heading": "From bare ground to a welcoming entrance",
+            "text": "A new business building with bare soil around it. We designed the beds, coordinated plants and supplies, and our team brought in garden soil, planted and mulched.",
+            "layout": "side_by_side",
+            "before_image": "56",
+            "during_image": "57",
+            "after_image": "35",
+            "before_label": "Before",
+            "during_label": "Planting day",
+            "after_label": "After",
+            "caption": "Bare ground beside a new building; our team planting; the finished beds.",
+            "button_label": "Read the case study",
+            "button_link": {
+              "kind": "entry",
+              "value": "richland-commercial-landscape",
+              "collection": "portfolio"
+            }
+          }
+        },
+        {
+          "type": "pull_quote",
+          "version": 1,
+          "data": {}
+        },
+        {
+          "type": "faq",
+          "version": 1,
+          "data": {
+            "eyebrow": "Questions",
+            "heading": "Questions from boards and managers",
+            "items": [
+              {
+                "question": "Can you work with our existing landscape contractor?",
+                "answer": "Yes. We can design and plant, then hand over a care plan, or care for the plantings ourselves while your contractor keeps mowing."
+              },
+              {
+                "question": "Can you present to the board?",
+                "answer": "Yes. We'll provide a written plan and pricing for the board to review, phased to fit a budget year if needed."
+              },
+              {
+                "question": "Do you mow, plow or build patios?",
+                "answer": "No. We design, plant and care for plantings. Your current crew can keep mowing and plowing, and if your project needs hardscape we'll plan the planting around your contractor's work."
+              }
+            ]
+          }
+        },
+        {
+          "type": "commercial_planner",
+          "version": 1,
+          "data": {
+            "eyebrow": "Plan your project",
+            "heading": "Plan a property",
+            "intro": "Tell us about the property, what you'd like and your budget timing. We'll reply within 1–2 business days.",
+            "points": [
+              "Replies within 1–2 business days",
+              "Site visits on-site or virtual",
+              "Plants only: design, installation, displays and care",
+              "No obligation"
+            ],
+            "source": "lp: hoa and property"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "HOA & Property Manager Landscaping | SW Michigan",
+        "meta_description": "Entrance and common-area plantings, seasonal color and care plans for HOAs, apartments and rental properties in Southwest Michigan.",
+        "og_image_id": "53",
+        "noindex": true
+      }
+    },
+    {
+      "path": "business-native-plantings",
+      "slug": "business-native-plantings",
+      "title": "Native Plantings & Rain Gardens for Businesses",
+      "locale": "en",
+      "blocks": [
+        {
+          "type": "page_header",
+          "version": 1,
+          "data": {
+            "eyebrow": "For campuses, churches, schools and townships",
+            "title": "Native plantings that cut mowing and handle stormwater",
+            "intro": "Turn little-used lawn into native and pollinator plantings, and send roof and parking-lot runoff to rain gardens instead of the storm drain. Designed to look intentional, not overgrown.",
+            "image": "39",
+            "button_label": "Plan a planting",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            },
+            "secondary_label": "Call (269) 254-1769",
+            "secondary_link": {
+              "kind": "url",
+              "value": "tel:+12692541769"
+            }
+          }
+        },
+        {
+          "type": "proof_strip",
+          "version": 1,
+          "data": {
+            "items": [
+              "Lawn-to-native conversions",
+              "Rain gardens sized to your roof or lot",
+              "Establishment care included",
+              "Clean edges, not overgrown"
+            ]
+          }
+        },
+        {
+          "type": "illustration",
+          "version": 1,
+          "data": {
+            "graphic": "rain_garden",
+            "eyebrow": "How it works",
+            "heading": "A rain garden catches water where it falls",
+            "intro": "A shallow planted basin holds runoff from a roof or lot, and deep native roots soak it into the ground."
+          }
+        },
+        {
+          "type": "value_stats",
+          "version": 1,
+          "data": {
+            "eyebrow": "Why it pays",
+            "heading": "Lower upkeep, stormwater handled on site",
+            "intro": "Native plantings cost less to keep than mown turf, and rain gardens hold nearly every storm.",
+            "stats": [
+              {
+                "figure": "$3,950–$4,683",
+                "label": "saved per acre each year by native plantings over mown turf, averaged over ten years.",
+                "source": "Conservation Research Institute, 2005",
+                "source_url": "https://www.auburnhills.org/wp-content/uploads/2025/03/Changing-Cost-Perceptions.pdf"
+              },
+              {
+                "figure": "96–100%",
+                "label": "of rain and snowmelt events held by rain gardens over four years.",
+                "source": "USGS, 2010",
+                "source_url": "https://pubs.usgs.gov/publication/sir20105077"
+              },
+              {
+                "figure": "15–80%",
+                "label": "lower capital costs when projects used rain gardens and other low-impact design instead of pipes and vaults.",
+                "source": "U.S. EPA, 2007",
+                "source_url": "https://www.epa.gov/sites/default/files/2015-10/documents/2008_01_02_nps_lid_costs07uments_reducingstormwatercosts-2.pdf"
+              }
+            ],
+            "background": "tinted",
+            "footnote": "Figures from the published studies linked; they measure streetscapes and whole landscapes, not any one project."
+          }
+        },
+        {
+          "type": "steps",
+          "version": 1,
+          "data": {
+            "eyebrow": "How it works",
+            "heading": "From lawn to habitat",
+            "items": [
+              {
+                "title": "Read the site",
+                "text": "We look at soil, sun and where water goes when it rains."
+              },
+              {
+                "title": "Design",
+                "text": "A native planting plan or rain garden sized for your site, with a plant list and quantities."
+              },
+              {
+                "title": "Plant and establish",
+                "text": "Our team plants, then cares for it through the first seasons while the roots go deep."
+              }
+            ],
+            "button_label": "Start your plan",
+            "button_link": {
+              "kind": "url",
+              "value": "#plan"
+            }
+          }
+        },
+        {
+          "type": "pull_quote",
+          "version": 1,
+          "data": {}
+        },
+        {
+          "type": "faq",
+          "version": 1,
+          "data": {
+            "eyebrow": "Questions",
+            "heading": "About native plantings",
+            "items": [
+              {
+                "question": "Will it look messy?",
+                "answer": "Not when it's designed. Mown edges, clear borders and plants in groups make a native planting read as a garden."
+              },
+              {
+                "question": "When do the savings start?",
+                "answer": "Mowing stops right away; weeding while plants establish takes some of the savings in the first two years, and they grow from about the third."
+              },
+              {
+                "question": "Do you mow, plow or build patios?",
+                "answer": "No. We design, plant and care for plantings. Your current crew can keep mowing and plowing, and if your project needs hardscape we'll plan the planting around your contractor's work."
+              }
+            ]
+          }
+        },
+        {
+          "type": "commercial_planner",
+          "version": 1,
+          "data": {
+            "eyebrow": "Plan your project",
+            "heading": "Plan a planting",
+            "intro": "Tell us about the grounds and what you'd like to change. We'll reply within 1–2 business days.",
+            "points": [
+              "Replies within 1–2 business days",
+              "Site visits on-site or virtual",
+              "Plants only: design, installation, displays and care",
+              "No obligation"
+            ],
+            "source": "lp: native and stormwater"
+          }
+        }
+      ],
+      "frontmatter": {},
+      "seo": {
+        "meta_title": "Commercial Native Plantings & Rain Gardens | SW Michigan",
+        "meta_description": "Lawn-to-native conversions and rain gardens for campuses, churches, schools and townships in Southwest Michigan: less mowing, stormwater handled on site.",
+        "og_image_id": "39",
+        "noindex": true
+      }
     }
   ],
   "entries": [
+    {
+      "collection": "commercial",
+      "slug": "garden-care",
+      "title": "Commercial Garden Care",
+      "locale": "en",
+      "frontmatter": {
+        "order": 4,
+        "image": "10",
+        "icon": "calendar-event",
+        "graphic": "care_calendar",
+        "planner_choice": "interest_garden_care",
+        "summary": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
+        "features": [
+          "Scheduled visits through the growing season",
+          "Weeding, deadheading, cutting back and dividing",
+          "Plant health checks and replacements",
+          "Mulch refresh and spring and fall clean-ups",
+          "Notes after each visit on what we did and what's next"
+        ],
+        "ideal_for": [
+          "Any planting we've installed",
+          "Properties whose current crew mows but doesn't garden",
+          "Native and pollinator plantings in their first years"
+        ],
+        "steps": [
+          {
+            "title": "Walk-through",
+            "text": "We look at the plantings, what's thriving and what isn't, and agree a schedule."
+          },
+          {
+            "title": "Regular visits",
+            "text": "Care on a set schedule, with notes after each visit."
+          },
+          {
+            "title": "Season reviews",
+            "text": "Each fall we suggest what to divide, replace or add next year."
+          }
+        ],
+        "faqs": [
+          {
+            "question": "Do you mow?",
+            "answer": "No. We look after the plantings; your current crew can keep mowing."
+          },
+          {
+            "question": "Can you care for plantings someone else installed?",
+            "answer": "Yes. We start with a walk-through to see what's there and what it needs."
+          },
+          {
+            "question": "How does a commercial project start?",
+            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
+          }
+        ]
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Commercial Garden Care | Healing Earth Design",
+        "meta_description": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
+        "og_image_id": "33",
+        "schema_type": "WebPage"
+      }
+    },
     {
       "collection": "commercial",
       "slug": "seasonal-display-programs",
@@ -5118,67 +5933,6 @@
         "meta_title": "Commercial Landscape Design & Installation | Healing Earth",
         "meta_description": "A planting plan for your property, and our team to put it in: soil, plants and mulch, start to finish. Plants only, no hardscape.",
         "og_image_id": "54",
-        "schema_type": "WebPage"
-      }
-    },
-    {
-      "collection": "commercial",
-      "slug": "garden-care",
-      "title": "Commercial Garden Care",
-      "locale": "en",
-      "frontmatter": {
-        "order": 4,
-        "image": "33",
-        "icon": "calendar-event",
-        "graphic": "care_calendar",
-        "planner_choice": "interest_garden_care",
-        "summary": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
-        "features": [
-          "Scheduled visits through the growing season",
-          "Weeding, deadheading, cutting back and dividing",
-          "Plant health checks and replacements",
-          "Mulch refresh and spring and fall clean-ups",
-          "Notes after each visit on what we did and what's next"
-        ],
-        "ideal_for": [
-          "Any planting we've installed",
-          "Properties whose current crew mows but doesn't garden",
-          "Native and pollinator plantings in their first years"
-        ],
-        "steps": [
-          {
-            "title": "Walk-through",
-            "text": "We look at the plantings, what's thriving and what isn't, and agree a schedule."
-          },
-          {
-            "title": "Regular visits",
-            "text": "Care on a set schedule, with notes after each visit."
-          },
-          {
-            "title": "Season reviews",
-            "text": "Each fall we suggest what to divide, replace or add next year."
-          }
-        ],
-        "faqs": [
-          {
-            "question": "Do you mow?",
-            "answer": "No. We look after the plantings; your current crew can keep mowing."
-          },
-          {
-            "question": "Can you care for plantings someone else installed?",
-            "answer": "Yes. We start with a walk-through to see what's there and what it needs."
-          },
-          {
-            "question": "How does a commercial project start?",
-            "answer": "With a visit to the property, on-site or virtual. We look at sun, soil, drainage, how people arrive and what you want the place to feel like, and then send a plan with clear next steps and a price."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Commercial Garden Care | Healing Earth Design",
-        "meta_description": "Regular visits to weed, edit, deadhead, divide and keep your plantings healthy, by people who know the plants.",
-        "og_image_id": "33",
         "schema_type": "WebPage"
       }
     },
@@ -7157,6 +7911,12 @@
           "help": "Filled in by the site when the visitor used the ROI calculator. Not shown to visitors."
         },
         {
+          "name": "tracking",
+          "label": "Ad tracking",
+          "type": "text",
+          "help": "Filled in by the site: the ad click (gclid) and UTM tags of the visit that brought the lead. Not shown to visitors."
+        },
+        {
           "name": "source",
           "label": "Sent from",
           "type": "text",
@@ -7441,6 +8201,12 @@
           "label": "Garden estimate",
           "type": "text",
           "help": "Filled in by the site when the visitor used the garden calculator. Not shown to visitors."
+        },
+        {
+          "name": "tracking",
+          "label": "Ad tracking",
+          "type": "text",
+          "help": "Filled in by the site: the ad click (gclid) and UTM tags of the visit that brought the lead. Not shown to visitors."
         },
         {
           "name": "source",
