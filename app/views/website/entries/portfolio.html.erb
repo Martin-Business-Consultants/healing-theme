@@ -69,7 +69,7 @@
     </dialog>
   </div>
 </article>
-<%= render "website/shared/testimonial_quote" %>
+<%= render "website/shared/testimonial_quote", testimonial: study.testimonial %>
 <% if others.any? %>
   <section class="container container--grid more-studies">
     <% if healing_settings.case_study_page.more_heading.present? %>

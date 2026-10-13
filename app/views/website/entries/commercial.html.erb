@@ -58,7 +58,7 @@
     </div>
   </section>
 <% end %>
-<%= render "website/shared/testimonial_quote" %>
+<%= render "website/shared/testimonial_quote", testimonial: service.testimonial %>
 <%= render "website/shared/faq", eyebrow: "Questions", heading: "About #{entry.title.downcase}", items: service.faqs %>
 <section class="section">
   <div class="container">

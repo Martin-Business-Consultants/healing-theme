@@ -13,6 +13,7 @@
 // writes the estimate into the contact form.
 import { animate } from "healing/vendor/motion"
 import { draw, money, tween } from "healing/chart"
+import { numberValue } from "healing/number_field"
 
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 const count = (n) => Math.round(n).toLocaleString("en-US")
@@ -69,7 +70,7 @@ function setUp(root) {
 
   const read = () => {
     const data = new FormData(form)
-    const number = (name) => Math.max(0, parseFloat(data.get(name)) || 0)
+    const number = (name) => numberValue(data.get(name))
     return { home: number("home"), investment: number("investment"), care: number("care"), lawn: number("lawn"),
       edible: number("edible"), roof: number("roof"), hours: number("hours"), years: Math.max(1, number("years")) }
   }

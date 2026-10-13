@@ -211,9 +211,12 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
       get "/industries/#{industry["slug"]}"
       form = Nokogiri::HTML5(response.body).at_css("[data-roi-form]")
       own = industry["frontmatter"]
-      expect(form.at_css("#roi-investment")["value"].to_i).to eq(own["calc_investment_default"] || calc["default_investment"])
-      expect(form.at_css("#roi-care")["value"].to_i).to eq(own["calc_care_default"] || calc["default_care"])
-      expect(form.at_css("#roi-lawn")["value"].to_i).to eq(own["calc_lawn_default"] || calc["default_lawn_sqft"])
+      # Shown with commas: 15,000.
+      value = ->(id) { form.at_css(id)["value"].delete(",").to_i }
+      expect(value.("#roi-investment")).to eq(own["calc_investment_default"] || calc["default_investment"])
+      expect(value.("#roi-care")).to eq(own["calc_care_default"] || calc["default_care"])
+      expect(value.("#roi-lawn")).to eq(own["calc_lawn_default"] || calc["default_lawn_sqft"])
+      expect(form.at_css("#roi-amount")["value"]).to eq(own["calc_basis_default"].to_fs(:delimited))
     end
   end
 
@@ -330,6 +333,20 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(page.at_css(".gallery[data-controller=lightbox] dialog[data-lightbox-target=dialog]")).to be_present
     expect(page.css(".gallery__open[data-action='lightbox#open']").map { it["data-lightbox-index-param"].to_i }).to eq((0...photos).to_a)
     expect(page.css(".study-card__num").map(&:text)).to eq(%w[01 02 03 04].first(page.css(".study-card").size))
+  end
+
+  it "shows the testimonial picked for a page in the quote band, and Site settings' featured quote without one" do
+    service = Collection.find_by!(slug: "services").entries.first
+    featured = SNAPSHOT["globals"].find { it["slug"] == "site_settings" }.dig("data", "quote")
+    get "/services/#{service.slug}"
+    expect(Nokogiri::HTML5(response.body).at_css(".pull-quote blockquote").text).to include(featured["text"].strip.first(40))
+
+    testimonial = SNAPSHOT["entries"].find { it["collection"] == "testimonials" }
+    service.update!(frontmatter: service.frontmatter.merge("testimonial" => testimonial["slug"]))
+    get "/services/#{service.slug}"
+    band = Nokogiri::HTML5(response.body).at_css(".pull-quote")
+    expect(band.at_css("blockquote").text).to include(testimonial.dig("frontmatter", "quote").first(40))
+    expect(band.at_css("figcaption").text).to eq(testimonial["title"])
   end
 
   it "loads its own scripts and stylesheet, none of the admin's" do
