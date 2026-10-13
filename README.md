@@ -34,12 +34,11 @@ the CMS doesn't declare fails here before it breaks a page.
 ## At Cloudflare's edge
 
 `cloudflare/edge-worker` runs ahead of the site: it redirects
-`www.healingearthdesignbysarah.com` to the address without www, and answers
-`/robots.txt` as the CMS would, because a static robots.txt left on the
-server shadows the CMS's own. Deploy it with `npx wrangler deploy` from that
-folder (logged in to the Healing Earth Design Cloudflare account). If
-Settings › Search changes what robots.txt should say, change it there too, or
-delete the server's `public/robots.txt` and drop the Worker's robots route.
+`www.healingearthdesignbysarah.com` to the address without www, and fetches
+`/robots.txt` from the CMS on every request, past Cloudflare's cache (which
+holds a year-old copy). Robots.txt is managed in the CMS, Settings › Search.
+Deploy the Worker with `npx wrangler deploy` from that folder (logged in to
+the Healing Earth Design Cloudflare account).
 
 ## Installing it
 
