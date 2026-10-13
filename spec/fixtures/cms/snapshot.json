@@ -2193,6 +2193,24 @@
             "required": true
           },
           {
+            "name": "calc_investment_default",
+            "label": "Calculator: starting investment ($)",
+            "type": "integer",
+            "help": "Blank uses Site settings › ROI calculator's"
+          },
+          {
+            "name": "calc_care_default",
+            "label": "Calculator: starting yearly care ($)",
+            "type": "integer",
+            "help": "Blank uses Site settings' (0 is none)"
+          },
+          {
+            "name": "calc_lawn_default",
+            "label": "Calculator: starting lawn converted (sq ft)",
+            "type": "integer",
+            "help": "Blank uses Site settings'"
+          },
+          {
             "name": "calc_uplift_low",
             "label": "Calculator: uplift, low (%)",
             "type": "string",
@@ -5082,6 +5100,102 @@
     },
     {
       "collection": "industries",
+      "slug": "realty-real-estate",
+      "title": "Realty & Real Estate",
+      "locale": "en",
+      "frontmatter": {
+        "order": 8,
+        "image": "51",
+        "icon": "home",
+        "summary": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
+        "headline": "Curb appeal is the first showing.",
+        "intro": "Buyers form an opinion before they reach the front door, and most of them see the house first in listing photos. Nearly every Realtor says curb appeal matters in attracting a buyer, and most have told sellers to improve it before listing. Fresh beds, clean mulch and full containers at the door are among the simplest ways to make a property look cared for.",
+        "drivers": [
+          {
+            "title": "Listing photos that stop the scroll",
+            "text": "A planted, mulched entrance and seasonal containers make the front of the house the photo buyers click on."
+          },
+          {
+            "title": "Showings that start well",
+            "text": "The walk to the door sets the tone for the whole showing; cared-for plantings say the house has been cared for too."
+          },
+          {
+            "title": "Model homes and new builds",
+            "text": "Bare lots look unfinished. Foundation plantings and a planted entrance help a new home look ready to live in."
+          },
+          {
+            "title": "Low care buyers won't worry about",
+            "text": "Sturdy, plant-forward beds that look good without much work reassure buyers who don't want a project."
+          }
+        ],
+        "stats": [
+          {
+            "figure": "97%",
+            "label": "of Realtors say curb appeal is important in attracting a buyer.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "92%",
+            "label": "of Realtors have suggested sellers improve curb appeal before listing.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "100%",
+            "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
+            "source": "NAR & NALP, Remodeling Impact Report, 2023",
+            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
+          },
+          {
+            "figure": "1.7 days",
+            "label": "sooner sale, on average, for houses with street trees in front, which also sold for $8,870 more (Portland, Oregon; trees, not plantings).",
+            "source": "Donovan & Butry, Landscape and Urban Planning, 2010",
+            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2010_donovan001.pdf"
+          }
+        ],
+        "ideas": [
+          "A pre-listing refresh: beds weeded, edged and mulched",
+          "Seasonal containers at the front door for photos and open houses",
+          "Foundation and entrance plantings for new builds and model homes",
+          "Low-care plantings buyers won't see as a chore",
+          "Care visits while a property is on the market"
+        ],
+        "calc_basis": "property_value",
+        "calc_basis_label": "Sale price",
+        "calc_basis_default": 350000,
+        "calc_uplift_low": "1",
+        "calc_uplift_high": "3",
+        "calc_note": "A one-time gain of 1% to 3% of the sale price, the same range the home garden calculator uses. Buyers say a well-landscaped home is worth 5–11% more (Behe et al., 2005), and Realtors estimate a landscape upgrade recovers about what it costs (NAR & NALP, 2023); buyers' estimates run ahead of sale prices, so the calculator stays well below them. It starts from a pre-listing refresh with no yearly care, since the gain comes when the property sells.",
+        "planner_choice": "Real estate: listings, model homes or new builds",
+        "faqs": [
+          {
+            "question": "Can you refresh a property before it's listed?",
+            "answer": "Yes. Tell us the listing date, and we'll plan a refresh of beds, mulch and containers around it so the property is ready for photos."
+          },
+          {
+            "question": "Do you work with agents and builders on more than one property?",
+            "answer": "Yes. We can set up a refresh or planting plan you can repeat across listings, model homes or a development."
+          },
+          {
+            "question": "Do you build patios, walls or walkways?",
+            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
+          }
+        ],
+        "calc_investment_default": 2500,
+        "calc_care_default": 0,
+        "calc_lawn_default": 0
+      },
+      "body_markdown": "",
+      "seo": {
+        "meta_title": "Real Estate & Listing Landscaping | Healing Earth Design",
+        "meta_description": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
+        "og_image_id": "51",
+        "schema_type": "WebPage"
+      }
+    },
+    {
+      "collection": "industries",
       "slug": "schools-churches-nonprofits",
       "title": "Schools, Churches & Nonprofits",
       "locale": "en",
@@ -5158,7 +5272,10 @@
             "question": "Do you build patios, walls or walkways?",
             "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
           }
-        ]
+        ],
+        "calc_investment_default": 10000,
+        "calc_care_default": 1200,
+        "calc_lawn_default": 20000
       },
       "body_markdown": "",
       "seo": {
@@ -5431,7 +5548,10 @@
             "question": "Do you build patios, walls or walkways?",
             "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
           }
-        ]
+        ],
+        "calc_investment_default": 25000,
+        "calc_care_default": 2400,
+        "calc_lawn_default": 40000
       },
       "body_markdown": "",
       "seo": {
@@ -6720,99 +6840,6 @@
       "body_markdown": "",
       "seo": {
         "noindex": true
-      }
-    },
-    {
-      "collection": "industries",
-      "slug": "realty-real-estate",
-      "title": "Realty & Real Estate",
-      "locale": "en",
-      "frontmatter": {
-        "order": 8,
-        "image": "51",
-        "icon": "home",
-        "summary": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
-        "headline": "Curb appeal is the first showing.",
-        "intro": "Buyers form an opinion before they reach the front door, and most of them see the house first in listing photos. Nearly every Realtor says curb appeal matters in attracting a buyer, and most have told sellers to improve it before listing. Fresh beds, clean mulch and full containers at the door are among the simplest ways to make a property look cared for.",
-        "drivers": [
-          {
-            "title": "Listing photos that stop the scroll",
-            "text": "A planted, mulched entrance and seasonal containers make the front of the house the photo buyers click on."
-          },
-          {
-            "title": "Showings that start well",
-            "text": "The walk to the door sets the tone for the whole showing; cared-for plantings say the house has been cared for too."
-          },
-          {
-            "title": "Model homes and new builds",
-            "text": "Bare lots look unfinished. Foundation plantings and a planted entrance help a new home look ready to live in."
-          },
-          {
-            "title": "Low care buyers won't worry about",
-            "text": "Sturdy, plant-forward beds that look good without much work reassure buyers who don't want a project."
-          }
-        ],
-        "stats": [
-          {
-            "figure": "97%",
-            "label": "of Realtors say curb appeal is important in attracting a buyer.",
-            "source": "NAR & NALP, Remodeling Impact Report, 2023",
-            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
-          },
-          {
-            "figure": "92%",
-            "label": "of Realtors have suggested sellers improve curb appeal before listing.",
-            "source": "NAR & NALP, Remodeling Impact Report, 2023",
-            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
-          },
-          {
-            "figure": "100%",
-            "label": "of the cost of a landscape upgrade that Realtors estimate is recovered when a home sells.",
-            "source": "NAR & NALP, Remodeling Impact Report, 2023",
-            "source_url": "https://www.nar.realtor/research-and-statistics/research-reports/remodeling-impact-report-outdoor-features"
-          },
-          {
-            "figure": "1.7 days",
-            "label": "sooner sale, on average, for houses with street trees in front, which also sold for $8,870 more (Portland, Oregon; trees, not plantings).",
-            "source": "Donovan & Butry, Landscape and Urban Planning, 2010",
-            "source_url": "https://www.fs.usda.gov/pnw/pubs/journals/pnw_2010_donovan001.pdf"
-          }
-        ],
-        "ideas": [
-          "A pre-listing refresh: beds weeded, edged and mulched",
-          "Seasonal containers at the front door for photos and open houses",
-          "Foundation and entrance plantings for new builds and model homes",
-          "Low-care plantings buyers won't see as a chore",
-          "Care visits while a property is on the market"
-        ],
-        "calc_basis": "property_value",
-        "calc_basis_label": "Sale price",
-        "calc_basis_default": 350000,
-        "calc_uplift_low": "0.5",
-        "calc_uplift_high": "2",
-        "calc_note": "A one-time gain of 0.5% to 2% of the sale price. Buyers say a well-landscaped home is worth 5–11% more (Behe et al., 2005), and Realtors estimate a landscape upgrade recovers about what it costs (NAR & NALP, 2023). Buyers' estimates run ahead of sale prices, so the calculator uses a small fraction of them.",
-        "planner_choice": "Real estate: listings, model homes or new builds",
-        "faqs": [
-          {
-            "question": "Can you refresh a property before it's listed?",
-            "answer": "Yes. Tell us the listing date, and we'll plan a refresh of beds, mulch and containers around it so the property is ready for photos."
-          },
-          {
-            "question": "Do you work with agents and builders on more than one property?",
-            "answer": "Yes. We can set up a refresh or planting plan you can repeat across listings, model homes or a development."
-          },
-          {
-            "question": "Do you build patios, walls or walkways?",
-            "answer": "No. Everything we do is plants: design, soil, planting, mulch and care. If your project needs hardscape, we can plan the planting around it and work alongside your contractor."
-          }
-        ]
-      },
-      "body_markdown": "",
-      "seo": {
-        "meta_title": "Real Estate & Listing Landscaping | Healing Earth Design",
-        "meta_description": "Listing-ready curb appeal, model homes and new builds: plantings that help a property show well, photograph beautifully and sell.",
-        "og_image_id": "51",
-        "schema_type": "WebPage"
       }
     }
   ],

@@ -1,10 +1,12 @@
 <%# locals: (heading:, eyebrow: nil, intro: nil, industry: nil) -%>
-<%# The ROI calculator (healing/roi.js): what a planting project could return over the years, explained line by line (what the number is, each part's amount and its assumption, and why: the industry's own note), from each industry's assumptions (Industries: what the uplift applies to, a low and a high %) and Site settings › ROI calculator (the maturity ramps, lawn savings, starting figures, the disclaimer). With `industry` (an industry's page) it's that industry's alone. "Plan this project" carries the estimate into the planner. Without scripts it shows the assumptions only. %>
+<%# The ROI calculator (healing/roi.js): what a planting project could return over the years, explained line by line (what the number is, each part's amount and its assumption, and why: the industry's own note), from each industry's assumptions (Industries: what the uplift applies to, a low and a high %) and Site settings › ROI calculator (the maturity ramps, lawn savings, starting figures, the disclaimer); an industry's own starting investment, care and lawn, when it has them, come first. With `industry` (an industry's page) it's that industry's alone. "Plan this project" carries the estimate into the planner. Without scripts it shows the assumptions only. %>
 <% calc = healing_settings.calculator %>
 <% industries = industry ? [industry] : healing_industries %>
 <% options = industries.map do |entry|
   assumptions = website_fields(entry)
   {slug: entry.slug, name: entry.title, basis: assumptions.calc_basis, label: assumptions.calc_basis_label, amount: assumptions.calc_basis_default,
+   investment: assumptions.calc_investment_default || calc.default_investment.presence || 10000, care: assumptions.calc_care_default || calc.default_care.presence || 0,
+   lawn: assumptions.calc_lawn_default || calc.default_lawn_sqft.presence || 0,
    low: healing_percent(assumptions.calc_uplift_low), high: healing_percent(assumptions.calc_uplift_high), note: assumptions.calc_note, property: assumptions.planner_choice, href: website_path(entry)}
 end %>
 <% shares = ->(text) { text.to_s.split(",").map(&:to_f).select(&:positive?).presence || [1.0] } %>
@@ -47,15 +49,15 @@ end %>
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-investment">Planting investment</label>
-            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-investment" name="investment" autocomplete="off" type="number" inputmode="numeric" min="0" step="500" value="<%= calc.default_investment.presence || 10000 %>"></div>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-investment" name="investment" autocomplete="off" type="number" inputmode="numeric" min="0" step="500" value="<%= options.first[:investment] %>"></div>
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-care">Yearly care <span class="field__optional">(optional)</span></label>
-            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-care" name="care" autocomplete="off" type="number" inputmode="numeric" min="0" step="250" value="<%= calc.default_care.presence || 0 %>"></div>
+            <div class="money"><span aria-hidden="true">$</span><input class="field__input" id="roi-care" name="care" autocomplete="off" type="number" inputmode="numeric" min="0" step="250" value="<%= options.first[:care] %>"></div>
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-lawn">Lawn converted to planting <span class="field__optional">(sq ft, optional)</span></label>
-            <input class="field__input" id="roi-lawn" name="lawn" autocomplete="off" type="number" inputmode="numeric" min="0" step="100" value="<%= calc.default_lawn_sqft.presence || 0 %>">
+            <input class="field__input" id="roi-lawn" name="lawn" autocomplete="off" type="number" inputmode="numeric" min="0" step="100" value="<%= options.first[:lawn] %>">
           </div>
           <div class="field field--wide">
             <label class="field__label" for="roi-years">Years out: <output data-roi-years-out for="roi-years"><%= years %></output></label>
