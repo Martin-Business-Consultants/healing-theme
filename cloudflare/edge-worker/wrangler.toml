@@ -1,0 +1,10 @@
+name = "healingearth-edge"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+account_id = "78165d1c6eb915cb048f7153cafe22ca"
+workers_dev = false
+
+routes = [
+  { pattern = "www.healingearthdesignbysarah.com/*", zone_name = "healingearthdesignbysarah.com" },
+  { pattern = "healingearthdesignbysarah.com/robots.txt", zone_name = "healingearthdesignbysarah.com" },
+]
