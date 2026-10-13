@@ -97,8 +97,11 @@ function setUp(root) {
     // A new industry starts from its own typical figure and words.
     if (event?.target?.name === "industry") {
       const industry = config.industries.find((i) => i.slug === inputs.industry)
-      form.elements.amount.value = industry.amount
-      inputs.amount = industry.amount
+      // and its own starting investment, care and lawn.
+      for (const name of ["amount", "investment", "care", "lawn"]) {
+        form.elements[name].value = industry[name]
+        inputs[name] = industry[name]
+      }
       out("amount-label").textContent = industry.label
     }
     const result = estimate(config, inputs)

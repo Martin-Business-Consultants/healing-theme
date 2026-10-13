@@ -205,6 +205,18 @@ RSpec.describe "The Healing Earth Design website", type: :request, website: true
     expect(JSON.parse(Nokogiri::HTML5(response.body).at_css("[data-roi]")["data-roi"])["industries"].map { it["slug"] }).to eq([industries.last["slug"]])
   end
 
+  it "starts an industry's calculator from its own investment, care and lawn, else Site settings'" do
+    calc = SNAPSHOT["globals"].find { it["slug"] == "site_settings" }.dig("data", "calculator")
+    SNAPSHOT["entries"].select { it["collection"] == "industries" }.each do |industry|
+      get "/industries/#{industry["slug"]}"
+      form = Nokogiri::HTML5(response.body).at_css("[data-roi-form]")
+      own = industry["frontmatter"]
+      expect(form.at_css("#roi-investment")["value"].to_i).to eq(own["calc_investment_default"] || calc["default_investment"])
+      expect(form.at_css("#roi-care")["value"].to_i).to eq(own["calc_care_default"] || calc["default_care"])
+      expect(form.at_css("#roi-lawn")["value"].to_i).to eq(own["calc_lawn_default"] || calc["default_lawn_sqft"])
+    end
+  end
+
   it "tells search engines and AI assistants what the business is, where it works and what it answers" do
     json_ld = ->(body) { Nokogiri::HTML5(body).css('script[type="application/ld+json"]').map { JSON.parse(it.text) } }
 
